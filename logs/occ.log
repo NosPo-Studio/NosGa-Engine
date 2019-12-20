@@ -1,0 +1,17 @@
+[INFO] [DL]: Loading data groups: states.
+[INFO] [DL]: Data loading done.
+[INFO] [GE]: Change state to: "test".
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: textures, gameObjects, parents, states.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: init done.
+[INFO] lua> t = 1
+[INFO] lua> t2 = 2
+[INFO] lua> s = t + t2
+[INFO] lua> s
+[INFO] 3	
+[INFO] lua> global.state.test.tgo1:move(s, 0)
+[INFO] lua> global.state.test.tgo1:move(s, 0)
+[INFO] lua> global.state.test.tgo1:move(s, 0)
+[INFO] lua> global.state.test.tgo1:move(s, 0)
+[INFO] Program stopped by user.
