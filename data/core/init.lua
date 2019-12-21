@@ -73,6 +73,8 @@ print(loadfile("data/core/RenderArea.lua"))
 global.core.RenderArea = loadfile("data/core/RenderArea.lua")(global)
 print(loadfile("data/core/GameObject.lua"))
 global.core.GameObject = loadfile("data/core/GameObject.lua")(global)
+print(loadfile("data/core/eventHandler.lua"))
+global.core.eventHandler = loadfile("data/core/eventHandler.lua")(global)
 
 global.resX, global.resY = global.gpu.getResolution()
 

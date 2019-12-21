@@ -50,6 +50,8 @@ local function start()
 	
 	--global.clear()
 	
+	global.core.eventHandler.init()
+	
 	global.lastUptime = global.computer.uptime()
 	
 end
@@ -93,88 +95,8 @@ local function draw()
 	end
 end
 
-local function touch(_, _, x, y, b, p)
-	global.ocui:update(x, y)
-	run(global.state[global.currentState].touch, x, y, b, p)
-end
-
-local function drag(_, _, x, y, b, p)
-	run(global.state[global.currentState].drag, x, y, b, p)
-end
-
-local function drop(_, _, x, y, b, p)
-	run(global.state[global.currentState].drop, x, y, b, p)
-end
-
-local function keyDown(_, _, c, k, p)
-	if c == 3 then --ctrl + c
-		print("Program stopped by user.")
-		global.isRunning = false
-	end
-	
-	if k == global.controls.debug.showConsole then
-		global.conf.showConsole = not global.conf.showConsole
-		if not global.conf.showConsole then
-			global.clear()
-		end
-	end
-	
-	run(global.state[global.currentState].keyDown, c, k, p)
-	
-	if k == global.controls.debug.showDebug then --f3
-		global.conf.showDebug = not global.conf.showDebug
-		if not global.conf.showDebug then
-			global.clear()
-		end
-	end
-	if k == global.controls.debug.reloadState and global.isDev then --f5
-		global.log("--========== RELOAD STAGE ==========--")
-		run(global.state[global.currentState].stop)
-		global.state[global.currentState] = nil
-		
-		global.gameObjects = {}
-		global.renderAreas = {}
-		
-		if global.conf.debug.onReload.conf then
-			global.conf = dofile("conf.lua")
-		end
-		global.conf.debug.onReload.reload = true
-		if global.keyboard.isControlDown() then
-			local reloadList = {}
-			
-			for i, c in pairs(global.conf.debug.onReload) do
-				reloadList[i] = true
-			end
-			
-			global.load(reloadList)
-		else
-			global.load(global.conf.debug.onReload)
-		end
-		
-		global.conf.debug.onReload.reload = nil
-		
-		global.state[global.currentState] = loadfile("data/states/" .. global.currentState .. ".lua")(global)
-		run(global.state[global.currentState].init)
-		run(global.state[global.currentState].start)
-		
-		global.clear()
-	end
-	if k == global.controls.debug.rerenderScreen then --f6
-		global.clear()
-	end
-	
-end
-
-local function keyUp(_, _, c, k, p)
-	run(global.state[global.currentState].keyUp, c, k, p)
-end
-
 local function progamEnd()
-	global.event.ignore("touch", touch)
-	global.event.ignore("drag", drag)
-	global.event.ignore("drop", drop)
-	global.event.ignore("key_down", keyDown)
-	global.event.ignore("key_up", keyUp)
+	global.core.eventHandler.stop()
 	
 	for _, s in pairs(global.state) do
 		run(s.stop)
@@ -184,13 +106,6 @@ local function progamEnd()
 	global.tbConsole:draw()
 	global.ocl.close()
 end
-
---===== global.event listening =====--
-global.event.listen("touch", touch)
-global.event.listen("drop", drop)
-global.event.listen("drag", drag)
-global.event.listen("key_down", keyDown)
-global.event.listen("key_up", keyUp)
 
 --===== std program structure / main while =====--
 local std_previousScreenResolution = {global.gpu.getResolution()}
@@ -228,14 +143,8 @@ while global.isRunning do
 		end
 	end
 	
-	global.dt = global.computer.uptime() - global.lastUptime
-	global.lastUptime = global.computer.uptime()
+	global.core.eventHandler.update()
 	
-	if global.conf.targetFramerate == -1 then
-		os.sleep()
-	else
-		os.sleep((1 / global.conf.targetFramerate) - math.max(global.dt - (1 / global.conf.targetFramerate), 0))
-	end
 	global.currentFrame = global.currentFrame +1
 end
 

@@ -89,6 +89,12 @@ if toLoad.ge then
 	global.ge = reloadFile(global.ge, "data/core/ge.lua", global)
 end
 
+if toLoad.eh then
+	global.core.eventHandler.stop()
+	global.core.eventHandler = reloadFile(global.core.eventHandler, "data/core/eventHandler.lua", global)
+	global.core.eventHandler.init()
+end
+
 if toLoad.states then
 	global.state = {} 
 	global.loadData(global.state, "data/states", nil, print)

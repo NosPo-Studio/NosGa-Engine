@@ -114,7 +114,7 @@ function global.debug(...)
 		local t = {...}
 		local s = "[DEBUG] " .. tostring(t[1])
 		global.tbConsole:add(s, select(2, ...))
-		--global.ocl.add(s, select(2, ...))
+		global.ocl.add(s, select(2, ...))
 	end
 end
 
