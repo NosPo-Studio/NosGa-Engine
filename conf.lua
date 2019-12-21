@@ -20,6 +20,7 @@ local conf = {
 		raDebug = false, --print renderArea debug (only if isDev).
 		geDebug = true, --print gameEngine debug (only if isDev).
 		goDebug = true, --print gameObject management debug (only if isDev).
+		ehDebug = true, --print eventHandler debug (only if isDev).
 		
 		drawCollider = false,
 		drawTrigger = false,
@@ -48,6 +49,7 @@ local conf = {
 			--=== core ===--
 			re = false, 
 			ge = false,
+			eh = true,
 			
 			--=== data groups ===--
 			global = false, --global dir.

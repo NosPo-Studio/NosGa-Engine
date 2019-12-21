@@ -112,6 +112,7 @@ function test.start()
 end
 
 function test.update()
+	
 	if test.isMovingLeft then
 		--test.tgo1:move(-1, 0)
 		test.moveDis = test.moveDis -1
@@ -150,38 +151,6 @@ function test.update()
 	end
 	--os.sleep(.5)
 	
-	
-	--[[
-	local camSpeed = 1
-	if global.keyboard.isKeyDown(32) then
-		--test.tgo1:move(1, 0)
-		test.rbm1:move(1, 0)
-	end 
-	if global.keyboard.isKeyDown(30) then
-		--test.tgo1:move(-1, 0)
-		test.rbm1:move(-1, 0)
-	end 
-	if global.keyboard.isKeyDown(31) then
-		--test.tgo1:move(0, -1)
-		test.rbm1:move(0, -1)
-	end 
-	if global.keyboard.isKeyDown(17) then
-		--test.tgo1:move(0, 1)
-		test.rbm1:move(0, 1)
-	end 
-	if global.keyboard.isKeyDown(16) then
-		test.ra1:moveCamera(-camSpeed, 0)
-	end 
-	if global.keyboard.isKeyDown(18) then
-		test.ra1:moveCamera(camSpeed, 0)
-	end 
-	if global.keyboard.isKeyDown(19) then
-		test.ra1:moveCamera(0, -camSpeed)
-	end 
-	if global.keyboard.isKeyDown(33) then
-		test.ra1:moveCamera(0, camSpeed)
-	end
-	]]
 end
 
 function test.draw()
@@ -192,7 +161,7 @@ function test.draw()
 	--global.gpu:drawChanges()
 end
 
-function test.keyDown(c, k)
+function test.key_down(s)
 	if k == 28 and global.isDev then
 		--print("--===== EINGABE =====--")
 		
@@ -216,8 +185,7 @@ function test.keyDown(c, k)
 		
 	end 
 	
-	--print("KEY DOWN:", c, k, "===============================================")
-	
+	print("KEY DOWN:", s[3], s[4], global.currentFrame,  "=======================================")
 	
 	local camSpeed = 1
 	if k == 205 then
@@ -248,25 +216,61 @@ function test.keyDown(c, k)
 	--print(c, k)
 end
 
-function test.keyUp(c, k)
+function test.key_pressed(s)
+	print("KEY PRESSED:", s[3], s[4], global.currentFrame, global.currentFrame)
+	--test.ra1:rerenderAll()
+	--test.ra2:rerenderAll()
 	
+	local camSpeed = 1
+	if s[4] == 32 then
+		--test.tgo1:move(1, 0)
+		test.rbm1:move(1, 0)
+	end 
+	if s[4] == 30 then
+		--test.tgo1:move(-1, 0)
+		test.rbm1:move(-1, 0)
+	end 
+	if s[4] == 31 then
+		--test.tgo1:move(0, -1)
+		test.rbm1:move(0, -1)
+	end 
+	if s[4] == 17 then
+		--test.tgo1:move(0, 1)
+		test.rbm1:move(0, 1)
+	end 
+	if s[4] == 16 then
+		test.ra1:moveCamera(-camSpeed, 0)
+	end 
+	if s[4] == 18 then
+		test.ra1:moveCamera(camSpeed, 0)
+	end 
+	if s[4] == 19 then
+		test.ra1:moveCamera(0, -camSpeed)
+	end 
+	if s[4] == 33 then
+		test.ra1:moveCamera(0, camSpeed)
+	end
 end
 
-function test.touch(x, y, b, p)
+function test.key_up(s)
+	print("KEY UP:", s[3], s[4], global.currentFrame, "===============================================")
+end
+
+function test.touch(s)
 	--print(x, y, b, p)
 	--print(test.ra1:getPos(x, y))
 end
 
-function test.drag(x, y, b, p)
+function test.drag(s)
 	
 end
 
-function test.drop(x, y, b, p)
+function test.drop(s)
 	
 end
 
 function test.stop()
-	global.tiConsole:stop()
+	
 end
 
 return test

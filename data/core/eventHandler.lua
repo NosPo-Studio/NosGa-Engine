@@ -15,6 +15,12 @@ end
 local function parseSignal(signal)
 	if #signal == 0 then return false end
 	
+	if global.tiConsole.status == true then
+		if signal[1] == "key_down" or signal[1] == "key_up" then
+			return true
+		end
+	end
+	
 	global.run(global.core.eventHandler[signal[1]], signal)
 	
 	if signal[1] ~= "key_down" then
@@ -42,22 +48,21 @@ function eh.update(sleepTime)
 	global.lastUptime = global.computer.uptime()
 	
 	if global.conf.targetFramerate ~= -1 and global.dt < maxDT then
-		print("SLP", (1 / global.conf.targetFramerate) - math.max(global.dt - (1 / global.conf.targetFramerate), 0), global.currentFrame)
-		
-		
 		parseSignal({global.event.pull((1 / global.conf.targetFramerate) - math.max(global.dt - (1 / global.conf.targetFramerate), 0))})
 	end
 	
-	for i, s in pairs(pressedKeys) do
-		global.run(global.state[global.currentState].key_pressed, s)
-	end
-	for i, s in pairs(specialPressedKeys) do
-		global.run(global.state[global.currentState].key_pressed, s)
+	if global.tiConsole.status == false then
+		for i, s in pairs(pressedKeys) do
+			global.run(global.state[global.currentState].key_pressed, s)
+		end
+		for i, s in pairs(specialPressedKeys) do
+			global.run(global.state[global.currentState].key_pressed, s)
+		end
 	end
 end
 
-local function touch(_, _, x, y, b, p)
-	global.ocui:update(x, y)
+function eh.touch(s)
+	global.ocui:update(s[3], s[4])
 	--run(global.state[global.currentState].touch, x, y, b, p)
 end
 
