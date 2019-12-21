@@ -143,9 +143,8 @@ while global.isRunning do
 		end
 	end
 	
-	global.core.eventHandler.update()
-	
 	global.currentFrame = global.currentFrame +1
+	global.core.eventHandler.update()
 end
 
 progamEnd()

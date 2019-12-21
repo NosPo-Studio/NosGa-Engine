@@ -25,6 +25,7 @@ local function parseSignal(signal)
 	
 	if signal[1] ~= "key_down" then
 		global.run(global.state[global.currentState][signal[1]], signal)
+		global.ge.insertSignal(signal)
 	end
 	
 	return true
@@ -38,9 +39,7 @@ end
 function eh.update(sleepTime)	
 	local signal = {true}
 	
-	while parseSignal({global.event.pull(0)}) do
-		--print(global.currentFrame)
-	end
+	while parseSignal({global.event.pull(0)}) do end
 	
 	local maxDT = 1 / global.conf.targetFramerate
 	
@@ -54,9 +53,11 @@ function eh.update(sleepTime)
 	if global.tiConsole.status == false then
 		for i, s in pairs(pressedKeys) do
 			global.run(global.state[global.currentState].key_pressed, s)
+			global.ge.insertSignal(s, "key_pressed")
 		end
 		for i, s in pairs(specialPressedKeys) do
 			global.run(global.state[global.currentState].key_pressed, s)
+			global.ge.insertSignal(s, "key_pressed")
 		end
 	end
 end
@@ -125,9 +126,11 @@ function eh.key_down(s)
 	
 	if pressedKeys[0] == nil and pressedKeys[c] == nil then
 		global.run(global.state[global.currentState][s[1]], s)
+		global.ge.insertSignal(s)
 		pressedKeys[c] = s
 	elseif pressedKeys[0] ~= nil and specialPressedKeys[c] == nil then
 		global.run(global.state[global.currentState][s[1]], s)
+		global.ge.insertSignal(s)
 		specialPressedKeys[c] = s
 	end
 end

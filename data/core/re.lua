@@ -162,7 +162,6 @@ local function moveFrame(renderArea)
 			cmi.clear[1],
 			cmi.clear[2],
 		}), nil, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1})
-		
 	end
 end
 

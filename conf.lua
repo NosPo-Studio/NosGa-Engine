@@ -48,7 +48,7 @@ local conf = {
 			
 			--=== core ===--
 			re = false, 
-			ge = false,
+			ge = true,
 			eh = true,
 			
 			--=== data groups ===--
@@ -56,7 +56,7 @@ local conf = {
 			states = true,
 			textures = false,
 			parents = false,
-			gameObjects = false,
+			gameObjects = true,
 			
 			mods = false, --just reloads the activated data groups of the mods (if only onReload.blocks = true he only also reloads the blocks from mods). should be always true.
 		},

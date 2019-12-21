@@ -162,8 +162,8 @@ function test.draw()
 end
 
 function test.key_down(s)
-	if k == 28 and global.isDev then
-		--print("--===== EINGABE =====--")
+	if s[4] == 28 and global.isDev then
+		print("--===== EINGABE =====--")
 		
 		--global.realGPU.setBackground(0x000000)
 		--global.term.clear()
@@ -185,7 +185,7 @@ function test.key_down(s)
 		
 	end 
 	
-	print("KEY DOWN:", s[3], s[4], global.currentFrame,  "=======================================")
+	--print("KEY DOWN:", s[3], s[4], global.currentFrame,  "=======================================")
 	
 	local camSpeed = 1
 	if k == 205 then
@@ -217,7 +217,7 @@ function test.key_down(s)
 end
 
 function test.key_pressed(s)
-	print("KEY PRESSED:", s[3], s[4], global.currentFrame, global.currentFrame)
+	--print("KEY PRESSED:", s[3], s[4], global.currentFrame)
 	--test.ra1:rerenderAll()
 	--test.ra2:rerenderAll()
 	
@@ -253,7 +253,7 @@ function test.key_pressed(s)
 end
 
 function test.key_up(s)
-	print("KEY UP:", s[3], s[4], global.currentFrame, "===============================================")
+	--print("KEY UP:", s[3], s[4], global.currentFrame, "===============================================")
 end
 
 function test.touch(s)

@@ -21,6 +21,7 @@
 local global = ...
 local ge = {
 	isUpdated = {},
+	signalQueue = {},
 }
 
 --===== local vars =====--
@@ -68,21 +69,25 @@ local function calculateFrame(renderArea)
 end
 
 local function updateFrame(renderArea, dt)
-	if not renderArea.updateAnything then
-		for go in pairs(renderArea.toUpdate) do
-			if not ge.isUpdated[go] then
-				go:pUpdate(renderArea.toUpdate, dt, renderArea)
-				ge.isUpdated[go] = true
+	local toUpdate = renderArea.toUpdate
+	
+	if renderArea.updateAnything then
+		toUpdate = renderArea.gameObjects
+	end
+	
+	for go in pairs(toUpdate) do
+		if not ge.isUpdated[go] then
+			for i, s in pairs(ge.signalQueue) do
+				--print(s[1], go[s[1]], global.currentFrame)
+				
+				global.run(go[s[1]], s)
 			end
-		end
-	else
-		for i, go in pairs(renderArea.gameObjects) do
-			if not ge.isUpdated[go] then
-				go:pUpdate(global.gameObjects, dt, renderArea)
-				ge.isUpdated[go] = true
-			end
+			
+			go:pUpdate(global.gameObjects, dt, renderArea)
+			ge.isUpdated[go] = true
 		end
 	end
+	
 	renderArea.toUpdate = {}
 end
 
@@ -102,6 +107,29 @@ function ge.update(dt)
 	end
 	
 	ge.isUpdated = {}
+	ge.signalQueue = {}
+end
+
+function ge.insertSignal(s, signalName)
+	local t = s
+	
+	if signalName ~= nil then
+		t = {signalName}
+		for i, c in pairs(s) do
+			if i > 1 then
+				t[i] = c
+			end
+		end
+		
+		--ge.signalQueue[#ge.signalQueue][1] = signalName
+	end
+	
+	
+	table.insert(ge.signalQueue, t)
+	
+	--global.log(global.currentFrame, signalName)
+	--global.slog(ge.signalQueue)
+	
 end
 
 --===== init =====--

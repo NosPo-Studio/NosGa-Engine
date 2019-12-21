@@ -33,6 +33,18 @@ function TestGO.new(args)
 		global.log("GG")
 	end
 	
+	this.key_pressed = function(s)
+		--global.log("Key pressed in GO: " .. this.attributes.name, s[3], global.currentFrame)
+	end
+	
+	this.key_up = function(s)
+		--global.log("Key up in GO: " .. this.attributes.name, s[3], global.currentFrame)
+	end
+	
+	this.key_down = function(s)
+		--global.log("Key down in GO: " .. this.attributes.name, s[3], global.currentFrame)
+	end
+	
 	--===== default functions =====--
 	this.spawn = function(this) --will called if gameObject become spawned.
 		--global.log("TestGO: spawned")
@@ -50,7 +62,7 @@ function TestGO.new(args)
 		global.log("TestGO: stop")
 	end
 	
-	this.update = function(this) --will called on every game tick.
+	this.update = function(this, dt, ra) --will called on every game tick.
 		--global.log("TestGO2: update: ", this:getPos())
 	end
 	
