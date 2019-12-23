@@ -102,10 +102,9 @@ function test.start()
 	test.ra1:moveCameraTo(100, 0)
 	test.ra2:moveCameraTo(100, 0)
 	
-	--global.fatal(test.ra1.matrix)
 	
 	
-	--global.tiConsole:activate()
+	global.controls = dofile("controls.lua")
 	
 	--===== debug end =====--
 	
@@ -187,32 +186,6 @@ function test.key_down(s)
 	
 	--print("KEY DOWN:", s[3], s[4], global.currentFrame,  "=======================================")
 	
-	local camSpeed = 1
-	if k == 205 then
-		test.rbm1:move(2, 0)
-		test.ra1:moveCamera(1, 0)
-	elseif k == 203 then
-		--test.rbm1:move(-2, 0)
-		test.ra1:moveCamera(0, 1)
-	elseif k == 200 then
-		--test.rbm1:move(0, 2)
-		--test.tgo1:move(0, 2)
-	elseif k == 208 then
-		--test.rbm1:move(0, -2)
-		--test.tgo1:move(0, -2)
-	end
-	--[[
-	elseif k == 16 then
-		test.ra1:moveCamera(-camSpeed, 0)
-	elseif k == 18 then
-		test.ra1:moveCamera(camSpeed, 0)
-	elseif k == 19 then
-		test.ra1:moveCamera(0, -camSpeed)
-	elseif k == 33 then
-		test.ra1:moveCamera(0, camSpeed)
-	end
-	]]
-	
 	--print(c, k)
 end
 
@@ -257,8 +230,18 @@ function test.key_up(s)
 end
 
 function test.touch(s)
-	--print(x, y, b, p)
+	--print(s[3], s[4], s[5])
 	--print(test.ra1:getPos(x, y))
+end
+
+function test.ctrl_test(s, sname)
+	--print("TEST", global.currentFrame, sname, s[1], s[2], s[3], s[4], s[5], s[6])
+end
+function test.ctrl_test_key_down(s, sname)
+	--print("TEST_KD", global.currentFrame, sname, s[1], s[2], s[3], s[4], s[5], s[6])
+end
+function test.ctrl_test_key_pressed(s, sname)
+	--print("TEST_P", global.currentFrame, sname, s[1], s[2], s[3], s[4], s[5], s[6])
 end
 
 function test.drag(s)

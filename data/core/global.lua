@@ -151,7 +151,7 @@ function global.run(func, ...)
 end
 
 function global.load(...)
-	loadfile("data/core/dataLoading.lua")(global, ...)
+	return loadfile("data/core/dataLoading.lua")(global, ...)
 end
 
 function global.loadData(target, dir, func, print, overwrite)

@@ -20,6 +20,9 @@ Features:
 		Layer select. You can acticate and deactivate the visible layers for any RenderArea.
 		Also you can make a RenderArea "silent" than it will not affect the visible GameObjects in any way.
 	
+	Event Handling:
+		
+	
 	Physics:
 		NosGa proides a very simple physic engine with BoxColliders and RigidBodys but that is in a early state of developing right now.
 	

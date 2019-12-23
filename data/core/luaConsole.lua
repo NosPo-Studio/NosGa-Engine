@@ -10,7 +10,7 @@ global.tiConsole = global.ocui.TextInput.new(global.ocui, 6, global.resY, global
 	colors = {
 		0xcccccc,
 		0x333333,
-		0xdddddd,
+		0xeeeeee,
 		0x555555,
 	},
 	

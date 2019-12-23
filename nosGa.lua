@@ -55,31 +55,26 @@ SOFTWARE.
 ]]
 
 --[[NosGa:
-	Bugs:	
+	Bugs:
+		EH:
+			Worse performance/freeze on signal overflow.
+		
 		*? Memory leak on game restart/stop.
 		
 		gameObjects:
 			*Speed shouldn't be more as the texturePack size (ocgf.RigidBody).
 	
 	ToDo:
-		Write own event handler.
-		
-		Source code clean up:
-			Outsource event handling from "occCore.lua" (after new event handler).
-			
-		Console:
-			Prevent scripts from resieving key inputs when user writes into console (after new even handler).
-		
 		dataLoading: 
-			Cleanup: sub dirs, conf... .
+			Rewrite:
+				Sub dir parsing:
+					Sub table option (for data/globalStructured/ e.g.).
+					No sub table option (for data/global/ e.g.).
+					
+				All conf files in one table.
+				INI control file (see internal expected table in controls.lua).
 		
 		Rename pDraw etc. to ngeDraw... .
-			
-		RE:
-			Add smooth camera moving function using gpu.copy/paste.
-		
-		conf:
-			All settings in global.conf (dataLoading)
 			
 		ocgl:
 			Add calculateSize(texture) function.
@@ -87,9 +82,9 @@ SOFTWARE.
 		Add dynamic texture color system (ocgl/ocgf).
 			
 			
-	*left over from ocCraft but still relevant.
+	*left over from ocCraft but still relevant somehow.
 ]]
-local version = "v0.0.29.2"
+local version = "v0.0.29.3"
 
 --===== prog start =====--
 do

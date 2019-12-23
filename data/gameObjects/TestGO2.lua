@@ -29,12 +29,15 @@ function TestGO.new(args)
 	
 	
 	--===== global functions =====--
-	this.test = function()
-		global.log("GG")
+	this.ctrl_test = function(s, sname)
+		--global.log("TEST GO:", sname, s[1])
+	end
+	this.ctrl_test_key_down = function(s, sname)
+		--global.log("TEST GO:", sname, s[1])
 	end
 	
 	this.key_pressed = function(s)
-		--global.log("Key pressed in GO: " .. this.attributes.name, s[3], global.currentFrame)
+		--global.log("Key pressed in GO: " .. this.attributes.name, s[1], global.currentFrame)
 	end
 	
 	this.key_up = function(s)

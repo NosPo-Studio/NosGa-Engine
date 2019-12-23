@@ -2,96 +2,52 @@
 [INFO] [DL]: Data loading done.
 [INFO] [GE]: Change state to: "test".
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: textures, gameObjects, parents, states.
+[INFO] [DL]: Loading data groups: gameObjects, states, textures, parents.
 [INFO] [DL]: Data loading done.
 [INFO] [test]: init done.
-[INFO] KEY UP:13.028.01===============================================
-[INFO] Key up in GO: test113.01
-[INFO] KEY DOWN:32.057.024=======================================
-[INFO] KEY PRESSED:32.057.024
-[INFO] Key down in GO: test132.024
-[INFO] Key pressed in GO: test132.024
-[INFO] KEY PRESSED:32.057.025
-[INFO] Key pressed in GO: test132.025
-[INFO] KEY PRESSED:32.057.026
-[INFO] Key pressed in GO: test132.026
-[INFO] KEY PRESSED:32.057.027
-[INFO] Key pressed in GO: test132.027
-[INFO] KEY PRESSED:32.057.028
-[INFO] Key pressed in GO: test132.028
-[INFO] KEY PRESSED:32.057.029
-[INFO] Key pressed in GO: test132.029
-[INFO] KEY PRESSED:32.057.030
-[INFO] Key pressed in GO: test132.030
-[INFO] KEY PRESSED:32.057.031
-[INFO] Key pressed in GO: test132.031
-[INFO] KEY UP:32.057.032===============================================
-[INFO] Key up in GO: test132.032
 [INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: eh, conf, ge, reload, gameObjects, states.
+[INFO] [DL]: Loading data groups: ge, reload, conf, states, eh.
 [INFO] [DL]: Data loading done.
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: textures, gameObjects, parents, states.
+[INFO] [DL]: Loading data groups: gameObjects, states, textures, parents.
 [INFO] [DL]: Data loading done.
 [INFO] [test]: init done.
-[INFO] KEY DOWN:0.063.0695=======================================
-[INFO] KEY PRESSED:0.063.0695
-[INFO] KEY UP:0.063.0696===============================================
-[INFO] KEY DOWN:32.057.0723=======================================
-[INFO] KEY UP:32.057.0723===============================================
-[INFO] KEY DOWN:32.057.0742=======================================
-[INFO] KEY PRESSED:32.057.0742
-[INFO] KEY PRESSED:32.057.0743
-[INFO] KEY PRESSED:32.057.0744
-[INFO] KEY PRESSED:32.057.0745
-[INFO] KEY PRESSED:32.057.0746
-[INFO] KEY PRESSED:32.057.0747
-[INFO] KEY PRESSED:32.057.0748
-[INFO] KEY PRESSED:32.057.0749
-[INFO] KEY PRESSED:32.057.0750
-[INFO] KEY UP:32.057.0751===============================================
-[INFO] lua> global.state.test.ra2:moveCameraTo(100, 0)
-[INFO] KEY DOWN:32.057.01416=======================================
-[INFO] KEY PRESSED:32.057.01416
-[INFO] Key down in GO: test132.01416
-[INFO] Key pressed in GO: test132.01416
-[INFO] KEY UP:32.057.01417===============================================
-[INFO] Key up in GO: test132.01417
-[INFO] KEY DOWN:32.057.01570=======================================
-[INFO] KEY PRESSED:32.057.01570
-[INFO] Key down in GO: test132.01570
-[INFO] Key pressed in GO: test132.01570
-[INFO] KEY PRESSED:32.057.01571
-[INFO] Key pressed in GO: test132.01571
-[INFO] KEY PRESSED:32.057.01572
-[INFO] Key pressed in GO: test132.01572
-[INFO] KEY PRESSED:32.057.01573
-[INFO] Key pressed in GO: test132.01573
-[INFO] KEY PRESSED:32.057.01574
-[INFO] Key pressed in GO: test132.01574
-[INFO] KEY PRESSED:32.057.01575
-[INFO] Key pressed in GO: test132.01575
-[INFO] KEY PRESSED:32.057.01576
-[INFO] Key pressed in GO: test132.01576
-[INFO] KEY PRESSED:32.057.01577
-[INFO] Key pressed in GO: test132.01577
-[INFO] KEY PRESSED:32.057.01578
-[INFO] Key pressed in GO: test132.01578
-[INFO] KEY UP:32.057.01579===============================================
-[INFO] Key up in GO: test132.01579
 [INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: eh, conf, ge, reload, gameObjects, states.
+[INFO] [DL]: Loading data groups: ge, reload, conf, states, eh.
 [INFO] [DL]: Data loading done.
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: textures, gameObjects, parents, states.
+[INFO] [DL]: Loading data groups: gameObjects, states, textures, parents.
 [INFO] [DL]: Data loading done.
 [INFO] [test]: init done.
-[INFO] --===== EINGABE =====--
+[INFO] TEST_P409key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P410key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P411key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P412key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P413key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P414key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P415key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P416key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P417key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
 [INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: eh, conf, ge, reload, gameObjects, states.
+[INFO] [DL]: Loading data groups: ge, reload, conf, states, eh.
 [INFO] [DL]: Data loading done.
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: textures, gameObjects, parents, states.
+[INFO] [DL]: Loading data groups: gameObjects, states, textures, parents.
 [INFO] [DL]: Data loading done.
 [INFO] [test]: init done.
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: ge, reload, conf, states, eh.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: gameObjects, states, textures, parents.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: init done.
+[INFO] TEST_P694key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P695key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P696key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P697key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P698key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P699key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P700key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
+[INFO] TEST_P701key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
 [DEBUG] [EH]: Program stopped by user.

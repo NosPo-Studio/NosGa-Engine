@@ -4,6 +4,13 @@ local args, opts = shell.parse(...)
 
 local stop = args[2] or true
 
+local oprint = print
+local function print(...)
+	if not opts.s then
+		oprint(...)
+	end
+end
+
 while true do
 	print("Start " .. args[1])
 	local value = dofile(shell.getWorkingDirectory() .. "/" .. args[1])

@@ -1,3 +1,22 @@
+--[[
+    This file is part of the NosGa Engine.
+	
+	NosGa Engine Copyright (c) 2019 NosPo Studio
+
+    The NosGa Engine is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    The NosGa Engine is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with the NosGa Engine.  If not, see <https://www.gnu.org/licenses/>.
+]]
+
 local global = ...
 local eh = {}
 
@@ -12,6 +31,43 @@ local function print(...)
 	end
 end
 
+local function exportCtrlSignal(s, sname)
+	local generalFunctionName = ""
+	local specificFunctionName = ""
+	
+	local function setFunctionNames(f, s)
+		if f == nil then return false end
+		generalFunctionName = "ctrl_" .. f
+		specificFunctionName = generalFunctionName .. "_" .. s
+	end
+	
+	
+	if sname == "key_down" or sname == "key_pressed" or sname == "key_up" then
+		if global.controls.c[s[3]] then
+			setFunctionNames(global.controls.c[s[3]], sname)
+		elseif global.controls.k[s[4]] then
+			setFunctionNames(global.controls.k[s[4]], sname)
+		end
+		
+		if generalFunctionName ~= "" then
+			global.run(global.state[global.currentState][generalFunctionName], s, sname)
+			global.ge.insertSignal(s, generalFunctionName)
+			
+			global.run(global.state[global.currentState][specificFunctionName], s, sname)
+			global.ge.insertSignal(s, specificFunctionName)
+		end
+	end
+end
+
+local function exportSignal(s, sname, ctrlCall)
+	sname = sname or s[1]
+	
+	global.run(global.state[global.currentState][sname], s)
+	global.ge.insertSignal(s, sname)
+	
+	exportCtrlSignal(s, sname)
+end
+
 local function parseSignal(signal)
 	if #signal == 0 then return false end
 	
@@ -24,8 +80,7 @@ local function parseSignal(signal)
 	global.run(global.core.eventHandler[signal[1]], signal)
 	
 	if signal[1] ~= "key_down" then
-		global.run(global.state[global.currentState][signal[1]], signal)
-		global.ge.insertSignal(signal)
+		exportSignal(signal)
 	end
 	
 	return true
@@ -52,12 +107,10 @@ function eh.update(sleepTime)
 	
 	if global.tiConsole.status == false then
 		for i, s in pairs(pressedKeys) do
-			global.run(global.state[global.currentState].key_pressed, s)
-			global.ge.insertSignal(s, "key_pressed")
+			exportSignal(s, "key_pressed")
 		end
 		for i, s in pairs(specialPressedKeys) do
-			global.run(global.state[global.currentState].key_pressed, s)
-			global.ge.insertSignal(s, "key_pressed")
+			exportSignal(s, "key_pressed")
 		end
 	end
 end
@@ -70,16 +123,21 @@ end
 function eh.key_down(s)
 	local c, k, p = s[3], s[4], s[5] 
 	
+	--===== Engine internal functionalities =====--
 	if c == 3 then --ctrl + c
 		print("[EH]: Program stopped by user.")
 		global.isRunning = false
 	end
 	
-	if k == global.controls.debug.showConsole then
+	if k == global.controls.debug.showConsole then --f1
 		global.conf.showConsole = not global.conf.showConsole
 		if not global.conf.showConsole then
 			global.clear()
 		end
+	end
+	
+	if k == global.controls.debug.writeInConsole then --f2
+		global.tiConsole:activate()
 	end
 	
 	if k == global.controls.debug.showDebug then --f3
@@ -124,13 +182,12 @@ function eh.key_down(s)
 		global.clear()
 	end
 	
+	--===== General key press handling =====--
 	if pressedKeys[0] == nil and pressedKeys[c] == nil then
-		global.run(global.state[global.currentState][s[1]], s)
-		global.ge.insertSignal(s)
+		exportSignal(s)
 		pressedKeys[c] = s
 	elseif pressedKeys[0] ~= nil and specialPressedKeys[c] == nil then
-		global.run(global.state[global.currentState][s[1]], s)
-		global.ge.insertSignal(s)
+		exportSignal(s)
 		specialPressedKeys[c] = s
 	end
 end
@@ -138,7 +195,7 @@ end
 function eh.key_up(s)
 	if s[3] == 0 then
 		for i, c in pairs(specialPressedKeys) do
-			global.run(global.state[global.currentState][s[1]], c)
+			exportSignal(c, s[1])
 			specialPressedKeys[i] = nil
 		end
 	end

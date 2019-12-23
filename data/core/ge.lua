@@ -80,7 +80,7 @@ local function updateFrame(renderArea, dt)
 			for i, s in pairs(ge.signalQueue) do
 				--print(s[1], go[s[1]], global.currentFrame)
 				
-				global.run(go[s[1]], s)
+				global.run(go[s.name], s.signal, s.name)
 			end
 			
 			go:pUpdate(global.gameObjects, dt, renderArea)
@@ -111,6 +111,8 @@ function ge.update(dt)
 end
 
 function ge.insertSignal(s, signalName)
+	
+	--[[
 	local t = s
 	
 	if signalName ~= nil then
@@ -123,9 +125,9 @@ function ge.insertSignal(s, signalName)
 		
 		--ge.signalQueue[#ge.signalQueue][1] = signalName
 	end
-	
-	
-	table.insert(ge.signalQueue, t)
+	]]
+	--print(signalName)
+	table.insert(ge.signalQueue, {name = signalName, signal = s})
 	
 	--global.log(global.currentFrame, signalName)
 	--global.slog(ge.signalQueue)
