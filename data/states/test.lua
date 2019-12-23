@@ -238,10 +238,13 @@ function test.ctrl_test(s, sname)
 	--print("TEST", global.currentFrame, sname, s[1], s[2], s[3], s[4], s[5], s[6])
 end
 function test.ctrl_test_key_down(s, sname)
-	--print("TEST_KD", global.currentFrame, sname, s[1], s[2], s[3], s[4], s[5], s[6])
+	print("TEST_KD", global.currentFrame, sname, s[1], s[2], s[3], s[4], s[5], s[6])
 end
 function test.ctrl_test_key_pressed(s, sname)
 	--print("TEST_P", global.currentFrame, sname, s[1], s[2], s[3], s[4], s[5], s[6])
+end
+function test.ctrl_test2_key_down(s, sname)
+	print("TEST2_KD", global.currentFrame, sname, s[1], s[2], s[3], s[4], s[5], s[6])
 end
 
 function test.drag(s)

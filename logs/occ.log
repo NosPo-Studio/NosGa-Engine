@@ -2,52 +2,17 @@
 [INFO] [DL]: Data loading done.
 [INFO] [GE]: Change state to: "test".
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: gameObjects, states, textures, parents.
+[INFO] [DL]: Loading data groups: states, textures, parents, gameObjects.
 [INFO] [DL]: Data loading done.
 [INFO] [test]: init done.
+[INFO] TEST_KD8key_down
+[INFO] TEST_KD8key_down
 [INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: ge, reload, conf, states, eh.
+[INFO] [DL]: Loading data groups: states, ge, conf, reload, eh.
 [INFO] [DL]: Data loading done.
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: gameObjects, states, textures, parents.
+[INFO] [DL]: Loading data groups: states, textures, parents, gameObjects.
 [INFO] [DL]: Data loading done.
 [INFO] [test]: init done.
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: ge, reload, conf, states, eh.
-[INFO] [DL]: Data loading done.
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: gameObjects, states, textures, parents.
-[INFO] [DL]: Data loading done.
-[INFO] [test]: init done.
-[INFO] TEST_P409key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P410key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P411key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P412key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P413key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P414key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P415key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P416key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P417key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: ge, reload, conf, states, eh.
-[INFO] [DL]: Data loading done.
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: gameObjects, states, textures, parents.
-[INFO] [DL]: Data loading done.
-[INFO] [test]: init done.
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: ge, reload, conf, states, eh.
-[INFO] [DL]: Data loading done.
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: gameObjects, states, textures, parents.
-[INFO] [DL]: Data loading done.
-[INFO] [test]: init done.
-[INFO] TEST_P694key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P695key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P696key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P697key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P698key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P699key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P700key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[INFO] TEST_P701key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLP
-[DEBUG] [EH]: Program stopped by user.
+[INFO] TEST_KD271key_down
+[INFO] TEST2_KD271key_down

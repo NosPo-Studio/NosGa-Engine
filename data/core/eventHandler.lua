@@ -35,26 +35,28 @@ local function exportCtrlSignal(s, sname)
 	local generalFunctionName = ""
 	local specificFunctionName = ""
 	
-	local function setFunctionNames(f, s)
+	local function callFunctions(f, s)
 		if f == nil then return false end
-		generalFunctionName = "ctrl_" .. f
-		specificFunctionName = generalFunctionName .. "_" .. s
+		
+		for _, f in pairs(f) do
+			generalFunctionName = "ctrl_" .. f
+			specificFunctionName = generalFunctionName .. "_" .. s
+			
+			if generalFunctionName ~= "" then
+				global.run(global.state[global.currentState][generalFunctionName], s, sname)
+				global.ge.insertSignal(s, generalFunctionName)
+				
+				global.run(global.state[global.currentState][specificFunctionName], s, sname)
+				global.ge.insertSignal(s, specificFunctionName)
+			end
+		end
 	end
-	
 	
 	if sname == "key_down" or sname == "key_pressed" or sname == "key_up" then
 		if global.controls.c[s[3]] then
-			setFunctionNames(global.controls.c[s[3]], sname)
+			callFunctions(global.controls.c[s[3]], sname)
 		elseif global.controls.k[s[4]] then
-			setFunctionNames(global.controls.k[s[4]], sname)
-		end
-		
-		if generalFunctionName ~= "" then
-			global.run(global.state[global.currentState][generalFunctionName], s, sname)
-			global.ge.insertSignal(s, generalFunctionName)
-			
-			global.run(global.state[global.currentState][specificFunctionName], s, sname)
-			global.ge.insertSignal(s, specificFunctionName)
+			callFunctions(global.controls.k[s[4]], sname)
 		end
 	end
 end

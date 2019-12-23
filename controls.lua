@@ -1,13 +1,13 @@
 local controls = {
 	
 	m = {
-		[0] = "test",
+		[0] = {"test"},
 	},
 	c = {
-		--[32] = "test",
+		[32] = {"test", "test2"},
 	},
 	k = {
-		[57] = "test",
+		--[57] = {"test"},
 	},
 	
 	debug = { --Do not change yet!
