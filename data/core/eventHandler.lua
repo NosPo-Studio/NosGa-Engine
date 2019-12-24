@@ -58,10 +58,14 @@ local function exportCtrlSignal(s, sname)
 		elseif global.controls.k[s[4]] then
 			callFunctions(global.controls.k[s[4]], sname)
 		end
+	elseif sname == "touch" or sname == "drag" or sname == "drop" then
+		if global.controls.m[s[5]] then
+			callFunctions(global.controls.m[s[5]], sname)
+		end
 	end
 end
 
-local function exportSignal(s, sname, ctrlCall)
+local function exportSignal(s, sname)
 	sname = sname or s[1]
 	
 	global.run(global.state[global.currentState][sname], s)

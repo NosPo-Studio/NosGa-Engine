@@ -2,17 +2,192 @@
 [INFO] [DL]: Data loading done.
 [INFO] [GE]: Change state to: "test".
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: states, textures, parents, gameObjects.
+[INFO] [DL]: Loading data groups: states, textures, gameObjects, parents.
 [INFO] [DL]: Data loading done.
 [INFO] [test]: init done.
-[INFO] TEST_KD8key_down
-[INFO] TEST_KD8key_down
+[INFO] TEST82key_down
+[INFO] TEST_KD82key_down
+[INFO] TEST2_KD82key_down
+[INFO] TEST82key_pressed
+[INFO] TEST83key_pressed
+[INFO] TEST84key_pressed
+[INFO] TEST85key_pressed
+[INFO] TEST86key_pressed
+[INFO] TEST87key_pressed
+[INFO] TEST88key_pressed
+[INFO] TEST89key_pressed
+[INFO] TEST90key_up
 [INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: states, ge, conf, reload, eh.
+[INFO] [DL]: Loading data groups: reload, ge, eh, conf, states.
 [INFO] [DL]: Data loading done.
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: states, textures, parents, gameObjects.
+[INFO] [DL]: Loading data groups: states, textures, gameObjects, parents.
 [INFO] [DL]: Data loading done.
 [INFO] [test]: init done.
-[INFO] TEST_KD271key_down
-[INFO] TEST2_KD271key_down
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: reload, ge, eh, conf, states.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: states, textures, gameObjects, parents.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: init done.
+[INFO] 57.029.00.0
+[INFO] 58.030.00.0
+[INFO] 80.037.00.0
+[INFO] 77.038.00.0
+[INFO] 76.038.00.0
+[INFO] 73.025.00.0
+[INFO] 65.053.00.0
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: reload, ge, eh, conf, states.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: states, textures, gameObjects, parents.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: init done.
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: reload, ge, eh, conf, states.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: states, textures, gameObjects, parents.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: init done.
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: reload, ge, eh, conf, states.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: states, textures, gameObjects, parents.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: init done.
+[DEBUG] table: 000000004457E470
+[DEBUG] table: 000000004457E470
+[DEBUG] table: 000000004457E470
+[DEBUG] table: 000000004457E470
+[DEBUG] table: 000000004457E470
+[DEBUG] table: 000000004457E470
+[DEBUG] table: 000000004457E470
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: reload, ge, eh, conf, states.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: states, textures, gameObjects, parents.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: init done.
+[DEBUG] table: 0000000044446870
+[DEBUG] table: 0000000044446870
+[DEBUG] table: 0000000044446870
+[DEBUG] table: 0000000044446870
+[DEBUG] table: 0000000044446870
+[DEBUG] table: 0000000044446870
+[DEBUG] table: 0000000044446870
+[DEBUG] table: 0000000044446870
+[DEBUG] table: 0000000044446870
+[DEBUG] table: 0000000044446870
+[DEBUG] table: 0000000044446870
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: reload, ge, eh, conf, states.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: states, textures, gameObjects, parents.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: init done.
+[DEBUG] ctrl_testctrl_test_key_down
+[INFO] TEST6874key_down
+[INFO] TEST_KD6874key_down
+[DEBUG] ctrl_test2ctrl_test2_key_down
+[INFO] TEST2_KD6874key_down
+[DEBUG] ctrl_testctrl_test_key_pressed
+[INFO] TEST6874key_pressed
+[DEBUG] ctrl_test2ctrl_test2_key_pressed
+[DEBUG] ctrl_testctrl_test_key_pressed
+[INFO] TEST6875key_pressed
+[DEBUG] ctrl_test2ctrl_test2_key_pressed
+[DEBUG] ctrl_testctrl_test_key_up
+[INFO] TEST6876key_up
+[DEBUG] ctrl_test2ctrl_test2_key_up
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: reload, ge, eh, conf, states.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: states, textures, gameObjects, parents.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: init done.
+[DEBUG] ctrl_testctrl_test_touch
+[INFO] TEST7226touch
+[DEBUG] ctrl_testctrl_test_drag
+[INFO] TEST7226drag
+[DEBUG] ctrl_testctrl_test_drop
+[INFO] TEST7227drop
+[DEBUG] ctrl_testctrl_test_touch
+[INFO] TEST7300touch
+[DEBUG] ctrl_testctrl_test_drop
+[INFO] TEST7302drop
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: reload, ge, eh, conf, states.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: states, textures, gameObjects, parents.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: init done.
+[INFO] TEST7314touch
+[INFO] TEST7315drag
+[INFO] TEST7316drop
+[INFO] TEST7346touch
+[INFO] TEST7347drag
+[INFO] TEST7348drag
+[INFO] TEST7349drop
+[INFO] TEST7353touch
+[INFO] TEST7354drag
+[INFO] TEST7355drag
+[INFO] TEST7355drag
+[INFO] TEST7356drag
+[INFO] TEST7357drag
+[INFO] TEST7357drag
+[INFO] TEST7358drag
+[INFO] TEST7359drag
+[INFO] TEST7359drag
+[INFO] TEST7360drag
+[INFO] TEST7361drag
+[INFO] TEST7361drag
+[INFO] TEST7362drag
+[INFO] TEST7363drag
+[INFO] TEST7363drop
+[INFO] TEST7678touch
+[INFO] TEST7679drag
+[INFO] TEST7680drag
+[INFO] TEST7681drop
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: reload, ge, eh, conf, states.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: states, textures, gameObjects, parents.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: init done.
+[INFO] TEST7688touch
+[INFO] TEST7690drag
+[INFO] TEST7691drag
+[INFO] TEST7691drag
+[INFO] TEST7692drag
+[INFO] TEST7693drag
+[INFO] TEST7693drag
+[INFO] TEST7694drag
+[INFO] TEST7695drag
+[INFO] TEST7695drag
+[INFO] TEST7696drag
+[INFO] TEST7697drag
+[INFO] TEST7697drag
+[INFO] TEST7698drag
+[INFO] TEST7699drag
+[INFO] TEST7699drag
+[INFO] TEST7700drag
+[INFO] TEST7701drag
+[INFO] TEST7701drag
+[INFO] TEST7702drag
+[INFO] TEST7703drop
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: reload, ge, eh, conf, states.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: states, textures, gameObjects, parents.
+[INFO] [DL]: Data loading done.
+[INFO] [test]: init done.
