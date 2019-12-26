@@ -17,28 +17,23 @@
     along with the NosGa Engine.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-local args = {...}
-local global = args[1]
-local toLoad = args[2]
-local path = "data"
-local loadingMods = false
+--===== local variables =====--
+local args = ...
+local global = args.global
+local toLoad = args.toLoad
+local reload = args.reload
+local loadMods = args.loadMods
+local print = args.print or function(...) global.log(...) end
 
-if args[4] ~= nil then --onay on mod loading.
-	path = "mods/" .. args[4]
-	loadingMods = true
-end
-if global.alreadyLoaded[path] == nil then
-	global.alreadyLoaded[path] = {}
-end
+local baseDir = ""
 
 --===== local functions =====--
-local print = args[3] or function(...) 
-	global.log(...)
-	if global.conf.showConsole then
-		global.tbConsole:draw()
-	end
+local fprint
+do 
+	local p = print
+	fprint = function(...) p(...) end
 end
-do
+do 
 	local p = print
 	print = function(...)
 		if global.conf.debug.dlDebug then
@@ -55,11 +50,31 @@ local function reloadFile(target, path, ...)
 		print(debugString .. tostring(err))
 	else
 		print(debugString .. tostring(suc))
-		target = nil
-		return loadfile(path)(...)
+		return suc(...)
 	end
 end
 
+local function loadFiles(target, name, func, directPath)
+	local path = baseDir .. name
+	
+	if directPath then
+		path = directPath
+	end
+	
+	if global.alreadyLoaded[path] ~= true or reload then
+		if global.alreadyLoaded[path] ~= true then
+			print("[DL]: Loading data group: " .. name .. ".")
+		elseif reload then
+			print("[DL]: Reloading data group: " .. name .. ".")
+		end
+		global.loadData(target, path, func, print, reload)
+		global.alreadyLoaded[path] = true
+	else
+		print("[DL]: Data group already loaded: " .. name .. ".")
+	end
+end
+
+--===== init =====--
 local reloadString = ""
 for i, c in pairs(toLoad) do
 	if c then
@@ -70,13 +85,17 @@ for i, c in pairs(toLoad) do
 		end
 	end
 end
-if loadingMods then
-	global.log("[DL]: Loading mod data groups: " .. reloadString .. ".")
+if loadMods then
+	fprint("[DL]: Loading mod data groups: " .. reloadString .. ".")
+	baseDir = "mods/"
 else
-	global.log("[DL]: Loading data groups: " .. reloadString .. ".")
+	fprint("[DL]: Loading data groups: " .. reloadString .. ".")
+	baseDir = "data/"
 end
 
---===== reloadings =====--
+
+
+--===== core reloadings =====--
 if toLoad.conf then
 	global.conf = reloadFile(global.conf, "conf.lua", global)
 end
@@ -92,102 +111,40 @@ end
 if toLoad.eh then
 	global.core.eventHandler.stop()
 	global.core.eventHandler = reloadFile(global.core.eventHandler, "data/core/eventHandler.lua", global)
-	global.core.eventHandler.init()
 end
 
-if toLoad.states then
-	global.state = {} 
-	global.loadData(global.state, "data/states", nil, print)
+if toLoad.RenderArea then
+	global.core.RenderArea = reloadFile(global.core.RenderArea, "data/core/RenderArea.lua", global)
+end
+if toLoad.GameObject then
+	global.core.GameObject = reloadFile(global.core.GameObject, "data/core/GameObject.lua", global)
 end
 
---===== data loading =====--
+--===== asset loading =====--
 if toLoad.global then
-	if global.alreadyLoaded[path].global ~= true or toLoad.reload then
-		print("[DL]: Loading global.")
-		global.loadData(global, path .. "/global", nil, print, true)
-		global.alreadyLoaded[path].global = true
-	else
-		print("[DL]: global are loaded already.")
-	end
+	loadFiles(global, "global")
 end
-	
+if toLoad.states then
+	loadFiles(global.state, "states")
+end
 if toLoad.textures then
-	if global.alreadyLoaded[path].textures ~= true or toLoad.reload then
-		if not loadingMods then
-			if global.isDev then
-				print("[DL]: Loading texturepack info.lua: " .. tostring(loadfile("texturePacks/" .. global.conf.texturePack .. "/info.lua")))
-			end
-			global.texturePack = loadfile("texturePacks/" .. global.conf.texturePack .. "/info.lua")(global)
-			print("[DL]: Loading textures.")
-			global.texture = {}
-			global.loadData(global.texture, "texturePacks/" .. global.conf.texturePack .. "/textures", nil, print)
-		else
-			print("[DL]: Loading textures.")
-			global.loadData(global.texture, path .. "/textures", nil, print, global.conf.preferModTextures)
-		end
-		global.alreadyLoaded[path].textures = true
-	else
-		print("[DL]: Textures are loaded already.")
-	end
+	loadFiles(global.texture, "textures", nil, "texturePacks/" .. global.conf.texturePack .. "/textures")
 end
-
 if toLoad.parents then
-	if global.alreadyLoaded[path].parents ~= true or toLoad.reload then
-		if not loadingMods then
-			global.parent = {name = {}, id = {}, info = {amout = 0}}
-		end
-		print("[DL]: Loading parents.")
-		global.loadData(global.parent, path .. "/parents", function(name, id)
-			global.parent.id[name] = id
-			global.parent.name[id] = name
-			global.parent.info.amout = global.parent.info.amout +1
-			global.run(global.parent[name].init, id)
-		end, print)
-		global.alreadyLoaded[path].parents = true
-	else
-		print("[DL]: parents are loaded already.")
-	end
-end	
-
+	loadFiles(global.parent, "parents")
+end
 if toLoad.gameObjects then
-	if global.alreadyLoaded[path].gameObjects ~= true or toLoad.reload then
-		if not loadingMods then
-			global.gameObject = {name = {}, id = {}, info = {amout = 0}}
-		end
-		print("[DL]: Loading gameObjects.")
-		global.loadData(global.gameObject, path .. "/gameObjects", function(name, id)
-			global.gameObject.id[name] = id
-			global.gameObject.name[id] = name
-			global.gameObject.info.amout = global.gameObject.info.amout +1
-			global.run(global.gameObject[name].init, id)
-		end, print)
-		global.alreadyLoaded[path].gameObjects = true
-	else
-		print("[DL]: gameObjects are loaded already.")
-	end
+	loadFiles(global.gameObject, "gameObjects")
 end
 
-if toLoad.mods then --WIP
-	if global.alreadyLoaded.mods ~= true or toLoad.reload then
-		print("[DL]: Loading mods.")
-		for file in global.fs.list(global.shell.getWorkingDirectory() .. "/mods/") do
-			print("[DL]: Loading mod: " .. file)
-			global.load({
-				parents = toLoad.parents,
-				gameObjects = toLoad.gameObjects,
-				textures = toLoad.textures,
-				reload = toLoad.reload
-			}, print, file)
-		end
-	else
-		print("[DL]: Mods are loaded already.")
-	end
-end
-
-if loadingMods then
-	global.log("[DL]: Mod data loading done.")
-else
-	global.log("[DL]: Data loading done.")
-end
 
 return true
+
+
+
+
+
+
+
+
+

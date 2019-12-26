@@ -15,9 +15,9 @@ local conf = {
 	debug = { --these options are for developers.
 		isDev = true, --activates debug outputs (strongly recommended if you want to mod the game in any way or something goes wrong and you need a detailed log).
 		
-		dlDebug = false, --print dataLoading debug (only if isDev).
+		dlDebug = true, --print dataLoading debug (only if isDev).
 		reDebug = false, --print renderEngine debug (only if isDev).
-		raDebug = false, --print renderArea debug (only if isDev).
+		raDebug = true, --print renderArea debug (only if isDev).
 		geDebug = true, --print gameEngine debug (only if isDev).
 		goDebug = true, --print gameObject management debug (only if isDev).
 		ehDebug = true, --print eventHandler debug (only if isDev).
@@ -28,7 +28,7 @@ local conf = {
 		defaultState = "test",
 		
 		renderLayerAmount = 5,
-		useDoubleBuffering = true, --[[ Use the third party doubleBuffering method by IgorTimofeev.
+		useDoubleBuffering = false, --[[ Use the third party doubleBuffering method by IgorTimofeev.
 			In the most cases using it causes in a big graphic performance boost but on cost of the memory usage.
 			More informations on github.
 		]]
@@ -48,15 +48,17 @@ local conf = {
 			
 			--=== core ===--
 			re = false, 
-			ge = true,
-			eh = true,
+			ge = false,
+			eh = false,
+			GameObject = true,
+			RenderArea = true,
 			
 			--=== data groups ===--
 			global = false, --global dir.
 			states = true,
 			textures = false,
 			parents = false,
-			gameObjects = false,
+			gameObjects = true,
 			
 			mods = false, --just reloads the activated data groups of the mods (if only onReload.blocks = true he only also reloads the blocks from mods). should be always true.
 		},

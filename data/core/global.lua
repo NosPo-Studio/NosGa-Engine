@@ -107,6 +107,7 @@ function global.fatal(...)
 	global.tbConsole:add(s, select(2, ...))
 	global.ocl.add(s, select(2, ...))
 	global.isRunning = false
+	global.orgPrint(debug.traceback())
 end
 
 function global.debug(...)
@@ -141,17 +142,18 @@ end
 
 function global.run(func, ...)
 	if func ~= nil then
-		local s, m = xpcall(func, debug.traceback, ...)
-		if s == false then
-			global.error("[GE]: Failerd to run " .. tostring(func) .. "\n", m, debug.traceback())
+		local v = {xpcall(func, debug.traceback, ...)}
+		if v[1] == false then
+			global.error("[GE]: Failerd to run " .. tostring(func) .. "\n", v[2], debug.traceback())
 		end
 		
-		--func(...)
+		return v
 	end
 end
 
-function global.load(...)
-	return loadfile("data/core/dataLoading.lua")(global, ...)
+function global.load(args)
+	args.global = global
+	return loadfile("data/core/dataLoading.lua")(args)
 end
 
 function global.loadData(target, dir, func, print, overwrite)
@@ -159,35 +161,31 @@ function global.loadData(target, dir, func, print, overwrite)
 	if target.info ~= nil and target.info.amout ~= nil then
 		id = target.info.amout +1
 	end
-	
 	path = global.shell.getWorkingDirectory() .. "/" .. dir .. "/"
-	print = print or global.orgPrint
+	print = print or global.log
 	
 	for file in global.fs.list(path) do
 		local name = string.sub(file, 0, #file -4)
 		
-		if global.isDev then
-			if target[name] == nil or overwrite then
-				local debugString = ""
-				if target[name] == nil then
-					debugString = "[DLF]: Loading file: " .. dir .. "/" .. file .. ": "
-				else
-					debugString = "[DLF]: Reloading file: " .. dir .. "/" .. file .. ": "
-				end
-				
-				local suc, err = loadfile(path .. file)
+		
+		if target[name] == nil or overwrite then
+			local debugString = ""
+			if target[name] == nil then
+				debugString = "[DLF]: Loading file: " .. dir .. "/" .. file .. ": "
+			else
+				debugString = "[DLF]: Reloading file: " .. dir .. "/" .. file .. ": "
+			end
+		
+			local suc, err = loadfile(path .. file)
+			if global.isDev then
 				if suc == nil then
 					print(debugString .. tostring(err))
 				else
 					print(debugString .. tostring(suc))
 				end
-			else
-			
 			end
-		end
-		
-		if target[name] == nil or overwrite then
-			target[name] = loadfile(path .. file)(global)
+			
+			target[name] = suc(global)
 			
 			if func ~= nil then
 				func(name, id)

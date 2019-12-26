@@ -50,8 +50,6 @@ local function start()
 	
 	--global.clear()
 	
-	global.core.eventHandler.init()
-	
 	global.lastUptime = global.computer.uptime()
 	
 end

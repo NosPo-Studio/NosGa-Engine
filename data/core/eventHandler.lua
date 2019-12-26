@@ -171,9 +171,15 @@ function eh.key_down(s)
 				reloadList[i] = true
 			end
 			
-			global.load(reloadList)
+			global.load({
+				toLoad = reloadList,
+				reload = true,
+			})
 		else
-			global.load(global.conf.debug.onReload)
+			global.load({
+				toLoad = global.conf.debug.onReload,
+				reload = true,
+			})
 		end
 		
 		global.conf.debug.onReload.reload = nil

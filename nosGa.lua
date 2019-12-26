@@ -84,17 +84,19 @@ SOFTWARE.
 			
 	*left over from ocCraft but still relevant somehow.
 ]]
-local version = "v0.0.29.5"
+local version = "v0.0.30"
 
 --===== prog start =====--
 do
 	print(licenseNotice)
-	print("Initialize OCGE " .. version)
+	print("Starting NosGa Engine " .. version)
 	local conf = dofile("conf.lua")
+	
+	local func, err = loadfile("data/core/global.lua")
 	if conf.debug.isDev then
-		print(loadfile("data/core/global.lua"))
+		print("Load global: ", func, err)
 	end
-	local global = loadfile("data/core/global.lua")(conf)
+	local global = func(conf)
 	global.version = version
 	global.licenseNotice = licenseNotice
 	do
@@ -103,16 +105,20 @@ do
 		f:close()
 	end
 	
+	local func, err = loadfile("data/core/init.lua")
 	if conf.debug.isDev then
-		print(loadfile("data/core/init.lua"))
+		print("Initialize: ", func, err)
 	end
-	local initSuccsess, err = loadfile("data/core/init.lua")(global, ...)
+	local initSuccsess, err = func(global, ...)
+	
+	print(global.isRunning)
 	
 	if initSuccsess then
 		local core, err = loadfile("data/core/ocgeCore.lua")
 		if global.isDev then
-			print(core, err)
+			print("Init done, starting program: ", core, err)
 		end
+		
 		local success, returnValues = core(global)
 		core = nil
 		

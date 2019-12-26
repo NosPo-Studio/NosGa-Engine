@@ -23,7 +23,7 @@ local GameObject = {}
 GameObject.__index = GameObject
 
 function GameObject.init()
-
+	
 end
 
 local pa = global.ut.parseArgs
@@ -167,9 +167,8 @@ function GameObject.new(args)
 	this.pActivate = function(this) --parent func
 		global.run(this.activate, this)
 	end
-	this.pDraw = function(this, renderArea) --parent func	
+	this.pDraw = function(this, renderArea) --parent func
 		local realArea = renderArea.realArea or renderArea
-		
 		local offsetX, offsetY = this:getOffset(realArea)
 		
 		for _, s in pairs(this.gameObject:getSprites()) do
@@ -187,7 +186,7 @@ function GameObject.new(args)
 		else
 			this.gameObject:draw(offsetX, offsetY, {realArea.posX, realArea.posX + realArea.sizeX -1, realArea.posY, realArea.posY + realArea.sizeY -1})
 		end
-			
+		
 		global.run(this.draw, this, realArea, renderArea)
 		
 		realArea.gameObjectAttributes[this.attributes.id].mustBeRendered = false
