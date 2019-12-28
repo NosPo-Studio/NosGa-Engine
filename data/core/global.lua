@@ -156,19 +156,30 @@ function global.load(args)
 	return loadfile("data/core/dataLoading.lua")(args)
 end
 
-function global.loadData(target, dir, func, print, overwrite)
+function global.loadData(target, dir, func, print, overwrite, subDirs, structured)
 	local id = 1
 	if target.info ~= nil and target.info.amout ~= nil then
 		id = target.info.amout +1
 	end
-	path = global.shell.getWorkingDirectory() .. "/" .. dir .. "/"
+	local path = global.shell.getWorkingDirectory() .. "/" .. dir .. "/"
 	print = print or global.log
+	subDirs = global.ut.parseArgs(subDirs, true)
 	
 	for file in global.fs.list(path) do
-		local name = string.sub(file, 0, #file -4)
+		local p, name, ending = global.ut.seperatePath(file)
 		
-		
-		if target[name] == nil or overwrite then
+		if string.sub(file, #file) == "/" then
+			if structured then
+				if target[string.sub(p, 0, #p -1)] == nil or overwrite and not structured then
+					target[string.sub(p, 0, #p -1)] = {}
+					global.loadData(target[string.sub(p, 0, #p -1)], dir .. "/" .. p, func, print, overwrite, subDirs, structured)
+				else
+					global.error("[DLF]: Target already existing!: " .. p .. " :" .. tostring(target))
+				end
+			else
+				global.loadData(target, dir .. "/" .. p, func, print, overwrite, subDirs, structured)
+			end
+		elseif target[name] == nil or overwrite then
 			local debugString = ""
 			if target[name] == nil then
 				debugString = "[DLF]: Loading file: " .. dir .. "/" .. file .. ": "
@@ -185,7 +196,9 @@ function global.loadData(target, dir, func, print, overwrite)
 				end
 			end
 			
-			target[name] = suc(global)
+			if suc then
+				target[name] = suc(global)
+			end
 			
 			if func ~= nil then
 				func(name, id)

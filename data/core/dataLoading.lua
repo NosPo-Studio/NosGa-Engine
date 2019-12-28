@@ -54,8 +54,9 @@ local function reloadFile(target, path, ...)
 	end
 end
 
-local function loadFiles(target, name, func, directPath)
+local function loadFiles(target, name, func, directPath, subDirs, structured)
 	local path = baseDir .. name
+	subDirs = global.ut.parseArgs(subDirs, true)
 	
 	if directPath then
 		path = directPath
@@ -67,7 +68,7 @@ local function loadFiles(target, name, func, directPath)
 		elseif reload then
 			print("[DL]: Reloading data group: " .. name .. ".")
 		end
-		global.loadData(target, path, func, print, reload)
+		global.loadData(target, path, func, print, reload, subDirs, structured)
 		global.alreadyLoaded[path] = true
 	else
 		print("[DL]: Data group already loaded: " .. name .. ".")
@@ -123,6 +124,9 @@ end
 --===== asset loading =====--
 if toLoad.global then
 	loadFiles(global, "global")
+end
+if toLoad.structuredGlobal then
+	loadFiles(global, "structuredGlobal", nil, nil, nil, true)
 end
 if toLoad.states then
 	loadFiles(global.state, "states")

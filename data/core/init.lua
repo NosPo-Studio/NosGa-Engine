@@ -107,6 +107,7 @@ global.load({
 		GameObject = true,
 		RenderArea = true,
 		eh = true,
+		structuredGlobal = true,
 	},
 	print = global.orgPrint,
 })

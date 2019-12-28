@@ -1,369 +1,48 @@
+[ERROR] [DLF]: Target already existing!: test/ :table: 00000000428B8580
 [INFO] [GE]: Change state to: "test".
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: textures, gameObjects, states, parents.
-[INFO] [DL]: Data group already loaded: states.
+[INFO] [DL]: Loading data groups: parents, gameObjects, textures.
 [INFO] [DL]: Loading data group: textures.
+[INFO] [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 00000000429753C0
+[INFO] [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0000000042DF7F20
+[INFO] [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0000000042F6E080
+[INFO] [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 000000002C8F57F0
+[INFO] [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 00000000425AB300
 [INFO] [DL]: Loading data group: parents.
-[INFO] [DLF]: Loading file: data/parents/Block.lua: function: 000000005E4F3D90
+[INFO] [DLF]: Loading file: data/parents/Block.lua: function: 0000000042A9DB80
 [INFO] [DL]: Loading data group: gameObjects.
-[INFO] [DLF]: Loading file: data/gameObjects/BusStop.lua: function: 000000004363CA60
-[INFO] [DLF]: Loading file: data/gameObjects/TestGO2.lua: function: 000000005E4294F0
-[INFO] [DLF]: Loading file: data/gameObjects/TestGO.lua: function: 000000004364DF90
-[INFO] [DLF]: Loading file: data/gameObjects/RenderBenchMark.lua: function: 0000000043EC1950
+[INFO] [DLF]: Loading file: data/gameObjects/BusStop.lua: function: 00000000429BE660
+[INFO] [DLF]: Loading file: data/gameObjects/TestGO2.lua: function: 000000004222EA40
+[INFO] [DLF]: Loading file: data/gameObjects/RenderBenchMark.lua: function: 0000000042CE2AC0
+[INFO] [DLF]: Loading file: data/gameObjects/TestGO.lua: function: 000000004299C4B0
 [INFO] [test]: init done.
 [DEBUG] [RA/TRA1]: Adding gameObject: "TestGO2" (#1).
 [DEBUG] [RA/TRA1]: Adding gameObject: "RenderBenchMark" (#2).
 [DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#3).
 [DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#4).
 [DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#5).
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
+[INFO] lua> global.test()
+[INFO] TEST
 [INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: states, reload, RenderArea, conf, gameObjects, GameObject.
-[INFO] [DL]: Reloading file: conf.lua: function: 0000000044432570
-[INFO] [DL]: Reloading file: data/core/RenderArea.lua: function: 000000005E3D3D80
-[INFO] [DL]: Reloading file: data/core/GameObject.lua: function: 000000004453A290
-[INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 00000000441B4F50
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 0000000043B1C8E0
-[INFO] [DL]: Reloading data group: gameObjects.
-[INFO] [DLF]: Reloading file: data/gameObjects/BusStop.lua: function: 00000000438026B0
-[INFO] [DLF]: Reloading file: data/gameObjects/TestGO2.lua: function: 000000005E3D2B90
-[INFO] [DLF]: Reloading file: data/gameObjects/TestGO.lua: function: 0000000044433AE0
-[INFO] [DLF]: Reloading file: data/gameObjects/RenderBenchMark.lua: function: 0000000044276B30
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: textures, gameObjects, states, parents.
-[INFO] [DL]: Data group already loaded: states.
-[INFO] [DL]: Data group already loaded: textures.
-[INFO] [DL]: Data group already loaded: parents.
-[INFO] [DL]: Data group already loaded: gameObjects.
-[INFO] [test]: init done.
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO2" (#1).
-[DEBUG] [RA/TRA1]: Adding gameObject: "RenderBenchMark" (#2).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#3).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#4).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#5).
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: states, reload, RenderArea, conf, gameObjects, GameObject.
-[INFO] [DL]: Reloading file: conf.lua: function: 000000002CE04700
-[INFO] [DL]: Reloading file: data/core/RenderArea.lua: function: 0000000044433450
-[INFO] [DL]: Reloading file: data/core/GameObject.lua: function: 00000000442919B0
-[INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 000000004453D630
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 000000005E4F2C10
-[INFO] [DL]: Reloading data group: gameObjects.
-[INFO] [DLF]: Reloading file: data/gameObjects/BusStop.lua: function: 000000002CE06ED0
-[INFO] [DLF]: Reloading file: data/gameObjects/TestGO2.lua: function: 000000002D17D220
-[INFO] [DLF]: Reloading file: data/gameObjects/TestGO.lua: function: 00000000437AE860
-[INFO] [DLF]: Reloading file: data/gameObjects/RenderBenchMark.lua: function: 0000000044330A60
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: textures, gameObjects, states, parents.
-[INFO] [DL]: Data group already loaded: states.
-[INFO] [DL]: Data group already loaded: textures.
-[INFO] [DL]: Data group already loaded: parents.
-[INFO] [DL]: Data group already loaded: gameObjects.
-[INFO] [test]: init done.
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO2" (#1).
-[DEBUG] [RA/TRA1]: Adding gameObject: "RenderBenchMark" (#2).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#3).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#4).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#5).
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: states, reload, RenderArea, conf, gameObjects, GameObject.
-[INFO] [DL]: Reloading file: conf.lua: function: 000000005E425DD0
-[INFO] [DL]: Reloading file: data/core/RenderArea.lua: function: 000000005E4F2120
-[INFO] [DL]: Reloading file: data/core/GameObject.lua: function: 000000005E3CF7F0
-[INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 000000005E1B6710
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 000000004426D7F0
-[INFO] [DL]: Reloading data group: gameObjects.
-[INFO] [DLF]: Reloading file: data/gameObjects/BusStop.lua: function: 0000000043EF3810
-[INFO] [DLF]: Reloading file: data/gameObjects/TestGO2.lua: function: 0000000044293230
-[INFO] [DLF]: Reloading file: data/gameObjects/TestGO.lua: function: 00000000442943B0
-[INFO] [DLF]: Reloading file: data/gameObjects/RenderBenchMark.lua: function: 0000000043F2A3B0
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: textures, gameObjects, states, parents.
-[INFO] [DL]: Data group already loaded: states.
-[INFO] [DL]: Data group already loaded: textures.
-[INFO] [DL]: Data group already loaded: parents.
-[INFO] [DL]: Data group already loaded: gameObjects.
-[INFO] [test]: init done.
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO2" (#1).
-[DEBUG] [RA/TRA1]: Adding gameObject: "RenderBenchMark" (#2).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#3).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#4).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#5).
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T1
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] T2
-[INFO] lua> global.texture
-[INFO] {}	
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: states, reload, RenderArea, conf, gameObjects, GameObject.
-[INFO] [DL]: Reloading file: conf.lua: function: 000000004453ACA0
-[INFO] [DL]: Reloading file: data/core/RenderArea.lua: function: 000000004378E1C0
-[INFO] [DL]: Reloading file: data/core/GameObject.lua: function: 00000000443574D0
-[INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 000000004364EE00
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 0000000043F6F540
-[INFO] [DL]: Reloading data group: gameObjects.
-[INFO] [DLF]: Reloading file: data/gameObjects/BusStop.lua: function: 0000000044432FF0
-[INFO] [DLF]: Reloading file: data/gameObjects/TestGO2.lua: function: 000000002D17CAB0
-[INFO] [DLF]: Reloading file: data/gameObjects/TestGO.lua: function: 00000000437303A0
-[INFO] [DLF]: Reloading file: data/gameObjects/RenderBenchMark.lua: function: 000000004372BE80
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: textures, gameObjects, states, parents.
-[INFO] [DL]: Data group already loaded: states.
-[INFO] [DL]: Loading data group: texturePacks/default/textures.
-[INFO] [DL]: Data group already loaded: parents.
-[INFO] [DL]: Data group already loaded: gameObjects.
-[INFO] [test]: init done.
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO2" (#1).
-[DEBUG] [RA/TRA1]: Adding gameObject: "RenderBenchMark" (#2).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#3).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#4).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#5).
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: states, mods, GameObject, RenderArea, eh, conf, gameObjects, global, re, textures, reload, ge, parents.
-[INFO] [DL]: Reloading file: conf.lua: function: 0000000044331B70
-[INFO] [DL]: Reloading file: data/core/re.lua: function: 00000000436398F0
-[INFO] [DL]: Reloading file: data/core/ge.lua: function: 000000005E4F2BA0
-[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 000000004364E770
-[INFO] [DL]: Reloading file: data/core/RenderArea.lua: function: 0000000043F9DE00
-[INFO] [DL]: Reloading file: data/core/GameObject.lua: function: 0000000043EDF970
+[INFO] [DL]: Loading data groups: global, reload, states, conf, structuredGlobal.
+[INFO] [DL]: Reloading file: conf.lua: function: 0000000042F6F200
 [INFO] [DL]: Loading data group: global.
-[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 000000002CFAAB70
-[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 000000004378F8F0
-[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 000000004427F000
-[INFO] [DLF]: Reloading file: data/global/test.lua: function: 0000000043EC0FB0
-[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 0000000044435590
-[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 0000000044294490
-[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 000000005E427F10
-[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 000000005E427EA0
+[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 0000000042F17F10
+[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 0000000042800100
+[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 00000000427FF6F0
+[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 000000005D975400
+[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 000000005D9748A0
+[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 0000000042DA70C0
+[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 0000000042DA7590
+[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 000000005D9CBBB0
+[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 000000005D9CC630
+[INFO] [DL]: Reloading data group: structuredGlobal.
+[ERROR] [DLF]: Target already existing!: test/ :table: 00000000428B8580
 [INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 0000000044082C80
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 000000002CDD41B0
-[INFO] [DL]: Reloading data group: texturePacks/default/textures.
-[INFO] [DL]: Reloading data group: parents.
-[INFO] [DLF]: Reloading file: data/parents/Block.lua: function: 0000000043F6F8C0
-[INFO] [DL]: Reloading data group: gameObjects.
-[INFO] [DLF]: Reloading file: data/gameObjects/BusStop.lua: function: 000000004451C8F0
-[INFO] [DLF]: Reloading file: data/gameObjects/TestGO2.lua: function: 000000004453C830
-[INFO] [DLF]: Reloading file: data/gameObjects/TestGO.lua: function: 000000004444B030
-[INFO] [DLF]: Reloading file: data/gameObjects/RenderBenchMark.lua: function: 000000002D0FBF80
+[INFO] [DLF]: Loading file: data/states/test.lua: function: 0000000042A17050
+[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 000000004294AE00
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: textures, gameObjects, states, parents.
-[INFO] [DL]: Data group already loaded: states.
-[INFO] [DL]: Data group already loaded: texturePacks/default/textures.
-[INFO] [DL]: Data group already loaded: parents.
-[INFO] [DL]: Data group already loaded: gameObjects.
-[INFO] [test]: init done.
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO2" (#1).
-[DEBUG] [RA/TRA1]: Adding gameObject: "RenderBenchMark" (#2).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#3).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#4).
-[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#5).
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: states, mods, GameObject, RenderArea, eh, conf, gameObjects, global, re, textures, reload, ge, parents.
-[INFO] [DL]: Reloading file: conf.lua: function: 000000004372FC30
-[INFO] [DL]: Reloading file: data/core/re.lua: function: 000000002CFA90C0
-[INFO] [DL]: Reloading file: data/core/ge.lua: function: 0000000044276CF0
-[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 0000000043B6C440
-[INFO] [DL]: Reloading file: data/core/RenderArea.lua: function: 0000000043DA0680
-[INFO] [DL]: Reloading file: data/core/GameObject.lua: function: 0000000043C6DF70
-[INFO] [DL]: Reloading data group: global.
-[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 0000000043C6DD40
-[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 000000004372F6F0
-[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 0000000044432A40
-[INFO] [DLF]: Reloading file: data/global/test.lua: function: 0000000044432AB0
-[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 000000005E429790
-[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 000000005E429250
-[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 000000002D0B10C0
-[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 000000002D0B1280
-[INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 000000004453CD70
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 0000000043F5BE20
-[INFO] [DL]: Loading data group: textures.
-[INFO] [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 000000002D0B2B70
-[INFO] [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 000000002CFAADA0
-[INFO] [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0000000043F6E120
-[INFO] [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0000000044433A70
-[INFO] [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0000000044432F80
-[INFO] [DL]: Reloading data group: parents.
-[INFO] [DLF]: Reloading file: data/parents/Block.lua: function: 0000000044292510
-[INFO] [DL]: Reloading data group: gameObjects.
-[INFO] [DLF]: Reloading file: data/gameObjects/BusStop.lua: function: 0000000043ECB3E0
-[INFO] [DLF]: Reloading file: data/gameObjects/TestGO2.lua: function: 0000000043C63D90
-[INFO] [DLF]: Reloading file: data/gameObjects/TestGO.lua: function: 000000004453CC20
-[INFO] [DLF]: Reloading file: data/gameObjects/RenderBenchMark.lua: function: 0000000043EE3A40
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: textures, gameObjects, states, parents.
-[INFO] [DL]: Data group already loaded: states.
+[INFO] [DL]: Loading data groups: parents, gameObjects, textures.
 [INFO] [DL]: Data group already loaded: textures.
 [INFO] [DL]: Data group already loaded: parents.
 [INFO] [DL]: Data group already loaded: gameObjects.
@@ -373,3 +52,36 @@
 [DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#3).
 [DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#4).
 [DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#5).
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: global, reload, states, conf, structuredGlobal.
+[INFO] [DL]: Reloading file: conf.lua: function: 0000000042AA34F0
+[INFO] [DL]: Reloading data group: global.
+[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 0000000042308CD0
+[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 0000000042AA2920
+[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 0000000042A157D0
+[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 0000000042A17910
+[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 0000000042CE3070
+[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 0000000042363C20
+[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 0000000042362090
+[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 00000000425A8190
+[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 00000000425A4A70
+[INFO] [DL]: Reloading data group: structuredGlobal.
+[INFO] [DLF]: Loading file: data/structuredGlobal/testDir//test.lua: function: 00000000425AF040
+[INFO] [DLF]: Loading file: data/structuredGlobal/testDir//test2//test2.lua: function: 00000000421F84D0
+[INFO] [DL]: Reloading data group: states.
+[INFO] [DLF]: Loading file: data/states/test.lua: function: 000000005D9F7990
+[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 0000000042BBA900
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: parents, gameObjects, textures.
+[INFO] [DL]: Data group already loaded: textures.
+[INFO] [DL]: Data group already loaded: parents.
+[INFO] [DL]: Data group already loaded: gameObjects.
+[INFO] [test]: init done.
+[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO2" (#1).
+[DEBUG] [RA/TRA1]: Adding gameObject: "RenderBenchMark" (#2).
+[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#3).
+[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#4).
+[DEBUG] [RA/TRA1]: Adding gameObject: "TestGO" (#5).
+[INFO] lua> global.testDir.test2.test2()
+[INFO] SSSSSSSTEST22
+[DEBUG] [EH]: Program stopped by user.

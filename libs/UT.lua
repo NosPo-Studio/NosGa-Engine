@@ -16,8 +16,7 @@
 ]]
 
 --[[UsefullThings libary
-	Written by:
-		MisterNoNameLP
+	
 ]]
 local UT = {version = "v0.6.1"}
 

@@ -46,9 +46,9 @@ function test.init()
 	
 	--===== debug end =====--
 	
+	
 	global.load({
 		toLoad = {
-			states = true,
 			parents = true,
 			gameObjects = true,
 			textures = true,

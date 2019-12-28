@@ -50,15 +50,16 @@ local conf = {
 			re = false, 
 			ge = false,
 			eh = false,
-			GameObject = true,
-			RenderArea = true,
+			GameObject = false,
+			RenderArea = false,
 			
 			--=== data groups ===--
-			global = false, --global dir.
+			global = true, --global dir.
+			structuredGlobal = true,
 			states = true,
 			textures = false,
 			parents = false,
-			gameObjects = true,
+			gameObjects = false,
 			
 			mods = false, --just reloads the activated data groups of the mods (if only onReload.blocks = true he only also reloads the blocks from mods). should be always true.
 		},

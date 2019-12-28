@@ -15,7 +15,7 @@
     along with this library.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-local OCUI = {version = "v1.4.7"}
+local OCUI = {version = "v1.4.7d"}
 OCUI.__index = OCUI
 
 --[[ToDo:

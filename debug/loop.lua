@@ -2,7 +2,7 @@ local shell = require("shell")
 
 local args, opts = shell.parse(...)
 
-local stop = args[2] or true
+local stop = args[2]
 
 local oprint = print
 local function print(...)
