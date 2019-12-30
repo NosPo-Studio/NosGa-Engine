@@ -65,32 +65,30 @@ SOFTWARE.
 			*Speed shouldn't be more as the texturePack size (ocgf.RigidBody).
 	
 	ToDo:
+		state: test:
+			Cutsource cam/go moving to his classes.
+		
 		dataLoading: 
-			Rewrite:
-				Sub dir parsing:
-					Sub table option (for data/globalStructured/ e.g.).
-					No sub table option (for data/global/ e.g.).
-					
 				All conf files in one table.
 				INI control file (see internal expected table in controls.lua).
 		
-		Rename pDraw etc. to ngeDraw... .
+		Rename ngeDraw etc. to ngeDraw... .
 			
-		ocgl:
+		oclrl:
 			Add calculateSize(texture) function.
 		
-		Add dynamic texture color system (ocgl/ocgf).
+		Add dynamic texture color system (oclrl/ocgf).
 			
 			
 	*left over from ocCraft but still relevant somehow.
 ]]
-local version = "v0.0.30.1"
+local version = "v0.0.31"
 
 --===== prog start =====--
 do
 	print(licenseNotice)
 	print("Starting NosGa Engine " .. version)
-	local conf = dofile("conf.lua")
+	local conf = dofile("nosGaConf.lua")
 	
 	local func, err = loadfile("data/core/global.lua")
 	if conf.debug.isDev then

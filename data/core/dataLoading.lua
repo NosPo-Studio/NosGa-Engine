@@ -98,15 +98,15 @@ end
 
 --===== core reloadings =====--
 if toLoad.conf then
-	global.conf = reloadFile(global.conf, "conf.lua", global)
+	global.loadConf()
 end
 
 if toLoad.re then
-	global.re = reloadFile(global.re, "data/core/re.lua", global)
+	global.core.re = reloadFile(global.core.re, "data/core/re.lua", global)
 end
 
-if toLoad.ge then
-	global.ge = reloadFile(global.ge, "data/core/ge.lua", global)
+if toLoad.uh then
+	global.core.uh = reloadFile(global.core.uh, "data/core/uh.lua", global)
 end
 
 if toLoad.eh then

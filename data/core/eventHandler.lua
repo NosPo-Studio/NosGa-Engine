@@ -44,10 +44,10 @@ local function exportCtrlSignal(s, sname)
 			
 			if generalFunctionName ~= "" then
 				global.run(global.state[global.currentState][generalFunctionName], s, sname)
-				global.ge.insertSignal(s, generalFunctionName)
+				global.core.uh.insertSignal(s, generalFunctionName)
 				
 				global.run(global.state[global.currentState][specificFunctionName], s, sname)
-				global.ge.insertSignal(s, specificFunctionName)
+				global.core.uh.insertSignal(s, specificFunctionName)
 			end
 		end
 	end
@@ -69,7 +69,7 @@ local function exportSignal(s, sname)
 	sname = sname or s[1]
 	
 	global.run(global.state[global.currentState][sname], s)
-	global.ge.insertSignal(s, sname)
+	global.core.uh.insertSignal(s, sname)
 	
 	exportCtrlSignal(s, sname)
 end
@@ -161,7 +161,7 @@ function eh.key_down(s)
 		global.renderAreas = {}
 		
 		if global.conf.debug.onReload.conf then
-			global.conf = dofile("conf.lua")
+			global.loadConf()
 		end
 		global.conf.debug.onReload.reload = true
 		if global.keyboard.isControlDown() then

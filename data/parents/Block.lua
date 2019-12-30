@@ -48,7 +48,7 @@ function Block.new(args)
 		sy = global.texturePack.size, 
 	})
 	this.gameObject:addSprite({
-		texture = args.texture or global.ocgl:generateTexture(),
+		texture = args.texture or global.oclrl:generateTexture(),
 	})
 	
 	this.getPos = function()
@@ -61,24 +61,24 @@ function Block.new(args)
 	this.pPlaced = function(this) --parent func
 		global.run(this.placed, this)
 	end
-	this.pStart = function(this) --parent func 
+	this.ngeStart = function(this) --parent func 
 		global.run(this.start, this)
 	end
-	this.pUpdate = function(this)
+	this.ngeUpdate = function(this)
 		global.run(this.update, this)
 	end
-	this.pDraw = function(this)
+	this.ngeDraw = function(this)
 		this.gameObject:draw()
 		global.run(this.draw, this)
 	end
-	this.pClear = function(this, acctual)
+	this.ngeClear = function(this, acctual)
 		this.gameObject:clear(global.backgroundColor, acctual)
 		global.run(this.clear, this)
 	end
-	this.pStop = function(this)
+	this.ngeStop = function(this)
 		global.run(this.stop, this)
 	end
-	this.pActivate = function(this) --parent func
+	this.ngeActivate = function(this) --parent func
 		global.run(this.activate, this)
 	end
 	

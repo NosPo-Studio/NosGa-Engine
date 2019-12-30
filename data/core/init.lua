@@ -51,25 +51,25 @@ global.computer = require("computer")
 global.keyboard = require("keyboard")
 global.serialization = require("serialization")
 global.component = require("component")
-global.realGPU = global.component.gpu
+global.core.realGPU = global.component.gpu
 
-print("useDoubleBuffering: " .. tostring(global.conf.debug.useDoubleBuffering))
-if global.conf.debug.useDoubleBuffering then
+print("useDoubleBuffering: " .. tostring(global.conf.useDoubleBuffering))
+if global.conf.useDoubleBuffering then
 	global.gpu = loadfile("libs/dbgpu_api.lua")({path = "libs/thirdParty", directDraw = false, forceDraw = false, rawCopy = true})
 else
 	global.gpu = global.component.gpu
 end
-global.ocgl = require("libs/ocgl").initiate(global.gpu)
-global.ocui = require("libs/ocui").initiate(global.ocgl)
+global.oclrl = require("libs/oclrl").initiate(global.gpu)
+global.ocui = require("libs/ocui").initiate(global.oclrl)
 global.ocgf = require("libs/ocgf").initiate({gpu = global.gpu})
 
-local func, err = loadfile("data/core/ge.lua")
+local func, err = loadfile("data/core/uh.lua")
 print("[INIT]: Loading GE: " .. tostring(func) .. " " .. tostring(err))
-global.ge = func(global)
+global.core.uh = func(global)
 
 local func, err = loadfile("data/core/re.lua")
 print("[INIT]: Loading RE: " .. tostring(func) .. " " .. tostring(err))
-global.re = func(global)
+global.core.re = func(global)
 
 
 local func, err = loadfile("data/core/RenderArea.lua")
@@ -103,6 +103,7 @@ if global.isDev then
 end
 global.load({
 	toLoad = {
+		conf = true,
 		states = true,
 		GameObject = true,
 		RenderArea = true,
@@ -113,10 +114,10 @@ global.load({
 })
 
 --===== init engine =====--
-global.ge.init()
-global.re.init()
+global.core.uh.init()
+global.core.re.init()
 
-global.changeState(global.conf.debug.defaultState)
+global.changeState(global.conf.defaultState)
 
 --====== init end ======--
 print("[INIT]: Done.")

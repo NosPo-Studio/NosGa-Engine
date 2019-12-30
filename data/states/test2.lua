@@ -55,7 +55,7 @@ function test.keyDown(c, k)
 		
 		
 		--local tgo = global.gameObject.TestGO.new()
-		--print(tgo.attributes.size[1])
+		--print(tgo.ngeAttributes.size[1])
 	end 
 	
 	--print(c, k)

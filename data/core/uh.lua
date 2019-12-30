@@ -19,7 +19,7 @@
 
 --GameEngine
 local global = ...
-local ge = {
+local uh = {
 	isUpdated = {},
 	signalQueue = {},
 }
@@ -35,7 +35,7 @@ end
 
 local function isInsideArea(ra, go, expansion)
 	local x, y = go:getPos()
-	local sx, sy = go.attributes.sizeX, go.attributes.sizeY
+	local sx, sy = go.ngeAttributes.sizeX, go.ngeAttributes.sizeY
 	local fromX, toX, fromY, toY = ra:getFOV()
 	local expansion = expansion or {0, 0, 0, 0}
 	
@@ -49,15 +49,15 @@ end
 local function calculateFrame(renderArea)
 	local expansion = renderArea.narrowUpdateExpansion
 	
-	if global.conf.debug.narrowUpdateExpansion ~= false then
+	if global.conf.narrowUpdateExpansion ~= false then
 		renderArea.updateAnything = false
 		local fromX, toX, fromY, toY = renderArea:getFOV()
 		
 		for i, go in pairs(renderArea.gameObjects) do
-			local l = go.attributes.layer
+			local l = go.ngeAttributes.layer
 			
 			if renderArea.layerBlacklist[l] ~= true and 
-				isInsideArea(renderArea, go, global.conf.debug.narrowUpdateExpansion) and 
+				isInsideArea(renderArea, go, global.conf.narrowUpdateExpansion) and 
 				renderArea.toUpdate[go] == nil 
 			then 
 				renderArea.toUpdate[go] = true
@@ -76,15 +76,15 @@ local function updateFrame(renderArea, dt)
 	end
 	
 	for go in pairs(toUpdate) do
-		if not ge.isUpdated[go] then
-			for i, s in pairs(ge.signalQueue) do
+		if not uh.isUpdated[go] then
+			for i, s in pairs(uh.signalQueue) do
 				--print(s[1], go[s[1]], global.currentFrame)
 				
 				global.run(go[s.name], s.signal, s.name)
 			end
 			
-			go:pUpdate(global.gameObjects, dt, renderArea)
-			ge.isUpdated[go] = true
+			go:ngeUpdate(global.gameObjects, dt, renderArea)
+			uh.isUpdated[go] = true
 		end
 	end
 	
@@ -92,11 +92,11 @@ local function updateFrame(renderArea, dt)
 end
 
 --===== global functions =====--
-function ge.init()
+function uh.init()
 	
 end
 
-function ge.update(dt)
+function uh.update(dt)
 	dt = dt or global.dt
 	
 	for i, ra in pairs(global.renderAreas) do
@@ -106,11 +106,11 @@ function ge.update(dt)
 		end
 	end
 	
-	ge.isUpdated = {}
-	ge.signalQueue = {}
+	uh.isUpdated = {}
+	uh.signalQueue = {}
 end
 
-function ge.insertSignal(s, signalName)
+function uh.insertSignal(s, signalName)
 	
 	--[[
 	local t = s
@@ -123,17 +123,17 @@ function ge.insertSignal(s, signalName)
 			end
 		end
 		
-		--ge.signalQueue[#ge.signalQueue][1] = signalName
+		--uh.signalQueue[#uh.signalQueue][1] = signalName
 	end
 	]]
 	--print(signalName)
-	table.insert(ge.signalQueue, {name = signalName, signal = s})
+	table.insert(uh.signalQueue, {name = signalName, signal = s})
 	
 	--global.log(global.currentFrame, signalName)
-	--global.slog(ge.signalQueue)
+	--global.slog(uh.signalQueue)
 	
 end
 
 --===== init =====--
 
-return ge
+return uh

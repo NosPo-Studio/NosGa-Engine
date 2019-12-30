@@ -56,13 +56,13 @@ function TestGO.new(args)
 	end
 	
 	this.update = function(this) --will called on every game tick.
-		if this:getRA().cameraPosX +(this.id * global.resX) < -this.attributes.sizeX *3 then
+		if this:getRA().cameraPosX +(this.id * global.resX) < -this.ngeAttributes.sizeX *3 then
 			this:destroy()
 		end
 	end
 	
 	this.draw = function(this, realArea, renderArea) --will called every time the gameObject will drawed.
-		--global.log("TestGO(" .. tostring(this.attributes.name) .. "): draw: " .. tostring(renderArea.name) .. " | " .. tostring(renderArea.realArea))
+		--global.log("TestGO(" .. tostring(this.ngeAttributes.name) .. "): draw: " .. tostring(renderArea.name) .. " | " .. tostring(renderArea.realArea))
 	end
 	
 	this.clear = function(this, acctual) --will called when the sntity graphics are removed.

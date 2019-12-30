@@ -42,10 +42,10 @@ function GameObject.new(args)
 	args = args or {}
 	local this = setmetatable({}, GameObject)
 	
-	this.attributes = {
+	this.ngeAttributes = {
 		sizeX = pa(args.sizeX, 0),
 		sizeY = pa(args.sizeY, 0),
-		layer = pa(args.layer, global.conf.debug.renderLayerAmount),
+		layer = pa(args.layer, global.conf.renderLayerAmount),
 		name = args.name,
 		
 		--=== Auto generated ===--
@@ -79,28 +79,28 @@ function GameObject.new(args)
 			elseif c[1] == "Sprite" then
 				this.gameObject:addSprite(c)
 			elseif c[1] == "ClearArea" then
-				addAreaEntry(this.attributes.clearAreas, c)
+				addAreaEntry(this.ngeAttributes.clearAreas, c)
 			elseif c[1] == "CopyArea" then
-				addAreaEntry(this.attributes.clearAreas, c)
-				if global.conf.debug.forceSmartMove or global.conf.debug.useSmartMove and global.conf.debug.useDoubleBuffering then
-					addAreaEntry(this.attributes.copyAreas, c)
+				addAreaEntry(this.ngeAttributes.clearAreas, c)
+				if global.conf.forceSmartMove or global.conf.useSmartMove and global.conf.useDoubleBuffering then
+					addAreaEntry(this.ngeAttributes.copyAreas, c)
 				end
 			end
 		end
 	end
 	
-	if this.attributes.sizeX > 0 and this.attributes.sizeY > 0 then
-		table.insert(this.attributes.clearAreas, {posX = 0, posY = 0, sizeX = this.attributes.sizeX, sizeY = this.attributes.sizeY})
+	if this.ngeAttributes.sizeX > 0 and this.ngeAttributes.sizeY > 0 then
+		table.insert(this.ngeAttributes.clearAreas, {posX = 0, posY = 0, sizeX = this.ngeAttributes.sizeX, sizeY = this.ngeAttributes.sizeY})
 	end
 	
 	--===== default functions =====--
 	this.move = function(this, x, y)
 		this.gameObject:move(x, -y)
-		--this.attributes.hasMoved = true
+		--this.ngeAttributes.hasMoved = true
 	end
 	this.moveTo = function(this, x, y)
 		this.gameObject:moveTo(x, y)
-		--this.attributes.hasMoved = true
+		--this.ngeAttributes.hasMoved = true
 	end
 	this.addForce = function(this, x, y, maxSpeed)
 		this.gameObject:addForce(x * (global.texturePack.size *2), -y * global.texturePack.size, maxSpeed)
@@ -115,13 +115,13 @@ function GameObject.new(args)
 		return math.floor(this.gameObject.lastPosX), math.floor(this.gameObject.lastPosY)
 	end
 	this.getLastPos = function(this)
-		return math.floor(this.attributes.lastFramePosX), math.floor(this.attributes.lastFramePosY)
+		return math.floor(this.ngeAttributes.lastFramePosX), math.floor(this.ngeAttributes.lastFramePosY)
 	end
 	this.getSize = function(this)
-		return this.attributes.sizeX, this.attributes.sizeY
+		return this.ngeAttributes.sizeX, this.ngeAttributes.sizeY
 	end
 	this.getRA = function(this)
-		for ra in pairs(this.attributes.responsibleRenderAreas) do
+		for ra in pairs(this.ngeAttributes.responsibleRenderAreas) do
 			if ra.parent == nil then
 				return ra
 			else
@@ -133,17 +133,17 @@ function GameObject.new(args)
 		return ra.posX + ra.cameraPosX, ra.posY + ra.cameraPosY
 	end
 	this.destroy = function(this)
-		for ra in pairs(this.attributes.responsibleRenderAreas) do
+		for ra in pairs(this.ngeAttributes.responsibleRenderAreas) do
 			ra:remGO(this)
 			return
 		end
 	end
 	
 	--===== engine functions =====--
-	this.pStart = function(this) --parent func 
+	this.ngeStart = function(this) --parent func 
 		global.run(this.start, this)
 	end
-	this.pUpdate = function(this, gameObjects, dt, ra) --parent func
+	this.ngeUpdate = function(this, gameObjects, dt, ra) --parent func
 		this.gameObject:updatePhx(gameObjects, dt)
 		this.gameObject:update(gameObjects)
 		global.run(this.update, this, dt, ra)
@@ -151,23 +151,23 @@ function GameObject.new(args)
 		local x, y = this:getPos()
 		local lx, ly = this:getLastPos()
 		if x ~= lx or y ~= ly then
-			this.attributes.hasMoved = true
-			if global.conf.debug.forceSmartMove or global.conf.debug.useSmartMove and global.conf.debug.useDoubleBuffering then
-				for ra in pairs(this.attributes.responsibleRenderAreas) do
+			this.ngeAttributes.hasMoved = true
+			if global.conf.forceSmartMove or global.conf.useSmartMove and global.conf.useDoubleBuffering then
+				for ra in pairs(this.ngeAttributes.responsibleRenderAreas) do
 					local offsetX, offsetY = this:getOffset(ra)
-					for i, ca in pairs(this.attributes.copyAreas) do
+					for i, ca in pairs(this.ngeAttributes.copyAreas) do
 						table.insert(ra.copyInstructions, {ca.posX +lx +offsetX, ca.posY +ly +offsetY, ca.sizeX, ca.sizeY, -(lx - x), -(ly - y)})
 					end
 				end
 			end
 		end
 		
-		this.attributes.isUpdated = true
+		this.ngeAttributes.isUpdated = true
 	end
-	this.pActivate = function(this) --parent func
+	this.ngeActivate = function(this) --parent func
 		global.run(this.activate, this)
 	end
-	this.pDraw = function(this, renderArea) --parent func
+	this.ngeDraw = function(this, renderArea) --parent func
 		local realArea = renderArea.realArea or renderArea
 		local offsetX, offsetY = this:getOffset(realArea)
 		
@@ -175,7 +175,7 @@ function GameObject.new(args)
 			s.background = global.backgroundColor
 		end
 		
-		if renderArea.realArea ~= nil and this.attributes.hasMoved ~= true then
+		if renderArea.realArea ~= nil and this.ngeAttributes.hasMoved ~= true then
 			for i, ra in pairs(renderArea) do
 				if i ~= "realArea" then
 					this.gameObject:draw(offsetX, offsetY, {ra.posX, ra.posX + ra.sizeX -1, ra.posY, ra.posY + ra.sizeY -1})
@@ -189,10 +189,10 @@ function GameObject.new(args)
 		
 		global.run(this.draw, this, realArea, renderArea)
 		
-		realArea.gameObjectAttributes[this.attributes.id].mustBeRendered = false
-		realArea.gameObjectAttributes[this.attributes.id].wasVisible = true
+		realArea.gameObjectAttributes[this.ngeAttributes.id].mustBeRendered = false
+		realArea.gameObjectAttributes[this.ngeAttributes.id].wasVisible = true
 	end
-	this.pClear = function(this, renderArea) --parent func
+	this.ngeClear = function(this, renderArea) --parent func
 		local offsetX, offsetY = renderArea.posX + renderArea.cameraPosX, renderArea.posY + renderArea.cameraPosY
 		local lastPosX, lastPosY = this:getLastPos()
 		local posX, posY = this:getPos()
@@ -201,30 +201,30 @@ function GameObject.new(args)
 		
 		global.gpu.setBackground(global.backgroundColor)
 		
-		for i, ca in pairs(this.attributes.clearAreas) do
-			global.ocgl:draw(0, 0, global.ocgl.generateTexture(lastPosX + offsetX + ca.posX, lastPosY + offsetY + ca.posY, ca.sizeX, ca.sizeY, " "), nil, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1})
+		for i, ca in pairs(this.ngeAttributes.clearAreas) do
+			global.oclrl:draw(0, 0, global.oclrl.generateTexture(lastPosX + offsetX + ca.posX, lastPosY + offsetY + ca.posY, ca.sizeX, ca.sizeY, " "), nil, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1})
 		end
-		for i, ca in pairs(this.attributes.copyAreas) do
+		for i, ca in pairs(this.ngeAttributes.copyAreas) do
 			if ca.solid ~= true then
-				global.ocgl:draw(0, 0, global.ocgl.generateTexture(posX + offsetX + ca.posX, posY + offsetY + ca.posY, ca.sizeX, ca.sizeY, " "), nil, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1})
+				global.oclrl:draw(0, 0, global.oclrl.generateTexture(posX + offsetX + ca.posX, posY + offsetY + ca.posY, ca.sizeX, ca.sizeY, " "), nil, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1})
 			end
 		end
 	end
-	this.pSetLastPos = function(this)
-		this.attributes.lastFramePosX = math.floor(this.gameObject.posX)
-		this.attributes.lastFramePosY = math.floor(this.gameObject.posY)
+	this.ngeSetLastPos = function(this)
+		this.ngeAttributes.lastFramePosX = math.floor(this.gameObject.posX)
+		this.ngeAttributes.lastFramePosY = math.floor(this.gameObject.posY)
 		
-		this.attributes.hasMoved = false
+		this.ngeAttributes.hasMoved = false
 	end
-	this.pStop = function(this)
+	this.ngeStop = function(this)
 		this.gameObject:stop()
 		global.run(this.stop, this)
 		this.gameObject:stop()
 	end
-	this.pSpawn = function(this) --parent func
+	this.ngeSpawn = function(this) --parent func
 		global.run(this.spawn, this)
 	end
-	this.pDespawn = function(this) --parent func
+	this.ngeDespawn = function(this) --parent func
 		global.run(this.despawn, this)
 	end
 	

@@ -44,7 +44,7 @@ function RenderArea.new(args)
 	this.posY = pa(args.y, args.posY)
 	this.sizeX = pa(args.sizeX, 0)
 	this.sizeY = pa(args.sizeY, 0)
-	this.layer = pa(args.layer, global.conf.debug.renderLayerAmount)
+	this.layer = pa(args.layer, global.conf.renderLayerAmount)
 	this.silent = pa(args.silent, false) --if true the RA is not updating gameObjects.
 	this.name = tostring(args.name)
 	this.cameraPosX = pa(args.cx, args.cameraPosX, 0)
@@ -55,7 +55,7 @@ function RenderArea.new(args)
 	this.layerBlacklist = pa(args.lbl, args.layerBlacklist, {})
 	this.drawBorders = pa(args.drawBorders, false)
 	this.borderColor = pa(args.borderColor, 0xFF69B4)
-	this.narrowUpdateExpansion = pa(args.nue, narrowUpdateExpansion, global.conf.debug.narrowUpdateExpansion)
+	this.narrowUpdateExpansion = pa(args.nue, narrowUpdateExpansion, global.conf.narrowUpdateExpansion)
 	
 	this.parent = args.parent
 	this.gameObjects = {}
@@ -85,7 +85,7 @@ function RenderArea.new(args)
 		this.narrowUpdateExpansion = this.parent.narrowUpdateExpansion
 	end
 	
-	for i = 0, global.conf.debug.renderLayerAmount do 
+	for i = 0, global.conf.renderLayerAmount do 
 		this.toRender[i] = {}
 		this.toClear[i] = {}
 	end
@@ -103,9 +103,9 @@ function RenderArea.new(args)
 				print("[RA/" .. tostring(this.name) .. "]: Adding gameObject: \"" .. go .. "\" (#" .. tostring(id) .. ").")
 				
 				this.gameObjects[id] = global.gameObject[go].new(args)
-				this.gameObjects[id].attributes.id = id
+				this.gameObjects[id].ngeAttributes.id = id
 				
-				this.gameObjects[id].attributes.responsibleRenderAreas[this] = true
+				this.gameObjects[id].ngeAttributes.responsibleRenderAreas[this] = true
 				this.gameObjectAttributes[id] = {
 					mustBeRendered = true,
 					lastCalculatedFrame = 0,
@@ -113,7 +113,7 @@ function RenderArea.new(args)
 				}
 				
 				for c in pairs(this.childs) do
-					this.gameObjects[id].attributes.responsibleRenderAreas[c] = true
+					this.gameObjects[id].ngeAttributes.responsibleRenderAreas[c] = true
 					c.gameObjectAttributes[id] = {
 						mustBeRendered = true,
 						lastCalculatedFrame = 0,
@@ -130,18 +130,18 @@ function RenderArea.new(args)
 		if this.parent ~= nil then
 			return this.parent:remGO(go, args)
 		else
-			local id = go.attributes.id
+			local id = go.ngeAttributes.id
 			
-			print("[RA/" .. tostring(this.name) .. "]: Removing gameObject: \"" .. go.attributes.name .. "\" (#" .. tostring(id) .. ").")
+			print("[RA/" .. tostring(this.name) .. "]: Removing gameObject: \"" .. go.ngeAttributes.name .. "\" (#" .. tostring(id) .. ").")
 			
 			this.gameObjectAttributes[id] = nil
 			
-			this.gameObjects[id]:pClear(this)
-			global.re.checkOverlapping(this, this.gameObjects[id], this.gameObjects[id].attributes.layer)
+			this.gameObjects[id]:ngeClear(this)
+			global.core.re.checkOverlapping(this, this.gameObjects[id], this.gameObjects[id].ngeAttributes.layer)
 			for c in pairs(this.childs) do
 				c.gameObjectAttributes[id] = nil
-				c.gameObjects[id]:pClear(c)
-				global.re.checkOverlapping(c, c.gameObjects[id], c.gameObjects[id].attributes.layer)
+				c.gameObjects[id]:ngeClear(c)
+				global.core.re.checkOverlapping(c, c.gameObjects[id], c.gameObjects[id].ngeAttributes.layer)
 			end
 			
 			global.run(this.gameObjects[id].despawn)
@@ -150,7 +150,7 @@ function RenderArea.new(args)
 		end
 	end
 	this.updatePos = function(this, gameObject)
-		gameObject.attributes.hasMoved = true
+		gameObject.ngeAttributes.hasMoved = true
 	end
 	
 	this.move = function(this, x, y)
@@ -201,16 +201,16 @@ function RenderArea.new(args)
 	end
 	
 	--===== engine functions =====--
-	this.pStart = function(this) --parent func 
+	this.ngeStart = function(this) --parent func 
 		
 	end
-	this.pUpdate = function(this, RenderAreas, dt) --parent func
+	this.ngeUpdate = function(this, RenderAreas, dt) --parent func
 		
 	end
-	this.pCalculateNewRender = function(this) --parent func
+	this.ngeCalculateNewRender = function(this) --parent func
 		local cmi = this.cameraMoveInstructions
 		
-		if global.conf.debug.useSmartCameraMove then
+		if global.conf.useSmartCameraMove then
 			--===== camera move calculation =====--
 			if cmi.raw.x ~= 0 or cmi.raw.y ~= 0 then
 				local fromX, toX, fromY, toY = this:getFOV()
@@ -260,16 +260,16 @@ function RenderArea.new(args)
 				local fromX, toX, fromY, toY = this:getFOV()
 				
 				local function addToDraw(go)
-					if this.gameObjectAttributes[go.attributes.id].causedByOverlap then
+					if this.gameObjectAttributes[go.ngeAttributes.id].causedByOverlap then
 						return
 					end
 					
-					this.toRender[go.attributes.layer][go] = {}
-					this.toRender[go.attributes.layer][go].realArea = this
+					this.toRender[go.ngeAttributes.layer][go] = {}
+					this.toRender[go.ngeAttributes.layer][go].realArea = this
 					
 					local function add(i)
 						if cmi.clear[i] ~= nil then
-							table.insert(this.toRender[go.attributes.layer][go], {
+							table.insert(this.toRender[go.ngeAttributes.layer][go], {
 								posX = cmi.clear[i][1],
 								posY = cmi.clear[i][2],
 								sizeX = cmi.clear[i][3],
@@ -302,7 +302,7 @@ function RenderArea.new(args)
 				end
 				local function isInsideArea(ra, go, i)
 					local x, y = go:getPos()
-					local sx, sy = go.attributes.sizeX, go.attributes.sizeY
+					local sx, sy = go.ngeAttributes.sizeX, go.ngeAttributes.sizeY
 					--local fromX, toX, fromY, toY = ra:getFOV()
 					
 					local fromX, toX, fromY, toY = this:getFOV()					
@@ -326,7 +326,7 @@ function RenderArea.new(args)
 				end
 				
 				for i, go in pairs(this.gameObjects) do
-					if go.attributes.isVisibleIn[this] then
+					if go.ngeAttributes.isVisibleIn[this] then
 						if cmi.clear[1] ~= nil and isInsideArea(this, go, 1) or cmi.clear[2] ~= nil and isInsideArea(this, go, 2) then
 							addToDraw(go)
 						end
@@ -341,7 +341,7 @@ function RenderArea.new(args)
 			this:rerenderAll()
 		end
 	end
-	this.pDraw = function(this) --parent func
+	this.ngeDraw = function(this) --parent func
 		if this.drawBorders then
 			--[[
 			global.gpu.setBackground(this.borderColor)
@@ -359,7 +359,7 @@ function RenderArea.new(args)
 			
 		end
 	end
-	this.pClear = function(this) --parent func
+	this.ngeClear = function(this) --parent func
 		
 	end
 	

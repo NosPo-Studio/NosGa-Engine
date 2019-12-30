@@ -6,11 +6,11 @@ local event = require("event")
 local term = require("term")
 local serialization = require("serialization")
 local gpu = component.gpu
-local mainOcgl = dofile("libs/ocgl.lua").initiate(gpu)
+local mainOcgl = dofile("libs/oclrl.lua").initiate(gpu)
 local ocui = dofile("libs/ocui.lua").initiate(mainOcgl)
 
-local ocgl = dofile("libs/ocgl.lua").initiate(gpu)
-ocgl.name = "OCGL_1"
+local oclrl = dofile("libs/oclrl.lua").initiate(gpu)
+oclrl.name = "OCGL_1"
 
 --===== Variables =====--
 local consoleSizeY = 20
@@ -22,7 +22,7 @@ local background = dofile("texturePacks/default/textures/grass.lua")
 
 local tbConsole = ocui.TextBox.new(ocui, {x=1, y=10, sx=0, sy=0, lineBreak = true, foregroundColor=0xcccccc, backgroundColor=0x333333})
 
-local anim = ocgl.Animation.new(ocgl, animation, {})
+local anim = oclrl.Animation.new(oclrl, animation, {})
 
 local posX, posY = 10, 10
 

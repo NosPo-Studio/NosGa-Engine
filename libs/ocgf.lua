@@ -107,8 +107,8 @@ function OCGF.initiate(args)
 	this.component = require("component")
 	this.gpu = args.gpu or this.component.gpu
 	this.ut = require("libs/UT")
-	this.ocgl = args.ocgl or require(
-		args.ocglPath or "libs/ocgl"
+	this.oclrl = args.oclrl or require(
+		args.ocglPath or "libs/oclrl"
 	).initiate(
 		this.gpu
 	)
@@ -363,11 +363,11 @@ function OCGF.Sprite.new(gameObject, args)
 	
 	this.posX = args.x or args.posX or 0
 	this.posY = args.y or args.posY or 0 
-	this.texture = ut.parseArgs(args.t, args.texture, this.gameObject.ocgf.ocgl.generateTexture(0, 0, ""))
+	this.texture = ut.parseArgs(args.t, args.texture, this.gameObject.ocgf.oclrl.generateTexture(0, 0, ""))
 	this.background = args.background or 0x000000
 	
 	if this.texture.format == "OCGLA" then
-		this.animation = gameObject.ocgf.ocgl.Animation.new(gameObject.ocgf.ocgl, this.texture)
+		this.animation = gameObject.ocgf.oclrl.Animation.new(gameObject.ocgf.oclrl, this.texture)
 	end
 	
 	this.lastPosX = this.posX
@@ -395,7 +395,7 @@ function OCGF.Sprite.draw(this, dt, background, offsetX, offsetY, area)
 		this.animation.background = background
 		this.animation:draw(this.posX + offsetX, this.posY + offsetY, dt, nil, area)
 	else
-		this.gameObject.ocgf.ocgl:draw(this.posX + offsetX, this.posY + offsetY, this.texture, nil, area)
+		this.gameObject.ocgf.oclrl:draw(this.posX + offsetX, this.posY + offsetY, this.texture, nil, area)
 	end
 end
 
@@ -404,13 +404,13 @@ function OCGF.Sprite.clear(this, color, actual, offsetX, offsetY)
 		if this.animation ~= nil then
 			this.animation:clearBlack(this.posX + offsetX, this.posY + offsetY, nil, color)
 		else
-			this.gameObject.ocgf.ocgl:clearBlack(this.posX + offsetX, this.posY + offsetY, this.texture, color)
+			this.gameObject.ocgf.oclrl:clearBlack(this.posX + offsetX, this.posY + offsetY, this.texture, color)
 		end
 	else
 		if this.animation ~= nil then
 			this.animation:clearBlack(this.lastPosX + offsetX, this.lastPosY + offsetY, nil, color)
 		else
-			this.gameObject.ocgf.ocgl:clearBlack(this.lastPosX + offsetX, this.lastPosY + offsetY, this.texture, color)
+			this.gameObject.ocgf.oclrl:clearBlack(this.lastPosX + offsetX, this.lastPosY + offsetY, this.texture, color)
 		end
 	end
 end
@@ -445,7 +445,7 @@ function OCGF.Sprite.changeTexture(this, newTexture)
 		if this.animation ~= nil then
 			this.animation.animation = this.texture
 		else
-			this.animation = this.gameObject.ocgf.ocgl.Animation.new(this.gameObject.ocgf.ocgl, this.texture)
+			this.animation = this.gameObject.ocgf.oclrl.Animation.new(this.gameObject.ocgf.oclrl, this.texture)
 		end
 	else
 		this.animation = nil
@@ -600,7 +600,7 @@ function OCGF.BoxTrigger.draw(this, color, offsetX, offsetY, area)
 	local ut = this.gameObject.ocgf.ut
 	offsetX, offsetY = offsetX or 0, offsetY or 0
 	
-	this.gameObject.ocgf.ocgl:draw(0, 0, this.gameObject.ocgf.ocgl.generateTexture({
+	this.gameObject.ocgf.oclrl:draw(0, 0, this.gameObject.ocgf.oclrl.generateTexture({
 		{"b", color or 0xFF69B4},
 		{this.posX + offsetX, this.posY + offsetY, ut.fillString("", this.sizeX, " ")},
 		{this.posX + offsetX, this.posY + (this.sizeY -1) + offsetY, ut.fillString("", this.sizeX, " ")},
@@ -616,7 +616,7 @@ function OCGF.BoxTrigger.clear(this, color, actual, offsetX, offsetY)
 	gpu.setBackground(color or 0x000000)
 	
 	if actual then 
-		this.gameObject.ocgf.ocgl:clearBlack(0, 0, this.gameObject.ocgf.ocgl.generateTexture({
+		this.gameObject.ocgf.oclrl:clearBlack(0, 0, this.gameObject.ocgf.oclrl.generateTexture({
 			{"b", color or 0xFF69B4},
 			{this.posX + offsetX, this.posY + offsetY, ut.fillString("", this.sizeX, " ")},
 			{this.posX + offsetX, this.posY + (this.sizeY -1) + offsetY, ut.fillString("", this.sizeX, " ")},
@@ -624,7 +624,7 @@ function OCGF.BoxTrigger.clear(this, color, actual, offsetX, offsetY)
 			{this.posX + (this.sizeX -1) + offsetX, this.posY + offsetY, ut.fillString("", this.sizeY, " "), true},
 		}), nil, area)
 	else
-		this.gameObject.ocgf.ocgl:clearBlack(0, 0, this.gameObject.ocgf.ocgl.generateTexture({
+		this.gameObject.ocgf.oclrl:clearBlack(0, 0, this.gameObject.ocgf.oclrl.generateTexture({
 			{"b", color or 0xFF69B4},
 			{this.lastPosX + offsetX, this.lastPosY + offsetY, ut.fillString("", this.sizeX, " ")},
 			{this.lastPosX + offsetX, this.lastPosY + (this.sizeY -1) + offsetY, ut.fillString("", this.sizeX, " ")},

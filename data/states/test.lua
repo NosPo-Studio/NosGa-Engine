@@ -166,11 +166,11 @@ function test.key_down(s)
 	if s[4] == 28 and global.isDev then
 		print("--===== EINGABE =====--")
 		
-		--global.realGPU.setBackground(0x000000)
+		--global.core.realGPU.setBackground(0x000000)
 		--global.term.clear()
 		
-		--test.tgo1:pDraw(test.ra1)
-		--test.rbm1:pDraw(test.ra1)
+		--test.tgo1:ngeDraw(test.ra1)
+		--test.rbm1:ngeDraw(test.ra1)
 		--global.gpu.fill(6, 3, 25, 22, "#")
 		
 		--test.ra1:moveCamera(3, 3)
@@ -237,7 +237,7 @@ function test.touch(s)
 end
 
 function test.ctrl_test(s, sname)
-	--print("TEST", global.currentFrame, sname, s[1], s[2], s[3], s[4], s[5], s[6])
+	print("TEST", global.currentFrame, sname, s[1], s[2], s[3], s[4], s[5], s[6])
 end
 function test.ctrl_test_key_down(s, sname)
 	--print("TEST_KD", global.currentFrame, sname, s[1], s[2], s[3], s[4], s[5], s[6])

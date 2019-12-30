@@ -37,15 +37,15 @@ function TestGO.new(args)
 	end
 	
 	this.key_pressed = function(s)
-		--global.log("Key pressed in GO: " .. this.attributes.name, s[1], global.currentFrame)
+		--global.log("Key pressed in GO: " .. this.ngeAttributes.name, s[1], global.currentFrame)
 	end
 	
 	this.key_up = function(s)
-		--global.log("Key up in GO: " .. this.attributes.name, s[3], global.currentFrame)
+		--global.log("Key up in GO: " .. this.ngeAttributes.name, s[3], global.currentFrame)
 	end
 	
 	this.key_down = function(s)
-		--global.log("Key down in GO: " .. this.attributes.name, s[3], global.currentFrame)
+		--global.log("Key down in GO: " .. this.ngeAttributes.name, s[3], global.currentFrame)
 	end
 	
 	--===== default functions =====--
@@ -70,14 +70,14 @@ function TestGO.new(args)
 	end
 	
 	this.draw = function(this) --will called every time the gameObject will drawed.
-		--global.log("TestGO(" .. tostring(this.attributes.name) .. "): draw")
+		--global.log("TestGO(" .. tostring(this.ngeAttributes.name) .. "): draw")
 	end
 	
 	this.clear = function(this, acctual) --will called when the sntity graphics are removed.
 		--[[
 		global.log("TestGO: clear")
 		
-		for ra in pairs(this.attributes.responsibleRenderAreas) do
+		for ra in pairs(this.ngeAttributes.responsibleRenderAreas) do
 			for i, c in pairs(ra.toClear) do
 				for i, c in pairs(c) do
 					global.log(i, c)

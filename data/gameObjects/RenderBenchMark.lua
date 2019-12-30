@@ -60,12 +60,12 @@ function TestGO.new(args)
 	this.update = function(this) --will called on every game tick.
 		--global.log("TestGO: update")
 		
-		--global.log(this.attributes.name)
-		--global.log(this.attributes.lastCalculatedFrame)
+		--global.log(this.ngeAttributes.name)
+		--global.log(this.ngeAttributes.lastCalculatedFrame)
 	end
 	
 	this.draw = function(this, realArea, renderArea) --will called every time the gameObject will drawed.
-		--global.log("TestGO(" .. tostring(this.attributes.name) .. "): draw: " .. tostring(renderArea.name) .. " | " .. tostring(renderArea.realArea))
+		--global.log("TestGO(" .. tostring(this.ngeAttributes.name) .. "): draw: " .. tostring(renderArea.name) .. " | " .. tostring(renderArea.realArea))
 		
 	end
 	

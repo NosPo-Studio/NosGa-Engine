@@ -6,15 +6,15 @@ local event = require("event")
 local term = require("term")
 local serialization = require("serialization")
 local gpu = component.gpu
-local mainOcgl = dofile("libs/ocgl.lua").initiate(gpu)
+local mainOcgl = dofile("libs/oclrl.lua").initiate(gpu)
 local ocui = dofile("libs/ocui.lua").initiate(mainOcgl)
 
 local db = require("libs/thirdParty/DoubleBuffering")
 local dbgpu = loadfile(shell.getWorkingDirectory() .. "/libs/dbgpu_api.lua")({path = "libs/thirdParty", directDraw = false, forceDraw = false, rawCopy = true})
 
-local ocgl = dofile("libs/ocgl.lua").initiate(dbgpu, {checkColor = false})
---local ocgl = dofile("libs/ocgl.lua").initiate(gpu)
-ocgl.name = "OCGL_1"
+local oclrl = dofile("libs/oclrl.lua").initiate(dbgpu, {checkColor = false})
+--local oclrl = dofile("libs/oclrl.lua").initiate(gpu)
+oclrl.name = "OCGL_1"
 
 --===== Variables =====--
 local consoleSizeY = 30
@@ -28,7 +28,7 @@ local background = dofile("texturePacks/default/textures/grass.lua")
 
 local tbConsole = ocui.TextBox.new(ocui, {x=1, y=10, sx=0, sy=0, lineBreak = true, foregroundColor=0xcccccc, backgroundColor=0x333333})
 
-local anim = ocgl.Animation.new(ocgl, animation, {})
+local anim = oclrl.Animation.new(oclrl, animation, {})
 
 local posX, posY = 10, 10
 
@@ -67,7 +67,7 @@ os.execute("echo Test start >" .. logFile)
 
 --===== test start =====--
 db.clear()
---ocgl:draw(10, 2, texture)
+--oclrl:draw(10, 2, texture)
 db.drawChanges(true)
 local pTime = computer.uptime()
 
@@ -92,8 +92,8 @@ for i = 0, 20 do
 	end
 	]]
 	
-	ocgl:draw(10, 2, texture)
-	ocgl:draw(15 +i, 2, texture)
+	oclrl:draw(10, 2, texture)
+	oclrl:draw(15 +i, 2, texture)
 	
 	--[[
 	db.drawRectangle(10, 3, 6, 3, 0x441100, 0x501800, "#")
@@ -127,8 +127,8 @@ for i = 0, 20 do
 	--gpu.copy(10, 2, 24, 24, 30 +i, 0)
 	dbgpu.copy(10, 2, 24, 24, 30 +i, 0)
 	db.drawChanges()
-	--ocgl:draw(10, 2, texture)
-	--ocgl:draw(10, 2, texture)
+	--oclrl:draw(10, 2, texture)
+	--oclrl:draw(10, 2, texture)
 	]]
 end
 

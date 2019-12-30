@@ -1,6 +1,6 @@
 local fs = require("filesystem")
 local gpu = require("component").gpu
-local ocgl = require("libs/ocgl").initiate(gpu)
+local oclrl = require("libs/oclrl").initiate(gpu)
 local term = require("term")
 local keyboard = require("keyboard")
 local event = require("event")
@@ -21,10 +21,10 @@ while true do
 		os.sleep()
 	end
 	
-	ocgl:draw(2, 10, t)
+	oclrl:draw(2, 10, t)
 	
 	for c = 0, 90, 6 do
-		ocgl:draw(15 +c, 10, t)
+		oclrl:draw(15 +c, 10, t)
 	end
 	
 	if keyboard.isKeyDown("r") then

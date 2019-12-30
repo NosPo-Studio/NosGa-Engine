@@ -210,4 +210,12 @@ function global.loadData(target, dir, func, print, overwrite, subDirs, structure
 	return id
 end
 
+function global.loadConf()
+	global.conf = loadfile("nosGaConf.lua")(global)
+	
+	for i, c in pairs(loadfile("conf.lua")(global)) do
+		global.conf[i] = c
+	end
+end
+
 return global

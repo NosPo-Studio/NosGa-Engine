@@ -1,5 +1,7 @@
 --[[
-    ocgl Copyright (C) 2019 MisterNoNameLP.
+	OCLRL (OpenComputersLinearRenderLibarry) is a small libarry for linear rendering of textures.
+	
+    oclrl Copyright (C) 2019 MisterNoNameLP.
 	
     This library is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,8 +17,8 @@
     along with this library.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-local OCGL = {version = "v1.4.1"} --OpenComputersGraphicLibary
-OCGL.__index = OCGL
+local oclrl = {version = "v1.4.1"} --OpenComputersGraphicLibary
+oclrl.__index = oclrl
 
 
 --===== local vars =====--
@@ -68,8 +70,8 @@ local function calculateSetRideOut(s, pos, from, to)
 end
 
 --===== global functions =====--
-function OCGL.initiate(gpu, args)
-	local this = setmetatable({}, OCGL)
+function oclrl.initiate(gpu, args)
+	local this = setmetatable({}, oclrl)
 	args = args or {}
 	
 	this.gpu = gpu
@@ -80,7 +82,7 @@ function OCGL.initiate(gpu, args)
 	return this
 end
 
-function OCGL.draw(this, posX, posY, texture, checkColor, area, clear)
+function oclrl.draw(this, posX, posY, texture, checkColor, area, clear)
 	checkColor = checkColor or this.checkColor
 	if checkColor == nil or checkColor == true then
 		this.pFColor, this.pBColor = this.gpu.getForeground(), this.gpu.getBackground()
@@ -93,7 +95,7 @@ function OCGL.draw(this, posX, posY, texture, checkColor, area, clear)
 	
 	for c, v in ipairs(texture.drawCalls or texture) do 
 		if #v == 1 or type(v[3]) == "table" then --link
-			parseLink(this, posX, posY, v, OCGL.draw, false, area, clear)
+			parseLink(this, posX, posY, v, oclrl.draw, false, area, clear)
 		elseif #v == 3 or #v == 4 then --set
 			if v[1] +posX <= toX and v[2] +posY <= toY then
 				if v[4] and v[1] +posX >= fromX and v[2] +posY +#v[3] >= fromY then
@@ -155,14 +157,14 @@ function OCGL.draw(this, posX, posY, texture, checkColor, area, clear)
 	end
 end
 
-function OCGL.clearBlack(this, posX, posY, texture, color, area)
+function oclrl.clearBlack(this, posX, posY, texture, color, area)
 	this.gpu.setBackground(color or 0x000000)
 	this.gpu.setForeground(color or 0x000000)
 	
 	this:draw(posX, posY, texture, false, area, true)
 end
 
-function OCGL.generateTexture(...)
+function oclrl.generateTexture(...)
 	local texture = {
 		textureFormat = "OCGLT", 
 		version = "v0.1", 
@@ -182,7 +184,7 @@ function OCGL.generateTexture(...)
 	return texture
 end
 
-function OCGL.getColors(t, n)
+function oclrl.getColors(t, n)
 	local fColor, bColor = nil, nil
 	for c = n, 1, -1 do
 		if t.drawCalls[c][1] == "f" and fColor == nil then
@@ -195,7 +197,7 @@ function OCGL.getColors(t, n)
 	return {"f", fColor or 0x000000}, {"b", bColor or 0x000000}
 end
 
-function OCGL.clear(this, posX, posY, texture, backgroundTextures, checkOverlap) --ToDo: add "OCGLT_v0.2" support.
+function oclrl.clear(this, posX, posY, texture, backgroundTextures, checkOverlap) --ToDo: add "OCGLT_v0.2" support.
 	if backgroundTextures == nil then
 		this.clearBlack(this, posX, posY, texture)
 		return
@@ -325,7 +327,7 @@ function OCGL.clear(this, posX, posY, texture, backgroundTextures, checkOverlap)
 	
 end
 
-function OCGL.convertToPixels(this, g, s) --WIP
+function oclrl.convertToPixels(this, g, s) --WIP
 	local newG = {}
 	local oNewG = {}
 	s = s or 1
@@ -388,7 +390,7 @@ end
 
 
 
-function OCGL.convertToRaster(this, g, s) --WIP
+function oclrl.convertToRaster(this, g, s) --WIP
 	local newG = {}
 	s = s or 1
 	
@@ -409,14 +411,14 @@ end
 
 
 --===== animator =====-- --WIP
-OCGL.Animation = {}
-OCGL.Animation.__index = OCGL.Animation
+oclrl.Animation = {}
+oclrl.Animation.__index = oclrl.Animation
 
-function OCGL.Animation.new(ocgl, animation, args) --no ocgl...
-	this = setmetatable({}, OCGL.Animation)
+function oclrl.Animation.new(oclrl, animation, args) --no oclrl...
+	this = setmetatable({}, oclrl.Animation)
 	
 	args = args or {}
-	this.ocgl = ocgl
+	this.oclrl = oclrl
 	
 	this.animation = animation
 	this.speed = args.speed or 1
@@ -433,7 +435,7 @@ function OCGL.Animation.new(ocgl, animation, args) --no ocgl...
 	return this
 end
 
-function OCGL.Animation.draw(this, posX, posY, dt, clear, background, area)
+function oclrl.Animation.draw(this, posX, posY, dt, clear, background, area)
 	if parseArgs(clear, this.clear) then
 		background = parseArgs(background, this.background)
 		if background == nil or type(background) == "number" then
@@ -443,7 +445,7 @@ function OCGL.Animation.draw(this, posX, posY, dt, clear, background, area)
 		end
 	end
 	
-	this.ocgl:draw(posX, posY, this.animation.frames[math.floor(this.currentFrame)], nil, area)
+	this.oclrl:draw(posX, posY, this.animation.frames[math.floor(this.currentFrame)], nil, area)
 	
 	if parseArgs(dt, this.dt) == false then
 		addFrameTime(this, 1, backwards)
@@ -473,32 +475,32 @@ function OCGL.Animation.draw(this, posX, posY, dt, clear, background, area)
 	end
 end
 
-function OCGL.Animation.clearBlack(this, posX, posY, current, color, area)
+function oclrl.Animation.clearBlack(this, posX, posY, current, color, area)
 	if current == true then
-		this.ocgl:clearBlack(posX, posY, this.animation.frames[math.floor(this.currentFrame)], color, area)
+		this.oclrl:clearBlack(posX, posY, this.animation.frames[math.floor(this.currentFrame)], color, area)
 	elseif current == false then
-		this.ocgl:clearBlack(posX, posY, this.animation.frames[math.floor(this.lastFrame)], color, area)
+		this.oclrl:clearBlack(posX, posY, this.animation.frames[math.floor(this.lastFrame)], color, area)
 	else
-		this.ocgl:clearBlack(posX, posY, this.animation.frames[math.floor(this.currentFrame)], color, area)
-		this.ocgl:clearBlack(posX, posY, this.animation.frames[math.floor(this.lastFrame)], color, area)
+		this.oclrl:clearBlack(posX, posY, this.animation.frames[math.floor(this.currentFrame)], color, area)
+		this.oclrl:clearBlack(posX, posY, this.animation.frames[math.floor(this.lastFrame)], color, area)
 	end
 end
 
-function OCGL.Animation.clear(this, posX, posY, textures, checkOverlap, current) --useless yet (not supporting "OCGLT_v0.2"/"OCGLA_v0.1".)
+function oclrl.Animation.clear(this, posX, posY, textures, checkOverlap, current) --useless yet (not supporting "OCGLT_v0.2"/"OCGLA_v0.1".)
 	if current then
-		this.ocgl:clear(posX, posY, this.animation.frames[math.floor(this.currentFrame)], textures, checkOverlap)
+		this.oclrl:clear(posX, posY, this.animation.frames[math.floor(this.currentFrame)], textures, checkOverlap)
 	else
-		this.ocgl:clear(posX, posY, this.animation.frames[math.floor(this.lastFrame)], textures, checkOverlap)
+		this.oclrl:clear(posX, posY, this.animation.frames[math.floor(this.lastFrame)], textures, checkOverlap)
 	end
 end
 
-function OCGL.Animation.start(this, speed, frame)
+function oclrl.Animation.start(this, speed, frame)
 	this.speed = speed or 1
 	this.currentFrame = frame or 1
 	this.tmpHalt = false
 end
 
-function OCGL.Animation.stop(this, frame, playTilEnd)
+function oclrl.Animation.stop(this, frame, playTilEnd)
 	if playTilEnd then
 		this.tmpHalt = true
 	else
@@ -507,17 +509,17 @@ function OCGL.Animation.stop(this, frame, playTilEnd)
 	end
 end
 
-function OCGL.Animation.pause(this)
+function oclrl.Animation.pause(this)
 	this.speed = 0
 end
 
-function OCGL.Animation.play(this, speed)
+function oclrl.Animation.play(this, speed)
 	this.speed = speed or 1
 	this.tmpHalt = false
 end
 
 
-return OCGL
+return oclrl
 
 --print(string.sub("1234567890", 0, #"1234567890" -3))
 --print(string.sub("1234567890", #"1234567890" -3 +1))

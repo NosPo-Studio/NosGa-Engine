@@ -52,12 +52,12 @@ function TestGO.new(args)
 	this.update = function(this, dt, ra) --will called on every game tick.
 		--global.log("TestGO: update: " .. ra.name)
 		
-		--global.log(this.attributes.name)
-		--global.log(this.attributes.lastCalculatedFrame)
+		--global.log(this.ngeAttributes.name)
+		--global.log(this.ngeAttributes.lastCalculatedFrame)
 	end
 	
 	this.draw = function(this) --will called every time the gameObject will drawed.
-		--global.log("TestGO(" .. tostring(this.attributes.name) .. "): draw")
+		--global.log("TestGO(" .. tostring(this.ngeAttributes.name) .. "): draw")
 	end
 	
 	this.clear = function(this, acctual) --will called when the sntity graphics are removed.

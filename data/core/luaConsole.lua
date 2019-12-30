@@ -35,7 +35,7 @@ global.tiConsole = global.ocui.TextInput.new(global.ocui, 6, global.resY, global
 	end,
 })
 
-global.bConsolePlaceholder = global.ocui.Button.new(global.ocui, 1, global.resY, 0, 0, {texture0 = global.ocgl.generateTexture({
+global.bConsolePlaceholder = global.ocui.Button.new(global.ocui, 1, global.resY, 0, 0, {texture0 = global.oclrl.generateTexture({
 	{"b", 0x333333},
 	{"f", 0xcccccc},
 	{0, 0, "lua> "},

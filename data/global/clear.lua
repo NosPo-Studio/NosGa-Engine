@@ -6,8 +6,8 @@ return function()
 	for i, ra in pairs(global.renderAreas) do
 		ra:rerenderAll()
 	end
-	global.re.newDraw()
-	if global.conf.debug.useDoubleBuffering then
+	global.core.re.newDraw()
+	if global.conf.useDoubleBuffering then
 		global.gpu.drawChanges(true)
 	end
 end

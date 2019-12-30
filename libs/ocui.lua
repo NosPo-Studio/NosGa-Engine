@@ -24,10 +24,10 @@ OCUI.__index = OCUI
 	add dynamic ui generation (no texture).
 ]]--
 
-function OCUI.initiate(ocgl, onError)
+function OCUI.initiate(oclrl, onError)
 	local this = setmetatable({}, OCUI)
 	this.event = require("event")
-	this.ocgl = ocgl
+	this.oclrl = oclrl
 	
 	this.updateList = {} --list of managed buttons
 	this.updateCount = 0
@@ -215,7 +215,7 @@ function OCUI.TextBox.update(this, ...)
 end
 
 function OCUI.TextBox.draw(this)
-	local gpu = this.ocui.ocgl.gpu
+	local gpu = this.ocui.oclrl.gpu
 	
 	gpu.setForeground(this.cfg_foregroundColor)
 	gpu.setBackground(this.cfg_backgroundColor)
@@ -255,7 +255,7 @@ function OCUI.Menu.new(ocui, posX, posY, content, args)--posX == [int], posY == 
 	this.status = true
 	this.markedPos = 0
 	this.markingList = {}
-	this.internOCUI = ocui.initiate(ocui.ocgl)
+	this.internOCUI = ocui.initiate(ocui.oclrl)
 	this.inputThread = this.thread.create(function() end)
 	
 	this.cfg_inputMap = {next = {15}}
@@ -354,7 +354,7 @@ end
 function OCUI.Menu.draw(this)
 	if this.status then
 		if this.backgroundTexture ~= nil then
-			this.ocui.ocgl:draw(this.posX, this.posY, this.backgroundTexture)
+			this.ocui.oclrl:draw(this.posX, this.posY, this.backgroundTexture)
 		end
 		this.internOCUI:draw()
 	end
@@ -401,10 +401,10 @@ function OCUI.List.new(ocui, posX, posY, sizeX, sizeY, content, args) --posX == 
 	this.pClickPos = 1
 	this.pClickTime = 0
 	this.content = content or {}
-	this.internOCUI = ocui.initiate(ocui.ocgl, this.ocui.onError)
+	this.internOCUI = ocui.initiate(ocui.oclrl, this.ocui.onError)
 	this.buttons = {}
 	this.inputThread = this.thread.create(function() end)
-	this.backgroundTexture = ocui.ocgl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, this.sizeX, this.sizeY, " "})
+	this.backgroundTexture = ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, this.sizeX, this.sizeY, " "})
 	this.listButton = this.ocui.Button.new(this.internOCUI, posX, posY, sizeX, sizeY, {listedFunction = function() 
 		this.status = true 
 		this.tmpStatus = true 
@@ -426,17 +426,17 @@ function OCUI.List.new(ocui, posX, posY, sizeX, sizeY, content, args) --posX == 
 		
 		local function ScrollContent()
 			for c, v in ipairs(this.buttons) do
-				v.texture0 = ocui.ocgl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, this.ut.fillString(content[this.scrollPos +c], sizeX - #content[this.scrollPos +c], " ")})
-				v.texture1 = ocui.ocgl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, this.ut.fillString(content[this.scrollPos +c], sizeX - #content[this.scrollPos +c], " ")})
+				v.texture0 = ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, this.ut.fillString(content[this.scrollPos +c], sizeX - #content[this.scrollPos +c], " ")})
+				v.texture1 = ocui.oclrl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, this.ut.fillString(content[this.scrollPos +c], sizeX - #content[this.scrollPos +c], " ")})
 			end
 		end
-		this.upButton = this.internOCUI.Button.new(this.internOCUI, posX, posY, sizeX, 1, {texture0 = this.ocui.ocgl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, "^"}), texture1 = this.ocui.ocgl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, this.ut.fillString("^", this.sizeX -1, " ")}), listedFunction = function(_)
+		this.upButton = this.internOCUI.Button.new(this.internOCUI, posX, posY, sizeX, 1, {texture0 = this.ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, "^"}), texture1 = this.ocui.oclrl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, this.ut.fillString("^", this.sizeX -1, " ")}), listedFunction = function(_)
 			if this.scrollPos > 0 then
 				this.scrollPos = this.scrollPos -1
 				ScrollContent()
 			end
 		end})
-		this.downButton = this.internOCUI.Button.new(this.internOCUI, posX, posY +sizeY -1, sizeX, 1, {texture0 = this.ocui.ocgl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, "v"}), texture1 = this.ocui.ocgl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, this.ut.fillString("v", this.sizeX -1, " ")}), listedFunction = function(_)
+		this.downButton = this.internOCUI.Button.new(this.internOCUI, posX, posY +sizeY -1, sizeX, 1, {texture0 = this.ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, "v"}), texture1 = this.ocui.oclrl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, this.ut.fillString("v", this.sizeX -1, " ")}), listedFunction = function(_)
 			if this.scrollPos < this.sizeY -2 then
 				this.scrollPos = this.scrollPos +1
 				ScrollContent()
@@ -447,7 +447,7 @@ function OCUI.List.new(ocui, posX, posY, sizeX, sizeY, content, args) --posX == 
 	end
 	
 	for c = 1, this.buttonCount, 1 do
-		this.buttons[c] = this.internOCUI.Button.new(this.internOCUI, posX, posY +c -1 +buttonStartPos, sizeX, 1, {texture0 = this.ocui.ocgl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, this.ut.fillString(content[c], sizeX - #content[c], " ")}), texture1 = this.ocui.ocgl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, this.ut.fillString(content[c], sizeX - #content[c], " ")}), listedFunction = function(_) 
+		this.buttons[c] = this.internOCUI.Button.new(this.internOCUI, posX, posY +c -1 +buttonStartPos, sizeX, 1, {texture0 = this.ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, this.ut.fillString(content[c], sizeX - #content[c], " ")}), texture1 = this.ocui.oclrl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, this.ut.fillString(content[c], sizeX - #content[c], " ")}), listedFunction = function(_) 
 			if this.computer.uptime() - this.pClickTime < this.cfg_doubleClickTime and this.pClickPos == c or this.cfg_doubleClickTime == -1 then
 				this:buttonPress(c, true)
 			else
@@ -551,7 +551,7 @@ function OCUI.List.update(this, x, y)
 end
 
 function OCUI.List.draw(this)
-	this.ocui.ocgl:draw(this.posX, this.posY, this.backgroundTexture)
+	this.ocui.oclrl:draw(this.posX, this.posY, this.backgroundTexture)
 	this.internOCUI:draw()
 end
 
@@ -824,15 +824,15 @@ function OCUI.TextInput.draw(this)
 	end
 	
 	if this.status then
-		this.ocui.ocgl:draw(this.posX, this.posY, generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, text}))
+		this.ocui.oclrl:draw(this.posX, this.posY, generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, text}))
 		local dt = this.computer.uptime() - this.cursorPTime
 		if this.cfg_showCursor and dt < this.cfg_cursorBlinkTime then
-			this.ocui.ocgl:draw(this.posX +this.cursorPosition -1, this.posY, generateTexture({this.cfg_cursorForegroundColor, this.cfg_cursorBackgroundColor, string.sub(text, this.cursorPosition, this.cursorPosition)}))
+			this.ocui.oclrl:draw(this.posX +this.cursorPosition -1, this.posY, generateTexture({this.cfg_cursorForegroundColor, this.cfg_cursorBackgroundColor, string.sub(text, this.cursorPosition, this.cursorPosition)}))
 		elseif dt > this.cfg_cursorBlinkTime *2 then
 			this.cursorPTime = this.computer.uptime()
 		end
 	else
-		this.ocui.ocgl:draw(this.posX, this.posY, generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, text}))
+		this.ocui.oclrl:draw(this.posX, this.posY, generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, text}))
 	end
 end
 
@@ -863,8 +863,8 @@ function OCUI.Button.new(ocui, posX, posY, sizeX, sizeY, args) --posX == [int], 
 	this.sizeY = sizeY
 	this.listedFunction = args.listedFunction or function() end
 	
-	this.texture0 = args.texture0 or ocui.ocgl.generateTexture({})
-	this.texture1 = args.texture1 or ocui.ocgl.generateTexture({})
+	this.texture0 = args.texture0 or ocui.oclrl.generateTexture({})
+	this.texture1 = args.texture1 or ocui.oclrl.generateTexture({})
 	
 	this.cfg_clickTime = .3 --Time the button have to be the clicked texture. If this -1 the button is a switch.
 	this.clickTime = 0 --Time the button was clicked.
@@ -903,9 +903,9 @@ function OCUI.Button.draw(this)
 	end
 	
 	if this.status and dt < this.cfg_clickTime then
-		this.ocui.ocgl:draw(this.posX, this.posY, this.texture1)
+		this.ocui.oclrl:draw(this.posX, this.posY, this.texture1)
 	else
-		this.ocui.ocgl:draw(this.posX, this.posY, this.texture0)
+		this.ocui.oclrl:draw(this.posX, this.posY, this.texture0)
 		this.status = false
 	end
 end

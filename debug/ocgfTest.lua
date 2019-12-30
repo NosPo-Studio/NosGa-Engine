@@ -8,8 +8,8 @@ local event = require("event")
 local term = require("term")
 local gpu = component.gpu
 local ocgf = dofile("libs/ocgf.lua")
-local ocgl = dofile("libs/ocgl.lua").initiate(gpu)
-local ocui = dofile("libs/ocui.lua").initiate(ocgl)
+local oclrl = dofile("libs/oclrl.lua").initiate(gpu)
+local ocui = dofile("libs/ocui.lua").initiate(oclrl)
 
 --===== Variables =====--
 local orgPrint = print
@@ -19,7 +19,7 @@ local textures = {
 }
 local animation = dofile("debug/testAnimation.lua")
 local animation2 = dofile("debug/testAnimation2.lua")
-local anim = ocgl.Animation.new(ocgl, animation)
+local anim = oclrl.Animation.new(oclrl, animation)
 
 local lastTime = computer.uptime()
 local dt = 0

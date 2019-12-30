@@ -1,7 +1,7 @@
 local controls = {
 	
 	m = {
-		[0] = {"test"},
+		--[0] = {"test"},
 	},
 	c = {
 		[32] = {"test", "test2"},

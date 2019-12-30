@@ -8,10 +8,10 @@ local event = require("event")
 local term = require("term")
 local serialization = require("serialization")
 local gpu = component.gpu
-local mainOcgl = dofile("libs/ocgl.lua").initiate(gpu)
+local mainOcgl = dofile("libs/oclrl.lua").initiate(gpu)
 local ocui = dofile("libs/ocui.lua").initiate(mainOcgl)
-local ocgl = dofile("libs/ocgl.lua").initiate(gpu)
-ocgl.name = "OCGL_1"
+local oclrl = dofile("libs/oclrl.lua").initiate(gpu)
+oclrl.name = "OCGL_1"
 
 --===== Variables =====--
 local consoleSizeY = 30
@@ -23,7 +23,7 @@ local background = dofile("texturePacks/default/textures/grass.lua")
 
 local tbConsole = ocui.TextBox.new(ocui, {x=1, y=10, sx=0, sy=0, lineBreak = true, foregroundColor=0xcccccc, backgroundColor=0x333333})
 
-local anim = ocgl.Animation.new(ocgl, animation, {})
+local anim = oclrl.Animation.new(oclrl, animation, {})
 
 local posX, posY = 10, 10
 
@@ -56,7 +56,7 @@ end
 local function draw()
 	gpu.setBackground(0x555555)
 	term.clear()
-	--ocgl:draw(40, 1, texture)
+	--oclrl:draw(40, 1, texture)
 	--anim:stop(nil, true)
 	--anim:play(-1)
 	--anim:draw(40, 1, .1)
@@ -67,12 +67,12 @@ local function draw()
 	anim:draw(posX, posY, .1, nil, nil, {{10, 13, 10, 13}})
 	
 	--[[
-	ocgl:draw(posX, posY, texture, nil, {10, 13, 10, 13})
+	oclrl:draw(posX, posY, texture, nil, {10, 13, 10, 13})
 	
-	ocgl:draw(posX +20, posY, texture, nil)
-	ocgl:draw(posX, posY, texture, nil, {10 +20, 13 +20, 10, 13})
+	oclrl:draw(posX +20, posY, texture, nil)
+	oclrl:draw(posX, posY, texture, nil, {10 +20, 13 +20, 10, 13})
 	
-	ocgl:draw(60, 10, ocgl.generateTexture(0, 0, "test"))
+	oclrl:draw(60, 10, oclrl.generateTexture(0, 0, "test"))
 	]]
 	
 	--gpu.set(posX +20, posY, "0123456789", true)

@@ -68,11 +68,11 @@ local function update()
 	if global.state[global.currentState].update ~= nil then	--manual check to avoid log spamming on missing update func.
 		run(global.state[global.currentState].update)
 	end
-	global.ge.update()
+	global.core.uh.update()
 	
 	for i, ra in pairs(global.renderAreas) do
-		global.re.calculateRenderArea(ra)
-		ra:pCalculateNewRender()
+		global.core.re.calculateRenderArea(ra)
+		ra:ngeCalculateNewRender()
 	end
 end
 
@@ -81,14 +81,14 @@ local function draw()
 		run(global.state[global.currentState].draw)
 	end
 	
-	global.re.draw()
+	global.core.re.draw()
 	
 	global.ocui:draw()
 	if global.conf.showConsole then
 		global.tbConsole:draw()
 	end
 	
-	if global.conf.debug.useDoubleBuffering then
+	if global.conf.useDoubleBuffering then
 		global.gpu.drawChanges()
 	end
 end
