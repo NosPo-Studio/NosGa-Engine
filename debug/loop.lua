@@ -12,11 +12,11 @@ local function print(...)
 end
 
 while true do
-	print("Start " .. args[1])
+	print("Start " .. args[1] .. " =================================")
 	local value = dofile(shell.getWorkingDirectory() .. "/" .. args[1])
-	print(args[1] .. " has stoped")
+	print(args[1] .. " has stoped =================================")
 	
-	if value == stop then
+	if value ~= nil and value == stop then
 		break
 	end
 	os.sleep(.1)

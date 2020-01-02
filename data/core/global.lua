@@ -27,7 +27,7 @@ local global = {
 	isDev = conf.debug.isDev,
 	
 	conf = conf,
-	controls = dofile("controls.lua"),
+	controls = {c = {}, k = {}, m = {}},
 	
 	currentState = "",
 	dt = 0, --deltaTime
@@ -119,6 +119,13 @@ function global.debug(...)
 	end
 end
 
+function global.print(...)
+	local t = {...}
+	local s = tostring(t[1])
+	global.tbConsole:add(s, select(2, ...))
+	global.ocl.add(s, select(2, ...))
+end
+
 function global.slog(...)
 	local t = {...}
 	local s = "[SINFO]: Start: " .. tostring(t[1])
@@ -208,14 +215,6 @@ function global.loadData(target, dir, func, print, overwrite, subDirs, structure
 		end
 	end
 	return id
-end
-
-function global.loadConf()
-	global.conf = loadfile("nosGaConf.lua")(global)
-	
-	for i, c in pairs(loadfile("conf.lua")(global)) do
-		global.conf[i] = c
-	end
 end
 
 return global

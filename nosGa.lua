@@ -33,6 +33,8 @@ DoubleBuffering (raw copy feature) Copyright (c) 2019 NosPo Studio
 OpenComputers (OpenOS LUA shell) Copyright (c) 2013-2015 Florian "Sangar" Nücke
 LUA shell (NosGa version) (c) 2019 NosPo Studio
 
+LIP (ini file parser) Copyright (c) 2012 Carreras Nicolas
+
 MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -82,7 +84,7 @@ SOFTWARE.
 			
 	*left over from ocCraft but still relevant somehow.
 ]]
-local version = "v0.0.31"
+local version = "v0.0.32"
 
 --===== prog start =====--
 do

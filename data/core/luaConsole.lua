@@ -15,7 +15,7 @@ global.tiConsole = global.ocui.TextInput.new(global.ocui, 6, global.resY, global
 	},
 	
 	listedFunction = function(ti) 
-		global.log("lua> " .. ti.text)
+		global.print("[LUA]> " .. ti.text)
 		luaShell.textInput(ti.text)
 	end,
 	autoCompFunction = function(ti)

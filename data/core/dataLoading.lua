@@ -98,7 +98,38 @@ end
 
 --===== core reloadings =====--
 if toLoad.conf then
-	global.loadConf()
+	global.conf = loadfile("nosGaConf.lua")(global)
+	
+	for i, c in pairs(loadfile("conf.lua")(global)) do
+		global.conf[i] = c
+	end
+	
+	global.controls = {c = {}, k = {}, m = {}}
+	local controlsINI = global.LIP.load("controls.ini")
+	
+	local function parseControls(toParse, target, convert)
+		local function addEntry(t, i, e)
+			if t[i] == nil then
+				t[i] = {}
+			end
+			table.insert(t[i], e)
+		end
+		
+		for i, c in pairs(toParse) do
+			for s in string.gmatch(tostring(c), "[^,]+") do
+				if convert then
+					addEntry(target, tonumber(string.byte(s)), i)
+				else
+					addEntry(target, tonumber(s), i)
+				end
+			end
+		end
+	end
+
+	parseControls(controlsINI.code, global.controls.c)
+	parseControls(controlsINI.string, global.controls.c, true)
+	parseControls(controlsINI.key, global.controls.k)
+	parseControls(controlsINI.mouse, global.controls.m)
 end
 
 if toLoad.re then

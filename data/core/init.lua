@@ -52,6 +52,7 @@ global.keyboard = require("keyboard")
 global.serialization = require("serialization")
 global.component = require("component")
 global.core.realGPU = global.component.gpu
+global.LIP = require("libs/thirdParty/LIP")
 
 print("useDoubleBuffering: " .. tostring(global.conf.useDoubleBuffering))
 if global.conf.useDoubleBuffering then

@@ -35,12 +35,12 @@ local function exportCtrlSignal(s, sname)
 	local generalFunctionName = ""
 	local specificFunctionName = ""
 	
-	local function callFunctions(f, s)
+	local function callFunctions(f, sname)
 		if f == nil then return false end
 		
 		for _, f in pairs(f) do
 			generalFunctionName = "ctrl_" .. f
-			specificFunctionName = generalFunctionName .. "_" .. s
+			specificFunctionName = generalFunctionName .. "_" .. sname
 			
 			if generalFunctionName ~= "" then
 				global.run(global.state[global.currentState][generalFunctionName], s, sname)
@@ -135,24 +135,24 @@ function eh.key_down(s)
 		global.isRunning = false
 	end
 	
-	if k == global.controls.debug.showConsole then --f1
+	if k == global.conf.debug.debugKeys.showConsole then --f1
 		global.conf.showConsole = not global.conf.showConsole
 		if not global.conf.showConsole then
 			global.clear()
 		end
 	end
 	
-	if k == global.controls.debug.writeInConsole then --f2
+	if k == global.conf.debug.debugKeys.writeInConsole then --f2
 		global.tiConsole:activate()
 	end
 	
-	if k == global.controls.debug.showDebug then --f3
+	if k == global.conf.debug.debugKeys.showDebug then --f3
 		global.conf.showDebug = not global.conf.showDebug
 		if not global.conf.showDebug then
 			global.clear()
 		end
 	end
-	if k == global.controls.debug.reloadState and global.isDev then --f5
+	if k == global.conf.debug.debugKeys.reloadState and global.isDev then --f5
 		global.log("--========== RELOAD STAGE ==========--")
 		global.run(global.state[global.currentState].stop)
 		global.state[global.currentState] = nil
@@ -161,7 +161,10 @@ function eh.key_down(s)
 		global.renderAreas = {}
 		
 		if global.conf.debug.onReload.conf then
-			global.loadConf()
+			global.load({
+				toLoad = {conf = true},
+				reload = true, 
+			})
 		end
 		global.conf.debug.onReload.reload = true
 		if global.keyboard.isControlDown() then
@@ -190,7 +193,7 @@ function eh.key_down(s)
 		
 		global.clear()
 	end
-	if k == global.controls.debug.rerenderScreen then --f6
+	if k == global.conf.debug.debugKeys.rerenderScreen then --f6
 		global.clear()
 	end
 	

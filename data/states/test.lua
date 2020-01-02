@@ -104,10 +104,6 @@ function test.start()
 	test.ra1:moveCameraTo(100, 0)
 	test.ra2:moveCameraTo(100, 0)
 	
-	
-	
-	global.controls = dofile("controls.lua")
-	
 	--===== debug end =====--
 	
 end
@@ -237,7 +233,8 @@ function test.touch(s)
 end
 
 function test.ctrl_test(s, sname)
-	print("TEST", global.currentFrame, sname, s[1], s[2], s[3], s[4], s[5], s[6])
+	--print("TEST", global.currentFrame, sname, tostring(s[3]), tostring(s[4]))
+	--print("TEST", global.currentFrame, sname, tostring(s[1]), tostring(s[2]), tostring(s[3]), tostring(s[4]), tostring(s[5]), tostring(s[6]))
 end
 function test.ctrl_test_key_down(s, sname)
 	--print("TEST_KD", global.currentFrame, sname, s[1], s[2], s[3], s[4], s[5], s[6])

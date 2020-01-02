@@ -9,7 +9,6 @@ local nosGaConf = {
 	
 	preferModTextures = true, --if true mods can overwrite texturePack textures.
 	
-	
 	defaultState = "test",
 		
 	renderLayerAmount = 5,
@@ -29,7 +28,6 @@ local nosGaConf = {
 		{left, right, top, bottom}
 	]]
 		
-	
 	debug = { --these options are for developers.
 		isDev = true, --activates debug outputs (strongly recommended if you want to mod the game in any way or something goes wrong and you need a detailed log).
 		
@@ -38,7 +36,7 @@ local nosGaConf = {
 		raDebug = false, --print renderArea debug (only if isDev).
 		uhDebug = false, --print updateHandler debug (only if isDev).
 		goDebug = false, --print gameObject management debug (only if isDev).
-		ehDebug = false, --print eventHandler debug (only if isDev).
+		ehDebug = true, --print eventHandler debug (only if isDev).
 		
 		drawCollider = false,
 		drawTrigger = false,
@@ -49,7 +47,7 @@ local nosGaConf = {
 			--=== core ===--
 			re = false, 
 			ge = false,
-			eh = false,
+			eh = true,
 			GameObject = false,
 			RenderArea = false,
 			
@@ -62,6 +60,14 @@ local nosGaConf = {
 			gameObjects = false,
 			
 			mods = false, --just reloads the activated data groups of the mods (if only onReload.blocks = true he only also reloads the blocks from mods). should be always true.
+		},
+		
+		debugKeys = {
+			showConsole = 59, --default: 59 (f1)
+			writeInConsole = 60, --default: 60 (f2)
+			showDebug = 61, --default: 61 (f3)
+			reloadState = 63, --reloadrs the current state and all data groups defined in the config. default: 63 (f5)
+			rerenderScreen = 64, --rerenders the screen (removes graphic errors). default: 64 (f6)
 		},
 	}
 }

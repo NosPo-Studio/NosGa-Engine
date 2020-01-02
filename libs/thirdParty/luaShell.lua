@@ -118,7 +118,10 @@ local function readHandler(line, index)
 end
 
 env.global = global
-env.print = global.log
+env.print = function(...)
+	local s = "[LUA]: " .. tostring(...)
+	global.print(s)
+end
 
 local function textInput(text)
   --global.log(env._PROMPT)
@@ -145,7 +148,7 @@ local function textInput(text)
     else
       local ok, why = pcall(function()
         for i = 2, result.n do
-          global.log(require("serialization").serialize(result[i], true) .. "\t")
+          global.print("[LUA]: " .. require("serialization").serialize(result[i], true) .. "\t")
         end
       end)
       if not ok then
