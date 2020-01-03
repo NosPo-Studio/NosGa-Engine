@@ -37,22 +37,20 @@ function TestGO.new(args)
 	
 	--===== global/custom functions =====--
 	this.ctrl_left_key_pressed = function(this)
-		--this:addForce(-this.speed, 0, this.speed)
-		this:move(-.2, 0)
-		--this:move(-1, 0)
+		this:addForce(-this.speed, 0, this.speed)
+		--this:move(-this.speed, 0)
 	end
 	this.ctrl_right_key_pressed = function(this)
-		--this:addForce(this.speed, 0, this.speed)
-		this:move(.2, 0)
-		--this:move(1, 0)
+		this:addForce(this.speed, 0, this.speed)
+		--this:move(this.speed, 0)
 	end
 	this.ctrl_up_key_pressed = function(this)
-		--this:addForce(0, -this.speed, this.speed)
-		--this:move(0, .2)
+		this:addForce(0, -this.speed, this.speed)
+		--this:move(0, this.speed)
 	end
 	this.ctrl_down_key_pressed = function(this)
-		--this:addForce(0, this.speed, this.speed)
-		--this:move(0, -.2)
+		this:addForce(0, this.speed, this.speed)
+		--this:move(0, -this.speed)
 	end
 	
 	this.test = function()

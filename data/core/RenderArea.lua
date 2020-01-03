@@ -196,7 +196,11 @@ function RenderArea.new(args)
 	end
 	
 	this.resetCMI = function(this)
-		this.cameraMoveInstructions = {copy = {}, clear = {}, raw = {x = 0, y = 0}}
+		local cmi = this.cameraMoveInstructions
+		local subPixelX = cmi.raw.x - math.floor(cmi.raw.x)
+		local subPixelY = cmi.raw.y - math.floor(cmi.raw.y)
+		
+		this.cameraMoveInstructions = {copy = {}, clear = {}, raw = {x = subPixelX, y = subPixelY}}
 		this.copyInstructions = {}
 	end
 	
@@ -209,6 +213,10 @@ function RenderArea.new(args)
 	end
 	this.ngeCalculateNewRender = function(this) --parent func
 		local cmi = this.cameraMoveInstructions
+		local subPixelX = cmi.raw.x - math.floor(cmi.raw.x)
+		local subPixelY = cmi.raw.y - math.floor(cmi.raw.y)
+		cmi.raw.x = math.floor(cmi.raw.x)
+		cmi.raw.y = math.floor(cmi.raw.y)
 		
 		if global.conf.useSmartCameraMove then
 			--===== camera move calculation =====--
@@ -333,6 +341,9 @@ function RenderArea.new(args)
 					end
 				end
 			end
+			
+			cmi.raw.x = subPixelX
+			cmi.raw.y = subPixelY
 		elseif cmi.raw.x ~= 0 or cmi.raw.y ~= 0 then
 			this.lastCameraPosX = this.cameraPosX
 			this.lastCameraPosY = this.cameraPosY

@@ -47,6 +47,7 @@ local t = {
 
 	textureFormat = "OCGLT",
 	version = "v0.2",
+	test = true,
 	
 	drawCalls = {
 		{"b", 0x000000},

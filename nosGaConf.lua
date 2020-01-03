@@ -8,7 +8,7 @@ local nosGaConf = {
 	showConsole = true, --can be changes ingame by pressing f1 by default.
 	showDebug = true, --can be changes ingame by pressing f3 by default.
 	consoleSizeY = 40, --the height of the console.
-	directConsoleDraw = true, --instant drawing console outputs instead of waiting til new frame (has only an affect if doubleBuffering used) (only if isDev).
+	directConsoleDraw = false, --instant drawing console outputs instead of waiting til new frame (has only an affect if doubleBuffering used) (only if isDev).
 	
 	preferModTextures = true, --if true mods can overwrite texturePack textures.
 	
@@ -52,7 +52,7 @@ local nosGaConf = {
 			uh = true,
 			eh = true,
 			GameObject = false,
-			RenderArea = false,
+			RenderArea = true,
 			
 			--=== data groups ===--
 			global = true, --global dir.

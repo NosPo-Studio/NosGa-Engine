@@ -92,11 +92,14 @@ function test.start()
 	test.ra1:moveCameraTo(100, 0)
 	test.ra2:moveCameraTo(100, 0)
 	
+	test.rbm1:move(-3.2, 0)
+	
 	--===== debug end =====--
 	
 end
 
 function test.update()
+	
 	--[[
 	if test.camTestStep == 0 then
 		--empty to get sure the cam is reseted.
@@ -138,8 +141,8 @@ function test.key_down(s)
 	if s[4] == 28 and global.isDev then
 		print("--===== EINGABE =====--")
 		
-		--global.core.realGPU.setBackground(0x000000)
-		--global.term.clear()
+		global.realGPU.setBackground(0x000000)
+		global.term.clear()
 		
 		--test.tgo1:ngeDraw(test.ra1)
 		--test.rbm1:ngeDraw(test.ra1)

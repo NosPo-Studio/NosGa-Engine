@@ -84,7 +84,7 @@ SOFTWARE.
 			
 	*left over from ocCraft but still relevant somehow.
 ]]
-local version = "v0.0.32.1"
+local version = "v0.0.32.2"
 
 --===== prog start =====--
 do
@@ -130,4 +130,5 @@ do
 	end
 end
 
+collectgarbage()
 --===== prog end =====--

@@ -62,9 +62,9 @@ local function draw()
 	--anim:draw(40, 1, .1)
 	
 	
-	anim:stop(nil, true)
-	anim:play(-1)
-	anim:draw(posX, posY, .1, nil, nil, {{10, 13, 10, 13}})
+	--anim:stop(nil, true)
+	--anim:play(-1)
+	--anim:draw(posX, posY, .1, nil, nil, {{10, 13, 10, 13}})
 	
 	--[[
 	oclrl:draw(posX, posY, texture, nil, {10, 13, 10, 13})

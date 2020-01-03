@@ -17,7 +17,7 @@
     along with this library.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-local oclrl = {version = "v1.4.2"} --OpenComputersGraphicLibary
+local oclrl = {version = "v1.4.2c(debug)"} --OpenComputersGraphicLibary
 oclrl.__index = oclrl
 
 
@@ -92,6 +92,20 @@ function oclrl.draw(this, posX, posY, texture, checkColor, area, clear)
 	if area ~= nil then
 		fromX, toX, fromY, toY = area[1], area[2], area[3], area[4]
 	end
+	
+	local posX, posY = math.floor(posX +.5), math.floor(posY +.5)
+	
+	--cprint(texture.test)
+	
+	--[[
+	if texture.test then
+		cprint(posX, "|", posY, "|", fromX, "|", toX, "|", fromY, "|", toY)
+		
+		posX = math.floor(posX +.5)
+		
+		cprint(posX, "|", posY, "|", fromX, "|", toX, "|", fromY, "|", toY, "TTT")
+	end
+	]]
 	
 	for c, v in ipairs(texture.drawCalls or texture) do 
 		if #v == 1 or type(v[3]) == "table" then --link

@@ -113,13 +113,13 @@ function GameObject.new(args)
 		this.gameObject:setSpeed(x, -y)
 	end
 	this.getPos = function(this)
-		return math.floor(this.gameObject.posX), math.floor(this.gameObject.posY)
+		return math.floor(this.gameObject.posX +.5), math.floor(this.gameObject.posY +.5)
 	end
 	this.getRealLastPos = function(this)
-		return math.floor(this.gameObject.lastPosX), math.floor(this.gameObject.lastPosY)
+		return math.floor(this.gameObject.lastPosX +.5), math.floor(this.gameObject.lastPosY +.5)
 	end
 	this.getLastPos = function(this)
-		return math.floor(this.ngeAttributes.lastFramePosX), math.floor(this.ngeAttributes.lastFramePosY)
+		return math.floor(this.ngeAttributes.lastFramePosX +.5), math.floor(this.ngeAttributes.lastFramePosY +.5)
 	end
 	this.getSize = function(this)
 		return this.ngeAttributes.sizeX, this.ngeAttributes.sizeY
@@ -134,7 +134,7 @@ function GameObject.new(args)
 		end
 	end
 	this.getOffset = function(this, ra)
-		return ra.posX + ra.cameraPosX, ra.posY + ra.cameraPosY
+		return math.floor(ra.posX + ra.cameraPosX +.5), math.floor(ra.posY + ra.cameraPosY +.5)
 	end
 	this.destroy = function(this)
 		for ra in pairs(this.ngeAttributes.responsibleRenderAreas) do
@@ -215,8 +215,8 @@ function GameObject.new(args)
 		end
 	end
 	this.ngeSetLastPos = function(this)
-		this.ngeAttributes.lastFramePosX = math.floor(this.gameObject.posX)
-		this.ngeAttributes.lastFramePosY = math.floor(this.gameObject.posY)
+		this.ngeAttributes.lastFramePosX = math.floor(this.gameObject.posX +.5)
+		this.ngeAttributes.lastFramePosY = math.floor(this.gameObject.posY +.5)
 		
 		this.ngeAttributes.hasMoved = false
 	end
