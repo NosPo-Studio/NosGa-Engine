@@ -16,6 +16,7 @@ function TestGO.new(args)
 		{"Sprite", texture = global.texture.benchmarkTexture},
 		--{"ClearArea", x = 0, y = 0, sx = args.sizeX, sy = args.sizeY},
 		{"CopyArea", x = 0, y = 0, sx = args.sizeX, sy = args.sizeY},
+		{"RigidBody", g = 0, stiffness = 1},
 	}
 	
 	--[[
@@ -32,10 +33,28 @@ function TestGO.new(args)
 	--===== init =====--
 	local pa = global.ut.parseArgs
 	
+	this.speed = 10
 	
+	--===== global/custom functions =====--
+	this.ctrl_left_key_pressed = function(this)
+		--this:addForce(-this.speed, 0, this.speed)
+		this:move(-.2, 0)
+		--this:move(-1, 0)
+	end
+	this.ctrl_right_key_pressed = function(this)
+		--this:addForce(this.speed, 0, this.speed)
+		this:move(.2, 0)
+		--this:move(1, 0)
+	end
+	this.ctrl_up_key_pressed = function(this)
+		--this:addForce(0, -this.speed, this.speed)
+		--this:move(0, .2)
+	end
+	this.ctrl_down_key_pressed = function(this)
+		--this:addForce(0, this.speed, this.speed)
+		--this:move(0, -.2)
+	end
 	
-	
-	--===== global functions =====--
 	this.test = function()
 		global.log("GG")
 	end
@@ -58,6 +77,7 @@ function TestGO.new(args)
 	end
 	
 	this.update = function(this) --will called on every game tick.
+		--global.log(this:getPos())
 		--global.log("TestGO: update")
 		
 		--global.log(this.ngeAttributes.name)

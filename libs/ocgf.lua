@@ -480,7 +480,7 @@ end
 function OCGF.RigidBody.update(this, gameObjects, dt, slp) --ToDo: add realistic physics.
 	this.speedX = calculateStiffness(this.speedX, this.stiffness) * dt
 	this.speedY = this.speedY + (this.gravitationFactor * dt)
-	this.speedY = calculateStiffness(this.speedY, this.stiffness * dt)
+	this.speedY = calculateStiffness(this.speedY, this.stiffness) * dt
 	
 	if this.calculateHalfPixel then
 		this.gameObject:move(this.speedX, this.speedY /2, slp)

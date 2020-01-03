@@ -44,10 +44,10 @@ local function exportCtrlSignal(s, sname)
 			
 			if generalFunctionName ~= "" then
 				global.run(global.state[global.currentState][generalFunctionName], s, sname)
-				global.core.uh.insertSignal(s, generalFunctionName)
+				global.core.updateHandler.insertSignal(s, generalFunctionName)
 				
 				global.run(global.state[global.currentState][specificFunctionName], s, sname)
-				global.core.uh.insertSignal(s, specificFunctionName)
+				global.core.updateHandler.insertSignal(s, specificFunctionName)
 			end
 		end
 	end
@@ -69,7 +69,7 @@ local function exportSignal(s, sname)
 	sname = sname or s[1]
 	
 	global.run(global.state[global.currentState][sname], s)
-	global.core.uh.insertSignal(s, sname)
+	global.core.updateHandler.insertSignal(s, sname)
 	
 	exportCtrlSignal(s, sname)
 end

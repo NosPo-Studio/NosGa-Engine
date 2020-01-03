@@ -75,12 +75,15 @@ local function updateFrame(renderArea, dt)
 		toUpdate = renderArea.gameObjects
 	end
 	
-	for go in pairs(toUpdate) do
+	for go, c in pairs(toUpdate) do
+		if type(go) == "number" then
+			go = c
+		end
 		if not uh.isUpdated[go] then
 			for i, s in pairs(uh.signalQueue) do
 				--print(s[1], go[s[1]], global.currentFrame)
 				
-				global.run(go[s.name], s.signal, s.name)
+				global.run(go[s.name], go, s.signal, s.name)
 			end
 			
 			go:ngeUpdate(global.gameObjects, dt, renderArea)

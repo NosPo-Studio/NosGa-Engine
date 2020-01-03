@@ -25,7 +25,7 @@
     along with dbgpu_api.  If not, see <https://www.gnu.org/licenses/>.	
 ]]
 
-local version = "v0.1"
+local version = "v0.1d"
 
 local args = ...
 local path = args.path or ""
@@ -57,6 +57,8 @@ local function draw()
 end
 
 function dbgpu.set(x, y, s, v)
+	x = math.floor(x)
+	y = math.floor(y)
 	if v then
 		for i = 1, #s do
 			buffer.set(x, y +i -1, lastBackground, lastForeground, string.sub(s, i, i))
@@ -70,12 +72,20 @@ function dbgpu.set(x, y, s, v)
 end
 
 function dbgpu.fill(x, y, sx, sy, s)
+	x = math.floor(x)
+	y = math.floor(y)
+	sx = math.floor(sx)
+	sy = math.floor(sy)
 	s = string.sub(s, 0, 1)
 	buffer.drawRectangle(x, y, sx, sy, lastBackground, lastForeground, s)
 	draw()
 end
 
 function dbgpu.copy(x, y, sx, sy, tx, ty)
+	x = math.floor(x)
+	y = math.floor(y)
+	tx = math.floor(tx)
+	ty = math.floor(ty)
 	local data, rawData = buffer.copy(x, y, sx, sy, dbgpu.rawCopy)
 	buffer.paste(tx +x, ty +y, data, rawData)
 	

@@ -95,15 +95,19 @@ function GameObject.new(args)
 	
 	--===== default functions =====--
 	this.move = function(this, x, y)
+		--x = math.floor(x)
+		--y = math.floor(y)
 		this.gameObject:move(x, -y)
 		--this.ngeAttributes.hasMoved = true
 	end
 	this.moveTo = function(this, x, y)
+		--x = math.floor(x)
+		--y = math.floor(y)
 		this.gameObject:moveTo(x, y)
 		--this.ngeAttributes.hasMoved = true
 	end
 	this.addForce = function(this, x, y, maxSpeed)
-		this.gameObject:addForce(x * (global.texturePack.size *2), -y * global.texturePack.size, maxSpeed)
+		this.gameObject:addForce(x, y, maxSpeed)
 	end
 	this.setSpeed = function(this, x, y)
 		this.gameObject:setSpeed(x, -y)

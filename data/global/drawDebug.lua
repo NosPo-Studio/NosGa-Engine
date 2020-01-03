@@ -10,7 +10,9 @@ return function(...)
 		debugString = debugString .. 
 			"NosGa Engine: " .. global.version .. 
 			" | freeMemory: " .. tostring(math.floor((global.computer.freeMemory() /1024) +.5)) .. "KB" ..
-			" | FPS" .. tostring(math.floor((global.fps) +.5))
+			" | FPS: " .. tostring(math.floor((global.fps) +.5) .. 
+			" | Frame: " .. tostring(global.currentFrame)
+		)
 			
 		for _, s in pairs({...}) do
 			debugString = debugString .. " | " .. s

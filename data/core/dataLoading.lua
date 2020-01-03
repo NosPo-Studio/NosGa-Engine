@@ -68,7 +68,7 @@ local function loadFiles(target, name, func, directPath, subDirs, structured)
 		elseif reload then
 			print("[DL]: Reloading data group: " .. name .. ".")
 		end
-		global.loadData(target, path, func, print, reload, subDirs, structured)
+		global.loadData(target, path, func, {log = print, warn = global.warn}, reload, subDirs, structured)
 		global.alreadyLoaded[path] = true
 	else
 		print("[DL]: Data group already loaded: " .. name .. ".")
@@ -98,6 +98,10 @@ end
 
 --===== core reloadings =====--
 if toLoad.conf then
+	local savedSettings = {
+		showConsole = global.conf.showConsole,
+	}
+	
 	global.conf = loadfile("nosGaConf.lua")(global)
 	
 	for i, c in pairs(loadfile("conf.lua")(global)) do
@@ -130,6 +134,10 @@ if toLoad.conf then
 	parseControls(controlsINI.string, global.controls.c, true)
 	parseControls(controlsINI.key, global.controls.k)
 	parseControls(controlsINI.mouse, global.controls.m)
+	
+	for i, c in pairs(savedSettings) do
+		global.conf[i] = c
+	end
 end
 
 if toLoad.re then
@@ -137,7 +145,7 @@ if toLoad.re then
 end
 
 if toLoad.uh then
-	global.core.uh = reloadFile(global.core.uh, "data/core/uh.lua", global)
+	global.core.updateHandler = reloadFile(global.core.updateHandler, "data/core/updateHandler.lua", global)
 end
 
 if toLoad.eh then

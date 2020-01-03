@@ -1,3 +1,5 @@
+--Setting in here can be overwritten by the conf.lua settings.
+
 local nosGaConf = {
 	targetFramerate = 20, --default is "20". set to "-1" for unlimited framerate (can cause in graphical issures).
 	maxTickTime = .2, --if a tick need more as the maxTickTime the engine will handle the ticke like it had needs exacly the maxTickTime.
@@ -6,11 +8,12 @@ local nosGaConf = {
 	showConsole = true, --can be changes ingame by pressing f1 by default.
 	showDebug = true, --can be changes ingame by pressing f3 by default.
 	consoleSizeY = 40, --the height of the console.
+	directConsoleDraw = true, --instant drawing console outputs instead of waiting til new frame (has only an affect if doubleBuffering used) (only if isDev).
 	
 	preferModTextures = true, --if true mods can overwrite texturePack textures.
 	
 	defaultState = "test",
-		
+	
 	renderLayerAmount = 5,
 	useDoubleBuffering = true, --[[ Use the third party doubleBuffering method by IgorTimofeev.
 		In the most cases using it causes in a big graphic performance boost but on cost of the memory usage.
@@ -21,7 +24,7 @@ local nosGaConf = {
 	
 	forceSmartMove = false, --forces the SmartMove in linear render mode (for render engine debugging purpose).
 	
-	narrowUpdateExpansion = {0, 0, 0, 0}, --[[ Defines the distance a gameObject can be away from any renderArea but will still updated.
+	narrowUpdateExpansion = false, --[[ Defines the distance a gameObject can be away from any renderArea but will still updated.
 		If it is set to false any gameObject will be updated independent from its position.
 		Can be changed in source for any renderArea independently.
 		
@@ -46,7 +49,7 @@ local nosGaConf = {
 			
 			--=== core ===--
 			re = false, 
-			ge = false,
+			uh = true,
 			eh = true,
 			GameObject = false,
 			RenderArea = false,
@@ -57,7 +60,7 @@ local nosGaConf = {
 			states = true,
 			textures = false,
 			parents = false,
-			gameObjects = false,
+			gameObjects = true,
 			
 			mods = false, --just reloads the activated data groups of the mods (if only onReload.blocks = true he only also reloads the blocks from mods). should be always true.
 		},

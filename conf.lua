@@ -1,6 +1,7 @@
+--Setting in here are overwriting the nosGaConf settings.
+
 local conf = {
 	texturePack = "default",
-	targetFramerate = 10,
 }
 
 return conf

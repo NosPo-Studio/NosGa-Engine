@@ -4,7 +4,7 @@ The NosGa Engine is a engine fork of ocCtaft (v0.1.2) <https://github.com/Mister
 which is licensed under the GPLv3.
 
 ocCtaft Copyright (c) 2019 MisterNoNameLP
-NosGa Engine Copyright (C) 2019 NosPo Studio.
+NosGa Engine Copyright (C) 2019-2020 NosPo Studio.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -84,7 +84,7 @@ SOFTWARE.
 			
 	*left over from ocCraft but still relevant somehow.
 ]]
-local version = "v0.0.32"
+local version = "v0.0.32.1"
 
 --===== prog start =====--
 do
@@ -114,7 +114,7 @@ do
 	print(global.isRunning)
 	
 	if initSuccsess then
-		local core, err = loadfile("data/core/ocgeCore.lua")
+		local core, err = loadfile("data/core/nosGaCore.lua")
 		if global.isDev then
 			print("Init done, starting program: ", core, err)
 		end

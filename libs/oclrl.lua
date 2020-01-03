@@ -17,7 +17,7 @@
     along with this library.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-local oclrl = {version = "v1.4.1"} --OpenComputersGraphicLibary
+local oclrl = {version = "v1.4.2"} --OpenComputersGraphicLibary
 oclrl.__index = oclrl
 
 
@@ -59,11 +59,11 @@ local function calculateSetRideOut(s, pos, from, to)
 	local offset = 0
 	
 	if pos +#s > to then
-		tmpString = string.sub(tmpString, 0, -(pos +#s - to))
+		tmpString = string.sub(tmpString, 0, math.floor(-(pos +#s - to) +.5))
 	end
 	if pos < from then
 		offset = -(pos - from)
-		tmpString = string.sub(tmpString, offset +1)
+		tmpString = string.sub(tmpString, math.floor(offset +1 +.5))
 	end
 	
 	return tmpString, offset

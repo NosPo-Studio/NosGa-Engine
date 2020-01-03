@@ -1,660 +1,86 @@
 [INFO] [GE]: Change state to: "test".
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: parents, textures, gameObjects.
+[INFO] [DL]: Loading data groups: gameObjects, textures, parents.
 [INFO] [DL]: Loading data group: textures.
-[INFO] [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 00000000698E6EA0
-[INFO] [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0000000069A231B0
-[INFO] [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 000000005E1AF420
-[INFO] [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 00000000698DD180
-[INFO] [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0000000069A36360
+[INFO] [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 0000000028B64F90
+[INFO] [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0000000028CD8570
+[INFO] [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0000000037CEEC40
+[INFO] [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 00000000491CBFC0
+[INFO] [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0000000037FB12F0
 [INFO] [DL]: Loading data group: parents.
-[INFO] [DLF]: Loading file: data/parents/Block.lua: function: 000000005E1ACD30
+[INFO] [DLF]: Loading file: data/parents/Block.lua: function: 000000004F8D4930
 [INFO] [DL]: Loading data group: gameObjects.
-[INFO] [DLF]: Loading file: data/gameObjects/TestGO.lua: function: 0000000069922560
-[INFO] [DLF]: Loading file: data/gameObjects/BusStop.lua: function: 00000000699A0500
-[INFO] [DLF]: Loading file: data/gameObjects/TestGO2.lua: function: 000000005E203E80
-[INFO] [DLF]: Loading file: data/gameObjects/RenderBenchMark.lua: function: 0000000069BDD590
+[INFO] [DLF]: Loading file: data/gameObjects/MovingTestGO.lua: function: 0000000049A88A10
+[INFO] [DLF]: Loading file: data/gameObjects/StaticTestGO.lua: function: 000000004CBECDA0
+[INFO] [DLF]: Loading file: data/gameObjects/RPT.lua: function: 000000004B7A6320
 [INFO] [test]: init done.
-[INFO] TEST8key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST8key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST9key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST10key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST141key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST141key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST142key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST143key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST144key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST145key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST146key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST147key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST148key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST160key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST160key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST161key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST162key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST163key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST164key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST165key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST166key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST167key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST168key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST179key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST179key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST180key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST180key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST180key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST181key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST181key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST182key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST182key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST183key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST183key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST184key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST184key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST185key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST185key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST186key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST186key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST187key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST187key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST188key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST188key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST189key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST189key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
+[INFO] [Global]: Adding renderArea: 1"TRA1".
+[INFO] [Global]: Adding renderArea: 2"TRA2".
+[INFO] true
+[INFO] Init done, starting program: function: 0000000037CE2BC0
 [INFO] --========== RELOAD STAGE ==========--
 [INFO] [DL]: Loading data groups: conf.
-[INFO] [DL]: Loading data groups: global, eh, reload, conf, states, structuredGlobal.
-[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 0000000069CE8500
+[INFO] [DL]: Loading data groups: reload, global, uh, conf, structuredGlobal, states, gameObjects, eh.
+[INFO] [DL]: Reloading file: data/core/updateHandler.lua: function: 000000004F8D55E0
+[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 0000000037E8AE80
 [INFO] [DL]: Loading data group: global.
-[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 0000000069A22180
-[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 0000000069A207B0
-[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 0000000069C326C0
-[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 0000000069C42260
-[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 00000000699A0E30
-[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 00000000699A1B50
-[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 0000000069BDE240
-[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 000000005E204CF0
-[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 0000000069C43370
+[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 000000004F91C760
+[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 00000000381061E0
+[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 0000000048D0B450
+[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 000000004CBEF730
+[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 00000000499E01C0
+[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 00000000380EDAC0
+[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 00000000380053F0
+[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 000000003791FAD0
+[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 0000000037E8A240
 [INFO] [DL]: Reloading data group: structuredGlobal.
-[ERROR] [DLF]: Target already existing!: testDir/ :table: 0000000069F7DAF0
+[INFO] [DLF]: Loading file: data/structuredGlobal/testDir//test.lua: function: 0000000049C22A40
+[INFO] [DLF]: Loading file: data/structuredGlobal/testDir//test2//test2.lua: function: 000000004904F7F0
 [INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 0000000069C32110
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 000000006990A670
+[INFO] [DLF]: Loading file: data/states/test.lua: function: 0000000028D23140
+[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 0000000049000D90
+[INFO] [DL]: Reloading data group: gameObjects.
+[INFO] [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 000000004C256A70
+[INFO] [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 000000004CBEF0A0
+[INFO] [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 00000000387074E0
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: parents, textures, gameObjects.
+[INFO] [DL]: Loading data groups: gameObjects, textures, parents.
 [INFO] [DL]: Data group already loaded: textures.
 [INFO] [DL]: Data group already loaded: parents.
 [INFO] [DL]: Data group already loaded: gameObjects.
 [INFO] [test]: init done.
-[INFO] TEST471key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST471key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST471key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST471key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST471key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST471key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST472key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST472key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST472key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST473key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST473key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST473key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST480key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST480key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST480key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST480key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST480key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST480key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST481key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST481key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST481key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST482key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST482key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST482key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST483key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST483key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST483key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST484key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST484key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST484key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST485key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST485key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST485key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST505key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST505key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST505key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST505key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST505key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST505key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST506key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST506key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST506key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST507key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST507key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST507key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST508key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST508key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST508key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST517key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST517key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST517key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST517key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST517key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST517key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST518key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST518key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST518key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST519key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST519key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST519key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST520key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST520key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST520key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST680key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST680key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST680key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST680key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST680key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST680key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST681key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST681key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST681key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST682key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST682key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST682key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST683key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST683key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST683key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST684key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST684key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST684key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST685key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST685key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST685key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST686key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST686key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST686key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST687key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST687key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST687key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead32.057.0MisterNoNameLPnil
-[INFO] TEST827key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST827key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST827key_downkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST827key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST827key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST827key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST828key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST828key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST828key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST829key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST829key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST829key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST830key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST830key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST830key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST831key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST831key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST831key_pressedkey_down9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST832key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST832key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
-[INFO] TEST832key_upkey_up9fb03d52-2c44-4dfa-ac1c-94aa9df40ead101.018.0MisterNoNameLPnil
+[INFO] [Global]: Adding renderArea: 1"TRA1".
+[INFO] [Global]: Adding renderArea: 2"TRA2".
 [INFO] --========== RELOAD STAGE ==========--
 [INFO] [DL]: Loading data groups: conf.
-[INFO] [DL]: Loading data groups: global, eh, reload, conf, states, structuredGlobal.
-[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 0000000069C34640
+[INFO] [DL]: Loading data groups: reload, global, uh, conf, structuredGlobal, states, gameObjects, eh.
+[INFO] [DL]: Reloading file: data/core/updateHandler.lua: function: 000000003791BAF0
+[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 0000000037E8A010
 [INFO] [DL]: Reloading data group: global.
-[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 0000000069A20740
-[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 0000000069A20B30
-[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 000000005E0FEF30
-[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 000000005E100740
-[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 0000000069C32B20
-[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 0000000069C446B0
-[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 000000005E1AD190
-[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 000000005E1AD5F0
-[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 0000000069A21D90
+[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 0000000038005AF0
+[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 00000000387AD8F0
+[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 0000000049002290
+[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 000000004F91E210
+[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 00000000381E4AC0
+[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 00000000387B4570
+[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 0000000037E8FCD0
+[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 000000004F8D6BC0
+[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 000000003791A7B0
 [INFO] [DL]: Reloading data group: structuredGlobal.
-[ERROR] [DLF]: Target already existing!: testDir/ :table: 0000000069F7DAF0
+[INFO] [DLF]: Loading file: data/structuredGlobal/testDir//test.lua: function: 000000004CBED820
+[INFO] [DLF]: Loading file: data/structuredGlobal/testDir//test2//test2.lua: function: 000000004CBF0290
 [INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 000000005E10D1D0
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 000000005E101FC0
+[INFO] [DLF]: Loading file: data/states/test.lua: function: 00000000380ED200
+[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 000000004F8D4070
+[INFO] [DL]: Reloading data group: gameObjects.
+[INFO] [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0000000037914B60
+[INFO] [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 000000003825A2A0
+[INFO] [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0000000037E8D8F0
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: parents, textures, gameObjects.
+[INFO] [DL]: Loading data groups: gameObjects, textures, parents.
 [INFO] [DL]: Data group already loaded: textures.
 [INFO] [DL]: Data group already loaded: parents.
 [INFO] [DL]: Data group already loaded: gameObjects.
 [INFO] [test]: init done.
-[INFO] TEST1556key_down32.057.0
-[INFO] TEST1556key_down32.057.0
-[INFO] TEST1556key_down32.057.0
-[INFO] TEST1556key_down32.057.0
-[INFO] TEST1556key_down32.057.0
-[INFO] TEST1556key_pressed32.057.0
-[INFO] TEST1556key_pressed32.057.0
-[INFO] TEST1556key_pressed32.057.0
-[INFO] TEST1556key_pressed32.057.0
-[INFO] TEST1556key_pressed32.057.0
-[INFO] TEST1557key_pressed32.057.0
-[INFO] TEST1557key_pressed32.057.0
-[INFO] TEST1557key_pressed32.057.0
-[INFO] TEST1557key_pressed32.057.0
-[INFO] TEST1557key_pressed32.057.0
-[INFO] TEST1558key_up32.057.0
-[INFO] TEST1558key_up32.057.0
-[INFO] TEST1558key_up32.057.0
-[INFO] TEST1558key_up32.057.0
-[INFO] TEST1558key_up32.057.0
-[INFO] TEST1586key_down101.018.0
-[INFO] TEST1586key_down101.018.0
-[INFO] TEST1586key_down101.018.0
-[INFO] TEST1586key_down101.018.0
-[INFO] TEST1586key_down101.018.0
-[INFO] TEST1586key_pressed101.018.0
-[INFO] TEST1586key_pressed101.018.0
-[INFO] TEST1586key_pressed101.018.0
-[INFO] TEST1586key_pressed101.018.0
-[INFO] TEST1586key_pressed101.018.0
-[INFO] TEST1587key_pressed101.018.0
-[INFO] TEST1587key_pressed101.018.0
-[INFO] TEST1587key_pressed101.018.0
-[INFO] TEST1587key_pressed101.018.0
-[INFO] TEST1587key_pressed101.018.0
-[INFO] TEST1588key_up101.018.0
-[INFO] TEST1588key_up101.018.0
-[INFO] TEST1588key_up101.018.0
-[INFO] TEST1588key_up101.018.0
-[INFO] TEST1588key_up101.018.0
-[INFO] TEST1611key_down101.018.0
-[INFO] TEST1611key_down101.018.0
-[INFO] TEST1611key_down101.018.0
-[INFO] TEST1611key_down101.018.0
-[INFO] TEST1611key_down101.018.0
-[INFO] TEST1611key_pressed101.018.0
-[INFO] TEST1611key_pressed101.018.0
-[INFO] TEST1611key_pressed101.018.0
-[INFO] TEST1611key_pressed101.018.0
-[INFO] TEST1611key_pressed101.018.0
-[INFO] TEST1612key_pressed101.018.0
-[INFO] TEST1612key_pressed101.018.0
-[INFO] TEST1612key_pressed101.018.0
-[INFO] TEST1612key_pressed101.018.0
-[INFO] TEST1612key_pressed101.018.0
-[INFO] TEST1613key_pressed101.018.0
-[INFO] TEST1613key_pressed101.018.0
-[INFO] TEST1613key_pressed101.018.0
-[INFO] TEST1613key_pressed101.018.0
-[INFO] TEST1613key_pressed101.018.0
-[INFO] TEST1614key_pressed101.018.0
-[INFO] TEST1614key_pressed101.018.0
-[INFO] TEST1614key_pressed101.018.0
-[INFO] TEST1614key_pressed101.018.0
-[INFO] TEST1614key_pressed101.018.0
-[INFO] TEST1615key_up101.018.0
-[INFO] TEST1615key_up101.018.0
-[INFO] TEST1615key_up101.018.0
-[INFO] TEST1615key_up101.018.0
-[INFO] TEST1615key_up101.018.0
-[INFO] TEST1723key_down32.057.0
-[INFO] TEST1723key_down32.057.0
-[INFO] TEST1723key_down32.057.0
-[INFO] TEST1723key_down32.057.0
-[INFO] TEST1723key_down32.057.0
-[INFO] TEST1723key_pressed32.057.0
-[INFO] TEST1723key_pressed32.057.0
-[INFO] TEST1723key_pressed32.057.0
-[INFO] TEST1723key_pressed32.057.0
-[INFO] TEST1723key_pressed32.057.0
-[INFO] TEST1724key_pressed32.057.0
-[INFO] TEST1724key_pressed32.057.0
-[INFO] TEST1724key_pressed32.057.0
-[INFO] TEST1724key_pressed32.057.0
-[INFO] TEST1724key_pressed32.057.0
-[INFO] TEST1725key_pressed32.057.0
-[INFO] TEST1725key_pressed32.057.0
-[INFO] TEST1725key_pressed32.057.0
-[INFO] TEST1725key_pressed32.057.0
-[INFO] TEST1725key_pressed32.057.0
-[INFO] TEST1726key_up32.057.0
-[INFO] TEST1726key_up32.057.0
-[INFO] TEST1726key_up32.057.0
-[INFO] TEST1726key_up32.057.0
-[INFO] TEST1726key_up32.057.0
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: conf.
-[INFO] [DL]: Loading data groups: global, eh, reload, conf, states, structuredGlobal.
-[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 0000000069982BA0
-[INFO] [DL]: Reloading data group: global.
-[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 0000000069C34F70
-[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 0000000069A117C0
-[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 00000000699EE270
-[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 0000000069F5B240
-[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 00000000698E9FC0
-[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 0000000069D1C640
-[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 00000000699839A0
-[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 0000000069982C80
-[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 00000000698CBF50
-[INFO] [DL]: Reloading data group: structuredGlobal.
-[ERROR] [DLF]: Target already existing!: testDir/ :table: 0000000069F7DAF0
-[INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 000000002CA8D1A0
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 0000000069F13580
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: parents, textures, gameObjects.
-[INFO] [DL]: Data group already loaded: textures.
-[INFO] [DL]: Data group already loaded: parents.
-[INFO] [DL]: Data group already loaded: gameObjects.
-[INFO] [test]: init done.
-[INFO] KEY UP:0.063.01848===============================================
-[INFO] KEY UP:23.017.01866===============================================
-[INFO] KEY UP:23.017.01880===============================================
-[INFO] KEY UP:23.017.01890===============================================
-[INFO] KEY UP:23.017.01903===============================================
-[INFO] KEY UP:23.017.01910===============================================
-[INFO] KEY UP:0.029.01911===============================================
-[INFO] KEY UP:119.017.01995===============================================
-[INFO] KEY UP:119.017.01999===============================================
-[INFO] KEY UP:119.017.02015===============================================
-[INFO] KEY UP:119.017.02019===============================================
-[INFO] KEY UP:119.017.02023===============================================
-[INFO] KEY UP:119.017.02026===============================================
-[INFO] KEY UP:119.017.02039===============================================
-[INFO] KEY UP:119.017.02047===============================================
-[INFO] KEY UP:119.017.02052===============================================
-[INFO] KEY UP:119.017.02062===============================================
-[INFO] KEY UP:23.017.02104===============================================
-[INFO] KEY UP:0.029.02105===============================================
-[LUA]> global.slog(global.controls)
-[SINFO]: Start: table: 0000000069F7A570
-{c={[32]={"test","test","test","test","test","test","test"},[101]={"test","test","test","test","test","test","test"},["32"]={"test2","test","test","test","test","test","test"},["23"]={"test2","test","test","test","test","test","test"}},m={["1"]={"test","test","test","test","test","test","test"}},k={["42"]={"test3","test","test","test","test","test","test"}}};
-[SINFO]: End.
-[LUA]> global.controls.
-[ERROR] stdin:1: <name> expected near <eof>
-
-[LUA]> global.controls
-[LUA]: {c={[32]={"test",
-   "test",
-   "test",
-   "test",
-   "test",
-   "test",
-   "test"},
-  [101]={"test",
-   "test",
-   "test",
-...	
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: conf.
-[INFO] [DL]: Loading data groups: global, eh, reload, conf, states, structuredGlobal.
-[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 0000000069A22110
-[INFO] [DL]: Reloading data group: global.
-[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 0000000069BDCFE0
-[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 00000000698CA010
-[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 00000000699A01F0
-[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 000000005E205B60
-[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 000000002CD810F0
-[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 00000000699D5F40
-[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 000000005DE2F980
-[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 00000000699EE4A0
-[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 00000000698DD500
-[INFO] [DL]: Reloading data group: structuredGlobal.
-[ERROR] [DLF]: Target already existing!: testDir/ :table: 0000000069F7DAF0
-[INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 000000005E35A5F0
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 0000000069982DD0
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: parents, textures, gameObjects.
-[INFO] [DL]: Data group already loaded: textures.
-[INFO] [DL]: Data group already loaded: parents.
-[INFO] [DL]: Data group already loaded: gameObjects.
-[INFO] [test]: init done.
-[INFO] KEY UP:0.063.03574===============================================
-[INFO] KEY UP:0.0200.03602===============================================
-[LUA]> global.controls
-[LUA]: {c={[32]={"test"},
-  [101]={"test"},
-  ["23"]={"test"},
-  ["32"]={"test"}},
- k={["42"]={"test"}},
- m={["1"]={"test"}}}	
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: conf.
-[INFO] [DL]: Loading data groups: global, eh, reload, conf, states, structuredGlobal.
-[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 000000005D7CAB30
-[INFO] [DL]: Reloading data group: global.
-[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 0000000069BA4850
-[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 0000000069BA3040
-[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 0000000069921530
-[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 00000000699705E0
-[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 0000000069A20350
-[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 0000000069A22B20
-[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 00000000698E7990
-[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 0000000069983460
-[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 0000000069BDEA20
-[INFO] [DL]: Reloading data group: structuredGlobal.
-[ERROR] [DLF]: Target already existing!: testDir/ :table: 0000000069F7DAF0
-[INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 00000000698DEC40
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 000000006999FE00
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: parents, textures, gameObjects.
-[INFO] [DL]: Data group already loaded: textures.
-[INFO] [DL]: Data group already loaded: parents.
-[INFO] [DL]: Data group already loaded: gameObjects.
-[INFO] [test]: init done.
-[INFO] KEY UP:0.063.04286===============================================
-[LUA]> global.controls
-[LUA]: {c={[23]={"test"},
-  [32]={"test",
-   "test"},
-  [101]={"test"}},
- k={[42]={"test"}},
- m={{"test"}}}	
-[INFO] KEY UP:101.018.04342===============================================
-[INFO] KEY UP:101.018.04368===============================================
-[INFO] KEY UP:32.057.04385===============================================
-[INFO] KEY UP:101.018.04500===============================================
-[INFO] KEY UP:101.018.04503===============================================
-[INFO] KEY UP:101.018.04516===============================================
-[INFO] KEY UP:0.042.04594===============================================
-[INFO] KEY UP:0.042.04594===============================================
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: conf.
-[INFO] [DL]: Loading data groups: global, eh, reload, conf, states, structuredGlobal.
-[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 0000000069A11C90
-[INFO] [DL]: Reloading data group: global.
-[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 00000000698CBEE0
-[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 0000000069A60AF0
-[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 00000000698DE1B0
-[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 0000000069985A70
-[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 0000000069BA1DE0
-[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 0000000069BA1670
-[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 000000005D7C9A20
-[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 00000000699A06C0
-[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 0000000069C33450
-[INFO] [DL]: Reloading data group: structuredGlobal.
-[ERROR] [DLF]: Target already existing!: testDir/ :table: 0000000069F7DAF0
-[INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 00000000699839A0
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 0000000069DED610
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: parents, textures, gameObjects.
-[INFO] [DL]: Data group already loaded: textures.
-[INFO] [DL]: Data group already loaded: parents.
-[INFO] [DL]: Data group already loaded: gameObjects.
-[INFO] [test]: init done.
-[INFO] TEST4737key_down0.042.0
-[INFO] TEST4737key_pressed0.042.0
-[INFO] TEST4738key_pressed0.042.0
-[INFO] TEST4739key_pressed0.042.0
-[INFO] TEST4740key_pressed0.042.0
-[INFO] TEST4741key_up0.042.0
-[INFO] TEST4757key_down101.018.0
-[INFO] TEST4757key_pressed101.018.0
-[INFO] TEST4758key_pressed101.018.0
-[INFO] TEST4759key_pressed101.018.0
-[INFO] TEST4760key_pressed101.018.0
-[INFO] TEST4761key_pressed101.018.0
-[INFO] TEST4762key_pressed101.018.0
-[INFO] TEST4763key_pressed101.018.0
-[INFO] TEST4764key_up101.018.0
-[INFO] TEST4772key_down23.017.0
-[INFO] TEST4772key_pressed23.017.0
-[INFO] TEST4773key_pressed23.017.0
-[INFO] TEST4774key_pressed23.017.0
-[INFO] TEST4775key_pressed23.017.0
-[INFO] TEST4776key_pressed23.017.0
-[INFO] TEST4777key_pressed23.017.0
-[INFO] TEST4778key_pressed23.017.0
-[INFO] TEST4779key_pressed23.017.0
-[INFO] TEST4780key_up23.017.0
-[INFO] TEST4792key_down32.057.0
-[INFO] TEST4792key_down32.057.0
-[INFO] TEST4792key_pressed32.057.0
-[INFO] TEST4792key_pressed32.057.0
-[INFO] TEST4793key_pressed32.057.0
-[INFO] TEST4793key_pressed32.057.0
-[INFO] TEST4794key_pressed32.057.0
-[INFO] TEST4794key_pressed32.057.0
-[INFO] TEST4795key_pressed32.057.0
-[INFO] TEST4795key_pressed32.057.0
-[INFO] TEST4796key_pressed32.057.0
-[INFO] TEST4796key_pressed32.057.0
-[INFO] TEST4797key_pressed32.057.0
-[INFO] TEST4797key_pressed32.057.0
-[INFO] TEST4798key_pressed32.057.0
-[INFO] TEST4798key_pressed32.057.0
-[INFO] TEST4799key_pressed32.057.0
-[INFO] TEST4799key_pressed32.057.0
-[INFO] TEST4800key_pressed32.057.0
-[INFO] TEST4800key_pressed32.057.0
-[INFO] TEST4801key_up32.057.0
-[INFO] TEST4801key_up32.057.0
-[INFO] TEST4854key_down32.057.0
-[INFO] TEST4854key_down32.057.0
-[INFO] TEST4854key_pressed32.057.0
-[INFO] TEST4854key_pressed32.057.0
-[INFO] TEST4855key_pressed32.057.0
-[INFO] TEST4855key_pressed32.057.0
-[INFO] TEST4856key_pressed32.057.0
-[INFO] TEST4856key_pressed32.057.0
-[INFO] TEST4857key_pressed32.057.0
-[INFO] TEST4857key_pressed32.057.0
-[INFO] TEST4858key_pressed32.057.0
-[INFO] TEST4858key_pressed32.057.0
-[INFO] TEST4859key_up32.057.0
-[INFO] TEST4859key_up32.057.0
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: conf.
-[INFO] [DL]: Loading data groups: global, eh, reload, conf, states, structuredGlobal.
-[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 00000000699D5760
-[INFO] [DL]: Reloading data group: global.
-[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 0000000069BA16E0
-[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 000000005E1AE700
-[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 0000000069BDD750
-[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 000000006999FD20
-[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 00000000698E9290
-[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 000000005E35AA50
-[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 0000000069BDD910
-[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 00000000699A0F10
-[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 0000000069A124E0
-[INFO] [DL]: Reloading data group: structuredGlobal.
-[ERROR] [DLF]: Target already existing!: testDir/ :table: 0000000069F7DAF0
-[INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 000000005E01CFC0
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 0000000069BD8E10
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: parents, textures, gameObjects.
-[INFO] [DL]: Data group already loaded: textures.
-[INFO] [DL]: Data group already loaded: parents.
-[INFO] [DL]: Data group already loaded: gameObjects.
-[INFO] [test]: init done.
-[INFO] TEST4884key_down32.057.0
-[INFO] TEST4884key_down32.057.0
-[INFO] TEST4884key_pressed32.057.0
-[INFO] TEST4884key_pressed32.057.0
-[INFO] TEST4885key_pressed32.057.0
-[INFO] TEST4885key_pressed32.057.0
-[INFO] TEST4886key_pressed32.057.0
-[INFO] TEST4886key_pressed32.057.0
-[INFO] TEST4887key_pressed32.057.0
-[INFO] TEST4887key_pressed32.057.0
-[INFO] TEST4888key_pressed32.057.0
-[INFO] TEST4888key_pressed32.057.0
-[INFO] TEST4889key_pressed32.057.0
-[INFO] TEST4889key_pressed32.057.0
-[INFO] TEST4890key_up32.057.0
-[INFO] TEST4890key_up32.057.0
-[INFO] --========== RELOAD STAGE ==========--
-[INFO] [DL]: Loading data groups: conf.
-[INFO] [DL]: Loading data groups: global, eh, reload, conf, states, structuredGlobal.
-[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 0000000069C34170
-[INFO] [DL]: Reloading data group: global.
-[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 00000000699A1220
-[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 00000000698F78E0
-[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 0000000069A38360
-[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 0000000069C429D0
-[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 00000000698E9610
-[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 00000000698DF730
-[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 0000000069BDD750
-[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 00000000699A05E0
-[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 000000005E105360
-[INFO] [DL]: Reloading data group: structuredGlobal.
-[ERROR] [DLF]: Target already existing!: testDir/ :table: 0000000069F7DAF0
-[INFO] [DL]: Reloading data group: states.
-[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 00000000699846C0
-[INFO] [DLF]: Loading file: data/states/test.lua: function: 00000000699A1A70
-[INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: parents, textures, gameObjects.
-[INFO] [DL]: Data group already loaded: textures.
-[INFO] [DL]: Data group already loaded: parents.
-[INFO] [DL]: Data group already loaded: gameObjects.
-[INFO] [test]: init done.
-[INFO] TEST5064key_down32.057.0
-[INFO] TEST5064key_pressed32.057.0
-[INFO] TEST5065key_pressed32.057.0
-[INFO] TEST5066key_pressed32.057.0
-[INFO] TEST5067key_up32.057.0
-[INFO] TEST5095key_down101.018.0
-[INFO] TEST5095key_pressed101.018.0
-[INFO] TEST5096key_pressed101.018.0
-[INFO] TEST5097key_pressed101.018.0
-[INFO] TEST5098key_pressed101.018.0
-[INFO] TEST5099key_up101.018.0
-[INFO] TEST5146key_down0.042.0
-[INFO] TEST5146key_pressed0.042.0
-[INFO] TEST5147key_pressed0.042.0
-[INFO] TEST5148key_pressed0.042.0
-[INFO] TEST5149key_pressed0.042.0
-[INFO] TEST5150key_up0.042.0
-[INFO] TEST5157key_down23.017.0
-[INFO] TEST5157key_pressed23.017.0
-[INFO] TEST5158key_pressed23.017.0
-[INFO] TEST5159key_pressed23.017.0
-[INFO] TEST5160key_pressed23.017.0
-[INFO] TEST5161key_pressed23.017.0
-[INFO] TEST5162key_pressed23.017.0
-[INFO] TEST5163key_up23.017.0
-[INFO] TEST5195touch74.030.0
-[INFO] TEST5197drop74.030.0
-[INFO] TEST5201touch74.030.0
-[INFO] TEST5211drop74.030.0
-[INFO] TEST5234touch61.044.0
-[INFO] TEST5234drag60.044.0
-[INFO] TEST5238drag61.044.0
-[INFO] TEST5238drag64.043.0
-[INFO] TEST5239drag72.040.0
-[INFO] TEST5240drag73.033.0
-[INFO] TEST5241drag64.029.0
-[INFO] TEST5242drag50.031.0
-[INFO] TEST5243drag42.037.0
-[INFO] TEST5244drag40.042.0
-[INFO] TEST5244drag38.046.0
-[INFO] TEST5245drag36.048.0
-[INFO] TEST5246drag30.048.0
-[INFO] TEST5247drag25.046.0
-[INFO] TEST5248drag23.042.0
-[INFO] TEST5249drag24.038.0
-[INFO] TEST5250drag25.038.0
-[INFO] TEST5251drag25.038.0
-[INFO] TEST5254drag25.039.0
-[INFO] TEST5255drag25.038.0
-[INFO] TEST5256drop25.038.0
-[DEBUG] [EH]: Program stopped by user.
+[INFO] [Global]: Adding renderArea: 1"TRA1".
+[INFO] [Global]: Adding renderArea: 2"TRA2".

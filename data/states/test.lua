@@ -21,14 +21,7 @@ local global = ...
 
 --===== shared vars =====--
 local test = {
-	moveDis = 0,
-	isMovingLeft = false,
 	
-	testTable = {
-		t1 = 1,
-		t2 = 2,
-		ts1 = "1",
-	},
 }
 
 --===== local vars =====--
@@ -61,14 +54,8 @@ end
 function test.start()
 	global.clear()
 	
-	--[[
-	print(loadfile("data/core/RenderArea.lua"))
-	global.core.RenderArea = loadfile("data/core/RenderArea.lua")(global)
-	print(loadfile("data/core/GameObject.lua"))
-	global.core.GameObject = loadfile("data/core/GameObject.lua")(global)
-	]]
-	
 	--===== debug =====--
+	--Creating 2 RenderAreas (windows) showing the same scene.
 	test.ra1 = global.addRA({
 		posX = 5, 
 		posY = 5, 
@@ -79,9 +66,9 @@ function test.start()
 	})
 	test.ra2 = global.addRA({posX = 50, posY = 5, sizeX = 40, sizeY = 12, name = "TRA2", drawBorders = true, parent = test.ra1})
 	
-	test.tgo1 = test.ra1:addGO("TestGO2", {posX = 2 +100, posY = 5, layer = 3, name = "test1"})
-	test.rbm1 = test.ra1:addGO("RenderBenchMark", {posX = 102, posY = 0, layer = 1, length = 1, name = "rbm_" .. tostring(c)})
-	
+	--Creating some GameObjects in the same scene.
+	test.tgo1 = test.ra1:addGO("MovingTestGO", {posX = 2 +100, posY = 5, layer = 3, name = "test1"})
+	test.rbm1 = test.ra1:addGO("RPT", {posX = 102, posY = 0, layer = 1, length = 1, name = "moving" .. tostring(c)})
 	
 	test.tgos = {}
 	local amout, distance = 3, 16
@@ -89,7 +76,7 @@ function test.start()
 	amout = amout * distance
 	for i = 1, amout, distance do
 		c = c +1
-		table.insert(test.tgos, test.ra1:addGO("TestGO", {posX = i +100, posY = 3, layer = 2, name = "test" .. tostring(c)}))
+		table.insert(test.tgos, test.ra1:addGO("StaticTestGO", {posX = i +100, posY = 3, layer = 2, name = "test" .. tostring(c)}))
 	end
 	
 	test.rbms = {}
@@ -98,9 +85,10 @@ function test.start()
 	amout = amout * distance
 	for i = 1, amout, distance do
 		c = c +1
-		--table.insert(test.rbms, test.ra1:addGO("RenderBenchMark", {posX = i +100, posY = 0, layer = 1, length = 1, name = "rbm_" .. tostring(c)}))
+		--table.insert(test.rbms, test.ra1:addGO("RPT", {posX = i +100, posY = 0, layer = 1, length = 1, name = "rbm_" .. tostring(c)}))
 	end
 	
+	--Moce cameras to x 100.
 	test.ra1:moveCameraTo(100, 0)
 	test.ra2:moveCameraTo(100, 0)
 	
@@ -109,19 +97,7 @@ function test.start()
 end
 
 function test.update()
-	
-	if test.isMovingLeft then
-		--test.tgo1:move(-1, 0)
-		test.moveDis = test.moveDis -1
-	else
-		--test.tgo1:move(1, 0)
-		test.moveDis = test.moveDis +1
-	end
-	if test.moveDis >= 30 or test.moveDis <= 0 then
-		test.isMovingLeft = not test.isMovingLeft
-	end
-	
-	
+	--[[
 	if test.camTestStep == 0 then
 		--empty to get sure the cam is reseted.
 		test.camTestStep = test.camTestStep +1
@@ -147,7 +123,7 @@ function test.update()
 		test.camTestStep = test.camTestStep +1
 	end
 	--os.sleep(.5)
-	
+	]]
 end
 
 function test.draw()
@@ -192,7 +168,22 @@ function test.key_pressed(s)
 	--test.ra1:rerenderAll()
 	--test.ra2:rerenderAll()
 	
+	
 	local camSpeed = 1
+	if s[4] == 16 then
+		test.ra1:moveCamera(-camSpeed, 0)
+	end 
+	if s[4] == 18 then
+		test.ra1:moveCamera(camSpeed, 0)
+	end 
+	if s[4] == 19 then
+		test.ra1:moveCamera(0, -camSpeed)
+	end 
+	if s[4] == 33 then
+		test.ra1:moveCamera(0, camSpeed)
+	end
+	
+	--[[
 	if s[4] == 32 then
 		--test.tgo1:move(1, 0)
 		test.rbm1:move(1, 0)
@@ -209,18 +200,8 @@ function test.key_pressed(s)
 		--test.tgo1:move(0, 1)
 		test.rbm1:move(0, 1)
 	end 
-	if s[4] == 16 then
-		test.ra1:moveCamera(-camSpeed, 0)
-	end 
-	if s[4] == 18 then
-		test.ra1:moveCamera(camSpeed, 0)
-	end 
-	if s[4] == 19 then
-		test.ra1:moveCamera(0, -camSpeed)
-	end 
-	if s[4] == 33 then
-		test.ra1:moveCamera(0, camSpeed)
-	end
+	]]
+	
 end
 
 function test.key_up(s)

@@ -24,6 +24,7 @@ local global = ...
 local orgPrint = print
 local frameCount = 0
 local lastFPSCheck = 0
+local dts = {}
 
 --===== Functions =====--
 
@@ -56,19 +57,23 @@ end
 
 local function update()
 	if frameCount >= global.conf.fpsCheckInterval then
-		global.fps = global.conf.fpsCheckInterval / (global.computer.uptime() - lastFPSCheck)
-		lastFPSCheck = global.computer.uptime()
 		frameCount = 0
-	else
-		frameCount = frameCount +1
 	end
+	dts[frameCount] = global.dt
+	local frameTimes = 0
+	for i, c in pairs(dts) do
+		frameTimes = frameTimes + c
+	end
+	frameCount = frameCount +1
+	global.fps = 1 / (frameTimes / #dts)
+	
 	
 	
 	--===== frame calculation =====--
 	if global.state[global.currentState].update ~= nil then	--manual check to avoid log spamming on missing update func.
 		run(global.state[global.currentState].update)
 	end
-	global.core.uh.update()
+	global.core.updateHandler.update()
 	
 	for i, ra in pairs(global.renderAreas) do
 		global.core.re.calculateRenderArea(ra)
@@ -114,11 +119,15 @@ local function std_onError(f, ...)
 	std_success = false
 	global.gpu.setForeground(0xff0000)
 	global.gpu.setBackground(0x000000)
-	print("[ERROR] in func: " .. f)
+	print("[FATAL] in func: " .. f)
 	print(...)
 	global.gpu.setForeground(0xffffff)
 	global.fatal("In func: " .. tostring(f))
 	global.fatal(...)
+	global.tbConsole:draw()
+	if global.conf.useDoubleBuffering then
+		global.gpu.drawChanges()
+	end
 end
 
 local s, m = xpcall(start, debug.traceback)

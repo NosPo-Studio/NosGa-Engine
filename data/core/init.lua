@@ -23,7 +23,7 @@ local global = args[1]
 --===== dev =====--
 local orgRequire = require
 local require = require
-if global.isDev then
+if global.conf.debug.isDev then
 	require = function(s)
 		if io.open(s .. ".lua", "r") == nil then
 			return orgRequire(s)
@@ -33,9 +33,10 @@ if global.isDev then
 	end
 end
 
+local orgPrint = print
 local print = function(...)
 	if global.conf.debug.isDev then
-		print(...)
+		orgPrint(...)
 	end
 end
 
@@ -51,7 +52,7 @@ global.computer = require("computer")
 global.keyboard = require("keyboard")
 global.serialization = require("serialization")
 global.component = require("component")
-global.core.realGPU = global.component.gpu
+global.realGPU = global.component.gpu
 global.LIP = require("libs/thirdParty/LIP")
 
 print("useDoubleBuffering: " .. tostring(global.conf.useDoubleBuffering))
@@ -64,9 +65,9 @@ global.oclrl = require("libs/oclrl").initiate(global.gpu)
 global.ocui = require("libs/ocui").initiate(global.oclrl)
 global.ocgf = require("libs/ocgf").initiate({gpu = global.gpu})
 
-local func, err = loadfile("data/core/uh.lua")
+local func, err = loadfile("data/core/updateHandler.lua")
 print("[INIT]: Loading GE: " .. tostring(func) .. " " .. tostring(err))
-global.core.uh = func(global)
+global.core.updateHandler = func(global)
 
 local func, err = loadfile("data/core/re.lua")
 print("[INIT]: Loading RE: " .. tostring(func) .. " " .. tostring(err))
@@ -95,7 +96,7 @@ func(global)
 do --load global data.
 	print("[INIT]: Loading global.")
 	local path = "/data/global"
-	global.loadData(global, path, nil, print)
+	global.loadData(global, path, nil, {log = print, warn = print})
 end
 
 if global.isDev then
@@ -115,7 +116,7 @@ global.load({
 })
 
 --===== init engine =====--
-global.core.uh.init()
+global.core.updateHandler.init()
 global.core.re.init()
 
 global.changeState(global.conf.defaultState)

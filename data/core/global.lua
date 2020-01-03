@@ -32,7 +32,7 @@ local global = {
 	currentState = "",
 	dt = 0, --deltaTime
 	lastUptime = 0,
-	fps = 0,
+	fps = -1,
 	currentFrame = 0,
 	
 	cameraPosX = 0,
@@ -73,39 +73,51 @@ local global = {
 }
 
 --===== global functions =====--
+function global.print(...)
+	local t = {...}
+	local s = tostring(t[1])
+	global.tbConsole:add(s, select(2, ...))
+	global.ocl.add(s, select(2, ...))
+	
+	if global.conf.showConsole then
+		global.tbConsole:draw()
+		
+		if global.conf.debug.isDev and global.conf.directConsoleDraw and global.conf.useDoubleBuffering then
+			global.ocui.oclrl.gpu = global.realGPU
+			global.tbConsole:draw()
+			global.ocui.oclrl.gpu = global.gpu
+		end
+	end
+end
+
 function cprint(...)
 	local t = {...}
 	local s = "[CPRINT] " .. tostring(t[1])
-	global.tbConsole:add(s, select(2, ...))
-	global.ocl.add(s, select(2, ...))
+	global.print(s, select(2, ...))
 end
 
 function global.log(...)
 	local t = {...}
 	local s = "[INFO] " .. tostring(t[1])
-	global.tbConsole:add(s, select(2, ...))
-	global.ocl.add(s, select(2, ...))
+	global.print(s, select(2, ...))
 end
 
 function global.warn(...)
 	local t = {...}
 	local s = "[WARN] " .. tostring(t[1])
-	global.tbConsole:add(s, select(2, ...))
-	global.ocl.add(s, select(2, ...))
+	global.print(s, select(2, ...))
 end
 
 function global.error(...)
 	local t = {...}
 	local s = "[ERROR] " .. tostring(t[1])
-	global.tbConsole:add(s, select(2, ...))
-	global.ocl.add(s, select(2, ...))
+	global.print(s, select(2, ...))
 end
 
 function global.fatal(...)
 	local t = {...}
 	local s = "[FATAL] " .. tostring(t[1])
-	global.tbConsole:add(s, select(2, ...))
-	global.ocl.add(s, select(2, ...))
+	global.print(s, select(2, ...))
 	global.isRunning = false
 	global.orgPrint(debug.traceback())
 end
@@ -114,30 +126,19 @@ function global.debug(...)
 	if global.isDev then
 		local t = {...}
 		local s = "[DEBUG] " .. tostring(t[1])
-		global.tbConsole:add(s, select(2, ...))
-		global.ocl.add(s, select(2, ...))
+		global.print(s, select(2, ...))
 	end
-end
-
-function global.print(...)
-	local t = {...}
-	local s = tostring(t[1])
-	global.tbConsole:add(s, select(2, ...))
-	global.ocl.add(s, select(2, ...))
 end
 
 function global.slog(...)
 	local t = {...}
 	local s = "[SINFO]: Start: " .. tostring(t[1])
-	global.tbConsole:add(s, select(2, ...))
-	global.ocl.add(s, select(2, ...))
+	global.print(s, select(2, ...))
 	for i, s in ipairs(t) do
 		local ss = global.serialization.serialize(t[i]) .. ";"
-		global.tbConsole:add(ss)
-		global.ocl.add(ss)
+		global.print(ss)
 	end
-	global.tbConsole:add("[SINFO]: End.")
-	global.ocl.add("[SINFO]: End.")
+	global.print("[SINFO]: End.")
 end
 
 function global.setConsoleSize(size)
@@ -163,13 +164,15 @@ function global.load(args)
 	return loadfile("data/core/dataLoading.lua")(args)
 end
 
-function global.loadData(target, dir, func, print, overwrite, subDirs, structured)
+function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, structured)
 	local id = 1
 	if target.info ~= nil and target.info.amout ~= nil then
 		id = target.info.amout +1
 	end
 	local path = global.shell.getWorkingDirectory() .. "/" .. dir .. "/"
-	print = print or global.log
+	logFuncs = logFuncs or {}
+	print = logFuncs.log or global.log
+	warn = logFuncs.warn or global.warn
 	subDirs = global.ut.parseArgs(subDirs, true)
 	
 	for file in global.fs.list(path) do
@@ -177,14 +180,14 @@ function global.loadData(target, dir, func, print, overwrite, subDirs, structure
 		
 		if string.sub(file, #file) == "/" then
 			if structured then
-				if target[string.sub(p, 0, #p -1)] == nil or overwrite and not structured then
-					target[string.sub(p, 0, #p -1)] = {}
-					global.loadData(target[string.sub(p, 0, #p -1)], dir .. "/" .. p, func, print, overwrite, subDirs, structured)
+				if target[string.sub(p, 0, #p -1)] == nil or target[string.sub(p, 0, #p -1)].structured == true or overwrite and not structured then
+					target[string.sub(p, 0, #p -1)] = {structured = true}
+					global.loadData(target[string.sub(p, 0, #p -1)], dir .. "/" .. p, func, logFuncs, overwrite, subDirs, structured)
 				else
 					global.error("[DLF]: Target already existing!: " .. p .. " :" .. tostring(target))
 				end
 			else
-				global.loadData(target, dir .. "/" .. p, func, print, overwrite, subDirs, structured)
+				global.loadData(target, dir .. "/" .. p, func, logFuncs, overwrite, subDirs, structured)
 			end
 		elseif target[name] == nil or overwrite then
 			local debugString = ""
@@ -197,7 +200,7 @@ function global.loadData(target, dir, func, print, overwrite, subDirs, structure
 			local suc, err = loadfile(path .. file)
 			if global.isDev then
 				if suc == nil then
-					print(debugString .. tostring(err))
+					warn("[DLF] Failed to load file: " .. dir .. "/" .. file .. ": " .. tostring(err))
 				else
 					print(debugString .. tostring(suc))
 				end

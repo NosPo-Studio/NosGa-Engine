@@ -10,18 +10,12 @@ end
 function TestGO.new(args)
 	--===== gameObject definition =====--
 	args = args or {}
-	args.sizeX = 80
-	args.sizeY = 25
+	args.sizeX = 6
+	args.sizeY = 3
 	args.gameObject = {
-		{"Sprite", texture = global.texture.background2},
+		{"BoxCollider", sx = 6, sy = 3},
+		{"Sprite", texture = global.texture.stone},
 	}
-	
-	--[[
-	for i = 0, args.length *25, 25 do
-		args.sizeX = i
-		table.insert(args.gameObject, {"Sprite", texture = global.texture.benchmarkTexture, posX = i})
-	end
-	]]
 	
 	--===== default stuff =====--
 	local this = global.core.GameObject.new(args)
@@ -30,7 +24,8 @@ function TestGO.new(args)
 	--===== init =====--
 	local pa = global.ut.parseArgs
 	
-	this.id = args.id
+	this.speed = 10
+	this.isMovingLeft = false
 	
 	
 	--===== global functions =====--
@@ -40,7 +35,7 @@ function TestGO.new(args)
 	
 	--===== default functions =====--
 	this.spawn = function(this) --will called if gameObject become spawned.
-		global.log("TestGO: spawned")
+		--global.log("TestGO: spawned")
 	end
 	
 	this.despawn = function(this) --will called if gameObject become despawned (not implemented yet).
@@ -48,21 +43,32 @@ function TestGO.new(args)
 	end
 	
 	this.start = function(this) --will called everytime a new object of the gameObject is created.
-		global.log("TestGO: start")
+		--global.log("TestGO: start")
 	end
 	
 	this.stop = function(this) --will called when gameObject object becomes deloaded (e.g. out of screen)
 		global.log("TestGO: stop")
 	end
 	
-	this.update = function(this) --will called on every game tick.
-		if this:getRA().cameraPosX +(this.id * global.resX) < -this.ngeAttributes.sizeX *3 then
-			this:destroy()
+	this.update = function(this, dt, ra) --will called on every game tick.
+		--[[
+		global.log(this:getPos())
+		local x, y = this:getPos()
+		if this.isMovingLeft then
+			this:move(-this.speed *dt, 0)
+		else
+			this:move(this.speed *dt, 0)
 		end
+		if x >= 130 then
+			this.isMovingLeft = true
+		elseif x <= 100 then
+			this.isMovingLeft = false
+		end
+		]]
 	end
 	
-	this.draw = function(this, realArea, renderArea) --will called every time the gameObject will drawed.
-		--global.log("TestGO(" .. tostring(this.ngeAttributes.name) .. "): draw: " .. tostring(renderArea.name) .. " | " .. tostring(renderArea.realArea))
+	this.draw = function(this) --will called every time the gameObject will drawed.
+		--global.log("TestGO(" .. tostring(this.ngeAttributes.name) .. "): draw")
 	end
 	
 	this.clear = function(this, acctual) --will called when the sntity graphics are removed.
