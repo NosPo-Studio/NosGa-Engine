@@ -1,5 +1,5 @@
 # The NosGa Engine
-	is a object oriented in source game engine for OpenComputers with all you need to create a 2D game.
+is a object oriented in source game engine for OpenComputers with all you need to create a 2D game.
 
 # Features
 ### Render Engine:
