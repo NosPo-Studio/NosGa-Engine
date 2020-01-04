@@ -2,6 +2,9 @@
 is a object oriented in source game engine for OpenComputers with all you need to create a 2D game.
 
 # Features
+
+More informations about the single features you can get in the wiki.
+
 ### Render Engine:
 NosGa provides a self managed multi window 2D render engine using the gpu.copy function to move the camera and sprites without rerendering the visible areas/sprites.
 Toghether with the slightly modified DoubleBuffering method (by IgorTimofeev) you get the best possible OC graphic performance with very less effort.
