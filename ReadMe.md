@@ -6,7 +6,7 @@
 NosGa provides a self managed multi window 2D render engine using the gpu.copy function to move the camera and sprites without rerendering the visible areas/sprites.
 Toghether with the slightly modified DoubleBuffering method (by IgorTimofeev) you get the best possible OC graphic performance with very less effort.
 		
-		The render engine is basicly fully functional without DoubleBuffering too (for memory intensive applications) but with lot worse performance is the most cases of course.
+The render engine is basicly fully functional without DoubleBuffering too (for memory intensive applications) but with lot worse performance is the most cases of course.
 	
 ### Asset loading:
 NosGa is loading assets like GameObjects, textures, mods etc. fully automatic at startup or just some asses groups at some point of your code.
