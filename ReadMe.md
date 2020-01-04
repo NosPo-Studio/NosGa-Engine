@@ -64,13 +64,13 @@ Image Copyright (c) 2018 Igor Timofeev
 OCIF Copyright (c) 2018 Igor Timofeev  
 Color Copyright (c) 2018   
 AdvancedLua Copyright (c) 2018 Igor Timofeev  
-DoubleBuffering (raw copy feature) Copyright (c) 2019 NosPo Studio  
-
 
 OpenComputers (OpenOS LUA shell) Copyright (c) 2013-2015 Florian "Sangar" Nücke  
-LUA shell (NosGa version) (c) 2019 NosPo Studio  
 
 LIP (ini file parser) Copyright (c) 2012 Carreras Nicolas  
+
+DoubleBuffering (raw copy feature) Copyright (c) 2019 NosPo Studio  
+LUA shell (NosGa version) (c) 2019 NosPo Studio  
 
 MIT License
 
