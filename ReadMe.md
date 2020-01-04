@@ -14,10 +14,10 @@ NosGa is loading assets like GameObjects, textures, mods etc. fully automatic at
 ### Debugging features:
 A fully implemented LUA console to get mesasnges or run LUA code at runtime.
 
-Asset reloading. You can reload spesific assed groups on keypress at runntime.
+Asset reloading: you can reload spesific assed groups on keypress at runntime.
 So you do not need to restart the whole engine anytime you change some code.
 
-Layer select. You can acticate and deactivate the visible layers for any RenderArea.
+Layer select: you can acticate and deactivate the visible layers for any RenderArea.
 Also you can make a RenderArea "silent" than it will not affect the visible GameObjects in any way.
 	
 ### Event Handling:
