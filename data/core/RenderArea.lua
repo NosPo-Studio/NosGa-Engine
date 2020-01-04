@@ -162,7 +162,7 @@ function RenderArea.new(args)
 	this.moveCamera = function(this, x, y)
 		local cmir = this.cameraMoveInstructions.raw
 		this.cameraMoveInstructions.raw.x = cmir.x +x
-		this.cameraMoveInstructions.raw.y = cmir.y +y
+		this.cameraMoveInstructions.raw.y = cmir.y -y
 	end
 	this.moveCameraTo = function(this, x, y)
 		local cmir = this.cameraMoveInstructions.raw

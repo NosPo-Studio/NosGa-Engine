@@ -21,7 +21,7 @@ local global = ...
 
 --===== shared vars =====--
 local test = {
-	
+	camSpeed = 1,
 }
 
 --===== local vars =====--
@@ -172,39 +172,6 @@ function test.key_pressed(s)
 	--test.ra2:rerenderAll()
 	
 	
-	local camSpeed = 1
-	if s[4] == 16 then
-		test.ra1:moveCamera(-camSpeed, 0)
-	end 
-	if s[4] == 18 then
-		test.ra1:moveCamera(camSpeed, 0)
-	end 
-	if s[4] == 19 then
-		test.ra1:moveCamera(0, -camSpeed)
-	end 
-	if s[4] == 33 then
-		test.ra1:moveCamera(0, camSpeed)
-	end
-	
-	--[[
-	if s[4] == 32 then
-		--test.tgo1:move(1, 0)
-		test.rbm1:move(1, 0)
-	end 
-	if s[4] == 30 then
-		--test.tgo1:move(-1, 0)
-		test.rbm1:move(-1, 0)
-	end 
-	if s[4] == 31 then
-		--test.tgo1:move(0, -1)
-		test.rbm1:move(0, -1)
-	end 
-	if s[4] == 17 then
-		--test.tgo1:move(0, 1)
-		test.rbm1:move(0, 1)
-	end 
-	]]
-	
 end
 
 function test.key_up(s)
@@ -214,6 +181,19 @@ end
 function test.touch(s)
 	--print(s[3], s[4], s[5])
 	--print(test.ra1:getPos(x, y))
+end
+
+function test.ctrl_camLeft(s, sname)
+	test.ra1:moveCamera(-test.camSpeed, 0)
+end
+function test.ctrl_camRight(s, sname)
+	test.ra1:moveCamera(test.camSpeed, 0)
+end
+function test.ctrl_camUp(s, sname)
+	test.ra1:moveCamera(0, test.camSpeed)
+end
+function test.ctrl_camDown(s, sname)
+	test.ra1:moveCamera(0, -test.camSpeed)
 end
 
 function test.ctrl_test(s, sname)

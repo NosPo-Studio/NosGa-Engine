@@ -1,20 +1,102 @@
 [INFO] [GE]: Change state to: "test".
 [INFO] [test]: Start init.
-[INFO] [DL]: Loading data groups: textures, parents, gameObjects.
+[INFO] [DL]: Loading data groups: gameObjects, parents, textures.
 [INFO] [DL]: Loading data group: textures.
-[INFO] [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 000000004935FE40
-[INFO] [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 000000003798F9C0
-[INFO] [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 0000000037996720
-[INFO] [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 00000000380270A0
-[INFO] [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0000000038024550
+[INFO] [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 000000003A4B0AC0
+[INFO] [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 000000003A374BB0
+[INFO] [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 000000003AA2DE60
+[INFO] [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 000000003A8EF5A0
+[INFO] [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 000000002CF1E800
 [INFO] [DL]: Loading data group: parents.
-[INFO] [DLF]: Loading file: data/parents/Block.lua: function: 0000000028C25F00
+[INFO] [DLF]: Loading file: data/parents/Block.lua: function: 000000003A535350
 [INFO] [DL]: Loading data group: gameObjects.
-[INFO] [DLF]: Loading file: data/gameObjects/MovingTestGO.lua: function: 0000000028B4B930
-[INFO] [DLF]: Loading file: data/gameObjects/StaticTestGO.lua: function: 0000000028B4E090
-[INFO] [DLF]: Loading file: data/gameObjects/RPT.lua: function: 0000000037F91D60
+[INFO] [DLF]: Loading file: data/gameObjects/StaticTestGO.lua: function: 000000002D5B2DF0
+[INFO] [DLF]: Loading file: data/gameObjects/RPT.lua: function: 000000003A90C640
+[INFO] [DLF]: Loading file: data/gameObjects/MovingTestGO.lua: function: 000000002CFA2290
 [INFO] [test]: init done.
 [INFO] [Global]: Adding renderArea: 1"TRA1".
 [INFO] [Global]: Adding renderArea: 2"TRA2".
 [INFO] true
-[INFO] Init done, starting program: function: 00000000379ED870
+[INFO] Init done, starting program: function: 000000003A4AB570
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: conf.
+[INFO] [DL]: Loading data groups: conf, reload, eh, states, structuredGlobal, gameObjects, uh, RenderArea, global.
+[INFO] [DL]: Reloading file: data/core/updateHandler.lua: function: 0000000051051740
+[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 000000003A4ACD80
+[INFO] [DL]: Reloading file: data/core/RenderArea.lua: function: 000000003A4ADC60
+[INFO] [DL]: Loading data group: global.
+[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 000000002CFAE840
+[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 000000003A9130E0
+[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 000000003A6C5E00
+[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 000000003A497610
+[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 000000003A49B5F0
+[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 0000000050EB2A50
+[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 000000003A8CFF20
+[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 000000003A83D0E0
+[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 000000003A8B7CF0
+[INFO] [DL]: Reloading data group: structuredGlobal.
+[INFO] [DLF]: Loading file: data/structuredGlobal/testDir//test2//test2.lua: function: 000000003A4A3F50
+[INFO] [DLF]: Loading file: data/structuredGlobal/testDir//test.lua: function: 000000003A4B0190
+[INFO] [DL]: Reloading data group: states.
+[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 000000003A6C4DD0
+[INFO] [DLF]: Loading file: data/states/test.lua: function: 000000002C6FAC40
+[INFO] [DL]: Reloading data group: gameObjects.
+[INFO] [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 000000003A913460
+[INFO] [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 000000002D5B8180
+[INFO] [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 000000002CFADAB0
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: gameObjects, parents, textures.
+[INFO] [DL]: Data group already loaded: textures.
+[INFO] [DL]: Data group already loaded: parents.
+[INFO] [DL]: Data group already loaded: gameObjects.
+[INFO] [test]: init done.
+[INFO] [Global]: Adding renderArea: 1"TRA1".
+[INFO] [Global]: Adding renderArea: 2"TRA2".
+[LUA]> global.state.test.ra1:moveCameraTo(100, 1)
+[LUA]> global.state.test.ra1:moveCameraTo(100, 2)
+[LUA]> global.state.test.ra1:moveCameraTo(100, 3)
+[INFO] --========== RELOAD STAGE ==========--
+[INFO] [DL]: Loading data groups: conf.
+[INFO] [DL]: Loading data groups: conf, parents, GameObject, uh, states, structuredGlobal, gameObjects, global, eh, textures, RenderArea, reload, mods, re.
+[INFO] [DL]: Reloading file: data/core/re.lua: function: 000000003A7ADE20
+[INFO] [DL]: Reloading file: data/core/updateHandler.lua: function: 000000003A7A94A0
+[INFO] [DL]: Reloading file: data/core/eventHandler.lua: function: 000000003A8EF140
+[INFO] [DL]: Reloading file: data/core/RenderArea.lua: function: 000000003A8ECF20
+[INFO] [DL]: Reloading file: data/core/GameObject.lua: function: 000000002CF3B9C0
+[INFO] [DL]: Reloading data group: global.
+[INFO] [DLF]: Reloading file: data/global/addRA.lua: function: 000000003AA0E2E0
+[INFO] [DLF]: Reloading file: data/global/tt.lua: function: 000000003AA30020
+[INFO] [DLF]: Reloading file: data/global/empty.lua: function: 000000003A335890
+[INFO] [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 000000003A4993D0
+[INFO] [DLF]: Reloading file: data/global/test//test.lua: function: 000000003A49FAA0
+[INFO] [DLF]: Reloading file: data/global/drawDebug.lua: function: 000000003A4A9430
+[INFO] [DLF]: Reloading file: data/global/clear.lua: function: 000000003A49FA30
+[INFO] [DLF]: Reloading file: data/global/getState.lua: function: 000000003A49B5F0
+[INFO] [DLF]: Reloading file: data/global/changeState.lua: function: 000000003A498020
+[INFO] [DL]: Reloading data group: structuredGlobal.
+[INFO] [DLF]: Loading file: data/structuredGlobal/testDir//test2//test2.lua: function: 000000002CF3DB00
+[INFO] [DLF]: Loading file: data/structuredGlobal/testDir//test.lua: function: 000000003AA0CC20
+[INFO] [DL]: Reloading data group: states.
+[INFO] [DLF]: Reloading file: data/states/test2.lua: function: 0000000050EB2AC0
+[INFO] [DLF]: Loading file: data/states/test.lua: function: 000000003A4A8D30
+[INFO] [DL]: Reloading data group: textures.
+[INFO] [DLF]: Reloading file: texturePacks/default/textures/background2.lua: function: 000000003A7AD200
+[INFO] [DLF]: Reloading file: texturePacks/default/textures/grass.lua: function: 00000000510C3E00
+[INFO] [DLF]: Reloading file: texturePacks/default/textures/stone.lua: function: 000000003A8EAB90
+[INFO] [DLF]: Reloading file: texturePacks/default/textures/player.lua: function: 000000003A7ADF00
+[INFO] [DLF]: Reloading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0000000050E10AA0
+[INFO] [DL]: Reloading data group: parents.
+[INFO] [DLF]: Reloading file: data/parents/Block.lua: function: 000000003A4AF5C0
+[INFO] [DL]: Reloading data group: gameObjects.
+[INFO] [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 000000003A6B6CB0
+[INFO] [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 000000003A4B2D50
+[INFO] [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 000000003A7BC400
+[INFO] [test]: Start init.
+[INFO] [DL]: Loading data groups: gameObjects, parents, textures.
+[INFO] [DL]: Data group already loaded: textures.
+[INFO] [DL]: Data group already loaded: parents.
+[INFO] [DL]: Data group already loaded: gameObjects.
+[INFO] [test]: init done.
+[INFO] [Global]: Adding renderArea: 1"TRA1".
+[INFO] [Global]: Adding renderArea: 2"TRA2".
+[DEBUG] [EH]: Program stopped by user.

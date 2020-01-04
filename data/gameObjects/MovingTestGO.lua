@@ -51,8 +51,6 @@ function TestGO.new(args)
 	end
 	
 	this.update = function(this, dt, ra) --will called on every game tick.
-		--[[
-		global.log(this:getPos())
 		local x, y = this:getPos()
 		if this.isMovingLeft then
 			this:move(-this.speed *dt, 0)
@@ -64,7 +62,7 @@ function TestGO.new(args)
 		elseif x <= 100 then
 			this.isMovingLeft = false
 		end
-		]]
+		
 	end
 	
 	this.draw = function(this) --will called every time the gameObject will drawed.

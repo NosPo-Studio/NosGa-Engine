@@ -65,17 +65,14 @@ SOFTWARE.
 		
 		gameObjects:
 			*Speed shouldn't be more as the texturePack size (ocgf.RigidBody).
+		
+		Console:
+			Text input is buggy sometimes (ocui?).
+		
+		RE:
+			Graphic isures on RenderArea leaving GameObjects.
 	
-	ToDo:
-		state: test:
-			Cutsource cam/go moving to his classes.
-		
-		dataLoading: 
-				All conf files in one table.
-				INI control file (see internal expected table in controls.lua).
-		
-		Rename ngeDraw etc. to ngeDraw... .
-			
+	ToDo:	
 		oclrl:
 			Add calculateSize(texture) function.
 		
@@ -84,7 +81,7 @@ SOFTWARE.
 			
 	*left over from ocCraft but still relevant somehow.
 ]]
-local version = "v0.0.32.2"
+local version = "v0.1"
 
 --===== prog start =====--
 do
