@@ -36,10 +36,10 @@ With the NosGa you easly can attach triggers to your GameObjects calling a spesi
 
 # License
 ### NosGa Engine (GPLv3)
-The NosGa Engine is a engine fork of ocCtaft (v0.1.2) <https://github.com/MisterNoNameLP/ocCraft>
+The NosGa Engine is a engine fork of ocCtaft (v0.1.2) <<https://github.com/MisterNoNameLP/ocCraft>>
 which is licensed under the GPLv3.
 
-ocCtaft Copyright (c) 2019 MisterNoNameLP
+ocCtaft Copyright (c) 2019 MisterNoNameLP  
 NosGa Engine Copyright (C) 2019-2020 NosPo Studio.
 
 This program is free software: you can redistribute it and/or modify
@@ -56,21 +56,21 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ### Third party (MIT)
-The NosGa Engine is using third party libaries for some functionalities.
+The NosGa Engine is using third party libaries for some functionalities.  
 More informations in the source files ("./libs/thirdParty/").
 
-DoubleBuffering Copyright (c) 2018 Igor Timofeev
-Image Copyright (c) 2018 Igor Timofeev
-OCIF Copyright (c) 2018 Igor Timofeev
-Color Copyright (c) 2018 
-AdvancedLua Copyright (c) 2018 Igor Timofeev
-DoubleBuffering (raw copy feature) Copyright (c) 2019 NosPo Studio
+DoubleBuffering Copyright (c) 2018 Igor Timofeev  
+Image Copyright (c) 2018 Igor Timofeev  
+OCIF Copyright (c) 2018 Igor Timofeev  
+Color Copyright (c) 2018   
+AdvancedLua Copyright (c) 2018 Igor Timofeev  
+DoubleBuffering (raw copy feature) Copyright (c) 2019 NosPo Studio  
 
 
-OpenComputers (OpenOS LUA shell) Copyright (c) 2013-2015 Florian "Sangar" Nücke
-LUA shell (NosGa version) (c) 2019 NosPo Studio
+OpenComputers (OpenOS LUA shell) Copyright (c) 2013-2015 Florian "Sangar" Nücke  
+LUA shell (NosGa version) (c) 2019 NosPo Studio  
 
-LIP (ini file parser) Copyright (c) 2012 Carreras Nicolas
+LIP (ini file parser) Copyright (c) 2012 Carreras Nicolas  
 
 MIT License
 
