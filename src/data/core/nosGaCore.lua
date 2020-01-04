@@ -89,6 +89,9 @@ local function draw()
 	global.core.re.draw()
 	
 	global.ocui:draw()
+	
+	global.drawDebug()
+	
 	if global.conf.showConsole then
 		global.tbConsole:draw()
 	end

@@ -130,8 +130,6 @@ function test.update()
 end
 
 function test.draw()
-	global.drawDebug()
-	
 	--global.slog(test.ra1.copyInstructions)
 	
 	--global.gpu:drawChanges()
