@@ -75,9 +75,21 @@ local global = {
 --===== global functions =====--
 function global.print(...)
 	local t = {...}
-	local s = tostring(t[1])
-	global.tbConsole:add(s, select(2, ...))
-	global.ocl.add(s, select(2, ...))
+	local s = ""
+	local lastIndex = 1
+	
+	for i, c in pairs(t) do		
+		if lastIndex +1 < i then
+			for count = lastIndex +1, i -1 do
+				s = s .. "nil "
+			end
+		end
+		s = s .. tostring(c) .. " "
+		lastIndex = i
+	end
+	
+	global.tbConsole:add(s)
+	global.ocl.add(s)
 	
 	if global.conf.showConsole then
 		global.tbConsole:draw()
@@ -91,50 +103,37 @@ function global.print(...)
 end
 
 function cprint(...)
-	local t = {...}
-	local s = "[CPRINT] " .. tostring(t[1])
-	global.print(s, select(2, ...))
+	global.print("[CPRINT] ", ...)
 end
 
 function global.log(...)
-	local t = {...}
-	local s = "[INFO] " .. tostring(t[1])
-	global.print(s, select(2, ...))
+	global.print("[INFO] ", ...)
 end
 
 function global.warn(...)
-	local t = {...}
-	local s = "[WARN] " .. tostring(t[1])
-	global.print(s, select(2, ...))
+	global.print("[WARN] ", ...)
 end
 
 function global.error(...)
-	local t = {...}
-	local s = "[ERROR] " .. tostring(t[1])
-	global.print(s, select(2, ...))
+	global.print("[ERROR] ", ...)
 end
 
 function global.fatal(...)
-	local t = {...}
-	local s = "[FATAL] " .. tostring(t[1])
-	global.print(s, select(2, ...))
+	global.print("[FATAL] ", ...)
 	global.isRunning = false
 	global.orgPrint(debug.traceback())
 end
 
 function global.debug(...)
 	if global.isDev then
-		local t = {...}
-		local s = "[DEBUG] " .. tostring(t[1])
-		global.print(s, select(2, ...))
+		global.print("[DEBUG] ", ...)
 	end
 end
 
 function global.slog(...)
 	local t = {...}
-	local s = "[SINFO]: Start: " .. tostring(t[1])
-	global.print(s, select(2, ...))
-	for i, s in ipairs(t) do
+	global.print("[SINFO]: Start: ", ...)
+	for i, s in ipairs(...) do
 		local ss = global.serialization.serialize(t[i]) .. ";"
 		global.print(ss)
 	end
@@ -171,8 +170,8 @@ function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, struct
 	end
 	local path = global.shell.getWorkingDirectory() .. "/" .. dir .. "/"
 	logFuncs = logFuncs or {}
-	print = logFuncs.log or global.log
-	warn = logFuncs.warn or global.warn
+	local print = logFuncs.log or global.log
+	local warn = logFuncs.warn or global.warn
 	subDirs = global.ut.parseArgs(subDirs, true)
 	
 	for file in global.fs.list(path) do

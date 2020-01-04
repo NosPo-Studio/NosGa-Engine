@@ -81,7 +81,7 @@ SOFTWARE.
 			
 	*left over from ocCraft but still relevant somehow.
 ]]
-local version = "v0.1"
+local version = "v0.1.1"
 
 --===== prog start =====--
 do
@@ -96,11 +96,6 @@ do
 	local global = func(conf)
 	global.version = version
 	global.licenseNotice = licenseNotice
-	do
-		local f = io.open("COPYING")
-		global.license = f:read("*all")
-		f:close()
-	end
 	
 	local func, err = loadfile("data/core/init.lua")
 	if conf.debug.isDev then

@@ -99,7 +99,7 @@ function test.start()
 end
 
 function test.update()
-	
+	global.log(nil, nil, "t")
 	--[[
 	if test.camTestStep == 0 then
 		--empty to get sure the cam is reseted.
