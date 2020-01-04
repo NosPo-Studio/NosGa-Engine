@@ -12,7 +12,7 @@ local nosGaConf = {
 	
 	preferModTextures = true, --if true mods can overwrite texturePack textures.
 	
-	defaultState = "test",
+	defaultState = "",
 	
 	renderLayerAmount = 5,
 	useDoubleBuffering = true, --[[ Use the third party doubleBuffering method by IgorTimofeev.
