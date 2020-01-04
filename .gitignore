@@ -1,6 +1,6 @@
 # dev files
-logs
-debug
+src/logs
+src/debug
 
 # Compiled Lua sources
 luac.out
