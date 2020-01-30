@@ -86,7 +86,7 @@ local function updateFrame(renderArea, dt)
 				global.run(go[s.name], go, s.signal, s.name)
 			end
 			
-			go:ngeUpdate(global.gameObjects, dt, renderArea)
+			go:ngeUpdate(renderArea.gameObjects, dt, renderArea)
 			uh.isUpdated[go] = true
 		end
 	end

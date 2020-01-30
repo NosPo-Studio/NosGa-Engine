@@ -40,11 +40,11 @@ end
 
 function GameObject.new(args)
 	args = args or {}
-	local this = setmetatable({}, GameObject)
+	local this = setmetatable(this or {}, GameObject)
 	
 	this.ngeAttributes = {
-		sizeX = pa(args.sizeX, 0),
-		sizeY = pa(args.sizeY, 0),
+		sizeX = pa(args.sx, args.sizeX, 0),
+		sizeY = pa(args.sy, args.sizeY, 0),
 		layer = pa(args.layer, global.conf.renderLayerAmount),
 		name = args.name,
 		
@@ -60,13 +60,15 @@ function GameObject.new(args)
 		copyAreas = {},
 	}
 	
+	args.gameObject = global.ut.parseArgs(args.components, args.gameObject) --ToDo: Completly remove args.gameObject from the code.
+	
 	if args.gameObject ~= nil then
 		this.gameObject = global.ocgf.GameObject.new(global.ocgf, {
 			dc = global.conf.debug.drawCollider,
 			dt = global.conf.debug.drawTrigger,
 			logFunc = global.log,
-			posX = args.posX,
-			posY = args.posY,
+			posX = pa(args.x, args.posX),
+			posY = pa(args.y, args.posY),
 		})
 		
 		for _, c in pairs(args.gameObject) do
@@ -77,10 +79,12 @@ function GameObject.new(args)
 			elseif c[1] == "RigidBody" then
 				this.gameObject:addRigidBody(c)
 			elseif c[1] == "Sprite" then
+				if type(c.texture) == "string" then
+					c.texture = global.texture[c.texture]
+				end
+				
 				this.gameObject:addSprite(c)
-			elseif c[1] == "ClearArea" then
-				addAreaEntry(this.ngeAttributes.clearAreas, c)
-			elseif c[1] == "CopyArea" then
+			elseif c[1] == "CopyArea" or c[1] == "ClearArea" then
 				addAreaEntry(this.ngeAttributes.clearAreas, c)
 				if global.conf.forceSmartMove or global.conf.useSmartMove and global.conf.useDoubleBuffering then
 					addAreaEntry(this.ngeAttributes.copyAreas, c)
@@ -89,7 +93,7 @@ function GameObject.new(args)
 		end
 	end
 	
-	if this.ngeAttributes.sizeX > 0 and this.ngeAttributes.sizeY > 0 then
+	if args.noSizeArea ~= true and this.ngeAttributes.sizeX > 0 and this.ngeAttributes.sizeY > 0 then
 		table.insert(this.ngeAttributes.clearAreas, {posX = 0, posY = 0, sizeX = this.ngeAttributes.sizeX, sizeY = this.ngeAttributes.sizeY})
 	end
 	
@@ -109,11 +113,28 @@ function GameObject.new(args)
 	this.addForce = function(this, x, y, maxSpeed)
 		this.gameObject:addForce(x, y, maxSpeed)
 	end
+	this.addSpeed = function(this, x, y, maxSpeed) --ToDo / WIP: untested. Outsource to ocgf.
+		local x2, y2 = this:getSpeed()
+		if x > 0 then
+			x = math.max(x + x2, maxSpeed)
+		else
+			x = math.min(x + x2, -maxSpeed)
+		end
+		if y > 0 then
+			y = math.max(y + y2, maxSpeed)
+		else
+			y = math.min(y + y2, -maxSpeed)
+		end
+		this.gameObject:setSpeed(x, -y)
+	end
 	this.setSpeed = function(this, x, y)
 		this.gameObject:setSpeed(x, -y)
 	end
 	this.getPos = function(this)
 		return math.floor(this.gameObject.posX +.5), math.floor(this.gameObject.posY +.5)
+	end
+	this.getScreenPos = function(this)--ToDo: untested.
+		return this:getRA():getGOPos(this)
 	end
 	this.getRealLastPos = function(this)
 		return math.floor(this.gameObject.lastPosX +.5), math.floor(this.gameObject.lastPosY +.5)
@@ -121,7 +142,7 @@ function GameObject.new(args)
 	this.getLastPos = function(this)
 		return math.floor(this.ngeAttributes.lastFramePosX +.5), math.floor(this.ngeAttributes.lastFramePosY +.5)
 	end
-	this.getSize = function(this)
+	this.getSize = function(this) --ToDo: generate real size dependent on the ClearAreas.
 		return this.ngeAttributes.sizeX, this.ngeAttributes.sizeY
 	end
 	this.getRA = function(this)
@@ -132,6 +153,9 @@ function GameObject.new(args)
 				return ra.parent
 			end
 		end
+	end
+	this.getName = function(this)
+		return this.ngeAttributes.name
 	end
 	this.getOffset = function(this, ra)
 		return math.floor(ra.posX + ra.cameraPosX +.5), math.floor(ra.posY + ra.cameraPosY +.5)
@@ -148,8 +172,13 @@ function GameObject.new(args)
 		global.run(this.start, this)
 	end
 	this.ngeUpdate = function(this, gameObjects, dt, ra) --parent func
-		this.gameObject:updatePhx(gameObjects, dt)
-		this.gameObject:update(gameObjects)
+		local ocgfGameObjects = {}
+		for i, go in pairs(gameObjects) do
+			table.insert(ocgfGameObjects, go.gameObject)
+		end
+		
+		this.gameObject:updatePhx(ocgfGameObjects, dt)
+		this.gameObject:update(ocgfGameObjects)
 		global.run(this.update, this, dt, ra)
 		
 		local x, y = this:getPos()
@@ -186,9 +215,9 @@ function GameObject.new(args)
 				end
 			end
 		elseif renderArea.realArea == nil then
-			this.gameObject:draw(offsetX, offsetY, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1})
+			this.gameObject:draw(offsetX, offsetY, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1}, global.dt, global.backgroundColor)
 		else
-			this.gameObject:draw(offsetX, offsetY, {realArea.posX, realArea.posX + realArea.sizeX -1, realArea.posY, realArea.posY + realArea.sizeY -1})
+			this.gameObject:draw(offsetX, offsetY, {realArea.posX, realArea.posX + realArea.sizeX -1, realArea.posY, realArea.posY + realArea.sizeY -1}, global.dt, global.backgroundColor)
 		end
 		
 		global.run(this.draw, this, realArea, renderArea)

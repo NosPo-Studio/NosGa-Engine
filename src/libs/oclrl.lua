@@ -17,7 +17,13 @@
     along with this library.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-local oclrl = {version = "v1.4.2c(debug)"} --OpenComputersGraphicLibary
+--[[ToDo:
+	
+	Bugs:
+		Animation clear not working.
+
+]]
+local oclrl = {version = "v1.4.2d"} --OpenComputersGraphicLibary
 oclrl.__index = oclrl
 
 
@@ -437,7 +443,7 @@ function oclrl.Animation.new(oclrl, animation, args) --no oclrl...
 	this.animation = animation
 	this.speed = args.speed or 1
 	this.useDt = parseArgs(args.dt, true)
-	this.clear = parseArgs(args.clear, true)
+	this.clearTexture = parseArgs(args.clear, true)
 	this.background = args.background
 	this.halt = parseArgs(args.halt, false)
 	this.tmpHalt = false
@@ -450,7 +456,10 @@ function oclrl.Animation.new(oclrl, animation, args) --no oclrl...
 end
 
 function oclrl.Animation.draw(this, posX, posY, dt, clear, background, area)
-	if parseArgs(clear, this.clear) then
+	
+	cprint(3, posX, posY)
+	
+	if parseArgs(clear, this.clearTexture) then
 		background = parseArgs(background, this.background)
 		if background == nil or type(background) == "number" then
 			this:clearBlack(posX, posY, false, background, area)

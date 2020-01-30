@@ -35,13 +35,6 @@ local global = {
 	fps = -1,
 	currentFrame = 0,
 	
-	cameraPosX = 0,
-	cameraPosY = 0,
-	lastCameraPosX = 0, --regenerated every update.
-	lastCameraPosY = 0,--regenerated every update.
-	cameraSubPosX = 0,
-	cameraSubPosY = 0,
-	
 	backgroundColor = 0x00409f,
 	
 	resX = 0,
@@ -66,13 +59,16 @@ local global = {
 	
 	core = {}, --All core parents.
 	gameObjects = {}, --actual generated/calculated/rendered gameObjects.
-	objectMatrix = {}, --a 4D matrix of the gameObjects. {layer, x, y, id}
 	renderAreas = {},
 	alreadyLoaded = {},
 	loadedMods = {},
 }
 
 --===== global functions =====--
+function nge_getGlobal()
+	return global
+end
+
 function global.print(...)
 	local t = {...}
 	local s = ""

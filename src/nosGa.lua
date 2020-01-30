@@ -58,6 +58,9 @@ SOFTWARE.
 
 --[[NosGa:
 	Bugs:
+		Animations:
+			Not working. Created animations are the GameObject.
+			
 		EH:
 			Worse performance/freeze on signal overflow.
 		
@@ -78,10 +81,12 @@ SOFTWARE.
 		
 		Add dynamic texture color system (oclrl/ocgf).
 			
+		GameObject/RE:
+			Replayce CopyArea with ClearArea .
 			
 	*left over from ocCraft but still relevant somehow.
 ]]
-local version = "v0.1.2"
+local version = "v0.1.3"
 
 --===== prog start =====--
 do

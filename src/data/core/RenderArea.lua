@@ -39,11 +39,10 @@ function RenderArea.new(args)
 	local this = setmetatable({}, RenderArea)
 	
 	local pa = global.ut.parseArgs
-	
 	this.posX = pa(args.x, args.posX)
 	this.posY = pa(args.y, args.posY)
-	this.sizeX = pa(args.sizeX, 0)
-	this.sizeY = pa(args.sizeY, 0)
+	this.sizeX = pa(args.sx, args.sizeX, 0)
+	this.sizeY = pa(args.sy, args.sizeY, 0)
 	this.layer = pa(args.layer, global.conf.renderLayerAmount)
 	this.silent = pa(args.silent, false) --if true the RA is not updating gameObjects.
 	this.name = tostring(args.name)
@@ -55,7 +54,7 @@ function RenderArea.new(args)
 	this.layerBlacklist = pa(args.lbl, args.layerBlacklist, {})
 	this.drawBorders = pa(args.drawBorders, false)
 	this.borderColor = pa(args.borderColor, 0xFF69B4)
-	this.narrowUpdateExpansion = pa(args.nue, narrowUpdateExpansion, global.conf.narrowUpdateExpansion)
+	this.narrowUpdateExpansion = pa(args.nue, args.narrowUpdateExpansion, global.conf.narrowUpdateExpansion)
 	
 	this.parent = args.parent
 	this.gameObjects = {}
@@ -121,7 +120,8 @@ function RenderArea.new(args)
 					}
 				end
 				
-				global.run(this.gameObjects[id].spawn)
+				--global.run(this.gameObjects[id].spawn)
+				global.run(this.gameObjects[id].start)
 				return this.gameObjects[id]
 			end
 		end
@@ -144,15 +144,12 @@ function RenderArea.new(args)
 				global.core.re.checkOverlapping(c, c.gameObjects[id], c.gameObjects[id].ngeAttributes.layer)
 			end
 			
-			global.run(this.gameObjects[id].despawn)
+			--global.run(this.gameObjects[id].despawn)
+			global.run(this.gameObjects[id].stop)
 			
 			this.gameObjects[id] = nil
 		end
 	end
-	this.updatePos = function(this, gameObject)
-		gameObject.ngeAttributes.hasMoved = true
-	end
-	
 	this.move = function(this, x, y)
 		
 	end
@@ -188,11 +185,11 @@ function RenderArea.new(args)
 	this.getRealFOV = function(this)
 		return this.posX, this.posX + this.sizeX, this.posY, this.posY + this.sizeY
 	end
+	this.getPixelPos = function(this, x, y) --returns the renderArea pos from the screen pixel pos.
+		return x - this.posX - this.cameraPosX, y - this.posY - this.cameraPosY
+	end
 	this.getGOPos = function(this, go) --returns the pos on the screen.
 		return go.gameObject.posX + this.posX + this.cameraPosX, go.gameObject.posY + this.posY + this.cameraPosY
-	end
-	this.getPos = function(this, x, y) --returns the renderArea pos from the screen pixel pos.
-		return x - this.posX - this.cameraPosX, y - this.posY - this.cameraPosY
 	end
 	
 	this.resetCMI = function(this)

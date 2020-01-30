@@ -697,6 +697,7 @@ function OCUI.TextInput.inputManager(this)
 			elseif inputCheck(m.pos1, code) then
 				RSC()
 			elseif inputCheck(m.endKey, code) then
+				RSC()
 				MoveCursor(#this.text)
 			elseif inputCheck(m.back, code) then
 				if #this.text > 0 and this.cursorPosition > 1 then

@@ -1,7 +1,8 @@
 # NosGa Engine
 The NosGa (NonsenseGame) Engine is a object oriented in source game engine for OpenComputers with all you need to create a 2D game.
-The engine is in a early state of development so thre are some bugs left over as well as improvement potential of course but it sould be in a usable state right now.
+The engine is in a very early state of development so thre are some bugs left over as well as improvement potential of course but it sould be in a usable state right now.
 New features will come at the point there are needed to realize projects in the engine.
+It is currently not testet in pratice but will be in the near future.
 
 # Features
 
@@ -33,6 +34,12 @@ NosGa proides a very simple physic engine with BoxColliders and RigidBodys but t
 	
 ### Trigger:
 With the NosGa you easly can attach triggers to your GameObjects calling a spesific function if it is in contact with oher triggers and/or colliders (dependent on the settings).
+
+# Personal dev note.
+This is a one man project __right now__. I am still learning programming and this is the biggest and most complex project I have worked on yet.
+So there is deviantly some optimization potential of all kind in some parts of the source code.
+If someone has suggestions/tipps how I could make things better I am always open for that as well as for own work on the engine.
+So if somone want to contribute something to the engine I probably will merge it to the master branch if wanted.
 
 # License
 ### NosGa Engine (GPLv3)
