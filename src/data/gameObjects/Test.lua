@@ -11,28 +11,42 @@ function TestGO.new(args)
 	--===== gameObject definition =====--
 	args = args or {}
 	args.sizeX = 6
-	args.sizeY = 3
+	args.sizeY = 6
 	args.gameObject = {
-		{"BoxCollider", sx = 6, sy = 3},
-		{"Sprite", texture = global.texture.stone},
+		--{"Sprite", texture = global.texture.player.right},
+		--{"Sprite", texture = global.texture.grass},
+		{"CopyArea", x = 0, y = 0, sx = args.sizeX, sy = args.sizeY},
 	}
 	
-	global.log(args.sizeX)
-	
 	--===== default stuff =====--
-	local this = global.core.GameObject.new(args)
+	local this = global.core.GameObject.new(this, args)
 	this = setmetatable(this, TestGO)
 	
 	--===== init =====--
 	local pa = global.ut.parseArgs
 	
-	this.speed = 10
-	this.isMovingLeft = false
+	this.gameObject:addBoxTrigger({
+		sx = 6, 
+		sy = 3,
+		
+		lf = function(collider, go, selfCall)
+			--global.log(global.currentFrame, this:getName(), this, collider, go, selfCall)
+		end
+	})
+	
+	this.gameObject:addSprite({texture = global.texture.player.right})
 	
 	
 	--===== global functions =====--
-	this.test = function()
-		global.log("GG")
+	this.ctrl_left_key_pressed = function(this)
+		if this:getName() == "test1" then
+			this:move(-1, 0)
+		end
+	end
+	this.ctrl_right_key_pressed = function(this)
+		if this:getName() == "test1" then
+			this:move(1, 0)
+		end
 	end
 	
 	--===== default functions =====--
@@ -45,7 +59,7 @@ function TestGO.new(args)
 	end
 	
 	this.start = function(this) --will called everytime a new object of the gameObject is created.
-		--global.log("TestGO: start")
+		global.log("TestGO: start")
 	end
 	
 	this.stop = function(this) --will called when gameObject object becomes deloaded (e.g. out of screen)
@@ -53,18 +67,7 @@ function TestGO.new(args)
 	end
 	
 	this.update = function(this, dt, ra) --will called on every game tick.
-		local x, y = this:getPos()
-		if this.isMovingLeft then
-			this:move(-this.speed *dt, 0)
-		else
-			this:move(this.speed *dt, 0)
-		end
-		if x >= 130 then
-			this.isMovingLeft = true
-		elseif x <= 100 then
-			this.isMovingLeft = false
-		end
-		
+		--global.log("TestGO2: update: ", this:getPos())
 	end
 	
 	this.draw = function(this) --will called every time the gameObject will drawed.
@@ -72,7 +75,17 @@ function TestGO.new(args)
 	end
 	
 	this.clear = function(this, acctual) --will called when the sntity graphics are removed.
-		--global.log("TestGO: clear")
+		--[[
+		global.log("TestGO: clear")
+		
+		for ra in pairs(this.ngeAttributes.responsibleRenderAreas) do
+			for i, c in pairs(ra.toClear) do
+				for i, c in pairs(c) do
+					global.log(i, c)
+				end
+			end
+		end
+		]]
 	end
 	
 	this.activate = function(this) --will called when the gameObject get activated by player or signal (not implemented yet).

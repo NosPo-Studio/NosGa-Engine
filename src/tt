@@ -1,0 +1,1 @@
+global.state.test.test1.gameObject:getSprites()[1].animation:draw(50, 10)

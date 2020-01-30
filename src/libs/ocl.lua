@@ -19,7 +19,7 @@
 
 local ocl = { version = "v1.1",
 	conf = {
-		logFile = "logs/occ.log",
+		logFile = "logs/nosGa.log",
 		backups = false,
 	},
 	

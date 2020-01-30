@@ -1,0 +1,412 @@
+[INFO]  [GE]: Change state to: "stateTemplate". 
+[INFO]  [stateTemplate]: init start. 
+[INFO]  [DL]: Loading data groups: mods, textures, parents, gameObjects. 
+[INFO]  [DL]: Loading data group: textures. 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 0000000038F79C90 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0000000039D8FCF0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 000000003978C110 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0000000039835C20 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/exampleTexture.lua: function: 00000000397BD250 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 00000000396843D0 
+[INFO]  [DL]: Loading data group: parents. 
+[INFO]  [DLF]: Loading file: data/parents/Block.lua: function: 00000000489CA790 
+[INFO]  [DL]: Loading data group: gameObjects. 
+[INFO]  [DLF]: Loading file: data/gameObjects/RPT.lua: function: 000000002B9B8070 
+[INFO]  [DLF]: Loading file: data/gameObjects/GameObjectTemplate.lua: function: 000000002B6371E0 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test.lua: function: 0000000039185BA0 
+[INFO]  [DLF]: Loading file: data/gameObjects/StaticTestGO.lua: function: 0000000039189FE0 
+[INFO]  [DLF]: Loading file: data/gameObjects/MovingTestGO.lua: function: 0000000039185040 
+[INFO]  [stateTemplate]: init done. 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: states, reload, GameObject, re, conf, gameObjects. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 000000002B4EE370 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0000000048CF2BB0 
+[INFO]  [DL]: Reloading data group: states. 
+[INFO]  [DLF]: Reloading file: data/states/test2.lua: function: 00000000391857B0 
+[INFO]  [DLF]: Reloading file: data/states/test.lua: function: 0000000039189FE0 
+[INFO]  [DLF]: Loading file: data/states/stateTemplate.lua: function: 00000000397D4C70 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0000000039695F20 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0000000048AD2A50 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0000000048AA29F0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 000000002B9B5830 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0000000048AA1D40 
+[INFO]  [stateTemplate]: init start. 
+[INFO]  [DL]: Loading data groups: mods, textures, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [stateTemplate]: init done. 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: states, reload, GameObject, re, conf, gameObjects. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 000000002B8EA760 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 00000000397D55A0 
+[INFO]  [DL]: Reloading data group: states. 
+[INFO]  [DLF]: Reloading file: data/states/test2.lua: function: 0000000039188680 
+[INFO]  [DLF]: Reloading file: data/states/test.lua: function: 0000000048AD1E80 
+[INFO]  [DLF]: Loading file: data/states/stateTemplate.lua: function: 000000002B3E19D0 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 00000000396EED50 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 000000003975B280 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0000000039459030 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 00000000489ABD80 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 000000002B9BDEF0 
+[INFO]  [stateTemplate]: init start. 
+[INFO]  [DL]: Loading data groups: mods, textures, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [stateTemplate]: init done. 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: states, reload, GameObject, re, conf, gameObjects. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0000000039525050 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0000000048CF1D40 
+[INFO]  [DL]: Reloading data group: states. 
+[INFO]  [DLF]: Reloading file: data/states/test2.lua: function: 000000002B406EC0 
+[INFO]  [DLF]: Reloading file: data/states/test.lua: function: 000000002B4EDE30 
+[INFO]  [DLF]: Loading file: data/states/stateTemplate.lua: function: 000000002B6F2470 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0000000039A92B00 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 000000002B4F2200 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 00000000398DE4E0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 00000000392294D0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 000000002B8A8520 
+[INFO]  [stateTemplate]: init start. 
+[INFO]  [DL]: Loading data groups: mods, textures, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [stateTemplate]: init done. 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: states, reload, GameObject, re, conf, gameObjects. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 00000000485D2F20 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0000000038F73B70 
+[INFO]  [DL]: Reloading data group: states. 
+[INFO]  [DLF]: Reloading file: data/states/test2.lua: function: 0000000039952EF0 
+[INFO]  [DLF]: Reloading file: data/states/test.lua: function: 000000002B9C3FA0 
+[INFO]  [DLF]: Loading file: data/states/stateTemplate.lua: function: 0000000039186770 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 000000002B406050 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 000000002B426E70 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0000000048CE6830 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 000000002B9BB250 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0000000039A92860 
+[INFO]  [stateTemplate]: init start. 
+[INFO]  [DL]: Loading data groups: mods, textures, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [stateTemplate]: init done. 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: states, reload, GameObject, re, conf, gameObjects. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 00000000392E7580 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0000000039DD7A00 
+[INFO]  [DL]: Reloading data group: states. 
+[INFO]  [DLF]: Reloading file: data/states/test2.lua: function: 000000002B4268C0 
+[INFO]  [DLF]: Reloading file: data/states/test.lua: function: 0000000048AA2830 
+[INFO]  [DLF]: Loading file: data/states/stateTemplate.lua: function: 000000002B409BD0 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 000000002B9B58A0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 000000003918C4A0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0000000038F75AF0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0000000039188140 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 000000002B9C2AA0 
+[INFO]  [stateTemplate]: init start. 
+[INFO]  [DL]: Loading data groups: mods, textures, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [stateTemplate]: init done. 
+[INFO]  3460 got1 
+[INFO]  3460 got1 
+[INFO]  3461 got1 
+[INFO]  3461 got1 
+[INFO]  3462 got1 
+[INFO]  3462 got1 
+[INFO]  3463 got1 
+[INFO]  3463 got1 
+[INFO]  3464 got1 
+[INFO]  3464 got1 
+[INFO]  3465 got1 
+[INFO]  3465 got1 
+[INFO]  3466 got1 
+[INFO]  3466 got1 
+[INFO]  3467 got1 
+[INFO]  3467 got1 
+[INFO]  3468 got1 
+[INFO]  3468 got1 
+[INFO]  3469 got1 
+[INFO]  3469 got1 
+[INFO]  3470 got1 
+[INFO]  3470 got1 
+[INFO]  3471 got1 
+[INFO]  3471 got1 
+[INFO]  3472 got1 
+[INFO]  3472 got1 
+[INFO]  3473 got1 
+[INFO]  3473 got1 
+[INFO]  3474 got1 
+[INFO]  3474 got1 
+[INFO]  3475 got1 
+[INFO]  3475 got1 
+[INFO]  3476 got1 
+[INFO]  3476 got1 
+[INFO]  3477 got1 
+[INFO]  3477 got1 
+[INFO]  3478 got1 
+[INFO]  3478 got1 
+[INFO]  3479 got1 
+[INFO]  3479 got1 
+[INFO]  3480 got1 
+[INFO]  3480 got1 
+[INFO]  3481 got1 
+[INFO]  3481 got1 
+[INFO]  3482 got1 
+[INFO]  3482 got1 
+[INFO]  3483 got1 
+[INFO]  3483 got1 
+[INFO]  3484 got1 
+[INFO]  3484 got1 
+[INFO]  3485 got1 
+[INFO]  3485 got1 
+[INFO]  3486 got1 
+[INFO]  3486 got1 
+[INFO]  3487 got1 
+[INFO]  3487 got1 
+[INFO]  3541 got1 
+[INFO]  3541 got1 
+[INFO]  3542 got1 
+[INFO]  3542 got1 
+[INFO]  3543 got1 
+[INFO]  3543 got1 
+[INFO]  3544 got1 
+[INFO]  3544 got1 
+[INFO]  3545 got1 
+[INFO]  3545 got1 
+[INFO]  3546 got1 
+[INFO]  3546 got1 
+[INFO]  3547 got1 
+[INFO]  3547 got1 
+[INFO]  3548 got1 
+[INFO]  3548 got1 
+[INFO]  3549 got1 
+[INFO]  3549 got1 
+[INFO]  3550 got1 
+[INFO]  3550 got1 
+[INFO]  3551 got1 
+[INFO]  3551 got1 
+[INFO]  3552 got1 
+[INFO]  3552 got1 
+[INFO]  3553 got1 
+[INFO]  3553 got1 
+[INFO]  3554 got1 
+[INFO]  3554 got1 
+[INFO]  3578 got1 
+[INFO]  3578 got1 
+[INFO]  3579 got1 
+[INFO]  3579 got1 
+[INFO]  3580 got1 
+[INFO]  3580 got1 
+[INFO]  3581 got1 
+[INFO]  3581 got1 
+[INFO]  3582 got1 
+[INFO]  3582 got1 
+[INFO]  3583 got1 
+[INFO]  3583 got1 
+[INFO]  3584 got1 
+[INFO]  3584 got1 
+[INFO]  3585 got1 
+[INFO]  3585 got1 
+[INFO]  3586 got1 
+[INFO]  3586 got1 
+[INFO]  3587 got1 
+[INFO]  3587 got1 
+[INFO]  3588 got1 
+[INFO]  3588 got1 
+[INFO]  3589 got1 
+[INFO]  3589 got1 
+[INFO]  3590 got1 
+[INFO]  3590 got1 
+[INFO]  3591 got1 
+[INFO]  3591 got1 
+[INFO]  3592 got1 
+[INFO]  3592 got1 
+[INFO]  3593 got1 
+[INFO]  3593 got1 
+[INFO]  3594 got1 
+[INFO]  3594 got1 
+[INFO]  3595 got1 
+[INFO]  3595 got1 
+[INFO]  3596 got1 
+[INFO]  3596 got1 
+[INFO]  3597 got1 
+[INFO]  3597 got1 
+[INFO]  3598 got1 
+[INFO]  3598 got1 
+[INFO]  3599 got1 
+[INFO]  3599 got1 
+[INFO]  3600 got1 
+[INFO]  3600 got1 
+[INFO]  3601 got1 
+[INFO]  3601 got1 
+[INFO]  3602 got1 
+[INFO]  3602 got1 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: states, reload, GameObject, re, conf, gameObjects. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 000000002B9B8F50 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0000000039A91360 
+[INFO]  [DL]: Reloading data group: states. 
+[INFO]  [DLF]: Reloading file: data/states/test2.lua: function: 0000000039185200 
+[INFO]  [DLF]: Reloading file: data/states/test.lua: function: 00000000391892C0 
+[INFO]  [DLF]: Loading file: data/states/stateTemplate.lua: function: 0000000048CE70F0 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 00000000391BC250 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 00000000397D3700 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0000000039DD6B90 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 000000003990EED0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 000000002B9C39F0 
+[INFO]  [stateTemplate]: init start. 
+[INFO]  [DL]: Loading data groups: mods, textures, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [stateTemplate]: init done. 
+[INFO]  3667 got1 
+[INFO]  3667 got2 
+[INFO]  3668 got1 
+[INFO]  3668 got2 
+[INFO]  3669 got1 
+[INFO]  3669 got2 
+[INFO]  3670 got1 
+[INFO]  3670 got2 
+[INFO]  3671 got1 
+[INFO]  3671 got2 
+[INFO]  3672 got1 
+[INFO]  3672 got2 
+[INFO]  3673 got1 
+[INFO]  3673 got2 
+[INFO]  3674 got1 
+[INFO]  3674 got2 
+[INFO]  3675 got1 
+[INFO]  3675 got2 
+[INFO]  3676 got1 
+[INFO]  3676 got2 
+[INFO]  3677 got1 
+[INFO]  3677 got2 
+[INFO]  3678 got1 
+[INFO]  3678 got2 
+[INFO]  3679 got1 
+[INFO]  3679 got2 
+[INFO]  3680 got1 
+[INFO]  3680 got2 
+[INFO]  3681 got1 
+[INFO]  3681 got2 
+[INFO]  3682 got1 
+[INFO]  3682 got2 
+[INFO]  3683 got1 
+[INFO]  3683 got2 
+[INFO]  3684 got1 
+[INFO]  3684 got2 
+[INFO]  3685 got1 
+[INFO]  3685 got2 
+[INFO]  3686 got1 
+[INFO]  3686 got2 
+[INFO]  3727 got1 
+[INFO]  3727 got2 
+[INFO]  3728 got1 
+[INFO]  3728 got2 
+[INFO]  3729 got1 
+[INFO]  3729 got2 
+[INFO]  3730 got1 
+[INFO]  3730 got2 
+[INFO]  3731 got1 
+[INFO]  3731 got2 
+[INFO]  3732 got1 
+[INFO]  3732 got2 
+[INFO]  3733 got1 
+[INFO]  3733 got2 
+[INFO]  3734 got1 
+[INFO]  3734 got2 
+[INFO]  3735 got1 
+[INFO]  3735 got2 
+[INFO]  3736 got1 
+[INFO]  3736 got2 
+[INFO]  3737 got1 
+[INFO]  3737 got2 
+[INFO]  3738 got1 
+[INFO]  3738 got2 
+[INFO]  3739 got1 
+[INFO]  3739 got2 
+[INFO]  3740 got1 
+[INFO]  3740 got2 
+[INFO]  3741 got1 
+[INFO]  3741 got2 
+[INFO]  3742 got1 
+[INFO]  3742 got2 
+[INFO]  3743 got1 
+[INFO]  3743 got2 
+[INFO]  3744 got1 
+[INFO]  3744 got2 
+[INFO]  3745 got1 
+[INFO]  3745 got2 
+[INFO]  3746 got1 
+[INFO]  3746 got2 
+[INFO]  3747 got1 
+[INFO]  3747 got2 
+[INFO]  3748 got1 
+[INFO]  3748 got2 
+[INFO]  3749 got1 
+[INFO]  3749 got2 
+[INFO]  3750 got1 
+[INFO]  3750 got2 
+[INFO]  3751 got1 
+[INFO]  3751 got2 
+[INFO]  3752 got1 
+[INFO]  3752 got2 
+[INFO]  3753 got1 
+[INFO]  3753 got2 
+[INFO]  3754 got1 
+[INFO]  3754 got2 
+[INFO]  3755 got1 
+[INFO]  3755 got2 
+[INFO]  3756 got1 
+[INFO]  3756 got2 
+[INFO]  3757 got1 
+[INFO]  3757 got2 
+[INFO]  3758 got1 
+[INFO]  3758 got2 
+[INFO]  3759 got1 
+[INFO]  3759 got2 
+[INFO]  3760 got1 
+[INFO]  3760 got2 
+[INFO]  3761 got1 
+[INFO]  3761 got2 
+[INFO]  3762 got1 
+[INFO]  3762 got2 
+[INFO]  3827 got1 
+[INFO]  3827 got2 
+[INFO]  3828 got1 
+[INFO]  3828 got2 
+[INFO]  3829 got1 
+[INFO]  3829 got2 
+[INFO]  3830 got1 
+[INFO]  3830 got2 
+[INFO]  3831 got1 
+[INFO]  3831 got2 
+[INFO]  3832 got1 
+[INFO]  3832 got2 
+[INFO]  3833 got1 
+[INFO]  3833 got2 
+[INFO]  3834 got1 
+[INFO]  3834 got2 
+[INFO]  3835 got1 
+[INFO]  3835 got2 
+[INFO]  3836 got1 
+[INFO]  3836 got2 
+[DEBUG]  [EH]: Program stopped by user. 

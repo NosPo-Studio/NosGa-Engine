@@ -7,15 +7,15 @@ local computer = require("computer")
 local event = require("event")
 local term = require("term")
 local gpu = component.gpu
-local ocgf = dofile("libs/ocgf.lua")
 local oclrl = dofile("libs/oclrl.lua").initiate(gpu)
+local ocgf = dofile("libs/ocgf.lua").initiate({oclrl = oclrl})
 local ocui = dofile("libs/ocui.lua").initiate(oclrl)
 
 --===== Variables =====--
 local orgPrint = print
 local textures = {
 	test = dofile("texturePacks/default/textures/player.lua"),
-	test2 = dofile("texturePacks/default/textures/dirt.lua"),
+	test2 = dofile("texturePacks/default/textures/grass.lua"),
 }
 local animation = dofile("debug/testAnimation.lua")
 local animation2 = dofile("debug/testAnimation2.lua")

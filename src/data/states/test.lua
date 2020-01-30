@@ -22,6 +22,7 @@ local global = ...
 --===== shared vars =====--
 local test = {
 	camSpeed = 1,
+	pause = false,
 }
 
 --===== local vars =====--
@@ -38,7 +39,8 @@ function test.init()
 	--===== debug =====--
 	
 	--===== debug end =====--
-	
+	global.oclrl = dofile("libs/oclrl.lua").initiate(global.gpu)
+	global.ocgf = dofile("libs/ocgf.lua").initiate({gpu = global.gpu})
 	
 	global.load({
 		toLoad = {
@@ -64,10 +66,10 @@ function test.start()
 		name = "TRA1", 
 		drawBorders = true,
 	})
-	test.ra2 = global.addRA({posX = 50, posY = 5, sizeX = 40, sizeY = 12, name = "TRA2", drawBorders = true, parent = test.ra1})
+	--test.ra2 = global.addRA({posX = 50, posY = 5, sizeX = 40, sizeY = 12, name = "TRA2", drawBorders = true, parent = test.ra1})
 	
 	--Creating some GameObjects in the same scene.
-	test.tgo1 = test.ra1:addGO("MovingTestGO", {posX = 2 +100, posY = 5, layer = 3, name = "test1"})
+	--test.tgo1 = test.ra1:addGO("MovingTestGO", {posX = 2 +100, posY = 5, layer = 3, name = "test1"})
 	test.rbm1 = test.ra1:addGO("RPT", {posX = 102, posY = 0, layer = 1, length = 1, name = "moving" .. tostring(c)})
 	
 	test.tgos = {}
@@ -76,7 +78,7 @@ function test.start()
 	amout = amout * distance
 	for i = 1, amout, distance do
 		c = c +1
-		table.insert(test.tgos, test.ra1:addGO("StaticTestGO", {posX = i +100, posY = 3, layer = 2, name = "test" .. tostring(c)}))
+		--table.insert(test.tgos, test.ra1:addGO("StaticTestGO", {posX = i +100, posY = 3, layer = 2, name = "test" .. tostring(c)}))
 	end
 	
 	test.rbms = {}
@@ -88,18 +90,34 @@ function test.start()
 		--table.insert(test.rbms, test.ra1:addGO("RPT", {posX = i +100, posY = 0, layer = 1, length = 1, name = "rbm_" .. tostring(c)}))
 	end
 	
+	
+	--test.test1 = test.ra1:addGO("Test", {posX = 2 +100, posY = 5, layer = 3, name = "test1"})
+	--test.test2 = test.ra1:addGO("Test", {posX = 20 +100, posY = 5, layer = 3, name = "test2"})
+	--test.test3 = test.ra1:addGO("Test", {posX = 20 +100, posY = 1, layer = 3, name = "test3"})
+	
+	--[[Bug:
+		Later created animations are the GameObject.
+		Why?
+	]]
+	
 	--Moce cameras to x 100.
 	test.ra1:moveCameraTo(100, 0)
-	test.ra2:moveCameraTo(100, 0)
-	
-	test.rbm1:move(-3.2, 0)
+	--test.ra2:moveCameraTo(100, 0)
 	
 	--===== debug end =====--
 	
 end
 
-function test.update()
-	global.log(nil, nil, "t")
+function test.update()	
+	--print("=====New frame=====")
+	while test.pause do
+		os.sleep(.1)
+		if global.keyboard.isKeyDown("z") or global.keyboard.isKeyDown(60) or global.keyboard.isKeyDown(63) or global.keyboard.isControlDown() then
+			test.pause = not test.pause
+		end
+	end
+	
+	--global.log(nil, nil, "t")
 	--[[
 	if test.camTestStep == 0 then
 		--empty to get sure the cam is reseted.
@@ -179,6 +197,10 @@ end
 function test.touch(s)
 	--print(s[3], s[4], s[5])
 	--print(test.ra1:getPos(x, y))
+end
+
+function test.ctrl_pause_key_down(s, sname)
+	test.pause = not test.pause
 end
 
 function test.ctrl_camLeft(s, sname)

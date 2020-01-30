@@ -250,7 +250,7 @@ function OCGF.GameObject.getCollider(this)
 	return trigger
 end
 
-function OCGF.GameObject.update(this, gameObjects) --gameObject can be collider table
+function OCGF.GameObject.update(this, gameObjects) --gameObject can be collider table	
 	for i, c in ipairs(gameObjects) do
 		for i, bt in ipairs(this.boxTrigger) do
 			bt:update(c:getTrigger())
@@ -297,6 +297,8 @@ function OCGF.GameObject.moveTo(this, x, y, SLP) --WIP: bug: ...
 end
 
 function OCGF.GameObject.draw(this, offsetX, offsetY, area, dt, background, color)
+	offsetX = offsetX or 0
+	offsetY = offsetY or 0
 	for i, o in ipairs(this.sprites) do
 		o:draw(dt, background, offsetX, offsetY, area)
 	end
@@ -313,6 +315,8 @@ function OCGF.GameObject.draw(this, offsetX, offsetY, area, dt, background, colo
 end
 
 function OCGF.GameObject.clear(this, offsetX, offsetY, color, actual)
+	offsetX = offsetX or 0
+	offsetY = offsetY or 0
 	if this.drawTrigger then
 		for i, bt in ipairs(this.boxTrigger) do
 			bt:clear(color, actual, offsetX, offsetY)
@@ -367,7 +371,7 @@ function OCGF.Sprite.new(gameObject, args)
 	this.background = args.background or 0x000000
 	
 	if this.texture.format == "OCGLA" then
-		this.animation = gameObject.ocgf.oclrl.Animation.new(gameObject.ocgf.oclrl, this.texture)
+		this.animation = gameObject.ocgf.oclrl.Animation.new(gameObject.ocgf.oclrl, this.texture, {clear = false})
 	end
 	
 	this.lastPosX = this.posX
@@ -390,6 +394,7 @@ end
 
 function OCGF.Sprite.draw(this, dt, background, offsetX, offsetY, area)	
 	--this.gameObject.log(this.background)
+	
 	background = background or this.background
 	if this.animation ~= nil then
 		this.animation.background = background
@@ -463,29 +468,26 @@ function OCGF.RigidBody.new(gameObject, args)
 	
 	this.calculateHalfPixel = ut.parseArgs(args.hp, args.halfPixel, args.calculateHalfPixel, true) -- if true then is speedY == speedY /2
 	this.mass = ut.parseArgs(args.mass, 0)
-	this.bounceFactor = ut.parseArgs(args.bf, args.bounceFactor, 1)
+	this.hardness = ut.parseArgs(args.hardness, 1)
 	this.gravitationFactor = ut.parseArgs(args.g, args.gravitation, args.gravitationFactor, 1)
 	this.stiffness = ut.parseArgs(args.stiffness, 0) -- 1 == 1 speed loss per update, -1 == unmovable.
 	
 	this.speedX = 0
 	this.speedY = 0
 	
-	this.pingGameObject = ut.parseArgs(args.pgo, args.pingGameObject, true)
-	this.callOwnGameObject = ut.parseArgs(args.callOwn, true)
-	
 	return this
 end
 
 --function OCGF.RigidBody.update(this, gameObjects, pingTrigger, pingGameObject, callOwnFunction, slp) --ToDo: add realistic physics.
 function OCGF.RigidBody.update(this, gameObjects, dt, slp) --ToDo: add realistic physics.
-	this.speedX = calculateStiffness(this.speedX, this.stiffness) * dt
+	this.speedX = calculateStiffness(this.speedX, this.stiffness)
 	this.speedY = this.speedY + (this.gravitationFactor * dt)
-	this.speedY = calculateStiffness(this.speedY, this.stiffness) * dt
+	this.speedY = calculateStiffness(this.speedY, this.stiffness)
 	
 	if this.calculateHalfPixel then
-		this.gameObject:move(this.speedX, this.speedY /2, slp)
+		this.gameObject:move(this.speedX *dt, (this.speedY /2) *dt, slp)
 	else
-		this.gameObject:move(this.speedX, this.speedY, slp)
+		this.gameObject:move(this.speedX *dt, this.speedY *dt, slp)
 	end
 	
 	local collider = {}
@@ -520,8 +522,8 @@ function OCGF.BoxTrigger.new(gameObject, args)
 	this.sizeX = args.sx or args.sizeX or 1
 	this.sizeY = args.sy or args.sizeY or 1
 	this.listedFunction = ut.parseArgs(args.lf, args.listedFunction, function() end)
-	this.pingTrigger = ut.parseArgs(args.pingTrigger, false)
-	this.pingGameObject = ut.parseArgs(args.ping, args.pingGameObject, false)
+	this.pingTrigger = ut.parseArgs(args.ping, args.pingTrigger, false)
+	this.pingGameObject = ut.parseArgs(args.pingGameObject, false)
 	this.callOwnFunction = ut.parseArgs(args.callFunction, args.callOwnFunction, true)
 	this.callOwnGameObject = ut.parseArgs(args.callOwn, true)
 	this.isCollider = ut.parseArgs(args.isCollider, false)
@@ -546,17 +548,18 @@ function OCGF.BoxTrigger.update(this, collider, pingTrigger, pingGameObject, cal
 	local gameObjects = {}
 	
 	for i, c in ipairs(collider) do
-		if this.posX + this.sizeX > c.posX and this.posX < c.posX + c.sizeX and
+		if c ~= this and 
+			this.posX + this.sizeX > c.posX and this.posX < c.posX + c.sizeX and
 			this.posY + this.sizeY > c.posY and this.posY < c.posY + c.sizeY
 		then
 			table.insert(collisions, c)
 			table.insert(gameObjects, c.gameObject)
 			if pingTrigger then
-				c:listedFunction(this.gameObject, false, this.gameObject.parent) --other trigger
+				c.listedFunction(--[[this.gameObject, false, this.gameObject.parent]]) --other trigger
 			end
 			if callOwnFunction then
 				--this.gameObject.log(this.listedFunction, this.callOwnFunction, this.isCollider, this.hass == "!!", "CALL")
-				this:listedFunction(c.gameObject, true, this.gameObject.parent) --this trigger
+				this.listedFunction(--[[c.gameObject, true, this.gameObject.parent]]) --this trigger
 			end
 			if pingGameObject then
 				if this.isCollider then

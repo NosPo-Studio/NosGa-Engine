@@ -22,8 +22,8 @@ local global = args[1]
 
 --===== dev =====--
 local orgRequire = require
-local require = require
 if global.conf.debug.isDev then
+local require = require
 	require = function(s)
 		if io.open(s .. ".lua", "r") == nil then
 			return orgRequire(s)
