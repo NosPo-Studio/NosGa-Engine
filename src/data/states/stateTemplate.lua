@@ -1,7 +1,7 @@
 --[[
     This file is a State example for the NosGa Engine.
 	
-	NosGa Engine Copyright (c) 2019 NosPo Studio
+	NosGa Engine Copyright (c) 2019-2020 NosPo Studio
 
     The NosGa Engine is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
