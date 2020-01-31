@@ -37,7 +37,7 @@ With the NosGa you easly can attach triggers to your GameObjects calling a spesi
 
 # Personal dev note.
 This is a one man project __right now__. I am still learning programming and this is the biggest and most complex project I have worked on yet.
-So there is deviantly some optimization potential of all kind in some parts of the source code.
+So there is deviantly optimization potential of all kind in some parts of the source code.
 If someone has suggestions/tipps how I could make things better I am always open for that as well as for own work on the engine.
 So if somone want to contribute something to the engine I probably will merge it to the master branch if wanted.
 
