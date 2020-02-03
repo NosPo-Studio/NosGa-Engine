@@ -20,22 +20,33 @@
 local global = ... --Here we get global.
 
 --===== shared vars =====--
-local stateTemplate = { --Here are the State variables/functions stored also avaiable in "global.state.stateTemplate". This table must be returned (see end of file).
+--[[Here are the State variables/functions stored also avaiable in "global.state.stateTemplate".
+	This table must be returned (see end of file).
+]]
+local stateTemplate = { 
 	
 }
 
 --===== local vars =====--
 
 --===== local functions =====--
-local function print(...) --Just a function to use the console for printing instead of the default print function.
+--Just a function to use the console for printing instead of the default print function.
+local function print(...) 
 	global.log(...)
 end
 
 --===== shared functions =====--
-function stateTemplate.init() --This function is called once a time when the State is calculated the first time. If the State is reloaded it will be called once again on first calculated frame.
+--[[This function is called once a time when the State is calculated the first time. 
+	If the State is reloaded it will be called once again on first calculated frame.
+]]
+function stateTemplate.init() 
 	print("[stateTemplate]: init start.")
 	
-	global.load({ --Here we load all the data groups we need. The States as well as global/structured global are already loaded at the engine initiaisation per default.
+	--[[Here we load all the data groups we need. 
+		The States as well as global/structured global are already loaded 
+		at the engine initiaisation per default.
+	]]
+	global.load({ 
 		toLoad = {
 			parents = true,
 			gameObjects = true,
@@ -44,9 +55,11 @@ function stateTemplate.init() --This function is called once a time when the Sta
 		},
 	})
 	
-	global.clear() --Clearing the screen.
+	--Clearing the screen.
+	global.clear() 
 	
-	stateTemplate.raMainWindow = global.addRA({ --Creating an RenderArea in size of the screen.
+	--Creating an RenderArea in size of the screen.
+	stateTemplate.raMainWindow = global.addRA({ 
 		posX = 1, 
 		posY = 1, 
 		sizeX = global.resX, 
@@ -55,50 +68,71 @@ function stateTemplate.init() --This function is called once a time when the Sta
 		drawBorders = true,
 	})
 	
+	--Adding the GameObjectTemplate to the RenderArea.
 	stateTemplate.gameObjectTemplate1 = stateTemplate.raMainWindow:addGO("GameObjectTemplate", {
 		name = "got1", 
 		x = 5, 
 		y = 3,
 		maxSpeed = 20,
-	}) --Adding the GameObjectTemplate to the RenderArea.
+	}) 
 	
+	--Adding the GameObjectTemplate to the RenderArea a second time but with other arguments.
 	stateTemplate.gameObjectTemplate1 = stateTemplate.raMainWindow:addGO("GameObjectTemplate", {
 		name = "got2", 
 		x = 20, 
 		y = 3,
 		maxSpeed = 0,
-	}) --Adding the GameObjectTemplate to the RenderArea a second time but with other arguments.
+	}) 
 	
 	print("[stateTemplate]: init done.")
 end
 
-function stateTemplate.start() --Called any time the current calculated state is changed to these one.
+--Called any time the current calculated state is changed to these one.
+function stateTemplate.start() 
 
 end
 
-function stateTemplate.update()	--Called once a frame.
+--Called once a frame.
+function stateTemplate.update()	
 	
 end
 
-function stateTemplate.draw() --Called once a frame after the update function. It is reconnemend to put all render/drawings into these function to provide a faster drawing using the linear render mode.
+--[[Called once a frame after the update function. 
+	It is reconnemend to put all render/drawings into these function 
+	to provide a faster drawing using the linear render mode.
+]]
+function stateTemplate.draw() 
 	
 end
 
-function stateTemplate.stop() --Called when the currend calculated State changed to an other state.
+--Called when the currend calculated State changed to an other state.
+function stateTemplate.stop() 
 	
 end
 
-function stateTemplate.key_down(s) --This is a signal function called by the engine on a incomming key_down signal. "s" is a table containing the signal. Any other signal name can be used too to get the signal equivalent.
+--[[This is a signal function called by the engine on a incomming key_down signal. 
+	"s" is a table containing the signal.
+	Any other signal name can be used too to get the signal equivalent.
+]]
+function stateTemplate.key_down(s) 
 	
 end
 
-function stateTemplate.ctrl_example_key_down(s, sname) --Called if a key defined for "example" in the controls.ini is pressed down. "s" is a table with the signal. "sname" is the engine intern signal name. That can be different to the original signal name (s[1]). You could use just "ctrl_example()" too but that function would be called multiple times a frame on key press (one time for the "key_down" and one time for the "key_pressed" signal).
+--[[Called if a key defined for "example" in the controls.ini is pressed down. 
+	"s" is a table with the signal. "sname" is the engine intern signal name. 
+	That can be different to the original signal name (s[1]). 
+	You could use just "ctrl_example()" too but that function would be called multiple times a frame 
+	on key press (one time for the "key_down" and one time for the "key_pressed" signal).
+]]
+function stateTemplate.ctrl_example_key_down(s, sname) 
 	
 end
 
-function stateTemplate.ctrl_example_key_up(s, sname) --Same as the function "stateTemplate.ctrl_example_key_down()" function but called on the "key_up" signal.
+--Same as the function "stateTemplate.ctrl_example_key_down()" function but called on the "key_up" signal.
+function stateTemplate.ctrl_example_key_up(s, sname) 
 
 end
 
-return stateTemplate --Returing the state data.
+--Returing the state data.
+return stateTemplate 
 
