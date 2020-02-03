@@ -22,13 +22,18 @@ local global = ... --Here we get global.
 GameObjectsTemplate = {}
 GameObjectsTemplate.__index = GameObjectsTemplate
 
-function GameObjectsTemplate.init(this) --Called once when the class is loaded by the engine.
+--Called once when the class is loaded by the engine.
+function GameObjectsTemplate.init(this) 
 	
 end
 
-function GameObjectsTemplate.new(args) --Calles on the bject creation of the class. Here you define/initiate the class.
+
+--Calles on the bject creation of the class. Here you define/initiate the class.
+function GameObjectsTemplate.new(args) 
 	--===== gameObject definition =====--
-	args = args or {} --Take given GameObject args if present and prevents it from being nil if not.
+	--Take given GameObject args if present and prevents it from being nil if not.
+	args = args or {} 
+	
 	args.sizeX = 6
 	args.sizeY = 3
 	args.components = { --Define the GameObjects components.
@@ -44,12 +49,17 @@ function GameObjectsTemplate.new(args) --Calles on the bject creation of the cla
 	}
 	
 	--===== default stuff =====--
-	local this = global.core.GameObject.new(args) --Inheritance from the GameObject main class.
-	this = setmetatable(this, GameObjectsTemplate) --Not sure to be honest, I only know that this is necessary to declare a class/create an object (.^.)
+	--Inheritance from the GameObject main class.
+	local this = global.core.GameObject.new(args) 
+	
+	--[[Not sure to be honest, 
+		I only know that this is necessary to declare a class/create an object (.^.)
+	]]
+	this = setmetatable(this, GameObjectsTemplate) 
 	
 	--===== init =====--
-	
-	this.gameObject:addBoxTrigger({ --Manually add a trigger to use object intern variables in the listed function.
+	--Manually add a trigger to use object intern variables in the listed function.
+	this.gameObject:addBoxTrigger({ 
 		x = 0,
 		y = 0,
 		sx = 6, 
@@ -61,36 +71,56 @@ function GameObjectsTemplate.new(args) --Calles on the bject creation of the cla
 	})
 	
 	--===== custom functions =====--
-	this.key_down = function(this, signal) --Same as the function equevalent in the stateTemplate but called with the additionally conditions as "this.update()".
+	--[[Same as the function equevalent in the stateTemplate
+		but called with the additionally conditions as "this.update()".
+	]]
+	this.key_down = function(this, signal) 
 		
 	end
 	
-	this.ctrl_right_key_pressed = function(this, signal, sname) --Same as the function ctrl_... fucntion in the stateTemplate but called with the additionally conditions from "this.update()".
-		this:addForce(5, 0, args.maxSpeed) --Addign force to move the object.
+	--[[Same as the function ctrl_... fucntion in the stateTemplate
+		but called with the additionally conditions from "this.update()".
+	]]
+	this.ctrl_right_key_pressed = function(this, signal, sname) 
+		--Addign force to move the object.
+		this:addForce(5, 0, args.maxSpeed) 
 	end
 	
-	this.ctrl_left_key_pressed = function(this, signal, sname) --Same as the function ctrl_... fucntion in the stateTemplate but called with the additionally conditions from "this.update()".
-		this:addForce(-5, 0, args.maxSpeed) --Addign negative force to move the object.
+	--[[Same as the function ctrl_... fucntion in the stateTemplate
+		but called with the additionally conditions from "this.update()".
+	]]
+	this.ctrl_left_key_pressed = function(this, signal, sname) 
+		--Addign negative force to move the object.
+		this:addForce(-5, 0, args.maxSpeed) 
 	end
 	
 	--===== default functions =====--
-	this.start = function(this) --Called when this GameObject is added to a RenderArea.
+	--Called when this GameObject is added to a RenderArea.
+	this.start = function(this) 
 		
 	end
 	
-	this.update = function(this, dt, ra) --Called up to once a frame.
-		--global.log(this.gameObject.rigidBodys[1].speedX)
-	end
-	
-	this.draw = function(this) --Called every time the GameObject is drawed. That can happen multiple times a frame if the GameObject is visible in multiple RenderAreas.
+	--Called up to once a frame.
+	this.update = function(this, dt, ra) 
 	
 	end
 	
-	this.clear = function(this, acctual) --Called every time the GameObject graphics are removed from the screen. That can happen multiple times a frame if the GameObject is visible in multiple RenderAreas.
+	--[[Called every time the GameObject is drawed. 
+		That can happen multiple times a frame if the GameObject is visible in multiple RenderAreas.
+	]]
+	this.draw = function(this) 
+	
+	end
+	
+	--[[Called every time the GameObject graphics are removed from the screen. 
+		That can happen multiple times a frame if the GameObject is visible in multiple RenderAreas.
+	]]
+	this.clear = function(this, acctual) 
 		
 	end
 	
-	this.stop = function(this) --Called when this GameObject is removed from a RenderArea.
+	--Called when this GameObject is removed from a RenderArea.
+	this.stop = function(this) 
 		
 	end
 	
