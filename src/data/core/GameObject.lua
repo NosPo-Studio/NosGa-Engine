@@ -40,7 +40,7 @@ end
 
 function GameObject.new(args)
 	args = args or {}
-	local this = setmetatable(this or {}, GameObject)
+	local this = setmetatable({}, GameObject)
 	
 	this.ngeAttributes = {
 		sizeX = pa(args.sx, args.sizeX, 0),
@@ -58,6 +58,7 @@ function GameObject.new(args)
 		lastCalculatedFrame = 0,
 		clearAreas = {},
 		copyAreas = {},
+		usesAnimation,
 	}
 	
 	args.gameObject = global.ut.parseArgs(args.components, args.gameObject) --ToDo: Completly remove args.gameObject from the code.
@@ -81,6 +82,12 @@ function GameObject.new(args)
 			elseif c[1] == "Sprite" then
 				if type(c.texture) == "string" then
 					c.texture = global.texture[c.texture]
+				end
+				
+				if c.texture.format == "OCGLA" then
+					this.ngeAttributes.usesAnimation = true
+				elseif c.texture.format == "pic" then
+					
 				end
 				
 				this.gameObject:addSprite(c)
@@ -183,7 +190,7 @@ function GameObject.new(args)
 		
 		local x, y = this:getPos()
 		local lx, ly = this:getLastPos()
-		if x ~= lx or y ~= ly then
+		if x ~= lx or y ~= ly or this.ngeAttributes.usesAnimation == true then
 			this.ngeAttributes.hasMoved = true
 			if global.conf.forceSmartMove or global.conf.useSmartMove and global.conf.useDoubleBuffering then
 				for ra in pairs(this.ngeAttributes.responsibleRenderAreas) do
@@ -211,7 +218,7 @@ function GameObject.new(args)
 		if renderArea.realArea ~= nil and this.ngeAttributes.hasMoved ~= true then
 			for i, ra in pairs(renderArea) do
 				if i ~= "realArea" then
-					this.gameObject:draw(offsetX, offsetY, {ra.posX, ra.posX + ra.sizeX -1, ra.posY, ra.posY + ra.sizeY -1})
+					this.gameObject:draw(offsetX, offsetY, {ra.posX, ra.posX + ra.sizeX -1, ra.posY, ra.posY + ra.sizeY -1}, global.dt, global.backgroundColor)
 				end
 			end
 		elseif renderArea.realArea == nil then

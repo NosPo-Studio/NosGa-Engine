@@ -106,6 +106,7 @@ function OCGF.initiate(args)
 	
 	this.component = require("component")
 	this.gpu = args.gpu or this.component.gpu
+	this.db = ut.parseArgs(args.db, args.doubleBuffering, args.DoubleBuffering)
 	this.ut = require("libs/UT")
 	this.oclrl = args.oclrl or require(
 		args.ocglPath or "libs/oclrl"
@@ -372,6 +373,15 @@ function OCGF.Sprite.new(gameObject, args)
 	
 	if this.texture.format == "OCGLA" then
 		this.animation = gameObject.ocgf.oclrl.Animation.new(gameObject.ocgf.oclrl, this.texture, {clear = false})
+	elseif this.texture.format == "pic" then
+		if this.gameObject.ocgf.db ~= nil then
+			this.useDB = true
+		else
+			this.texture = this.gameObject.ocgf.oclrl.generateTexture({
+				{"b", 0xFF69B4},
+				{0, 0, this.texture[1], this.texture[2], " "},	
+			})
+		end
 	end
 	
 	this.lastPosX = this.posX
@@ -399,6 +409,8 @@ function OCGF.Sprite.draw(this, dt, background, offsetX, offsetY, area)
 	if this.animation ~= nil then
 		this.animation.background = background
 		this.animation:draw(this.posX + offsetX, this.posY + offsetY, dt, nil, area)
+	elseif this.useDB then
+		this.gameObject.ocgf.db.drawImage(math.floor(this.posX + offsetX +.5), math.floor(this.posY + offsetY +.5), this.texture)
 	else
 		this.gameObject.ocgf.oclrl:draw(this.posX + offsetX, this.posY + offsetY, this.texture, nil, area)
 	end
