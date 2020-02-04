@@ -456,6 +456,9 @@ function oclrl.Animation.new(oclrl, animation, args) --no oclrl...
 end
 
 function oclrl.Animation.draw(this, posX, posY, dt, clear, background, area)
+	
+	--cprint(3, posX, posY)
+	
 	if parseArgs(clear, this.clearTexture) then
 		background = parseArgs(background, this.background)
 		if background == nil or type(background) == "number" then

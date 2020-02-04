@@ -1,5 +1,5 @@
 local global = ...
 
 function gs()
-	return global.state.stateTemplate
+	return global.getState()
 end

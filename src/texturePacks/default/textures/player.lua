@@ -95,7 +95,7 @@ local t = {
 	right = {
 		format = "OCGLA",
 		version = "v0.1",
-		frameTime = .1,
+		frameTime = 1,
 		
 		frames = {
 			{

@@ -54,16 +54,20 @@ global.serialization = require("serialization")
 global.component = require("component")
 global.realGPU = global.component.gpu
 global.LIP = require("libs/thirdParty/LIP")
+global.image = require("libs/thirdParty/image")
 
 print("useDoubleBuffering: " .. tostring(global.conf.useDoubleBuffering))
 if global.conf.useDoubleBuffering then
 	global.gpu = loadfile("libs/dbgpu_api.lua")({path = "libs/thirdParty", directDraw = false, forceDraw = false, rawCopy = true})
+	
+	global.db = require("libs/thirdParty/DoubleBuffering")
 else
 	global.gpu = global.component.gpu
 end
 global.oclrl = require("libs/oclrl").initiate(global.gpu)
+--global.oclrl = require("oclrl").initiate(global.gpu)
 global.ocui = require("libs/ocui").initiate(global.oclrl)
-global.ocgf = require("libs/ocgf").initiate({gpu = global.gpu})
+global.ocgf = require("libs/ocgf").initiate({gpu = global.gpu, db = global.db})
 
 local func, err = loadfile("data/core/updateHandler.lua")
 print("[INIT]: Loading GE: " .. tostring(func) .. " " .. tostring(err))

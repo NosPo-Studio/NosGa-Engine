@@ -39,8 +39,6 @@ function test.init()
 	--===== debug =====--
 	
 	--===== debug end =====--
-	global.oclrl = dofile("libs/oclrl.lua").initiate(global.gpu)
-	global.ocgf = dofile("libs/ocgf.lua").initiate({gpu = global.gpu})
 	
 	global.load({
 		toLoad = {
@@ -66,11 +64,23 @@ function test.start()
 		name = "TRA1", 
 		drawBorders = true,
 	})
-	--test.ra2 = global.addRA({posX = 50, posY = 5, sizeX = 40, sizeY = 12, name = "TRA2", drawBorders = true, parent = test.ra1})
+	test.ra2 = global.addRA({posX = 50, posY = 5, sizeX = 40, sizeY = 12, name = "TRA2", drawBorders = true, parent = test.ra1})
+	
+	local oclrl = dofile("libs/oclrl.lua").initiate(global.gpu)
+	
+	test.goTest = test.ra1:addGO("Test2", {posX = 2 +100, posY = 5, layer = 3, name = "test1", maxSpeed = 15})
+	
+	test.anim = global.oclrl.Animation.new(global.oclrl, global.texture.player.right)
+	test.anim2 = global.oclrl.Animation.new(global.oclrl, global.texture.player.right)
+	
+	--test.goTest.anim = global.oclrl.Animation.new(global.oclrl, global.texture.player.right)
+	--test.goTest2.anim = global.oclrl.Animation.new(global.oclrl, global.texture.player.right)
+	
+	
 	
 	--Creating some GameObjects in the same scene.
 	--test.tgo1 = test.ra1:addGO("MovingTestGO", {posX = 2 +100, posY = 5, layer = 3, name = "test1"})
-	test.rbm1 = test.ra1:addGO("RPT", {posX = 102, posY = 0, layer = 1, length = 1, name = "moving" .. tostring(c)})
+	--test.rbm1 = test.ra1:addGO("RPT", {posX = 102, posY = 0, layer = 1, length = 1, name = "moving" .. tostring(c)})
 	
 	test.tgos = {}
 	local amout, distance = 3, 16
@@ -102,7 +112,7 @@ function test.start()
 	
 	--Moce cameras to x 100.
 	test.ra1:moveCameraTo(100, 0)
-	--test.ra2:moveCameraTo(100, 0)
+	test.ra2:moveCameraTo(100, 0)
 	
 	--===== debug end =====--
 	

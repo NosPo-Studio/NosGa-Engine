@@ -123,4 +123,10 @@ function dbgpu.drawChanges(f)
 	buffer.drawChanges(f)
 end
 
+
+function dbgpu.drawImage(x, y, image)
+	buffer.drawImage(x, y, image)
+end
+
+
 return dbgpu

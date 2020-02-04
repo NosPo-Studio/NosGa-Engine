@@ -191,8 +191,17 @@ function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, struct
 			else
 				debugString = "[DLF]: Reloading file: " .. dir .. "/" .. file .. ": "
 			end
-		
-			local suc, err = loadfile(path .. file)
+			
+			local suc, err 
+			if ending == ".pic" then
+				suc, err = global.image.load(path .. file)
+				if suc ~= false then
+					suc.format = "pic"
+				end
+			else
+				suc, err = loadfile(path .. file)
+			end
+			
 			if global.isDev then
 				if suc == nil then
 					warn("[DLF] Failed to load file: " .. dir .. "/" .. file .. ": " .. tostring(err))
@@ -201,8 +210,10 @@ function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, struct
 				end
 			end
 			
-			if suc then
+			if type(suc) == "function" then
 				target[name] = suc(global)
+			elseif type(suc) == "table" then
+				target[name] = suc
 			end
 			
 			if func ~= nil then

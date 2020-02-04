@@ -12,7 +12,7 @@ function TestGO.new(args)
 	args = args or {}
 	args.sizeX = 6
 	args.sizeY = 6
-	args.gameObject = {
+	args.components = {
 		--{"Sprite", texture = global.texture.player.right},
 		--{"Sprite", texture = global.texture.grass},
 		{"CopyArea", x = 0, y = 0, sx = args.sizeX, sy = args.sizeY},
