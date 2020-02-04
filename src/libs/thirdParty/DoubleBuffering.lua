@@ -404,7 +404,7 @@ local function drawText(x, y, textColor, data, transparency)
 	end
 end
 
-local function drawImage(startX, startY, picture, blendForeground)
+local function drawImage(startX, startY, picture, blendForeground, area)
 	local bufferIndex, pictureIndex, imageWidth, backgrounds, foregrounds, alphas, symbols = bufferWidth * (startY - 1) + startX, 1, picture[1], picture[3], picture[4], picture[5], picture[6]
 	local bufferIndexStepOnReachOfImageWidth = bufferWidth - imageWidth
 
