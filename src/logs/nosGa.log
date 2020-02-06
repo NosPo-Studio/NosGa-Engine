@@ -1,23 +1,26 @@
 [INFO]  [GE]: Change state to: "test". 
 [INFO]  [test]: Start init. 
-[INFO]  [DL]: Loading data groups: gameObjects, parents, textures. 
+[INFO]  [DL]: Loading data groups: textures, parents, animations, gameObjects. 
 [INFO]  [DL]: Loading data group: textures. 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0x7fc8c00e7ff0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0x7fc8b80f9b30 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 0x7fc8b80a76b0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0x7fc8bc03c0f0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0x7fc8bc057810 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/test.pic: table: 0x7fc8b40afa70 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/exampleTexture.lua: function: 0x7fc8b40795a0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0x7fc8bc05efb0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0x7fc8b406ead0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0x7fc8b404dca0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/test.pic: table: 0x7fc8c00769f0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0x7fc8c01195e0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/exampleTexture.lua: function: 0x7fc8b8073370 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 0x7fc8b8024ed0 
+[INFO]  [DL]: Loading data group: animations. 
+[INFO]  [DLF]: Loading file: texturePacks/default/animations/test/: table: 0x7fc8b424b5d0 
 [INFO]  [DL]: Loading data group: parents. 
-[INFO]  [DLF]: Loading file: data/parents/Test.lua: function: 0x7fc8b80667e0 
-[INFO]  [DLF]: Loading file: data/parents/Block.lua: function: 0x7fc8bc054070 
+[INFO]  [DLF]: Loading file: data/parents/Block.lua: function: 0x7fc8c004d590 
+[INFO]  [DLF]: Loading file: data/parents/Test.lua: function: 0x7fc8b8286310 
 [INFO]  [DL]: Loading data group: gameObjects. 
-[INFO]  [DLF]: Loading file: data/gameObjects/StaticTestGO.lua: function: 0x7fc8b41aaad0 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test.lua: function: 0x7fc8c004d8d0 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test2.lua: function: 0x7fc8b8002d70 
-[INFO]  [DLF]: Loading file: data/gameObjects/RPT.lua: function: 0x7fc8bc06f170 
-[INFO]  [DLF]: Loading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7fc8b424d2e0 
-[INFO]  [DLF]: Loading file: data/gameObjects/MovingTestGO.lua: function: 0x7fc8b401b960 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test3.lua: function: 0x7fc8bc67c310 
+[INFO]  [DLF]: Loading file: data/gameObjects/StaticTestGO.lua: function: 0x7fc8b4044040 
+[INFO]  [DLF]: Loading file: data/gameObjects/MovingTestGO.lua: function: 0x7fc8c007dcd0 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test2.lua: function: 0x7fc8b82cdba0 
+[INFO]  [DLF]: Loading file: data/gameObjects/RPT.lua: function: 0x7fc8b82b5940 
+[INFO]  [DLF]: Loading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7fc8bc093fe0 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test.lua: function: 0x7fc8b402b6a0 
 [INFO]  [test]: init done. 
 [DEBUG]  [EH]: Program stopped by user. 

@@ -84,7 +84,7 @@ function GameObject.new(args)
 					c.texture = global.texture[c.texture]
 				end
 				
-				if c.texture.format == "OCGLA" then
+				if c.texture.format == "OCGLA" or c.texture.format == "pan" then
 					this.ngeAttributes.usesAnimation = true
 				elseif c.texture.format == "pic" then
 					

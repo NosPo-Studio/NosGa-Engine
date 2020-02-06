@@ -20,7 +20,7 @@
 		
 ]]
 
-local OCGF = {version = "v0.9.2d"} --!uncompatible to version <= v0.9.2!
+local OCGF = {version = "v1.0"} 
 OCGF.__index = OCGF
 
 --===== local vars =====--
@@ -112,6 +112,11 @@ function OCGF.initiate(args)
 		args.ocglPath or "libs/oclrl"
 	).initiate(
 		this.gpu
+	)
+	this.ocal = args.ocal or require(
+		args.ocglPath or "libs/ocal"
+	).initiate(
+		this.ocal
 	)
 	
 	this.resX, this.resY = this.gpu.getResolution()
@@ -371,8 +376,8 @@ function OCGF.Sprite.new(gameObject, args)
 	this.texture = ut.parseArgs(args.t, args.texture, this.gameObject.ocgf.oclrl.generateTexture(0, 0, ""))
 	this.background = args.background or 0x000000
 	
-	if this.texture.format == "OCGLA" then
-		this.animation = gameObject.ocgf.oclrl.Animation.new(gameObject.ocgf.oclrl, this.texture, {clear = false})
+	if this.texture.format == "OCGLA" or this.texture.format == "pan" then
+		this.animation = gameObject.ocgf.ocal.Animation.new(gameObject.ocgf.ocal, this.texture, {clear = false})
 	elseif this.texture.format == "pic" then
 		if this.gameObject.ocgf.db ~= nil then
 			this.useDB = true
@@ -467,7 +472,7 @@ function OCGF.Sprite.changeTexture(this, newTexture)
 		if this.animation ~= nil then
 			this.animation.animation = this.texture
 		else
-			this.animation = this.gameObject.ocgf.oclrl.Animation.new(this.gameObject.ocgf.oclrl, this.texture)
+			this.animation = this.gameObject.ocgf.ocal.Animation.new(this.gameObject.ocgf.ocal, this.texture)
 		end
 	else
 		this.animation = nil

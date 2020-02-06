@@ -45,6 +45,7 @@ function test.init()
 			parents = true,
 			gameObjects = true,
 			textures = true,
+			animations = true,
 		},
 	})
 	
@@ -69,9 +70,10 @@ function test.start()
 	local oclrl = dofile("libs/oclrl.lua").initiate(global.gpu)
 	
 	test.goTest = test.ra1:addGO("Test2", {posX = 2 +100, posY = 5, layer = 3, name = "test1", maxSpeed = 15})
+	test.goTest2 = test.ra1:addGO("Test3", {posX = 10 +100, posY = 5, layer = 3, name = "test1", maxSpeed = 15})
 	
-	test.anim = global.oclrl.Animation.new(global.oclrl, global.texture.player.right)
-	test.anim2 = global.oclrl.Animation.new(global.oclrl, global.texture.player.right)
+	test.anim = global.ocal.Animation.new(global.oclrl, global.texture.player.right)
+	test.anim2 = global.ocal.Animation.new(global.oclrl, global.texture.player.right)
 	
 	--test.goTest.anim = global.oclrl.Animation.new(global.oclrl, global.texture.player.right)
 	--test.goTest2.anim = global.oclrl.Animation.new(global.oclrl, global.texture.player.right)

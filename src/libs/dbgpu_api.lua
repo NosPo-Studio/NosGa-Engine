@@ -33,6 +33,8 @@ local path = args.path or ""
 local buffer = require(path .. "/DoubleBuffering")
 local gpu = require("component").gpu
 
+print(buffer)
+
 local lastBackground = gpu.getBackground()
 local lastForeground = gpu.getForeground()
 
