@@ -43,6 +43,7 @@ local global = {
 	--=== content ===--
 	state = {},
 	texture = {},
+	animation = {},
 	parent = {
 		name = {}, 
 		id = {}, 
@@ -159,7 +160,7 @@ function global.load(args)
 	return loadfile("data/core/dataLoading.lua")(args)
 end
 
-function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, structured)
+function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, structured, loadFunc)
 	local id = 1
 	if target.info ~= nil and target.info.amout ~= nil then
 		id = target.info.amout +1
@@ -173,7 +174,7 @@ function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, struct
 	for file in global.fs.list(path) do
 		local p, name, ending = global.ut.seperatePath(file)
 		
-		if string.sub(file, #file) == "/" then
+		if string.sub(file, #file) == "/" and subDirs then
 			if structured then
 				if target[string.sub(p, 0, #p -1)] == nil or target[string.sub(p, 0, #p -1)].structured == true or overwrite and not structured then
 					target[string.sub(p, 0, #p -1)] = {structured = true}
@@ -193,7 +194,9 @@ function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, struct
 			end
 			
 			local suc, err 
-			if ending == ".pic" then
+			if loadFunc ~= nil then
+				suc, err = loadFunc(path .. file)
+			elseif ending == ".pic" then
 				suc, err = global.image.load(path .. file)
 				if suc ~= false then
 					suc.format = "pic"
@@ -211,9 +214,9 @@ function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, struct
 			end
 			
 			if type(suc) == "function" then
-				target[name] = suc(global)
+				target[name or string.sub(p, 0, #p -1)] = suc(global)
 			elseif type(suc) == "table" then
-				target[name] = suc
+				target[name or string.sub(p, 0, #p -1)] = suc
 			end
 			
 			if func ~= nil then

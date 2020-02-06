@@ -65,9 +65,10 @@ else
 	global.gpu = global.component.gpu
 end
 global.oclrl = require("libs/oclrl").initiate(global.gpu)
+global.ocal = require("libs/ocal").initiate({oclrl = global.oclrl, db = global.db, libs = "libs/thirdParty"})
 --global.oclrl = require("oclrl").initiate(global.gpu)
 global.ocui = require("libs/ocui").initiate(global.oclrl)
-global.ocgf = require("libs/ocgf").initiate({gpu = global.gpu, db = global.db})
+global.ocgf = require("libs/ocgf").initiate({gpu = global.gpu, db = global.db, oclrl = global.oclrl, ocal = global.ocal})
 
 local func, err = loadfile("data/core/updateHandler.lua")
 print("[INIT]: Loading GE: " .. tostring(func) .. " " .. tostring(err))

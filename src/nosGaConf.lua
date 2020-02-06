@@ -49,17 +49,18 @@ local nosGaConf = {
 			conf = true, --should be always true.
 			
 			--=== core ===--
-			re = true, 
+			re = false, 
 			uh = false,
 			eh = false,
-			GameObject = true,
-			RenderArea = true,
+			GameObject = false,
+			RenderArea = false,
 			
 			--=== data groups ===--
 			global = false, --global dir.
 			structuredGlobal = false,
 			states = true,
 			textures = false,
+			animations = true,
 			parents = false,
 			gameObjects = true,
 			

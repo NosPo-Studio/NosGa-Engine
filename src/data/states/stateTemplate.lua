@@ -51,6 +51,7 @@ function stateTemplate.init()
 			parents = true,
 			gameObjects = true,
 			textures = true,
+			animations = true,
 			mods = true,
 		},
 	})
