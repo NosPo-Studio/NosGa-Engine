@@ -35,6 +35,13 @@ NosGa proides a very simple physic engine with BoxColliders and RigidBodys but t
 ### Trigger:
 With the NosGa you easly can attach triggers to your GameObjects ccalling a specific function if it is in contact with other triggers and/or colliders (dependent on the settings).
 
+# Planed
+### Particle system
+A particle system providing physicallic calculated particles.
+
+### UI system
+An easy to use UI system to create buttons etc..
+
 # Personal dev note.
 This is a one man project __right now__. I am still learning programming and this is the biggest and most complex project I have worked on yet.
 So there is definitely optimization potential of all kind in some parts of the source code.
