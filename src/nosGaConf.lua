@@ -1,8 +1,7 @@
 --Setting in here can be overwritten by the conf.lua settings.
 
 local nosGaConf = {
-	--defaultState = "stateTemplate",
-	defaultState = "test",
+	defaultState = "stateTemplate",
 	
 	targetFramerate = 20, --default is "20". set to "-1" for unlimited framerate (can cause in graphical issures).
 	maxTickTime = .2, --if a tick need more as the maxTickTime the engine will handle the ticke like it had needs exacly the maxTickTime.
