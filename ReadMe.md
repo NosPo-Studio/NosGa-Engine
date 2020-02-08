@@ -1,8 +1,8 @@
 # NosGa Engine
 The NosGa (NonsenseGame) Engine is a object oriented in source game engine for OpenComputers with all you need to create a 2D game.
 The engine is in a very early state of development so thre are some bugs left over as well as improvement potential of course but it sould be in a usable state right now.
-New features will come at the point there are needed to realize projects in the engine.
-It is currently not testet in pratice but will be in the near future.
+New features will come at the point they are needed to realize projects in the engine.
+It is currently not testet in practice but will be in the near future.
 
 # Features
 
@@ -12,34 +12,34 @@ More informations about the single features you can get in the wiki.
 NosGa provides a self managed multi window 2D render engine using the gpu.copy function to move the camera and sprites without rerendering the visible areas/sprites.
 Toghether with the slightly modified DoubleBuffering method (by IgorTimofeev) you get the best possible OC graphic performance with very less effort.
 		
-The render engine is basicly fully functional without DoubleBuffering too (for memory intensive applications) but with lot worse performance is the most cases of course.
+The render engine is basicly fully functional without DoubleBuffering too (for memory intensive applications) but with lot worse performance in the most cases of course.
 	
 ### Asset loading:
-NosGa is loading assets like GameObjects, textures, mods etc. fully automatic at startup or just some asses groups at some point of your code.
+NosGa is loading assets like GameObjects, textures, mods etc. fully automatically at startup or just some asses groups at some point of your code.
 	
 ### Debugging features:
-A fully implemented LUA console to get mesasnges or run LUA code at runtime.
+A fully implemented LUA console to get messages or run LUA code at runtime.
 
-Asset reloading: you can reload spesific assed groups on keypress at runntime.
+Asset reloading: you can reload spesific assed groups on keypress at runtime.
 So you do not need to restart the whole engine anytime you change some code.
 
-Layer select: you can acticate and deactivate the visible layers for any RenderArea.
-Also you can make a RenderArea "silent" than it will not affect the visible GameObjects in any way.
+Layer select: you can activate and deactivate the visible layers for any RenderArea.
+Also you can make a RenderArea "silent" so it will not affect the visible GameObjects in any way.
 	
 ### Event Handling:
 The NosGa event handler is processing all signals at the current frame to prevent delayed signal function calling.
 	
 ### Physics:
-NosGa proides a very simple physic engine with BoxColliders and RigidBodys but that is in a early state of developing right now.
+NosGa proides a very simple physic engine with BoxColliders and RigidBodys but that is in a early state of development right now.
 	
 ### Trigger:
-With the NosGa you easly can attach triggers to your GameObjects calling a spesific function if it is in contact with oher triggers and/or colliders (dependent on the settings).
+With the NosGa you easly can attach triggers to your GameObjects ccalling a specific function if it is in contact with other triggers and/or colliders (dependent on the settings).
 
 # Personal dev note.
 This is a one man project __right now__. I am still learning programming and this is the biggest and most complex project I have worked on yet.
-So there is deviantly optimization potential of all kind in some parts of the source code.
+So there is definitely optimization potential of all kind in some parts of the source code.
 If someone has suggestions/tipps how I could make things better I am always open for that as well as for own work on the engine.
-So if somone want to contribute something to the engine I probably will merge it to the master branch if wanted.
+So if somone wants to contribute something to the engine I probably will merge it to the master branch if wanted.
 
 # License
 ### NosGa Engine (GPLv3)
