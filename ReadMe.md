@@ -1,5 +1,5 @@
 # NosGa Engine
-The NosGa (NonsenseGame) Engine is a object oriented in source game engine for OpenComputers with all you need to create a 2D game.
+The NosGa (NonsenseGame) Engine is a object oriented in source game engine for the Minecraft mod OpenComputers with all you need to create a 2D game.
 The engine is in a very early state of development so thre are some bugs left over as well as improvement potential of course but it sould be in a usable state right now.
 New features will come at the point they are needed to realize projects in the engine.
 It is currently not testet in practice but will be in the near future.
