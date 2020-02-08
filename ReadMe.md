@@ -42,6 +42,9 @@ A particle system providing physicallic calculated particles.
 ### UI system
 An easy to use UI system to create buttons etc..
 
+### Better physic engine
+A more extensive and realistic physic engine.
+
 # Personal dev note.
 This is a one man project __right now__. I am still learning programming and this is the biggest and most complex project I have worked on yet.
 So there is definitely optimization potential of all kind in some parts of the source code.
