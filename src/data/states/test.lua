@@ -71,6 +71,7 @@ function test.start()
 	
 	test.goTest = test.ra1:addGO("Test2", {posX = 2 +100, posY = 5, layer = 3, name = "test1", maxSpeed = 15})
 	test.goTest2 = test.ra1:addGO("Test3", {posX = 10 +100, posY = 5, layer = 3, name = "test1", maxSpeed = 15})
+	test.goTest3 = test.ra1:addGO("Test4", {posX = 25 +100, posY = 5, layer = 3, name = "test1", maxSpeed = 15})
 	
 	test.anim = global.ocal.Animation.new(global.oclrl, global.texture.player.right)
 	test.anim2 = global.ocal.Animation.new(global.oclrl, global.texture.player.right)

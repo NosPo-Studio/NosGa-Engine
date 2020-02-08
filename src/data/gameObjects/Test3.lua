@@ -71,6 +71,16 @@ function GameObjectsTemplate.new(args)
 		
 	end
 	
+	this.ctrl_right_key_pressed = function(this, signal, sname) 
+		--Addign force to move the object.
+		this:addForce(100, 0, args.maxSpeed) 
+	end
+	
+	this.ctrl_left_key_pressed = function(this, signal, sname) 
+		--Addign negative force to move the object.
+		this:addForce(-100, 0, args.maxSpeed) 
+	end
+	
 	--===== default functions =====--
 	--Called when this GameObject is added to a RenderArea.
 	this.start = function(this) 

@@ -20,7 +20,7 @@
 		
 ]]
 
-local OCGF = {version = "v1.0"} 
+local OCGF = {version = "v1.0d"} 
 OCGF.__index = OCGF
 
 --===== local vars =====--
@@ -413,7 +413,7 @@ function OCGF.Sprite.draw(this, dt, background, offsetX, offsetY, area)
 	background = background or this.background
 	if this.animation ~= nil then
 		this.animation.background = background
-		this.animation:draw(this.posX + offsetX, this.posY + offsetY, dt, nil, area)
+		this.animation:draw(this.posX + offsetX, this.posY + offsetY, dt, nil, background, area)
 	elseif this.useDB then
 		
 		this.gameObject.ocgf.db.setDrawLimit(area[1], area[3], area[2], area[4])
