@@ -1,143 +1,2520 @@
 [INFO]  [GE]: Change state to: "test". 
 [INFO]  [test]: Start init. 
-[INFO]  [DL]: Loading data groups: textures, gameObjects, animations, parents. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
 [INFO]  [DL]: Loading data group: textures. 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0x7f0f9004e600 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0x7f0f90022ac0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/exampleTexture.lua: function: 0x7f0f940fa9d0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 0x7f0f880517d0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0x7f0f880aedd0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0x7f0f8811ad50 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/pipipu.pic: table: 0x7f0f9004d3a0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/test.pic: table: 0x7f0f9012ba60 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0x7f0f8813f9d0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0x7f0f940d63c0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/pipipu.pic: table: 0x7f0f94039cc0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0x7f0f880720d0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/exampleTexture.lua: function: 0x7f0f88056300 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/test.pic: table: 0x7f0f90136920 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0x7f0f90120ff0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 0x7f0f881805b0 
 [INFO]  [DL]: Loading data group: animations. 
-[INFO]  [DLF]: Loading file: texturePacks/default/animations/test/: table: 0x7f0f940e9190 
+[INFO]  [DLF]: Loading file: texturePacks/default/animations/test/: table: 0x7f0f94183360 
 [INFO]  [DL]: Loading data group: parents. 
-[INFO]  [DLF]: Loading file: data/parents/Particle.lua: function: 0x7f0f940f4240 
+[WARN]  [DLF] Failed to load file: data/parents/ParticleContainer.lua: /home/NosGa-Engine/src/data/parents/ParticleContainer.lua:66: unexpected symbol near ')' 
+[INFO]  [DLF]: Loading file: data/parents/Particle.lua: function: 0x7f0f8813e790 
 [INFO]  [DL]: Loading data group: gameObjects. 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test2.lua: function: 0x7f0f88061770 
-[INFO]  [DLF]: Loading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f8806ef00 
-[INFO]  [DLF]: Loading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f880b1810 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test.lua: function: 0x7f0f901cdc10 
-[INFO]  [DLF]: Loading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f940f5bf0 
-[INFO]  [DLF]: Loading file: data/gameObjects/RPT.lua: function: 0x7f0f88152300 
-[INFO]  [DLF]: Loading file: data/gameObjects/ParticleContainer.lua: function: 0x7f0f881d7390 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test4.lua: function: 0x7f0f88110f90 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test3.lua: function: 0x7f0f90002b10 
+[INFO]  [DLF]: Loading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f9000b370 
+[INFO]  [DLF]: Loading file: data/gameObjects/TestParticle.lua: function: 0x7f0f883e4330 
+[INFO]  [DLF]: Loading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f940d6040 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test4.lua: function: 0x7f0f881804c0 
+[INFO]  [DLF]: Loading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f88194af0 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test2.lua: function: 0x7f0f902357d0 
+[INFO]  [DLF]: Loading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f8822e360 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test3.lua: function: 0x7f0f940381c0 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test.lua: function: 0x7f0f94092cb0 
+[INFO]  [DLF]: Loading file: data/gameObjects/RPT.lua: function: 0x7f0f884b2500 
 [INFO]  [test]: init done. 
+[ERROR]  [GE]: Failerd to run function: 0x7f0f940de6c0
+ /home/NosGa-Engine/src/data/gameObjects/ParticleTestContain:16: attempt to index a nil value (field 'ParticleContainer')
+stack traceback:
+	machine:805: in metamethod '__index'
+	/home/NosGa-Engine/src/data/gameObjects/ParticleTestContain:16: in field 'new'
+	/home/NosGa-Engine/src/data/core/RenderArea.lua:104: in method 'addGO'
+	/home/NosGa-Engine/src/data/states/test.lua:83: in function </home/NosGa-Engine/src/data/states/test.lua:55>
+	[C]: in function 'xpcall'
+	machine:798: in global 'xpcall'
+	/home/NosGa-Engine/src/data/core/global.lua:149: in field 'run'
+	/home/NosGa-Engine/src//data/global/changeState.lua:16: in field 'changeState'
+	/home/NosGa-Engine/src/data/core/init.lua:127: in local 'func'
+	/home/NosGa-Engine/src/nosGa.lua:109: in main chunk
+	(...tail calls...)
+	[C]: in function 'xpcall'
+	machine:798: in global 'xpcall'
+	/lib/process.lua:63: in function </lib/process.lua:59> stack traceback:
+	/home/NosGa-Engine/src/data/core/global.lua:151: in field 'run'
+	/home/NosGa-Engine/src//data/global/changeState.lua:16: in field 'changeState'
+	/home/NosGa-Engine/src/data/core/init.lua:127: in local 'func'
+	/home/NosGa-Engine/src/nosGa.lua:109: in main chunk
+	(...tail calls...)
+	[C]: in function 'xpcall'
+	machine:798: in global 'xpcall'
+	/lib/process.lua:63: in function </lib/process.lua:59> 
 [INFO]  --========== RELOAD STAGE ==========-- 
 [INFO]  [DL]: Loading data groups: conf. 
-[INFO]  [DL]: Loading data groups: conf, reload, gameObjects, GameObject, parents. 
-[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f0f940e90b0 
+[INFO]  [DL]: Loading data groups: conf, reload, parents, gameObjects. 
 [INFO]  [DL]: Reloading data group: parents. 
-[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f88117db0 
+[INFO]  [DLF]: Loading file: data/parents/ParticleContainer.lua: function: 0x7f0f884ad4b0 
+[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f90136d40 
 [INFO]  [DL]: Reloading data group: gameObjects. 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f9002cd80 
-[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f940eac30 
-[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f9403b200 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f88119a00 
-[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f881b43a0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f9013ba70 
-[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleContainer.lua: function: 0x7f0f940e0430 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f8811f980 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f8809f500 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f940fff00 
+[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f882311c0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f8831bb40 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f9023a7e0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f940eb830 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f880323d0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f883e43a0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f8831ccd0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f90135d50 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f940ec690 
 [INFO]  [test]: Start init. 
-[INFO]  [DL]: Loading data groups: textures, gameObjects, animations, parents. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
 [INFO]  [DL]: Data group already loaded: textures. 
 [INFO]  [DL]: Data group already loaded: animations. 
 [INFO]  [DL]: Data group already loaded: parents. 
 [INFO]  [DL]: Data group already loaded: gameObjects. 
 [INFO]  [test]: init done. 
+[DEBUG]  [PC][PC1]: Creating particle. 
+[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1 
+[DEBUG]  1 
 [INFO]  --========== RELOAD STAGE ==========-- 
 [INFO]  [DL]: Loading data groups: conf. 
-[INFO]  [DL]: Loading data groups: conf, reload, gameObjects, GameObject, parents. 
-[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f0f90084cd0 
+[INFO]  [DL]: Loading data groups: conf, reload, parents, gameObjects. 
 [INFO]  [DL]: Reloading data group: parents. 
-[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f88157ea0 
+[WARN]  [DLF] Failed to load file: data/parents/ParticleContainer.lua: /home/NosGa-Engine/src/data/parents/ParticleContainer.lua:66: unexpected symbol near ')' 
+[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f901e9180 
 [INFO]  [DL]: Reloading data group: gameObjects. 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f8812c260 
-[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f90077420 
-[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f881b05b0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f9408e270 
-[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f880b8ba0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f901cd5b0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleContainer.lua: function: 0x7f0f8831bf00 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f9408b7b0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f883710e0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f94065bc0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f88548360 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f88192890 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f900890c0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f9408e900 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f88010500 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f881410c0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f90040650 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f940e3a30 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f94111210 
 [INFO]  [test]: Start init. 
-[INFO]  [DL]: Loading data groups: textures, gameObjects, animations, parents. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
 [INFO]  [DL]: Data group already loaded: textures. 
 [INFO]  [DL]: Data group already loaded: animations. 
 [INFO]  [DL]: Data group already loaded: parents. 
 [INFO]  [DL]: Data group already loaded: gameObjects. 
 [INFO]  [test]: init done. 
+[DEBUG]  [PC][PC1]: Creating particle. 
+[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1 
+[DEBUG]  1 
 [INFO]  --========== RELOAD STAGE ==========-- 
 [INFO]  [DL]: Loading data groups: conf. 
-[INFO]  [DL]: Loading data groups: conf, reload, gameObjects, GameObject, parents. 
-[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f0f9408e550 
+[INFO]  [DL]: Loading data groups: conf, reload, parents, gameObjects. 
 [INFO]  [DL]: Reloading data group: parents. 
-[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f90188d00 
+[WARN]  [DLF] Failed to load file: data/parents/ParticleContainer.lua: /home/NosGa-Engine/src/data/parents/ParticleContainer.lua:66: unexpected symbol near ')' 
+[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f88231240 
 [INFO]  [DL]: Reloading data group: gameObjects. 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f88110020 
-[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f9410e070 
-[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f90032db0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f88060c50 
-[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f8819be70 
-[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f88155a30 
-[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleContainer.lua: function: 0x7f0f94091ac0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f90040f40 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f88118730 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f9006fbf0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f88555760 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f94272330 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f94094780 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f884e4910 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f90137d40 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f8809fb30 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f9408b060 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f8818fab0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f90231980 
 [INFO]  [test]: Start init. 
-[INFO]  [DL]: Loading data groups: textures, gameObjects, animations, parents. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
 [INFO]  [DL]: Data group already loaded: textures. 
 [INFO]  [DL]: Data group already loaded: animations. 
 [INFO]  [DL]: Data group already loaded: parents. 
 [INFO]  [DL]: Data group already loaded: gameObjects. 
 [INFO]  [test]: init done. 
+[DEBUG]  [PC][PC1]: Creating particle. 
+[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1 
+[DEBUG]  1 
 [INFO]  --========== RELOAD STAGE ==========-- 
 [INFO]  [DL]: Loading data groups: conf. 
-[INFO]  [DL]: Loading data groups: conf, reload, gameObjects, GameObject, parents. 
-[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f0f8818f370 
+[INFO]  [DL]: Loading data groups: conf, reload, parents, gameObjects. 
 [INFO]  [DL]: Reloading data group: parents. 
-[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f94091990 
+[INFO]  [DLF]: Reloading file: data/parents/ParticleContainer.lua: function: 0x7f0f884e07c0 
+[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f90071390 
 [INFO]  [DL]: Reloading data group: gameObjects. 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f90023410 
-[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f881bd920 
-[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f881c1f60 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f9408d9b0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f90085e80 
-[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f88152240 
-[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleContainer.lua: function: 0x7f0f882c7c40 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f94077240 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f9403d320 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f94040d70 
+[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f8803b180 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f88192aa0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f90071660 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f940d4d10 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f881983a0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f88388a60 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f9008a6a0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f94106ab0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f9406fd80 
 [INFO]  [test]: Start init. 
-[INFO]  [DL]: Loading data groups: textures, gameObjects, animations, parents. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
 [INFO]  [DL]: Data group already loaded: textures. 
 [INFO]  [DL]: Data group already loaded: animations. 
 [INFO]  [DL]: Data group already loaded: parents. 
 [INFO]  [DL]: Data group already loaded: gameObjects. 
 [INFO]  [test]: init done. 
+[DEBUG]  [PC][PC1]: Creating particle, F: 2829 
+[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1, F: 2829 
+[DEBUG]  1 
 [INFO]  --========== RELOAD STAGE ==========-- 
 [INFO]  [DL]: Loading data groups: conf. 
-[INFO]  [DL]: Loading data groups: conf, reload, gameObjects, GameObject, parents. 
-[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f0f90028e50 
+[INFO]  [DL]: Loading data groups: conf, reload, parents, gameObjects. 
 [INFO]  [DL]: Reloading data group: parents. 
-[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f94040fd0 
+[INFO]  [DLF]: Reloading file: data/parents/ParticleContainer.lua: function: 0x7f0f94111540 
+[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f881bbb40 
 [INFO]  [DL]: Reloading data group: gameObjects. 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f88171660 
-[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f90030610 
-[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f940e7c20 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f88110e90 
-[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f880aba70 
-[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f9007cb30 
-[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleContainer.lua: function: 0x7f0f940a1cd0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f940a25f0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f88199440 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f8818c7a0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f9007d8d0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f94105ab0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f88021860 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f8817ac90 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f902300d0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f9417c860 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f884b1c70 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f884ad680 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f88183430 
 [INFO]  [test]: Start init. 
-[INFO]  [DL]: Loading data groups: textures, gameObjects, animations, parents. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
 [INFO]  [DL]: Data group already loaded: textures. 
 [INFO]  [DL]: Data group already loaded: animations. 
 [INFO]  [DL]: Data group already loaded: parents. 
 [INFO]  [DL]: Data group already loaded: gameObjects. 
 [INFO]  [test]: init done. 
+[DEBUG]  [PC][PC1]: Creating particle, F: 4915 
+[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1, F: 4915 
+[DEBUG]  1 
+[DEBUG]  1 
+[LUA]> s = gs8) 
+[ERROR]  stdin:1: unexpected symbol near ')'
+ 
+[LUA]> s = gs() 
+[LUA]> s.goTest3.gameObject:getPos() 
+[LUA]: 110.0	 
+[LUA]: 5.0	 
+[LUA]> s.goTest3.gameObject:getRealPos() 
+[ERROR]  stdin:1: attempt to call a nil value (method 'getRealPos')
+stack traceback:
+	machine:805: in method 'getRealPos'
+	stdin:1: in main chunk
+	[C]: in function 'xpcall'
+	machine:798: in global 'xpcall'
+	/home/NosGa-Engine/src/libs/thirdParty/luaShell.lua:142: in field 'textInput'
+	/home/NosGa-Engine/src/data/core/luaConsole.lua:38: in function </home/NosGa-Engine/src/data/core/luaConsole.lua:36>
+	[C]: in function 'xpcall'
+	machine:798: in global 'xpcall'
+	/home/NosGa-Engine/src/libs/ocui.lua:684: in function </home/NosGa-Engine/src/libs/ocui.lua:645>
+ 
+[LUA]> s.goTest3.gameObject:getPos() 
+[LUA]: 121.1	 
+[LUA]: 5.0	 
+[INFO]  --===== EINGABE =====-- 
+[LUA]> s.goTest3.gameObject:getPos() 
+[LUA]: 130.8	 
+[LUA]: 5.0	 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: conf, reload, parents, gameObjects. 
+[INFO]  [DL]: Reloading data group: parents. 
+[INFO]  [DLF]: Reloading file: data/parents/ParticleContainer.lua: function: 0x7f0f9021a270 
+[WARN]  [DLF] Failed to load file: data/parents/Particle.lua: /home/NosGa-Engine/src/data/parents/Particle.lua:63: ')' expected (to close '(' at line 62) near 'end' 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f94498540 
+[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f8818eae0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f88056180 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f900d59f0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f884b3ac0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f940e0050 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f8817ac40 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f90076a70 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f8817bc80 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f94067770 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [PC][PC1]: Creating particle, F: 19094 
+[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1, F: 19094 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: conf, reload, parents, gameObjects. 
+[INFO]  [DL]: Reloading data group: parents. 
+[INFO]  [DLF]: Reloading file: data/parents/ParticleContainer.lua: function: 0x7f0f94499c40 
+[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f901cbc90 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f88178e30 
+[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f883e0f40 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f940ea630 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f900807a0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f9021d7d0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f8803d1e0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f8822af40 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f94175690 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f9006e370 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f88663180 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [PC][PC1]: Creating particle, F: 19305 
+[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1, F: 19305 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: conf, reload, parents, gameObjects. 
+[INFO]  [DL]: Reloading data group: parents. 
+[INFO]  [DLF]: Reloading file: data/parents/ParticleContainer.lua: function: 0x7f0f9408ff70 
+[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f88669130 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f90169070 
+[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f8823ea20 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f940d76b0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f88544f20 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f9003aab0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f88150750 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f94182840 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f885697e0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f9007e470 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f90035b90 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [PC][PC1]: Creating particle, F: 21805 
+[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1, F: 21805 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: conf, reload, parents, gameObjects. 
+[INFO]  [DL]: Reloading data group: parents. 
+[INFO]  [DLF]: Reloading file: data/parents/ParticleContainer.lua: function: 0x7f0f8823dbb0 
+[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f902343d0 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f9442db30 
+[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f8818c5e0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f881793b0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f90042f10 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f94111a60 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f8822b670 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f880975b0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f90159f90 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f94110040 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f941072b0 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [PC][PC1]: Creating particle, F: 22089 
+[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1, F: 22089 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[DEBUG]  T2 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: textures, GameObject, uh, structuredGlobal, global, conf, eh, states, reload, parents, gameObjects, RenderArea, mods, animations, re. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f0f88663e50 
+[INFO]  [DL]: Reloading file: data/core/updateHandler.lua: function: 0x7f0f90029240 
+[INFO]  [DL]: Reloading file: data/core/eventHandler.lua: function: 0x7f0f8841f860 
+[INFO]  [DL]: Reloading file: data/core/RenderArea.lua: function: 0x7f0f88663fc0 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f0f90022b20 
+[INFO]  [DL]: Loading data group: global. 
+[INFO]  [DLF]: Reloading file: data/global/getState.lua: function: 0x7f0f940e06a0 
+[INFO]  [DLF]: Reloading file: data/global/addRA.lua: function: 0x7f0f881bc5d0 
+[INFO]  [DLF]: Reloading file: data/global/clear.lua: function: 0x7f0f88669d80 
+[INFO]  [DLF]: Reloading file: data/global/drawDebug.lua: function: 0x7f0f88660060 
+[INFO]  [DLF]: Loading file: data/global/globalDebuggingFunctions.lua: function: 0x7f0f90129d70 
+[INFO]  [DLF]: Reloading file: data/global/empty.lua: function: 0x7f0f901cef90 
+[INFO]  [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 0x7f0f8802d060 
+[INFO]  [DLF]: Reloading file: data/global/test//test.lua: function: 0x7f0f901409e0 
+[INFO]  [DLF]: Reloading file: data/global/addTest.lua: function: 0x7f0f902578d0 
+[INFO]  [DLF]: Reloading file: data/global/changeState.lua: function: 0x7f0f880a13f0 
+[INFO]  [DL]: Reloading data group: structuredGlobal. 
+[INFO]  [DLF]: Loading file: data/structuredGlobal/testDir//test2//test2.lua: function: 0x7f0f90140e10 
+[INFO]  [DLF]: Loading file: data/structuredGlobal/testDir//test.lua: function: 0x7f0f88122350 
+[INFO]  [DL]: Reloading data group: states. 
+[INFO]  [DLF]: Reloading file: data/states/stateTemplate.lua: function: 0x7f0f941f69a0 
+[INFO]  [DLF]: Reloading file: data/states/test2.lua: function: 0x7f0f88495b90 
+[INFO]  [DLF]: Loading file: data/states/test.lua: function: 0x7f0f90041e50 
+[INFO]  [DL]: Reloading data group: textures. 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0x7f0f9408ba90 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/player.lua: function: 0x7f0f880b3be0 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/pipipu.pic: table: 0x7f0f882c50c0 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/stone.lua: function: 0x7f0f881816d0 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/exampleTexture.lua: function: 0x7f0f90071560 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/test.pic: table: 0x7f0f88145fc0 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/grass.lua: function: 0x7f0f88039b10 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/background2.lua: function: 0x7f0f94039fa0 
+[INFO]  [DL]: Reloading data group: animations. 
+[INFO]  [DLF]: Loading file: texturePacks/default/animations/test/: table: 0x7f0f90075000 
+[INFO]  [DL]: Reloading data group: parents. 
+[INFO]  [DLF]: Reloading file: data/parents/ParticleContainer.lua: function: 0x7f0f90257750 
+[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f88114560 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f94039290 
+[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f88052d50 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f90140960 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f884b3d70 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f8822c880 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f94105660 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f881d6380 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f9007d6d0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f88555a00 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f941030e0 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [PC][PC1]: Creating particle, F: 22592 
+[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1, F: 22592 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[DEBUG]  T2 
+[DEBUG]  T 
+[DEBUG]  T 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: textures, GameObject, uh, structuredGlobal, global, conf, eh, states, reload, parents, gameObjects, RenderArea, mods, animations, re. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f0f9403c0f0 
+[INFO]  [DL]: Reloading file: data/core/updateHandler.lua: function: 0x7f0f88234e90 
+[INFO]  [DL]: Reloading file: data/core/eventHandler.lua: function: 0x7f0f8814d3f0 
+[INFO]  [DL]: Reloading file: data/core/RenderArea.lua: function: 0x7f0f881d20f0 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f0f90259010 
+[INFO]  [DL]: Reloading data group: global. 
+[INFO]  [DLF]: Reloading file: data/global/getState.lua: function: 0x7f0f94174c20 
+[INFO]  [DLF]: Reloading file: data/global/addRA.lua: function: 0x7f0f881835f0 
+[INFO]  [DLF]: Reloading file: data/global/clear.lua: function: 0x7f0f883e5e80 
+[INFO]  [DLF]: Reloading file: data/global/drawDebug.lua: function: 0x7f0f880ae770 
+[INFO]  [DLF]: Loading file: data/global/globalDebuggingFunctions.lua: function: 0x7f0f90040cd0 
+[INFO]  [DLF]: Reloading file: data/global/empty.lua: function: 0x7f0f900d51d0 
+[INFO]  [DLF]: Reloading file: data/global/test//test2//test2.lua: function: 0x7f0f8815f9c0 
+[INFO]  [DLF]: Reloading file: data/global/test//test.lua: function: 0x7f0f9012a5e0 
+[INFO]  [DLF]: Reloading file: data/global/addTest.lua: function: 0x7f0f9004acc0 
+[INFO]  [DLF]: Reloading file: data/global/changeState.lua: function: 0x7f0f8855d290 
+[INFO]  [DL]: Reloading data group: structuredGlobal. 
+[INFO]  [DLF]: Loading file: data/structuredGlobal/testDir//test2//test2.lua: function: 0x7f0f88027270 
+[INFO]  [DLF]: Loading file: data/structuredGlobal/testDir//test.lua: function: 0x7f0f9410eba0 
+[INFO]  [DL]: Reloading data group: states. 
+[INFO]  [DLF]: Reloading file: data/states/stateTemplate.lua: function: 0x7f0f8802daf0 
+[INFO]  [DLF]: Reloading file: data/states/test2.lua: function: 0x7f0f90029110 
+[INFO]  [DLF]: Loading file: data/states/test.lua: function: 0x7f0f9006f310 
+[INFO]  [DL]: Reloading data group: textures. 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0x7f0f9406b380 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/player.lua: function: 0x7f0f883863c0 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/pipipu.pic: table: 0x7f0f883dda80 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/stone.lua: function: 0x7f0f88553880 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/exampleTexture.lua: function: 0x7f0f9007dd50 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/test.pic: table: 0x7f0f902de560 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/grass.lua: function: 0x7f0f88240c20 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/background2.lua: function: 0x7f0f940e58c0 
+[INFO]  [DL]: Reloading data group: animations. 
+[INFO]  [DLF]: Loading file: texturePacks/default/animations/test/: table: 0x7f0f880a1780 
+[INFO]  [DL]: Reloading data group: parents. 
+[INFO]  [DLF]: Reloading file: data/parents/ParticleContainer.lua: function: 0x7f0f900d09c0 
+[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f880f4c30 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f940cb250 
+[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f88239190 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f90084f80 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f900493e0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f88065e20 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f940a2320 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f881ae4a0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f90026c90 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f884d5cd0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f9410dc40 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [PC][PC1]: Creating particle, F: 23099 
+[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1, F: 23099 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: conf, reload, parents, gameObjects. 
+[INFO]  [DL]: Reloading data group: parents. 
+[INFO]  [DLF]: Reloading file: data/parents/ParticleContainer.lua: function: 0x7f0f880289b0 
+[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f940f8400 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f884ac410 
+[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f9021d900 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f880a1660 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f94037c10 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f881bb680 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f90065160 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f881c66a0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f94181890 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f8802f1e0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f881b6150 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [PC][PC1]: Creating particle, F: 23954 
+[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1, F: 23954 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: conf, reload, parents, gameObjects. 
+[INFO]  [DL]: Reloading data group: parents. 
+[INFO]  [DLF]: Reloading file: data/parents/ParticleContainer.lua: function: 0x7f0f881b66f0 
+[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f90041a40 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f9408d470 
+[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f886684d0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f8853ff50 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f900d1e30 
+[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f94110690 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f884b2050 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f885426f0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f9012b290 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f90140ca0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f940cf670 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, animations, parents, gameObjects. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [PC][PC1]: Creating particle, F: 38273 
+[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1, F: 38273 
 [DEBUG]  [EH]: Program stopped by user. 

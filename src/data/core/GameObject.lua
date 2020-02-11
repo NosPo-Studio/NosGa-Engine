@@ -48,6 +48,7 @@ function GameObject.new(args)
 		layer = pa(args.layer, global.conf.renderLayerAmount),
 		name = pa(args.name, ""),
 		drawSize = pa(args.ds, args.drawSize, global.conf.debug.drawGameObjectBorders),
+		isParent = args.isParent,
 		
 		--=== Auto generated ===--
 		id, 
@@ -59,7 +60,7 @@ function GameObject.new(args)
 		lastCalculatedFrame = 0,
 		clearAreas = {},
 		copyAreas = {},
-		usesAnimation,
+		usesAnimation = pa(args.useAnimation),
 	}
 	
 	args.gameObject = global.ut.parseArgs(args.components, args.gameObject) --ToDo: Completly remove args.gameObject from the code.
@@ -181,7 +182,11 @@ function GameObject.new(args)
 	
 	--===== engine functions =====--
 	this.ngeStart = function(this) --parent func 
-		global.run(this.start, this)
+		if this.ngeAttributes.isParent then
+			global.run(this.pStart, this)
+		else
+			global.run(this.start, this)
+		end
 	end
 	this.ngeUpdate = function(this, gameObjects, dt, ra) --parent func
 		local ocgfGameObjects = {}
@@ -191,7 +196,11 @@ function GameObject.new(args)
 		
 		this.gameObject:updatePhx(ocgfGameObjects, dt)
 		this.gameObject:update(ocgfGameObjects)
-		global.run(this.update, this, dt, ra)
+		if this.ngeAttributes.isParent then
+			global.run(this.pUpdate, this, dt, ra)
+		else
+			global.run(this.update, this, dt, ra)
+		end
 		
 		local x, y = this:getPos()
 		local lx, ly = this:getLastPos()
@@ -210,7 +219,11 @@ function GameObject.new(args)
 		this.ngeAttributes.isUpdated = true
 	end
 	this.ngeActivate = function(this) --parent func
-		global.run(this.activate, this)
+		if this.ngeAttributes.isParent then
+			global.run(this.pActivate, this)
+		else
+			global.run(this.activate, this)
+		end
 	end
 	this.ngeDraw = function(this, renderArea) --parent func
 		local realArea = renderArea.realArea or renderArea
@@ -232,7 +245,11 @@ function GameObject.new(args)
 			this.gameObject:draw(offsetX, offsetY, {realArea.posX, realArea.posX + realArea.sizeX -1, realArea.posY, realArea.posY + realArea.sizeY -1}, global.dt, global.backgroundColor)
 		end
 		
-		global.run(this.draw, this, realArea, renderArea)
+		if this.ngeAttributes.isParent then
+			global.run(this.pDraw, this, realArea, renderArea)
+		else
+			global.run(this.draw, this, realArea, renderArea)
+		end
 		
 		realArea.gameObjectAttributes[this.ngeAttributes.id].mustBeRendered = false
 		realArea.gameObjectAttributes[this.ngeAttributes.id].wasVisible = true
@@ -253,7 +270,11 @@ function GameObject.new(args)
 		local lastPosX, lastPosY = this:getLastPos()
 		local posX, posY = this:getPos()
 		
-		global.run(this.clear, this, renderArea)
+		if this.ngeAttributes.isParent then
+			global.run(this.pClear, this, renderArea)
+		else
+			global.run(this.clear, this, renderArea)
+		end
 		
 		global.gpu.setBackground(global.backgroundColor)
 		
@@ -274,14 +295,26 @@ function GameObject.new(args)
 	end
 	this.ngeStop = function(this)
 		this.gameObject:stop()
-		global.run(this.stop, this)
+		if this.ngeAttributes.isParent then
+			global.run(this.pStop, this)
+		else
+			global.run(this.stop, this)
+		end
 		this.gameObject:stop()
 	end
 	this.ngeSpawn = function(this) --parent func
-		global.run(this.spawn, this)
+		if this.ngeAttributes.isParent then
+			global.run(this.pSpawn, this)
+		else
+			global.run(this.spawn, this)
+		end
 	end
 	this.ngeDespawn = function(this) --parent func
-		global.run(this.despawn, this)
+		if this.ngeAttributes.isParent then
+			global.run(this.pDespawn, this)
+		else
+			global.run(this.despawn, this)
+		end
 	end
 	
 	return this

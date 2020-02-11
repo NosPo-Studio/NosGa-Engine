@@ -121,7 +121,7 @@ function RenderArea.new(args)
 				end
 				
 				--global.run(this.gameObjects[id].spawn)
-				global.run(this.gameObjects[id].start)
+				global.run(this.gameObjects[id].ngeStart, this.gameObjects[id])
 				return this.gameObjects[id]
 			end
 		end
@@ -145,7 +145,7 @@ function RenderArea.new(args)
 			end
 			
 			--global.run(this.gameObjects[id].despawn)
-			global.run(this.gameObjects[id].stop)
+			global.run(this.gameObjects[id].ngeStop, this.gameObjects[id])
 			
 			this.gameObjects[id] = nil
 		end

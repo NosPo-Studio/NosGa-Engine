@@ -80,7 +80,7 @@ function test.start()
 	test.goTest3:attach(test.goTest)
 	
 	
-	test.pc1 = test.ra1:addGO("ParticleContainer", {posX = 2 +100, posY = 15})
+	test.pc1 = test.ra1:addGO("ParticleTestContainer", {posX = 2 +100, posY = 15, name = "PC1"})
 	
 	--Moce cameras to x 100.
 	test.ra1:moveCameraTo(100, 0)
