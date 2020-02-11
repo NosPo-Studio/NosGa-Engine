@@ -44,6 +44,7 @@ local nosGaConf = {
 		
 		drawCollider = false,
 		drawTrigger = false,
+		drawGameObjectBorders = true,
 		
 		onReload = { --defined what data/libs are reloaded at state reload. Press ctrl meanwhine to reload anything independent from this settings.
 			conf = true, --should be always true.
@@ -52,16 +53,16 @@ local nosGaConf = {
 			re = false, 
 			uh = false,
 			eh = false,
-			GameObject = false,
+			GameObject = true,
 			RenderArea = false,
 			
 			--=== data groups ===--
 			global = false, --global dir.
 			structuredGlobal = false,
-			states = true,
+			states = false,
 			textures = false,
-			animations = true,
-			parents = false,
+			animations = false,
+			parents = true,
 			gameObjects = true,
 			
 			mods = false, --just reloads the activated data groups of the mods (if only onReload.blocks = true he only also reloads the blocks from mods). should be always true.

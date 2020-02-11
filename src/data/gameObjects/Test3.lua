@@ -33,7 +33,6 @@ function GameObjectsTemplate.new(args)
 	--===== gameObject definition =====--
 	--Take given GameObject args if present and prevents it from being nil if not.
 	args = args or {} 
-	
 	args.sizeX = 10
 	args.sizeY = 7
 	args.components = { --Define the GameObjects components.
@@ -69,16 +68,6 @@ function GameObjectsTemplate.new(args)
 	]]
 	this.key_down = function(this, signal) 
 		
-	end
-	
-	this.ctrl_right_key_pressed = function(this, signal, sname) 
-		--Addign force to move the object.
-		this:addForce(100, 0, args.maxSpeed) 
-	end
-	
-	this.ctrl_left_key_pressed = function(this, signal, sname) 
-		--Addign negative force to move the object.
-		this:addForce(-100, 0, args.maxSpeed) 
 	end
 	
 	--===== default functions =====--

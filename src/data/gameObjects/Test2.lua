@@ -40,8 +40,8 @@ function GameObjectsTemplate.new(args)
 		{"Sprite", 
 			x = 0, 
 			y = 0, 
-			texture = global.texture.player.right,
-			--texture = "test",
+			--texture = global.texture.player.right,
+			texture = "test",
 			--texture = "exampleTexture",
 		},
 		{"Sprite", 
@@ -51,7 +51,7 @@ function GameObjectsTemplate.new(args)
 		},
 		{"RigidBody", 
 			g = 0,
-			stiffness = 2,
+			stiffness = 20,
 		},
 	}
 	
@@ -65,10 +65,8 @@ function GameObjectsTemplate.new(args)
 	this = setmetatable(this, GameObjectsTemplate) 
 	
 	--===== init =====--
-	--this.anim = args.oclrl.Animation.new(args.oclrl, global.texture.player.right)
-	--this.anim2 = args.oclrl.Animation.new(args.oclrl, global.texture.player.right)
 	
-	--this.to1 = global.parent.Test.new(args.posX)
+	this.gameObject.rigidBodys[1].test = "t"
 	
 	--===== custom functions =====--
 	--[[Same as the function equevalent in the stateTemplate

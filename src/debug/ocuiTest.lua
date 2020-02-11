@@ -9,7 +9,8 @@ local term = require("term")
 local gpu = component.gpu
 local ocgf = dofile("libs/ocgf.lua")
 local oclrl = dofile("libs/oclrl.lua").initiate(gpu)
-local ocui = dofile("libs/ocui.lua").initiate(oclrl)
+package.loaded.ocui = nil
+local ocui = dofile("ocui.lua").initiate(oclrl)
 
 --===== Variables =====--
 local orgPrint = print

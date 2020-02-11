@@ -17,10 +17,11 @@
 
 --[[OpenComputersGamingFramework:
 	ToDo:
-		
+	
+	WIP:
 ]]
 
-local OCGF = {version = "v1.0d"} 
+local OCGF = {version = "v1.1.2"} 
 OCGF.__index = OCGF
 
 --===== local vars =====--
@@ -145,6 +146,8 @@ function OCGF.GameObject.new(ocgf, args)
 	
 	this.parent = args.parent
 	
+	this.attachedTo = nil --Will be the attached GameObject after using GameObject.attach().
+	
 	this.boxTrigger = {}
 	this.boxCollider = {}
 	this.rigidBodys = {}
@@ -232,6 +235,14 @@ function OCGF.GameObject.onTrigger(this, gameObject, selfCall)
 	--this.log("GO: Trigger: " .. tostring(selfCall))
 end
 
+function OCGF.GameObject.getPos(this)
+	return this.posX, this.posY
+end
+
+function OCGF.GameObject.getLastPos(this)
+	return this.lastPosX, this.lastPosY
+end
+
 function OCGF.GameObject.getSprites(this)
 	local sprites = {}
 	for _, s in ipairs(this.sprites) do
@@ -256,7 +267,21 @@ function OCGF.GameObject.getCollider(this)
 	return trigger
 end
 
+function OCGF.GameObject.getRigidBodys(this)
+	local rbs = {}
+	for _, s in ipairs(this.rigidBodys) do
+		table.insert(rbs, s)
+	end
+	return rbs
+end
+
 function OCGF.GameObject.update(this, gameObjects) --gameObject can be collider table	
+	if this.attachedTo ~= nil and #this:getRigidBodys() == 0 then
+		local x, y = this.attachedTo:getPos()
+		local lx, ly = this.attachedTo:getLastPos()
+		this:move(x - lx, y - ly)
+	end
+	
 	for i, c in ipairs(gameObjects) do
 		for i, bt in ipairs(this.boxTrigger) do
 			bt:update(c:getTrigger())
@@ -362,6 +387,18 @@ function OCGF.GameObject.playAnimation(this, speed, frame)
 	end
 end
 
+function OCGF.GameObject.attach(this, gameObject)
+	this.attachedTo = gameObject
+end
+
+function OCGF.GameObject.detach(this)
+	if this.attachedTo == nil then return false, "No GameObject attached to" end
+	for _, rb in pairs(this.rigidBodys) do
+		rb:detach()
+	end
+	this.attachedTo = nil
+end
+
 --===== Sprite =====--
 OCGF.Sprite = {widgetType = "Sprite"}
 OCGF.Sprite.__index = OCGF.Sprite
@@ -408,8 +445,6 @@ function OCGF.Sprite.moveTo(this, x, y, slp)
 end
 
 function OCGF.Sprite.draw(this, dt, background, offsetX, offsetY, area)	
-	--this.gameObject.log(this.background)
-	
 	background = background or this.background
 	if this.animation ~= nil then
 		this.animation.background = background
@@ -493,6 +528,8 @@ function OCGF.RigidBody.new(gameObject, args)
 	this.hardness = ut.parseArgs(args.hardness, 1)
 	this.gravitationFactor = ut.parseArgs(args.g, args.gravitation, args.gravitationFactor, 1)
 	this.stiffness = ut.parseArgs(args.stiffness, 0) -- 1 == 1 speed loss per update, -1 == unmovable.
+	this.speedRetain = ut.parseArgs(args.speedRetain, 1) -- 0 == 100% speed loss per update, .1 == 90% speed loss pr update, 1 == 0% speed loss per update.
+	this.stickiness = ut.parseArgs(args.stickiness, 1) --1 == enouth to stick stiff, 0 == no stickiness.
 	
 	this.speedX = 0
 	this.speedY = 0
@@ -502,15 +539,30 @@ end
 
 --function OCGF.RigidBody.update(this, gameObjects, pingTrigger, pingGameObject, callOwnFunction, slp) --ToDo: add realistic physics.
 function OCGF.RigidBody.update(this, gameObjects, dt, slp) --ToDo: add realistic physics.
-	this.speedX = calculateStiffness(this.speedX, this.stiffness)
-	this.speedY = this.speedY + (this.gravitationFactor * dt)
-	this.speedY = calculateStiffness(this.speedY, this.stiffness)
-	
-	if this.calculateHalfPixel then
-		this.gameObject:move(this.speedX *dt, (this.speedY /2) *dt, slp)
-	else
-		this.gameObject:move(this.speedX *dt, this.speedY *dt, slp)
+	local g = this.gravitationFactor
+	if this.gameObject.attachedTo ~= nil then
+		g = g * (1 - this.stickiness)
 	end
+	this.speedX = calculateStiffness(this.speedX, this.stiffness * dt)
+	this.speedY = this.speedY + (g * dt)
+	this.speedY = calculateStiffness(this.speedY, this.stiffness * dt)
+	
+	if this.gameObject.attachedTo ~= nil then
+		local x, y = this.gameObject.attachedTo:getPos()
+		local lx, ly = this.gameObject.attachedTo:getLastPos()
+		
+		this.gameObject:move(
+			calculateStiffness((x - lx), this.stiffness * (1 - this.stickiness) * dt) * this.speedRetain,
+			calculateStiffness((y - ly), this.stiffness * (1 - this.stickiness) * dt) * this.speedRetain
+		)
+	end
+	
+	local speedX, speedY = this.speedX, this.speedY
+	if this.calculateHalfPixel then
+		speedY = speedY /2
+	end
+	
+	this.gameObject:move(speedX *dt, speedY *dt, slp)
 	
 	local collider = {}
 	for _, go in ipairs(gameObjects) do
@@ -526,6 +578,11 @@ function OCGF.RigidBody.update(this, gameObjects, dt, slp) --ToDo: add realistic
 	end
 	
 	return collisions
+end
+
+function OCGF.RigidBody.detach(this)
+	this.speedX = this.speedX + this.gameObject.attachedTo:getRigidBodys()[1].speedX
+	this.speedY = this.speedY + this.gameObject.attachedTo:getRigidBodys()[1].speedY
 end
 
 --===== BoxTrigger =====--

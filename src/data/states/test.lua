@@ -55,63 +55,32 @@ end
 function test.start()
 	global.clear()
 	
+	
+	package.loaded["libs/ocgf"] = nil
+	
+	global.ocgf = dofile("libs/ocgf.lua").initiate({gpu = global.gpu, db = global.db, oclrl = global.oclrl, ocal = global.ocal})
+	
+	
 	--===== debug =====--
 	--Creating 2 RenderAreas (windows) showing the same scene.
 	test.ra1 = global.addRA({
-		posX = 5, 
-		posY = 5, 
-		sizeX = 40, 
-		sizeY = 12, 
+		posX = 2, 
+		posY = 3, 
+		sizeX = 55, 
+		sizeY = 20, 
 		name = "TRA1", 
 		drawBorders = true,
 	})
-	test.ra2 = global.addRA({posX = 50, posY = 5, sizeX = 40, sizeY = 12, name = "TRA2", drawBorders = true, parent = test.ra1})
+	test.ra2 = global.addRA({posX = 59, posY = 3, sizeX = 55, sizeY = 20, name = "TRA2", drawBorders = true, parent = test.ra1})
 	
-	local oclrl = dofile("libs/oclrl.lua").initiate(global.gpu)
+	test.goTest = test.ra2:addGO("Test2", {posX = 2 +100, posY = 5, layer = 3, maxSpeed = 20})
+	test.goTest2 = test.ra1:addGO("Test3", {posX = 25 +100, posY = 5, layer = 1})
+	test.goTest3 = test.ra1:addGO("Test4", {posX = 10 +100, posY = 5, layer = 1})
 	
-	test.goTest = test.ra1:addGO("Test2", {posX = 2 +100, posY = 5, layer = 3, name = "test1", maxSpeed = 15})
-	test.goTest2 = test.ra1:addGO("Test3", {posX = 10 +100, posY = 5, layer = 3, name = "test1", maxSpeed = 15})
-	test.goTest3 = test.ra1:addGO("Test4", {posX = 25 +100, posY = 5, layer = 3, name = "test1", maxSpeed = 15})
-	
-	test.anim = global.ocal.Animation.new(global.oclrl, global.texture.player.right)
-	test.anim2 = global.ocal.Animation.new(global.oclrl, global.texture.player.right)
-	
-	--test.goTest.anim = global.oclrl.Animation.new(global.oclrl, global.texture.player.right)
-	--test.goTest2.anim = global.oclrl.Animation.new(global.oclrl, global.texture.player.right)
+	test.goTest3:attach(test.goTest)
 	
 	
-	
-	--Creating some GameObjects in the same scene.
-	--test.tgo1 = test.ra1:addGO("MovingTestGO", {posX = 2 +100, posY = 5, layer = 3, name = "test1"})
-	--test.rbm1 = test.ra1:addGO("RPT", {posX = 102, posY = 0, layer = 1, length = 1, name = "moving" .. tostring(c)})
-	
-	test.tgos = {}
-	local amout, distance = 3, 16
-	local c = 1
-	amout = amout * distance
-	for i = 1, amout, distance do
-		c = c +1
-		--table.insert(test.tgos, test.ra1:addGO("StaticTestGO", {posX = i +100, posY = 3, layer = 2, name = "test" .. tostring(c)}))
-	end
-	
-	test.rbms = {}
-	local amout, distance = 50, 25
-	local c = 0
-	amout = amout * distance
-	for i = 1, amout, distance do
-		c = c +1
-		--table.insert(test.rbms, test.ra1:addGO("RPT", {posX = i +100, posY = 0, layer = 1, length = 1, name = "rbm_" .. tostring(c)}))
-	end
-	
-	
-	--test.test1 = test.ra1:addGO("Test", {posX = 2 +100, posY = 5, layer = 3, name = "test1"})
-	--test.test2 = test.ra1:addGO("Test", {posX = 20 +100, posY = 5, layer = 3, name = "test2"})
-	--test.test3 = test.ra1:addGO("Test", {posX = 20 +100, posY = 1, layer = 3, name = "test3"})
-	
-	--[[Bug:
-		Later created animations are the GameObject.
-		Why?
-	]]
+	test.pc1 = test.ra1:addGO("ParticleContainer", {posX = 2 +100, posY = 15})
 	
 	--Moce cameras to x 100.
 	test.ra1:moveCameraTo(100, 0)
@@ -170,8 +139,14 @@ function test.key_down(s)
 	if s[4] == 28 and global.isDev then
 		print("--===== EINGABE =====--")
 		
-		global.realGPU.setBackground(0x000000)
-		global.term.clear()
+		if false then
+			global.realGPU.setBackground(0x000000)
+			global.term.clear()
+		end
+		
+		--test.goTest3:detach()
+		--test.goTest3:setSpeed(10, 0)
+		--test.goTest:setSpeed(15, 0)
 		
 		--test.tgo1:ngeDraw(test.ra1)
 		--test.rbm1:ngeDraw(test.ra1)

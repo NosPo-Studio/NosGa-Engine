@@ -46,7 +46,8 @@ function GameObject.new(args)
 		sizeX = pa(args.sx, args.sizeX, 0),
 		sizeY = pa(args.sy, args.sizeY, 0),
 		layer = pa(args.layer, global.conf.renderLayerAmount),
-		name = args.name,
+		name = pa(args.name, ""),
+		drawSize = pa(args.ds, args.drawSize, global.conf.debug.drawGameObjectBorders),
 		
 		--=== Auto generated ===--
 		id, 
@@ -63,39 +64,37 @@ function GameObject.new(args)
 	
 	args.gameObject = global.ut.parseArgs(args.components, args.gameObject) --ToDo: Completly remove args.gameObject from the code.
 	
-	if args.gameObject ~= nil then
-		this.gameObject = global.ocgf.GameObject.new(global.ocgf, {
-			dc = global.conf.debug.drawCollider,
-			dt = global.conf.debug.drawTrigger,
-			logFunc = global.log,
-			posX = pa(args.x, args.posX),
-			posY = pa(args.y, args.posY),
-		})
-		
-		for _, c in pairs(args.gameObject) do
-			if c[1] == "BoxCollider" then
-				this.gameObject:addBoxCollider(c)
-			elseif c[1] == "BoxTrigger" then
-				this.gameObject:addBoxTrigger(c)
-			elseif c[1] == "RigidBody" then
-				this.gameObject:addRigidBody(c)
-			elseif c[1] == "Sprite" then
-				if type(c.texture) == "string" then
-					c.texture = global.texture[c.texture]
-				end
+	this.gameObject = global.ocgf.GameObject.new(global.ocgf, {
+		dc = global.conf.debug.drawCollider,
+		dt = global.conf.debug.drawTrigger,
+		logFunc = global.log,
+		posX = pa(args.x, args.posX),
+		posY = pa(args.y, args.posY),
+	})
+	
+	for _, c in pairs(args.gameObject or {}) do
+		if c[1] == "BoxCollider" then
+			this.gameObject:addBoxCollider(c)
+		elseif c[1] == "BoxTrigger" then
+			this.gameObject:addBoxTrigger(c)
+		elseif c[1] == "RigidBody" then
+			this.gameObject:addRigidBody(c)
+		elseif c[1] == "Sprite" then
+			if type(c.texture) == "string" then
+				c.texture = global.texture[c.texture]
+			end
+			
+			if c.texture.format == "OCGLA" or c.texture.format == "pan" then
+				this.ngeAttributes.usesAnimation = true
+			elseif c.texture.format == "pic" then
 				
-				if c.texture.format == "OCGLA" or c.texture.format == "pan" then
-					this.ngeAttributes.usesAnimation = true
-				elseif c.texture.format == "pic" then
-					
-				end
-				
-				this.gameObject:addSprite(c)
-			elseif c[1] == "CopyArea" or c[1] == "ClearArea" then
-				addAreaEntry(this.ngeAttributes.clearAreas, c)
-				if global.conf.forceSmartMove or global.conf.useSmartMove and global.conf.useDoubleBuffering then
-					addAreaEntry(this.ngeAttributes.copyAreas, c)
-				end
+			end
+			
+			this.gameObject:addSprite(c)
+		elseif c[1] == "CopyArea" or c[1] == "ClearArea" then
+			addAreaEntry(this.ngeAttributes.clearAreas, c)
+			if global.conf.forceSmartMove or global.conf.useSmartMove and global.conf.useDoubleBuffering then
+				addAreaEntry(this.ngeAttributes.copyAreas, c)
 			end
 		end
 	end
@@ -173,6 +172,12 @@ function GameObject.new(args)
 			return
 		end
 	end
+	this.attach = function(this, gameObject)
+		this.gameObject:attach(gameObject.gameObject)
+	end
+	this.detach = function(this)
+		this.gameObject:detach()
+	end
 	
 	--===== engine functions =====--
 	this.ngeStart = function(this) --parent func 
@@ -231,6 +236,17 @@ function GameObject.new(args)
 		
 		realArea.gameObjectAttributes[this.ngeAttributes.id].mustBeRendered = false
 		realArea.gameObjectAttributes[this.ngeAttributes.id].wasVisible = true
+		
+		if this.ngeAttributes.drawSize then
+			local posX, posY = this:getPos()
+			global.oclrl:draw(posX + offsetX, posY + offsetY, global.oclrl.generateTexture({
+				{"b", 0xFF69B4},
+				{0, 0, this.ngeAttributes.sizeX, 1, " "},
+				{0, this.ngeAttributes.sizeY -1, this.ngeAttributes.sizeX, 1, " "},
+				{0, 0, 1, this.ngeAttributes.sizeY, " "},
+				{this.ngeAttributes.sizeX -1, 0, 1, this.ngeAttributes.sizeY, " "},
+			}), true, {realArea:getRealFOV()})
+		end
 	end
 	this.ngeClear = function(this, renderArea) --parent func
 		local offsetX, offsetY = renderArea.posX + renderArea.cameraPosX, renderArea.posY + renderArea.cameraPosY
