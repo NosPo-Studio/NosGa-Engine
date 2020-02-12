@@ -73,14 +73,14 @@ function test.start()
 	})
 	--test.ra2 = global.addRA({posX = 59, posY = 3, sizeX = 55, sizeY = 20, name = "TRA2", drawBorders = true, parent = test.ra1})
 	
-	test.goTest = test.ra1:addGO("Test2", {posX = 2 +100, posY = 2, layer = 3, maxSpeed = 20})
-	test.goTest2 = test.ra1:addGO("Test3", {posX = 25 +100, posY = 2, layer = 1})
-	test.goTest3 = test.ra1:addGO("Test4", {posX = 10 +100, posY = 2, layer = 1})
+	--test.goTest = test.ra1:addGO("Test2", {posX = 2 +100, posY = 2, layer = 3, maxSpeed = 20, name = "goTest"})
+	test.goTest2 = test.ra1:addGO("Test3", {posX = 35 +100, posY = 2, layer = 2, name = "goTest2"})
+	test.goTest3 = test.ra1:addGO("Test4", {posX = 10 +100, posY = 2, layer = 2, name = "goTest3"})
 	
-	test.goTest3:attach(test.goTest)
+	--test.goTest3:attach(test.goTest)
 	
 	
-	test.pc1 = test.ra1:addGO("ParticleTestContainer", {posX = 20 +100, posY = 15, name = "PC1"})
+	test.pc1 = test.ra1:addGO("ParticleTestContainer", {posX = 20 +100, posY = 3, layer = 5, name = "PC1"})
 	
 	--Moce cameras to x 100.
 	test.ra1:moveCameraTo(100, 0)

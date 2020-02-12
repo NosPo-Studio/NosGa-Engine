@@ -25,7 +25,7 @@
     along with dbgpu_api.  If not, see <https://www.gnu.org/licenses/>.	
 ]]
 
-local version = "v0.1.1t"
+local version = "v0.1.1d"
 
 local args = ...
 local path = args.path or ""
@@ -45,6 +45,14 @@ local function parseArgs(...) --ripped from UT_v0.6
 	end
 end
 
+local function getSubFunc(s)
+	if #s ~= unicode.len(s) then
+		return unicode.sub
+	else
+		return string.sub
+	end
+end
+
 local dbgpu = {
 	directDraw = parseArgs(args.directDraw, true),
 	forceDraw = parseArgs(args.forceDraw, false),
@@ -60,26 +68,28 @@ local function draw()
 end
 
 function dbgpu.set(x, y, s, v)
+	local sub = getSubFunc(s)
 	x = math.floor(x)
 	y = math.floor(y)
 	if v then
 		for i = 1, unicode.len(s) do
-			buffer.set(x, y +i -1, lastBackground, lastForeground, unicode.sub(s, i, i))
+			buffer.set(x, y +i -1, lastBackground, lastForeground, sub(s, i, i))
 		end
 	else
 		for i = 1, unicode.len(s) do
-			buffer.set(x +i -1, y, lastBackground, lastForeground, unicode.sub(s, i, i))
+			buffer.set(x +i -1, y, lastBackground, lastForeground, sub(s, i, i))
 		end
 	end
 	draw()
 end
 
 function dbgpu.fill(x, y, sx, sy, s)
+	local sub = getSubFunc(s)
 	x = math.floor(x)
 	y = math.floor(y)
 	sx = math.floor(sx)
 	sy = math.floor(sy)
-	s = unicode.sub(s, 0, 1)
+	s = sub(s, 0, 1)
 	buffer.drawRectangle(x, y, sx, sy, lastBackground, lastForeground, s)
 	draw()
 end

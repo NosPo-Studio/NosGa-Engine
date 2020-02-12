@@ -79,7 +79,11 @@ local function isInQueue(ra, go, l)
 	
 	return isInQueue
 	]]
-	return ra.toRender[l][go] ~= nil
+	
+	--renderArea.gameObjectAttributes[go.ngeAttributes.id].causedByOverlap
+	
+	
+	return ra.toRender[l][go] ~= nil and ra.gameObjectAttributes[go.ngeAttributes.id].causedByOverlap ~= true
 end
 
 local function checkOverlapping(renderArea, gameObject, layer)

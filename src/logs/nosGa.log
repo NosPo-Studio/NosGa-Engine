@@ -2,30 +2,30 @@
 [INFO]  [test]: Start init. 
 [INFO]  [DL]: Loading data groups: gameObjects, parents, animations, textures. 
 [INFO]  [DL]: Loading data group: textures. 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 0x7f0f8844cfd0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0x7f0f9433dfb0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0x7f0f942281b0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0x7f0f94281390 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/pipipu.pic: table: 0x7f0f945d3ac0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/test.pic: table: 0x7f0f90187340 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/exampleTexture.lua: function: 0x7f0f90123750 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0x7f0f8809e3a0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 0x7f0f88390a70 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0x7f0f942d1710 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0x7f0f94253f20 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0x7f0f90110420 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/pipipu.pic: table: 0x7f0f9007bdf0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/test.pic: table: 0x7f0f90272440 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/exampleTexture.lua: function: 0x7f0f900d76f0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0x7f0f88130110 
 [INFO]  [DL]: Loading data group: animations. 
-[INFO]  [DLF]: Loading file: texturePacks/default/animations/test/: table: 0x7f0f892587a0 
+[INFO]  [DLF]: Loading file: texturePacks/default/animations/test/: table: 0x7f0f890bfcf0 
 [INFO]  [DL]: Loading data group: parents. 
-[INFO]  [DLF]: Loading file: data/parents/Particle.lua: function: 0x7f0f883341d0 
-[INFO]  [DLF]: Loading file: data/parents/ParticleContainer.lua: function: 0x7f0f9409fc40 
+[INFO]  [DLF]: Loading file: data/parents/Particle.lua: function: 0x7f0f94079660 
+[INFO]  [DLF]: Loading file: data/parents/ParticleContainer.lua: function: 0x7f0f902353f0 
 [INFO]  [DL]: Loading data group: gameObjects. 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test4.lua: function: 0x7f0f906b3320 
-[INFO]  [DLF]: Loading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f9023ef50 
-[INFO]  [DLF]: Loading file: data/gameObjects/RPT.lua: function: 0x7f0f90333b50 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test2.lua: function: 0x7f0f884c1e20 
-[INFO]  [DLF]: Loading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f88539d70 
-[INFO]  [DLF]: Loading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f886fcf90 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test.lua: function: 0x7f0f886a95a0 
-[INFO]  [DLF]: Loading file: data/gameObjects/TestParticle.lua: function: 0x7f0f880dbea0 
-[INFO]  [DLF]: Loading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f8839bda0 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test3.lua: function: 0x7f0f886e5800 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test4.lua: function: 0x7f0f8849dc10 
+[INFO]  [DLF]: Loading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f881955a0 
+[INFO]  [DLF]: Loading file: data/gameObjects/RPT.lua: function: 0x7f0f943547c0 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test2.lua: function: 0x7f0f90071ec0 
+[INFO]  [DLF]: Loading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f88405c00 
+[INFO]  [DLF]: Loading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f887474e0 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test.lua: function: 0x7f0f881378b0 
+[INFO]  [DLF]: Loading file: data/gameObjects/TestParticle.lua: function: 0x7f0f945a7a20 
+[INFO]  [DLF]: Loading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f94254470 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test3.lua: function: 0x7f0f905ce170 
 [INFO]  [test]: init done. 
 [DEBUG]  [PC][PC1]: Creating particle, F: 0 
 [DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1, F: 0 
@@ -47,48 +47,4 @@
 [DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 5, Y: 2, F: 0 
 [DEBUG]  [PC][PC1]: Creating particle, F: 0 
 [DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 5, Y: 3, F: 0 
-[INFO]  --========== RELOAD STAGE ==========-- 
-[INFO]  [DL]: Loading data groups: conf. 
-[INFO]  [DL]: Loading data groups: parents, gameObjects, conf, reload. 
-[INFO]  [DL]: Reloading data group: parents. 
-[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f0f880db3c0 
-[INFO]  [DLF]: Reloading file: data/parents/ParticleContainer.lua: function: 0x7f0f89321950 
-[INFO]  [DL]: Reloading data group: gameObjects. 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f0f886a5040 
-[INFO]  [DLF]: Reloading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f0f8935d2e0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/RPT.lua: function: 0x7f0f884a99a0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f0f880377f0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/StaticTestGO.lua: function: 0x7f0f88079840 
-[INFO]  [DLF]: Reloading file: data/gameObjects/MovingTestGO.lua: function: 0x7f0f880e76e0 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f0f88731640 
-[INFO]  [DLF]: Reloading file: data/gameObjects/TestParticle.lua: function: 0x7f0f89341370 
-[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f0f88527310 
-[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f0f881fa910 
-[INFO]  [test]: Start init. 
-[INFO]  [DL]: Loading data groups: gameObjects, parents, animations, textures. 
-[INFO]  [DL]: Data group already loaded: textures. 
-[INFO]  [DL]: Data group already loaded: animations. 
-[INFO]  [DL]: Data group already loaded: parents. 
-[INFO]  [DL]: Data group already loaded: gameObjects. 
-[INFO]  [test]: init done. 
-[DEBUG]  [PC][PC1]: Creating particle, F: 113 
-[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 1, Y: 1, F: 113 
-[DEBUG]  [PC][PC1]: Creating particle, F: 113 
-[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 3, Y: 2, F: 113 
-[DEBUG]  [PC][PC1]: Creating particle, F: 113 
-[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 3, Y: 2, F: 113 
-[DEBUG]  [PC][PC1]: Creating particle, F: 113 
-[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 3, Y: 2.5, F: 113 
-[DEBUG]  [PC][PC1]: Creating particle, F: 113 
-[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 3, Y: 3, F: 113 
-[DEBUG]  [PC][PC1]: Creating particle, F: 113 
-[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 4, Y: 2.5, F: 113 
-[DEBUG]  [PC][PC1]: Creating particle, F: 113 
-[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 5, Y: 4, F: 113 
-[DEBUG]  [PC][PC1]: Creating particle, F: 113 
-[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 3, Y: 2, F: 113 
-[DEBUG]  [PC][PC1]: Creating particle, F: 113 
-[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 5, Y: 2, F: 113 
-[DEBUG]  [PC][PC1]: Creating particle, F: 113 
-[DEBUG]  [PC][PC1]: Adding particle: TestParticle, X: 5, Y: 3, F: 113 
 [DEBUG]  [EH]: Program stopped by user. 
