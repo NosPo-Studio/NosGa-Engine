@@ -11,7 +11,7 @@ local nosGaConf = {
 	showConsole = true, --can be changes ingame by pressing f1 by default.
 	showDebug = true, --can be changes ingame by pressing f3 by default.
 	consoleSizeY = 40, --the height of the console.
-	directConsoleDraw = true, --instant drawing console outputs instead of waiting til new frame (has only an affect if doubleBuffering used) (only if isDev).
+	directConsoleDraw = false, --instant drawing console outputs instead of waiting til new frame (has only an affect if doubleBuffering used) (only if isDev).
 	
 	preferModTextures = true, --if true mods can overwrite texturePack textures.
 	
@@ -45,7 +45,7 @@ local nosGaConf = {
 		
 		drawCollider = false,
 		drawTrigger = false,
-		drawGameObjectBorders = true,
+		drawGameObjectBorders = false,
 		
 		onReload = { --defined what data/libs are reloaded at state reload. Press ctrl meanwhine to reload anything independent from this settings.
 			conf = true, --should be always true.

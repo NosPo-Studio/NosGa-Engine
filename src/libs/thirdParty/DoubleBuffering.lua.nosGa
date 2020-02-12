@@ -1,3 +1,35 @@
+--[[
+	This libary is third pary content by IgorTimofeev wich is licensed under the MIT License.
+	
+	There are made some changes to provide the best possible performance in combination with the NosGa Engine (<https://github.com/NosPo-Studio/NosGa-Engine>).
+	
+	Original source code repo: <https://github.com/IgorTimofeev/DoubleBuffering>
+]]
+
+--[[
+MIT License
+
+DoubleBuffering Copyright (c) 2018 Igor Timofeev
+DoubleBuffering (raw copy feature) Copyright (c) 2019 NosPo Studio
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+]]
 
 local component = require("component")
 local unicode = require("unicode")
@@ -171,8 +203,9 @@ local function clear(color, transparency)
 	drawRectangle(1, 1, bufferWidth, bufferHeight, color or 0x0, 0x000000, " ", transparency)
 end
 
-local function copy(x, y, width, height)
+local function copy(x, y, width, height, raw)
 	local copyArray, index = { width, height }
+	local rawCopyArray = { width, height }
 
 	for j = y, y + height - 1 do
 		for i = x, x + width - 1 do
@@ -181,6 +214,65 @@ local function copy(x, y, width, height)
 				tableInsert(copyArray, newFrameBackgrounds[index])
 				tableInsert(copyArray, newFrameForegrounds[index])
 				tableInsert(copyArray, newFrameSymbols[index])
+				if raw then
+					tableInsert(rawCopyArray, currentFrameBackgrounds[index])
+					tableInsert(rawCopyArray, currentFrameForegrounds[index])
+					tableInsert(rawCopyArray, currentFrameSymbols[index])
+				end
+			else
+				tableInsert(copyArray, 0x0)
+				tableInsert(copyArray, 0x0)
+				tableInsert(copyArray, " ")
+				if raw then
+					tableInsert(rawCopyArray, 0x0)
+					tableInsert(rawCopyArray, 0x0)
+					tableInsert(rawCopyArray, " ")
+				end
+			end
+		end
+	end
+
+	return copyArray, rawCopyArray
+end
+
+local function paste(startX, startY, picture, rawPicture)
+	local imageWidth = picture[1]
+	local bufferIndex, pictureIndex, bufferIndexStepOnReachOfImageWidth = bufferWidth * (startY - 1) + startX, 3, bufferWidth - imageWidth
+
+	for y = startY, startY + picture[2] - 1 do
+		if y >= drawLimitY1 and y <= drawLimitY2 then
+			for x = startX, startX + imageWidth - 1 do
+				if x >= drawLimitX1 and x <= drawLimitX2 then
+					newFrameBackgrounds[bufferIndex] = picture[pictureIndex]
+					newFrameForegrounds[bufferIndex] = picture[pictureIndex + 1]
+					newFrameSymbols[bufferIndex] = picture[pictureIndex + 2]
+					if rawPicture ~= nil then
+						currentFrameBackgrounds[bufferIndex] = rawPicture[pictureIndex]
+						currentFrameForegrounds[bufferIndex] = rawPicture[pictureIndex + 1]
+						currentFrameSymbols[bufferIndex] = rawPicture[pictureIndex + 2]
+					end
+				end
+
+				bufferIndex, pictureIndex = bufferIndex + 1, pictureIndex + 3
+			end
+
+			bufferIndex = bufferIndex + bufferIndexStepOnReachOfImageWidth
+		else
+			bufferIndex, pictureIndex = bufferIndex + bufferWidth, pictureIndex + imageWidth * 3
+		end
+	end
+end
+
+local function rawCopy(x, y, width, height)
+	local copyArray, index = { width, height }
+
+	for j = y, y + height - 1 do
+		for i = x, x + width - 1 do
+			if i >= 1 and j >= 1 and i <= bufferWidth and j <= bufferHeight then
+				index = bufferWidth * (j - 1) + i
+				tableInsert(copyArray, currentFrameBackgrounds[index])
+				tableInsert(copyArray, currentFrameForegrounds[index])
+				tableInsert(copyArray, currentFrameSymbols[index])
 			else
 				tableInsert(copyArray, 0x0)
 				tableInsert(copyArray, 0x0)
@@ -192,7 +284,7 @@ local function copy(x, y, width, height)
 	return copyArray
 end
 
-local function paste(startX, startY, picture)
+local function rawPaste(startX, startY, picture)
 	local imageWidth = picture[1]
 	local bufferIndex, pictureIndex, bufferIndexStepOnReachOfImageWidth = bufferWidth * (startY - 1) + startX, 3, bufferWidth - imageWidth
 
@@ -200,9 +292,9 @@ local function paste(startX, startY, picture)
 		if y >= drawLimitY1 and y <= drawLimitY2 then
 			for x = startX, startX + imageWidth - 1 do
 				if x >= drawLimitX1 and x <= drawLimitX2 then
-					newFrameBackgrounds[bufferIndex] = picture[pictureIndex]
-					newFrameForegrounds[bufferIndex] = picture[pictureIndex + 1]
-					newFrameSymbols[bufferIndex] = picture[pictureIndex + 2]
+					currentFrameBackgrounds[bufferIndex] = picture[pictureIndex]
+					currentFrameForegrounds[bufferIndex] = picture[pictureIndex + 1]
+					currentFrameSymbols[bufferIndex] = picture[pictureIndex + 2]
 				end
 
 				bufferIndex, pictureIndex = bufferIndex + 1, pictureIndex + 3
@@ -312,7 +404,7 @@ local function drawText(x, y, textColor, data, transparency)
 	end
 end
 
-local function drawImage(startX, startY, picture, blendForeground)
+local function drawImage(startX, startY, picture, blendForeground, area)
 	local bufferIndex, pictureIndex, imageWidth, backgrounds, foregrounds, alphas, symbols = bufferWidth * (startY - 1) + startX, 1, picture[1], picture[3], picture[4], picture[5], picture[6]
 	local bufferIndexStepOnReachOfImageWidth = bufferWidth - imageWidth
 
@@ -586,6 +678,8 @@ return {
 	clear = clear,
 	copy = copy,
 	paste = paste,
+	rawCopy = rawCopy,
+	rawPaste = rawPaste,
 	rasterizeLine = rasterizeLine,
 	rasterizeEllipse = rasterizeEllipse,
 	semiPixelRawSet = semiPixelRawSet,

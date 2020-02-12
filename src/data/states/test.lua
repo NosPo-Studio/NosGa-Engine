@@ -71,20 +71,20 @@ function test.start()
 		name = "TRA1", 
 		drawBorders = true,
 	})
-	test.ra2 = global.addRA({posX = 59, posY = 3, sizeX = 55, sizeY = 20, name = "TRA2", drawBorders = true, parent = test.ra1})
+	--test.ra2 = global.addRA({posX = 59, posY = 3, sizeX = 55, sizeY = 20, name = "TRA2", drawBorders = true, parent = test.ra1})
 	
-	test.goTest = test.ra2:addGO("Test2", {posX = 2 +100, posY = 5, layer = 3, maxSpeed = 20})
-	test.goTest2 = test.ra1:addGO("Test3", {posX = 25 +100, posY = 5, layer = 1})
-	test.goTest3 = test.ra1:addGO("Test4", {posX = 10 +100, posY = 5, layer = 1})
+	test.goTest = test.ra1:addGO("Test2", {posX = 2 +100, posY = 2, layer = 3, maxSpeed = 20})
+	test.goTest2 = test.ra1:addGO("Test3", {posX = 25 +100, posY = 2, layer = 1})
+	test.goTest3 = test.ra1:addGO("Test4", {posX = 10 +100, posY = 2, layer = 1})
 	
 	test.goTest3:attach(test.goTest)
 	
 	
-	test.pc1 = test.ra1:addGO("ParticleTestContainer", {posX = 2 +100, posY = 15, name = "PC1"})
+	test.pc1 = test.ra1:addGO("ParticleTestContainer", {posX = 20 +100, posY = 15, name = "PC1"})
 	
 	--Moce cameras to x 100.
 	test.ra1:moveCameraTo(100, 0)
-	test.ra2:moveCameraTo(100, 0)
+	--test.ra2:moveCameraTo(100, 0)
 	
 	--===== debug end =====--
 	
@@ -143,6 +143,10 @@ function test.key_down(s)
 			global.realGPU.setBackground(0x000000)
 			global.term.clear()
 		end
+		
+		global.db.set(100, 10, 0x000000, 0xaaaaaa, "▀")
+		global.db.set(100, 11, 0x000000, 0xaaaaaa, "▄")
+		global.db.set(100, 12, 0x000000, 0xaaaaaa, "█")
 		
 		--test.goTest3:detach()
 		--test.goTest3:setSpeed(10, 0)

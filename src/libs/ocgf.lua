@@ -139,8 +139,8 @@ function OCGF.GameObject.new(ocgf, args)
 	this.drawCollider = ut.parseArgs(args.dc, args.drawCollider, false)
 	this.log = args.logFunc or args.logFunction or function() end --WIP
 	
-	this.posX = args.x or args.posX or 0
-	this.posY = args.y or args.posY or 0
+	this.posX = ut.parseArgs(args.x, args.posX, 0)
+	this.posY = ut.parseArgs(args.y, args.posY, 0)
 	this.lastPosX = this.posX
 	this.lastPosY = this.posY
 	

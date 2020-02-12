@@ -47,7 +47,7 @@ function GameObjectsTemplate.new(args)
 		{"Sprite", 
 			x = 0, 
 			y = 0, 
-			texture = "exampleTexture",
+			texture = "grass",
 		},
 		{"RigidBody", 
 			g = 0,
