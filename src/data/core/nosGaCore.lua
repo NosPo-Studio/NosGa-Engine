@@ -88,6 +88,11 @@ local function draw()
 	
 	global.core.re.draw()
 	
+	if global.state[global.currentState].sUpdate ~= nil then	--manual check to avoid log spamming on missing update func.
+		run(global.state[global.currentState].sUpdate)
+	end
+	global.core.updateHandler.sUpdate()
+	
 	global.ocui:draw()
 	
 	global.drawDebug()

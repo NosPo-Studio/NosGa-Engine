@@ -21,6 +21,7 @@ function TestParticle.new(args)
 	local pa = global.ut.parseArgs
 	
 	this.test = args.test
+	this.speed = args.speed
 	
 	--this.name = pa(args.name, "TestParticle")
 	
@@ -38,23 +39,24 @@ function TestParticle.new(args)
 	
 	this.update = function(this, dt, ra) --will called on every game tick.
 		if this.test then
+			local speed = this.speed or 2
 			if global.keyboard.isKeyDown("d") then
-				this.gameObject:move(1, 0)
+				this.gameObject:move(1 *speed, 0)
 			end
 			if global.keyboard.isKeyDown("a") then
-				this.gameObject:move(-1, 0)
+				this.gameObject:move(-1 *speed, 0)
 			end
 			if global.keyboard.isKeyDown("w") then
-				this.gameObject:move(0, -.5)
+				this.gameObject:move(0, -.5 *speed)
 			end
 			if global.keyboard.isKeyDown("s") then
-				this.gameObject:move(0, .5)
+				this.gameObject:move(0, .5 *speed)
 			end
 			
 			--global.log(dt)
 		end
 		
-		if true then
+		if false then
 			local speed = 2
 			local x, y = 0, 0
 			if math.random() > .5 then

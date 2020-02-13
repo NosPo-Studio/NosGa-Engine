@@ -34,7 +34,6 @@ function Particle.new(args)
 	
 	--===== init =====--
 	this.name = args.name
-	this.type = args.type -- 1 == half size pixel, 2 == full size pixel, 3 == 2 pixels.
 	this.color = pa(args.color, 0xFF69B4)
 	
 	this.gameObject = global.ocgf.GameObject.new(global.ocgf, {

@@ -196,7 +196,7 @@ local function clearFrame(renderArea, toClear)
 	
 	for i, l in pairs(clearList) do
 		for go in pairs(l) do
-			if go.ngeAttributes.hasMoved then
+			if go.ngeAttributes.hasMoved and go.ngeAttributes.clearedAlready ~= true then
 				print("[RE]: Clear: " .. tostring(go.ngeAttributes.name) .. ": (" .. tostring(go) .. "), RA: " .. renderArea.name .. ", frame: " .. tostring(global.currentFrame) .. ".")
 				go:ngeClear(renderArea)
 			end

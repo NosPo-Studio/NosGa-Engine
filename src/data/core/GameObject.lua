@@ -61,6 +61,7 @@ function GameObject.new(args)
 		clearAreas = {},
 		copyAreas = {},
 		usesAnimation = pa(args.useAnimation),
+		clearedAlready,
 	}
 	
 	args.gameObject = global.ut.parseArgs(args.components, args.gameObject) --ToDo: Completly remove args.gameObject from the code.
@@ -194,6 +195,8 @@ function GameObject.new(args)
 			table.insert(ocgfGameObjects, go.gameObject)
 		end
 		
+		this.ngeAttributes.clearedAlready = nil
+		
 		this.gameObject:updatePhx(ocgfGameObjects, dt)
 		this.gameObject:update(ocgfGameObjects)
 		if this.ngeAttributes.isParent then
@@ -285,6 +288,13 @@ function GameObject.new(args)
 			if ca.solid ~= true then
 				global.oclrl:draw(0, 0, global.oclrl.generateTexture(posX + offsetX + ca.posX, posY + offsetY + ca.posY, ca.sizeX, ca.sizeY, " "), nil, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1})
 			end
+		end
+	end
+	this.ngeSUpdate = function(this, gameObjects, dt, ra) --parent func
+		if this.ngeAttributes.isParent then
+			global.run(this.pSUpdate, this, dt, ra)
+		else
+			global.run(this.sUpdate, this, dt, ra)
 		end
 	end
 	this.ngeSetLastPos = function(this)

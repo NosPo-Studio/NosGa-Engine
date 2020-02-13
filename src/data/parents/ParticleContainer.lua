@@ -44,6 +44,16 @@ local function addRenderMapEntry(map, x, y, entry)
 	map[x][y] = entry
 end
 
+local function move(this, x, y, sx, sy)
+	--this:move(x, y)
+	this:moveTo(x, y)
+	this.ngeAttributes.sizeX = sx
+	this.ngeAttributes.sizeY = sy
+	this.ngeAttributes.clearAreas[1].sizeX = sx
+	this.ngeAttributes.clearAreas[1].sizeY = sy
+	this.hasMoved = true
+end
+
 ParticleContainer = {}
 ParticleContainer.__index = ParticleContainer
 
@@ -71,20 +81,23 @@ function ParticleContainer.new(args)
 	local pa = global.ut.parseArgs
 	
 	this.name = args.name
-	this.particle = pa(args.p, args.particle)
 	this.type = args.type
 	this.color = args.color
+	this.particleSizeX = 1
 	
-	this.particles = {}
-	this.toMoveX, this.toMoveY, this.newSizeX, this.newSizeY = 0, 0, this.ngeAttributes.sizeX, this.ngeAttributes.sizeY
-	this.hasMoved = false
-	
-	if type(this.particle) == "string" then
-		this.particle = global.gameObject[this.particle]
+	if this.type == 2 then
+		this.particleSizeX = 2
 	end
 	
+	this.particles = {}
+	this.moveToX, this.moveToY, this.newSizeX, this.newSizeY = 0, 0, this.ngeAttributes.sizeX, this.ngeAttributes.sizeY
+	this.hasMoved = false
+	this.lastMaxX = -2^32
+	this.lastMaxY = -2^32
+	
+	
 	--===== custom functions =====--
-	this.addParticle = function(this, x, y, args)
+	this.addParticle = function(this, particle, x, y, args)
 		args = args or {}
 		print("[PC][" .. tostring(this.name) .. "]: Creating particle, F: " .. tostring(global.currentFrame))
 		
@@ -92,7 +105,10 @@ function ParticleContainer.new(args)
 		args.x = x
 		args.y = y
 		
-		local particle = this.particle.new(args)
+		if type(this.particle) == "string" then
+			particle = global.gameObject[this.particle]
+		end
+		particle = particle.new(args)
 		
 		print("[PC][" .. tostring(this.name) .. "]: Adding particle: " .. tostring(particle.name) .. ", X: " ..tostring(x) .. ", Y: " .. tostring(y) .. ", F: " .. tostring(global.currentFrame))
 		
@@ -115,6 +131,8 @@ function ParticleContainer.new(args)
 		local minX, maxX, minY, maxY = 2^32, -2^32, 2^32, -2^32
 		local particleCount = 0
 		local isVisible = false
+		
+		move(this, this.moveToX, this.moveToY, this.newSizeX, this.newSizeY)
 	
 		for i, c in pairs(this.particles) do
 			table.insert(particleGameObjects, c.gameObject)
@@ -125,18 +143,10 @@ function ParticleContainer.new(args)
 		for i, c in pairs(this.particles) do
 			local x, y = c:pUpdate(dt, ra, this.particles, particleGameObjects)
 			
-			if x < minX then
-				minX = x
-			end
-			if y < minY then
-				minY = y
-			end
-			if x > maxX then
-				maxX = x
-			end
-			if y > maxY then
-				maxY = y
-			end
+			minX = math.min(x, minX)
+			minY = math.min(y, minY)
+			maxX = math.max(x, maxX)
+			maxY = math.max(y, maxY)
 			
 			if this.type == 1 then
 				addRenderMapEntry(renderMap, math.floor(x - posX), math.floor((y - posY) *2 +.5), true)
@@ -146,35 +156,66 @@ function ParticleContainer.new(args)
 		
 		if particleCount > 0 then
 			this.hasMoved = false
-			this.toMoveX, this.toMoveY = math.floor(minX - posX +.5), math.floor(- (minY - posY) +.5)
-			this.newSizeX, this.newSizeY = math.floor((minX - posX) + (maxX - posX) +1 +.5) +this.toMoveX *2, math.floor((minY - posY) + (maxY - posY) +1 +.5) +this.toMoveY *2
+			
+			this.moveToX, this.moveToY = math.floor(minX), math.floor(minY)
+			
+			local sx, sy = 0, 0
+			
+			if maxX > this.lastMaxX then
+				sx = maxX - this.moveToX
+			else
+				sx = this.lastMaxX - this.moveToX
+			end
+			if maxY > this.lastMaxY then
+				sy = maxY - this.moveToY
+			else
+				sy = this.lastMaxY - this.moveToY
+			end
+			
+			this.newSizeX = sx +2 +this.particleSizeX
+			this.newSizeY = sy +2
+			
+			this.lastMaxX = maxX
+			this.lastMaxY = maxY
+			
+			--[[
+			this.moveToX, this.moveToY = math.floor(minX - posX), math.floor(- (minY - posY))
+			
+			local x, y = math.abs(this.moveToX), math.abs(this.moveToY)
+			
+			if this.moveToY > 0 then
+				y = y *2
+			end
+			if this.moveToX < 0 then
+				x = x *2
+			end
+			
+			this.newSizeX = math.floor(x + (maxX - posX) +.5) +1
+			this.newSizeY = math.floor(y + (maxY - posY) +.5) +1
+			]]
 		end
 		
-		for i, c in pairs(this.ngeAttributes.isVisibleIn) do
-			isVisible = true
-			break
+		for ra, s in pairs(this.ngeAttributes.isVisibleIn) do
+			this:ngeClear(ra)
+			
+			--isVisible = true
+			--break
 		end
 		if not isVisible then
-			this:move(this.toMoveX, this.toMoveY)
-			this.ngeAttributes.sizeX = this.newSizeX
-			this.ngeAttributes.sizeY = this.newSizeY
-			this.ngeAttributes.clearAreas[1].sizeX = this.newSizeX 
-			this.ngeAttributes.clearAreas[1].sizeY = this.newSizeY
+			--move(this, this.moveToX, this.moveToY, this.newSizeX, this.newSizeY)
 		end
+		
+		this.ngeAttributes.clearedAlready = true
+		move(this, this.moveToX, this.moveToY, this.newSizeX, this.newSizeY)
 	end
 	
 	this.pDraw = function(this, renderArea) 
 		local offsetX, offsetY = this:getOffset(renderArea)
 		
 		if this.hasMoved == false then	
-			--global.log(this.toMoveX, this.toMoveY, this.newSizeX, this.newSizeY)
+			--global.log(this.moveToX, this.moveToY, this.newSizeX, this.newSizeY)
 			
-			this:move(this.toMoveX, this.toMoveY)
-			this.ngeAttributes.sizeX = this.newSizeX +1
-			this.ngeAttributes.sizeY = this.newSizeY +1
-			this.ngeAttributes.clearAreas[1].sizeX = this.newSizeX +1
-			this.ngeAttributes.clearAreas[1].sizeY = this.newSizeY +1
-			this.hasMoved = true
+			--move(this, this.moveToX, this.moveToY, this.newSizeX, this.newSizeY)
 		end
 		
 		global.run(this.draw, this, renderArea)
@@ -182,6 +223,10 @@ function ParticleContainer.new(args)
 		for i, c in pairs(this.particles) do
 			c:pDraw(renderArea, offsetX, offsetY, this.type)
 		end
+	end
+	
+	this.pSUpdate = function(this, dt, ra)
+		--move(this, this.moveToX, this.moveToY, this.newSizeX, this.newSizeY)
 	end
 	
 	this.pClear = function(this, acctual) 

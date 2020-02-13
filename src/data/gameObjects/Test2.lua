@@ -76,20 +76,17 @@ function GameObjectsTemplate.new(args)
 		
 	end
 	
-	--[[Same as the function ctrl_... fucntion in the stateTemplate
-		but called with the additionally conditions from "this.update()".
-	]]
 	this.ctrl_right_key_pressed = function(this, signal, sname) 
-		--Addign force to move the object.
 		this:addForce(100, 0, args.maxSpeed) 
 	end
-	
-	--[[Same as the function ctrl_... fucntion in the stateTemplate
-		but called with the additionally conditions from "this.update()".
-	]]
 	this.ctrl_left_key_pressed = function(this, signal, sname) 
-		--Addign negative force to move the object.
 		this:addForce(-100, 0, args.maxSpeed) 
+	end
+	this.ctrl_up_key_pressed = function(this, signal, sname) 
+		this:addForce(0, -100, args.maxSpeed) 
+	end
+	this.ctrl_down_key_pressed = function(this, signal, sname) 
+		this:addForce(0, 100, args.maxSpeed) 
 	end
 	
 	--===== default functions =====--

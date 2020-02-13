@@ -22,6 +22,7 @@ local global = ...
 local uh = {
 	isUpdated = {},
 	signalQueue = {},
+	sUpdateQueue = {},
 }
 
 --===== local vars =====--
@@ -87,6 +88,7 @@ local function updateFrame(renderArea, dt)
 			end
 			
 			go:ngeUpdate(renderArea.gameObjects, dt, renderArea)
+			table.insert(uh.sUpdateQueue, {go = go, ra = renderArea})
 			uh.isUpdated[go] = true
 		end
 	end
@@ -111,6 +113,15 @@ function uh.update(dt)
 	
 	uh.isUpdated = {}
 	uh.signalQueue = {}
+end
+
+function uh.sUpdate(dt)
+	dt = dt or global.dt
+	
+	for i, suq in pairs(uh.sUpdateQueue) do
+		suq.go:ngeSUpdate(suq.ra.gameObjects, dt, suq.ra)
+	end
+	uh.sUpdateQueue = {}
 end
 
 function uh.insertSignal(s, signalName)

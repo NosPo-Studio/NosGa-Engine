@@ -63,6 +63,7 @@ function test.start()
 	
 	--===== debug =====--
 	--Creating 2 RenderAreas (windows) showing the same scene.
+	
 	test.ra1 = global.addRA({
 		posX = 2, 
 		posY = 3, 
@@ -75,9 +76,9 @@ function test.start()
 	
 	test.goTest = test.ra1:addGO("Test2", {posX = 4 +100, posY = 2, layer = 3, maxSpeed = 0, name = "goTest"})
 	test.goTest2 = test.ra1:addGO("Test3", {posX = 35 +100, posY = 2, layer = 2, name = "goTest2"})
-	test.goTest3 = test.ra1:addGO("Test4", {posX = 15 +100, posY = 2, layer = 2, name = "goTest3"})
+	test.goTest3 = test.ra1:addGO("Test4", {posX = 15 +100, posY = 4, layer = 2, name = "goTest3"})
 	
-	test.goTest3:attach(test.goTest)
+	--test.goTest3:attach(test.goTest)
 	
 	--test.goTest4 = test.ra1:addGO("Test2", {posX = 25 +100, posY = 2, layer = 3, maxSpeed = 0, name = "goTest4"})
 	--test.goTest5 = test.ra1:addGO("Test2", {posX = 30 +100, posY = 2, layer = 3, maxSpeed = 0, name = "goTest5"})
