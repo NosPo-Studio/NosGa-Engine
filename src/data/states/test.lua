@@ -71,20 +71,22 @@ function test.start()
 		name = "TRA1", 
 		drawBorders = true,
 	})
-	--test.ra2 = global.addRA({posX = 59, posY = 3, sizeX = 55, sizeY = 20, name = "TRA2", drawBorders = true, parent = test.ra1})
+	test.ra2 = global.addRA({posX = 59, posY = 3, sizeX = 55, sizeY = 20, name = "TRA2", drawBorders = true, parent = test.ra1})
 	
-	--test.goTest = test.ra1:addGO("Test2", {posX = 2 +100, posY = 2, layer = 3, maxSpeed = 20, name = "goTest"})
+	test.goTest = test.ra1:addGO("Test2", {posX = 4 +100, posY = 2, layer = 3, maxSpeed = 0, name = "goTest"})
 	test.goTest2 = test.ra1:addGO("Test3", {posX = 35 +100, posY = 2, layer = 2, name = "goTest2"})
-	test.goTest3 = test.ra1:addGO("Test4", {posX = 10 +100, posY = 2, layer = 2, name = "goTest3"})
+	test.goTest3 = test.ra1:addGO("Test4", {posX = 15 +100, posY = 2, layer = 2, name = "goTest3"})
 	
-	--test.goTest3:attach(test.goTest)
+	test.goTest3:attach(test.goTest)
 	
+	--test.goTest4 = test.ra1:addGO("Test2", {posX = 25 +100, posY = 2, layer = 3, maxSpeed = 0, name = "goTest4"})
+	--test.goTest5 = test.ra1:addGO("Test2", {posX = 30 +100, posY = 2, layer = 3, maxSpeed = 0, name = "goTest5"})
 	
 	test.pc1 = test.ra1:addGO("ParticleTestContainer", {posX = 20 +100, posY = 3, layer = 5, name = "PC1"})
 	
 	--Moce cameras to x 100.
 	test.ra1:moveCameraTo(100, 0)
-	--test.ra2:moveCameraTo(100, 0)
+	test.ra2:moveCameraTo(100, 0)
 	
 	--===== debug end =====--
 	
@@ -192,7 +194,7 @@ function test.touch(s)
 end
 
 function test.ctrl_pause_key_down(s, sname)
-	test.pause = not test.pause
+	test.pause = true
 end
 
 function test.ctrl_camLeft(s, sname)

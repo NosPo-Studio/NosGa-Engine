@@ -36,9 +36,6 @@ function Particle.new(args)
 	this.name = args.name
 	this.type = args.type -- 1 == half size pixel, 2 == full size pixel, 3 == 2 pixels.
 	this.color = pa(args.color, 0xFF69B4)
-	this.relativePosX = args.rx
-	this.relativePosY = args.ry
-	
 	
 	this.gameObject = global.ocgf.GameObject.new(global.ocgf, {
 		dc = global.conf.debug.drawCollider,
@@ -67,12 +64,31 @@ function Particle.new(args)
 		return this.gameObject:getPos()
 	end
 	
-	this.pDraw = function(this, renderArea, offsetX, offsetY) 
+	this.pDraw = function(this, renderArea, offsetX, offsetY, type) 
 		if global.conf.useDoubleBuffering then
-			local x, y = this.gameObject:getPos()
-			x = math.floor(x +offsetX +.5)
-			y = math.floor((y +offsetY) *2 +.5)
-			global.db.semiPixelSet(x, y, this.color)
+			local x1, y1, x2, y2 = renderArea:getRealFOV()
+			
+			global.db.setDrawLimit(x1, x2, y1, y2)
+			
+			if type == 1 then
+				local x, y = this.gameObject:getPos()
+				x = math.floor(x +offsetX +.5)
+				y = math.floor((y +offsetY) *2 +.5)
+				global.db.semiPixelSet(x, y, this.color)
+			elseif type == 2 then
+				local x, y = this.gameObject:getPos()
+				x = math.floor(x +offsetX +.5)
+				y = math.floor(y +offsetY +.5)
+				global.db.set(x, y, this.color, 0x000000, " ")
+			elseif type == 3 then
+				local x, y = this.gameObject:getPos()
+				x = math.floor(x +offsetX +.5)
+				y = math.floor(y +offsetY +.5)
+				global.db.set(x, y, this.color, 0x000000, " ")
+				global.db.set(x +1, y, this.color, 0x000000, " ")
+			end
+			
+			global.db.resetDrawLimit()
 		end
 		
 		global.run(this.draw, this, renderArea, offsetX, offsetY)

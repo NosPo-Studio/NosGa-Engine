@@ -77,6 +77,7 @@ function ParticleContainer.new(args)
 	
 	this.particles = {}
 	this.toMoveX, this.toMoveY, this.newSizeX, this.newSizeY = 0, 0, this.ngeAttributes.sizeX, this.ngeAttributes.sizeY
+	this.hasMoved = false
 	
 	if type(this.particle) == "string" then
 		this.particle = global.gameObject[this.particle]
@@ -88,10 +89,8 @@ function ParticleContainer.new(args)
 		print("[PC][" .. tostring(this.name) .. "]: Creating particle, F: " .. tostring(global.currentFrame))
 		
 		local posX, posY = this:getPos()
-		args.x = posX + x
-		args.y = posY + y
-		args.rx = x
-		args.ry = y
+		args.x = x
+		args.y = y
 		
 		local particle = this.particle.new(args)
 		
@@ -113,8 +112,10 @@ function ParticleContainer.new(args)
 		local toRender = {}
 		local texture = {{"f", this.color}}
 		local posX, posY = this:getPos()
-		local minX, maxX, minY, maxY = math.huge, -math.huge, math.huge, -math.huge
-		
+		local minX, maxX, minY, maxY = 2^32, -2^32, 2^32, -2^32
+		local particleCount = 0
+		local isVisible = false
+	
 		for i, c in pairs(this.particles) do
 			table.insert(particleGameObjects, c.gameObject)
 		end
@@ -140,60 +141,46 @@ function ParticleContainer.new(args)
 			if this.type == 1 then
 				addRenderMapEntry(renderMap, math.floor(x - posX), math.floor((y - posY) *2 +.5), true)
 			end
+			particleCount = particleCount +1
 		end
 		
-		this.toMoveX, this.toMoveY = math.floor(minX - posX +.5), math.floor(- (minY - posY) +.5)
-		this.newSizeX, this.newSizeY = math.floor((minX - posX) + (maxX - posX) +1 +.5), math.floor((minY - posY) + (maxY - posY) +1 +.5)
+		if particleCount > 0 then
+			this.hasMoved = false
+			this.toMoveX, this.toMoveY = math.floor(minX - posX +.5), math.floor(- (minY - posY) +.5)
+			this.newSizeX, this.newSizeY = math.floor((minX - posX) + (maxX - posX) +1 +.5) +this.toMoveX *2, math.floor((minY - posY) + (maxY - posY) +1 +.5) +this.toMoveY *2
+		end
 		
-		if global.conf.useDoubleBuffering == false then
-			if this.type == 1 then
-				for x, xm in pairs(renderMap) do
-					for y, ym in pairs(xm) do 	
-						local symbol = ""
-						local _, f = math.modf(y /2)
-						
-						if f == 0 then
-							if renderMap[x][y +1] then
-								symbol = csParticleType1.full
-							else
-								symbol = csParticleType1.up
-							end
-						else
-							if renderMap[x][y -1] then
-								symbol = csParticleType1.full
-							else
-								symbol = csParticleType1.low
-							end
-						end
-						
-						addRenderMapEntry(toRender, x, math.floor(y /2), symbol)
-					end
-				end
-			end
-			
-			for x, xm in pairs(toRender) do
-				for y, ym in pairs(xm) do 	
-					table.insert(texture, {x, y, ym})
-				end
-			end
-			
-			this.gameObject.sprites[1].texture = global.oclrl.generateTexture(texture)
+		for i, c in pairs(this.ngeAttributes.isVisibleIn) do
+			isVisible = true
+			break
+		end
+		if not isVisible then
+			this:move(this.toMoveX, this.toMoveY)
+			this.ngeAttributes.sizeX = this.newSizeX
+			this.ngeAttributes.sizeY = this.newSizeY
+			this.ngeAttributes.clearAreas[1].sizeX = this.newSizeX 
+			this.ngeAttributes.clearAreas[1].sizeY = this.newSizeY
 		end
 	end
 	
 	this.pDraw = function(this, renderArea) 
 		local offsetX, offsetY = this:getOffset(renderArea)
 		
-		this:move(this.toMoveX, this.toMoveY)
-		this.ngeAttributes.sizeX = this.newSizeX
-		this.ngeAttributes.sizeY = this.newSizeY
-		this.ngeAttributes.clearAreas[1].sizeX = this.newSizeX
-		this.ngeAttributes.clearAreas[1].sizeY = this.newSizeY
+		if this.hasMoved == false then	
+			--global.log(this.toMoveX, this.toMoveY, this.newSizeX, this.newSizeY)
+			
+			this:move(this.toMoveX, this.toMoveY)
+			this.ngeAttributes.sizeX = this.newSizeX +1
+			this.ngeAttributes.sizeY = this.newSizeY +1
+			this.ngeAttributes.clearAreas[1].sizeX = this.newSizeX +1
+			this.ngeAttributes.clearAreas[1].sizeY = this.newSizeY +1
+			this.hasMoved = true
+		end
 		
 		global.run(this.draw, this, renderArea)
 		
 		for i, c in pairs(this.particles) do
-			c:pDraw(renderArea, offsetX, offsetY)
+			c:pDraw(renderArea, offsetX, offsetY, this.type)
 		end
 	end
 	

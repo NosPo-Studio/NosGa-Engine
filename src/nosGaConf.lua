@@ -41,7 +41,7 @@ local nosGaConf = {
 		uhDebug = false, --print updateHandler debug (only if isDev).
 		goDebug = false, --print gameObject management debug (only if isDev).
 		ehDebug = true, --print eventHandler debug (only if isDev).
-		pcDebug = true, --print ParticleContainer debug (only if isDev).
+		pcDebug = false, --print ParticleContainer debug (only if isDev).
 		
 		drawCollider = false,
 		drawTrigger = false,

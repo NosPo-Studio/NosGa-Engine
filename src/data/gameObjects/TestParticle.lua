@@ -11,6 +11,7 @@ function TestParticle.new(args)
 	--===== gameObject definition =====--
 	args = args or {}
 	args.name = "TestParticle"
+	args.color = 0x999999
 	
 	--===== default stuff =====--
 	local this = global.parent.Particle.new(args)
@@ -49,9 +50,30 @@ function TestParticle.new(args)
 			if global.keyboard.isKeyDown("s") then
 				this.gameObject:move(0, .5)
 			end
+			
+			--global.log(dt)
 		end
 		
-		--this.gameObject:move(math.random(), math.random())
+		if true then
+			local speed = 2
+			local x, y = 0, 0
+			if math.random() > .5 then
+				x = math.random()
+			else
+				x = -math.random()
+			end
+			if math.random() > .5 then
+				y = math.random()
+			else
+				y = -math.random()
+			end
+			
+			if dt > global.conf.maxTickTime then
+				global.log(dt, global.dt)
+			end
+			
+			this.gameObject:move(x *speed *dt, y *speed *dt)
+		end
 		
 		--this.gameObject:move(1 *dt, 0)
 	end
