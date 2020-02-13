@@ -105,11 +105,19 @@ function eh.update(sleepTime)
 	local maxDT = 1 / global.conf.targetFramerate
 	
 	global.dt = global.computer.uptime() - global.lastUptime
-	global.lastUptime = global.computer.uptime()
 	
 	if global.conf.targetFramerate ~= -1 and global.dt < maxDT then
 		parseSignal({global.event.pull((1 / global.conf.targetFramerate) - math.max(global.dt - (1 / global.conf.targetFramerate), 0))})
 	end
+	
+	global.dt = global.computer.uptime() - global.lastUptime
+	if global.dt > global.conf.maxTickTime then
+		if global.isDev then
+			global.warn("Tick take too long: F: " .. tostring(global.currentFrame) .. ", T: " .. tostring(global.dt))
+		end
+		global.dt = global.conf.maxTickTime
+	end
+	global.lastUptime = global.computer.uptime()
 	
 	if global.tiConsole.status == false then
 		for i, s in pairs(pressedKeys) do

@@ -67,18 +67,6 @@ local function isInsideArea(ra, go, cmi)
 end
 
 local function isInQueue(ra, go, l)
-	--[[
-	local isInQueue = false
-	if ra.toRender[l][go] ~= nil and ra.toRender[l][go].realArea == nil then
-		isInQueue = true
-	end
-	
-	if ra.toRender[l][go] ~= nil and go.ngeAttributes.name == "rbm_1" then
-		global.log(ra.toRender[l][go].realArea, "==============")
-	end
-	
-	return isInQueue
-	]]
 	return ra.toRender[l][go] ~= nil
 end
 
@@ -102,7 +90,9 @@ local function checkOverlapping(renderArea, gameObject, layer)
 				lastPosX, lastPosY = lastPosX + oca.posX, lastPosY + oca.posY
 				lastPosX2, lastPosY2 = lastPosX2 + ca.posX, lastPosY2 + ca.posY
 				
-				if l >= layer and not isInQueue(renderArea, go, l) and renderArea.layerBlacklist[l] ~= true and isInsideArea(renderArea, go, renderArea.cameraMoveInstructions) == 1 then
+				
+				
+				if --[[l >= layer and]] not isInQueue(renderArea, go, l) and renderArea.layerBlacklist[l] ~= true and isInsideArea(renderArea, go, renderArea.cameraMoveInstructions) == 1 then
 					if gameObject ~= go and 
 						x + sx > x2 and
 						x < x2 + sx2 and
@@ -206,7 +196,7 @@ local function clearFrame(renderArea, toClear)
 	
 	for i, l in pairs(clearList) do
 		for go in pairs(l) do
-			if go.ngeAttributes.hasMoved then
+			if go.ngeAttributes.hasMoved and go.ngeAttributes.clearedAlready ~= true then
 				print("[RE]: Clear: " .. tostring(go.ngeAttributes.name) .. ": (" .. tostring(go) .. "), RA: " .. renderArea.name .. ", frame: " .. tostring(global.currentFrame) .. ".")
 				go:ngeClear(renderArea)
 			end

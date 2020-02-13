@@ -46,7 +46,9 @@ function GameObject.new(args)
 		sizeX = pa(args.sx, args.sizeX, 0),
 		sizeY = pa(args.sy, args.sizeY, 0),
 		layer = pa(args.layer, global.conf.renderLayerAmount),
-		name = args.name,
+		name = pa(args.name, ""),
+		drawSize = pa(args.ds, args.drawSize, global.conf.debug.drawGameObjectBorders),
+		isParent = args.isParent,
 		
 		--=== Auto generated ===--
 		id, 
@@ -58,44 +60,43 @@ function GameObject.new(args)
 		lastCalculatedFrame = 0,
 		clearAreas = {},
 		copyAreas = {},
-		usesAnimation,
+		usesAnimation = pa(args.useAnimation),
+		clearedAlready,
 	}
 	
 	args.gameObject = global.ut.parseArgs(args.components, args.gameObject) --ToDo: Completly remove args.gameObject from the code.
 	
-	if args.gameObject ~= nil then
-		this.gameObject = global.ocgf.GameObject.new(global.ocgf, {
-			dc = global.conf.debug.drawCollider,
-			dt = global.conf.debug.drawTrigger,
-			logFunc = global.log,
-			posX = pa(args.x, args.posX),
-			posY = pa(args.y, args.posY),
-		})
-		
-		for _, c in pairs(args.gameObject) do
-			if c[1] == "BoxCollider" then
-				this.gameObject:addBoxCollider(c)
-			elseif c[1] == "BoxTrigger" then
-				this.gameObject:addBoxTrigger(c)
-			elseif c[1] == "RigidBody" then
-				this.gameObject:addRigidBody(c)
-			elseif c[1] == "Sprite" then
-				if type(c.texture) == "string" then
-					c.texture = global.texture[c.texture]
-				end
+	this.gameObject = global.ocgf.GameObject.new(global.ocgf, {
+		dc = global.conf.debug.drawCollider,
+		dt = global.conf.debug.drawTrigger,
+		logFunc = global.log,
+		posX = pa(args.x, args.posX),
+		posY = pa(args.y, args.posY),
+	})
+	
+	for _, c in pairs(args.gameObject or {}) do
+		if c[1] == "BoxCollider" then
+			this.gameObject:addBoxCollider(c)
+		elseif c[1] == "BoxTrigger" then
+			this.gameObject:addBoxTrigger(c)
+		elseif c[1] == "RigidBody" then
+			this.gameObject:addRigidBody(c)
+		elseif c[1] == "Sprite" then
+			if type(c.texture) == "string" then
+				c.texture = global.texture[c.texture]
+			end
+			
+			if c.texture.format == "OCGLA" or c.texture.format == "pan" then
+				this.ngeAttributes.usesAnimation = true
+			elseif c.texture.format == "pic" then
 				
-				if c.texture.format == "OCGLA" or c.texture.format == "pan" then
-					this.ngeAttributes.usesAnimation = true
-				elseif c.texture.format == "pic" then
-					
-				end
-				
-				this.gameObject:addSprite(c)
-			elseif c[1] == "CopyArea" or c[1] == "ClearArea" then
-				addAreaEntry(this.ngeAttributes.clearAreas, c)
-				if global.conf.forceSmartMove or global.conf.useSmartMove and global.conf.useDoubleBuffering then
-					addAreaEntry(this.ngeAttributes.copyAreas, c)
-				end
+			end
+			
+			this.gameObject:addSprite(c)
+		elseif c[1] == "CopyArea" or c[1] == "ClearArea" then
+			addAreaEntry(this.ngeAttributes.clearAreas, c)
+			if global.conf.forceSmartMove or global.conf.useSmartMove and global.conf.useDoubleBuffering then
+				addAreaEntry(this.ngeAttributes.copyAreas, c)
 			end
 		end
 	end
@@ -173,10 +174,20 @@ function GameObject.new(args)
 			return
 		end
 	end
+	this.attach = function(this, gameObject)
+		this.gameObject:attach(gameObject.gameObject)
+	end
+	this.detach = function(this)
+		this.gameObject:detach()
+	end
 	
 	--===== engine functions =====--
 	this.ngeStart = function(this) --parent func 
-		global.run(this.start, this)
+		if this.ngeAttributes.isParent then
+			global.run(this.pStart, this)
+		else
+			global.run(this.start, this)
+		end
 	end
 	this.ngeUpdate = function(this, gameObjects, dt, ra) --parent func
 		local ocgfGameObjects = {}
@@ -184,9 +195,15 @@ function GameObject.new(args)
 			table.insert(ocgfGameObjects, go.gameObject)
 		end
 		
+		this.ngeAttributes.clearedAlready = nil
+		
 		this.gameObject:updatePhx(ocgfGameObjects, dt)
 		this.gameObject:update(ocgfGameObjects)
-		global.run(this.update, this, dt, ra)
+		if this.ngeAttributes.isParent then
+			global.run(this.pUpdate, this, dt, ra)
+		else
+			global.run(this.update, this, dt, ra)
+		end
 		
 		local x, y = this:getPos()
 		local lx, ly = this:getLastPos()
@@ -205,7 +222,11 @@ function GameObject.new(args)
 		this.ngeAttributes.isUpdated = true
 	end
 	this.ngeActivate = function(this) --parent func
-		global.run(this.activate, this)
+		if this.ngeAttributes.isParent then
+			global.run(this.pActivate, this)
+		else
+			global.run(this.activate, this)
+		end
 	end
 	this.ngeDraw = function(this, renderArea) --parent func
 		local realArea = renderArea.realArea or renderArea
@@ -227,17 +248,36 @@ function GameObject.new(args)
 			this.gameObject:draw(offsetX, offsetY, {realArea.posX, realArea.posX + realArea.sizeX -1, realArea.posY, realArea.posY + realArea.sizeY -1}, global.dt, global.backgroundColor)
 		end
 		
-		global.run(this.draw, this, realArea, renderArea)
+		if this.ngeAttributes.isParent then
+			global.run(this.pDraw, this, realArea, renderArea)
+		else
+			global.run(this.draw, this, realArea, renderArea)
+		end
 		
 		realArea.gameObjectAttributes[this.ngeAttributes.id].mustBeRendered = false
 		realArea.gameObjectAttributes[this.ngeAttributes.id].wasVisible = true
+		
+		if this.ngeAttributes.drawSize then
+			local posX, posY = this:getPos()
+			global.oclrl:draw(posX + offsetX, posY + offsetY, global.oclrl.generateTexture({
+				{"b", 0xFF69B4},
+				{0, 0, this.ngeAttributes.sizeX, 1, " "},
+				{0, this.ngeAttributes.sizeY -1, this.ngeAttributes.sizeX, 1, " "},
+				{0, 0, 1, this.ngeAttributes.sizeY, " "},
+				{this.ngeAttributes.sizeX -1, 0, 1, this.ngeAttributes.sizeY, " "},
+			}), true, {realArea:getRealFOV()})
+		end
 	end
 	this.ngeClear = function(this, renderArea) --parent func
 		local offsetX, offsetY = renderArea.posX + renderArea.cameraPosX, renderArea.posY + renderArea.cameraPosY
 		local lastPosX, lastPosY = this:getLastPos()
 		local posX, posY = this:getPos()
 		
-		global.run(this.clear, this, renderArea)
+		if this.ngeAttributes.isParent then
+			global.run(this.pClear, this, renderArea)
+		else
+			global.run(this.clear, this, renderArea)
+		end
 		
 		global.gpu.setBackground(global.backgroundColor)
 		
@@ -250,6 +290,13 @@ function GameObject.new(args)
 			end
 		end
 	end
+	this.ngeSUpdate = function(this, gameObjects, dt, ra) --parent func
+		if this.ngeAttributes.isParent then
+			global.run(this.pSUpdate, this, dt, ra)
+		else
+			global.run(this.sUpdate, this, dt, ra)
+		end
+	end
 	this.ngeSetLastPos = function(this)
 		this.ngeAttributes.lastFramePosX = math.floor(this.gameObject.posX +.5)
 		this.ngeAttributes.lastFramePosY = math.floor(this.gameObject.posY +.5)
@@ -258,14 +305,26 @@ function GameObject.new(args)
 	end
 	this.ngeStop = function(this)
 		this.gameObject:stop()
-		global.run(this.stop, this)
+		if this.ngeAttributes.isParent then
+			global.run(this.pStop, this)
+		else
+			global.run(this.stop, this)
+		end
 		this.gameObject:stop()
 	end
 	this.ngeSpawn = function(this) --parent func
-		global.run(this.spawn, this)
+		if this.ngeAttributes.isParent then
+			global.run(this.pSpawn, this)
+		else
+			global.run(this.spawn, this)
+		end
 	end
 	this.ngeDespawn = function(this) --parent func
-		global.run(this.despawn, this)
+		if this.ngeAttributes.isParent then
+			global.run(this.pDespawn, this)
+		else
+			global.run(this.despawn, this)
+		end
 	end
 	
 	return this

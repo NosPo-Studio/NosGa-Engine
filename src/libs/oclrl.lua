@@ -1,7 +1,7 @@
 --[[
 	OCLRL (OpenComputersLinearRenderLibarry) is a small libarry for linear rendering of textures.
 	
-    oclrl Copyright (C) 2019 MisterNoNameLP.
+    oclrl Copyright (C) 2019-2020 MisterNoNameLP.
 	
     This library is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 		Animation clear not working.
 
 ]]
-local oclrl = {version = "v1.4.2d"} --OpenComputersGraphicLibary
+local oclrl = {version = "v1.4.3d"} --! Not compatible to <= v1.4.3 !
 oclrl.__index = oclrl
 
 
@@ -408,8 +408,6 @@ function oclrl.convertToPixels(this, g, s) --WIP
 	return {textureFormat = "OCGLT", version = "v0.1", drawCalls = oNewG}
 end 
 
-
-
 function oclrl.convertToRaster(this, g, s) --WIP
 	local newG = {}
 	s = s or 1
@@ -429,122 +427,6 @@ function oclrl.convertToRaster(this, g, s) --WIP
 	return {textureFormat = "OCGLTT", version = "v0.1", drawCalls = newG}
 end
 
-
---===== animator =====-- --WIP
-oclrl.Animation = {}
-oclrl.Animation.__index = oclrl.Animation
-
-function oclrl.Animation.new(oclrl, animation, args) --no oclrl...
-	this = setmetatable({}, oclrl.Animation)
-	
-	args = args or {}
-	this.oclrl = oclrl
-	
-	this.animation = animation
-	this.speed = args.speed or 1
-	this.useDt = parseArgs(args.dt, true)
-	this.clearTexture = parseArgs(args.clear, true)
-	this.background = args.background
-	this.halt = parseArgs(args.halt, false)
-	this.tmpHalt = false
-	
-	this.currentFrame = args.frame or 1
-	this.lastFrame = this.currentFrame
-	this.lastCall = 0 --time in sec.
-	
-	return this
-end
-
-function oclrl.Animation.draw(this, posX, posY, dt, clear, background, area)
-	if parseArgs(clear, this.clearTexture) then
-		background = parseArgs(background, this.background)
-		if background == nil or type(background) == "number" then
-			this:clearBlack(posX, posY, false, background, area)
-		else
-			this:clear(posX, posY, background, true, false)
-		end
-	end
-	
-	this.oclrl:draw(posX, posY, this.animation.frames[math.floor(this.currentFrame)], nil, area)
-	
-	if parseArgs(dt, this.dt) == false then
-		addFrameTime(this, 1, backwards)
-		return
-	end
-	
-	if dt == nil or dt == true then
-		dt = computer.uptime() - this.lastCall
-		this.lastCall = computer.uptime()
-	end
-	
-	addFrameTime(this, (dt / this.animation.frameTime), backwards)
-	
-	if math.floor(this.currentFrame) > #this.animation.frames then
-		this.currentFrame = 1
-		if this.halt or this.tmpHalt then
-			this.speed = 0
-			this.tmpHalt = false
-		end
-	elseif math.floor(this.currentFrame) < 1 then
-		this.currentFrame = #this.animation.frames +.9
-		if this.halt or this.tmpHalt then
-			this.speed = 0
-			this.currentFrame = 1
-			this.tmpHalt = false
-		end
-	end
-end
-
-function oclrl.Animation.clearBlack(this, posX, posY, current, color, area)
-	if current == true then
-		this.oclrl:clearBlack(posX, posY, this.animation.frames[math.floor(this.currentFrame)], color, area)
-	elseif current == false then
-		this.oclrl:clearBlack(posX, posY, this.animation.frames[math.floor(this.lastFrame)], color, area)
-	else
-		this.oclrl:clearBlack(posX, posY, this.animation.frames[math.floor(this.currentFrame)], color, area)
-		this.oclrl:clearBlack(posX, posY, this.animation.frames[math.floor(this.lastFrame)], color, area)
-	end
-end
-
-function oclrl.Animation.clear(this, posX, posY, textures, checkOverlap, current) --useless yet (not supporting "OCGLT_v0.2"/"OCGLA_v0.1".)
-	if current then
-		this.oclrl:clear(posX, posY, this.animation.frames[math.floor(this.currentFrame)], textures, checkOverlap)
-	else
-		this.oclrl:clear(posX, posY, this.animation.frames[math.floor(this.lastFrame)], textures, checkOverlap)
-	end
-end
-
-function oclrl.Animation.start(this, speed, frame)
-	this.speed = speed or 1
-	this.currentFrame = frame or 1
-	this.tmpHalt = false
-end
-
-function oclrl.Animation.stop(this, frame, playTilEnd)
-	if playTilEnd then
-		this.tmpHalt = true
-	else
-		this.speed = 0
-		this.frame = frame or 1
-	end
-end
-
-function oclrl.Animation.pause(this)
-	this.speed = 0
-end
-
-function oclrl.Animation.play(this, speed)
-	this.speed = speed or 1
-	this.tmpHalt = false
-end
-
-
 return oclrl
-
---print(string.sub("1234567890", 0, #"1234567890" -3))
---print(string.sub("1234567890", #"1234567890" -3 +1))
-
-
-
 
 

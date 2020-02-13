@@ -25,15 +25,14 @@
     along with dbgpu_api.  If not, see <https://www.gnu.org/licenses/>.	
 ]]
 
-local version = "v0.1d"
+local version = "v0.1.1d"
 
 local args = ...
 local path = args.path or ""
 
 local buffer = require(path .. "/DoubleBuffering")
 local gpu = require("component").gpu
-
-print(buffer)
+local unicode = require("unicode")
 
 local lastBackground = gpu.getBackground()
 local lastForeground = gpu.getForeground()
@@ -46,10 +45,20 @@ local function parseArgs(...) --ripped from UT_v0.6
 	end
 end
 
+local function getSubFunc(s)
+	if #s ~= unicode.len(s) then
+		return unicode.sub
+	else
+		return string.sub
+	end
+end
+
 local dbgpu = {
 	directDraw = parseArgs(args.directDraw, true),
 	forceDraw = parseArgs(args.forceDraw, false),
-	rawCopy = parseArgs(args.rawCopy, false)
+	rawCopy = parseArgs(args.rawCopy, false),
+	version = version,
+	buffer = buffer,
 }
 
 local function draw()
@@ -59,26 +68,28 @@ local function draw()
 end
 
 function dbgpu.set(x, y, s, v)
+	local sub = getSubFunc(s)
 	x = math.floor(x)
 	y = math.floor(y)
 	if v then
-		for i = 1, #s do
-			buffer.set(x, y +i -1, lastBackground, lastForeground, string.sub(s, i, i))
+		for i = 1, unicode.len(s) do
+			buffer.set(x, y +i -1, lastBackground, lastForeground, sub(s, i, i))
 		end
 	else
-		for i = 1, #s do
-			buffer.set(x +i -1, y, lastBackground, lastForeground, string.sub(s, i, i))
+		for i = 1, unicode.len(s) do
+			buffer.set(x +i -1, y, lastBackground, lastForeground, sub(s, i, i))
 		end
 	end
 	draw()
 end
 
 function dbgpu.fill(x, y, sx, sy, s)
+	local sub = getSubFunc(s)
 	x = math.floor(x)
 	y = math.floor(y)
 	sx = math.floor(sx)
 	sy = math.floor(sy)
-	s = string.sub(s, 0, 1)
+	s = sub(s, 0, 1)
 	buffer.drawRectangle(x, y, sx, sy, lastBackground, lastForeground, s)
 	draw()
 end
@@ -92,10 +103,9 @@ function dbgpu.copy(x, y, sx, sy, tx, ty)
 	buffer.paste(tx +x, ty +y, data, rawData)
 	
 	if dbgpu.rawCopy then		
-		gpu.copy(x, y, sx, sy, tx, ty)
-	else
-		draw()
-	end
+		--gpu.copy(x, y, sx, sy, tx, ty)
+	end	
+	draw()
 end
 
 function dbgpu.getBackground()
