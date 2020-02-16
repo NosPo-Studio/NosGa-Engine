@@ -53,6 +53,10 @@ function GameObjectsTemplate.new(args)
 			g = 0,
 			stiffness = 20,
 		},
+		{"BoxCollider",
+			sx = args.sizeX,
+			sy = args.sizeY,
+		},
 	}
 	
 	--===== default stuff =====--
@@ -65,6 +69,8 @@ function GameObjectsTemplate.new(args)
 	this = setmetatable(this, GameObjectsTemplate) 
 	
 	--===== init =====--
+	
+	this.particleContainer = args.particleContainer
 	
 	this.gameObject.rigidBodys[1].test = "t"
 	

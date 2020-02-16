@@ -74,14 +74,18 @@ function test.start()
 	})
 	test.ra2 = global.addRA({posX = 59, posY = 3, sizeX = 55, sizeY = 20, name = "TRA2", drawBorders = true, parent = test.ra1})
 	
-	test.goTest = test.ra1:addGO("Test2", {posX = 4 +100, posY = 2, layer = 3, maxSpeed = 0, name = "goTest"})
-	test.goTest2 = test.ra1:addGO("Test3", {posX = 35 +100, posY = 2, layer = 2, name = "goTest2"})
-	test.goTest3 = test.ra1:addGO("Test4", {posX = 15 +100, posY = 4, layer = 2, name = "goTest3"})
+	test.goTest = test.ra1:addGO("Test2", {posX = 4 +100, posY = 6, layer = 3, maxSpeed = 20, name = "goTest",
+		particleContainer = test.ra1:addGO("DefaultParticleContainer", {}),
+	})
+	test.goTest2 = test.ra1:addGO("Test3", {posX = 35 +100, posY = 8, layer = 2, name = "goTest2"})
+	test.goTest3 = test.ra1:addGO("Test4", {posX = 15 +100, posY = 12, layer = 2, name = "goTest3",
+		particleContainer = test.ra1:addGO("DefaultParticleContainer", {}),
+	})
 	
 	--test.goTest3:attach(test.goTest)
 	
 	--test.goTest4 = test.ra1:addGO("Test2", {posX = 25 +100, posY = 2, layer = 3, maxSpeed = 0, name = "goTest4"})
-	--test.goTest5 = test.ra1:addGO("Test2", {posX = 30 +100, posY = 2, layer = 3, maxSpeed = 0, name = "goTest5"})
+	--test.goTest5 = test.ra1:addGO("Test2", {posX = 30 +100, posY = 2, layer = 3, maxSpeed = 0, name = "goTest5"})test.ra1:addGO("ParticleTestContainer"
 	
 	test.pc1 = test.ra1:addGO("ParticleTestContainer", {posX = 20 +100, posY = 3, layer = 5, name = "PC1"})
 	
@@ -101,6 +105,7 @@ function test.update()
 			test.pause = not test.pause
 		end
 	end
+	
 	
 	--global.log(nil, nil, "t")
 	--[[
@@ -142,14 +147,10 @@ function test.key_down(s)
 	if s[4] == 28 and global.isDev then
 		print("--===== EINGABE =====--")
 		
-		if false then
+		if true then
 			global.realGPU.setBackground(0x000000)
 			global.term.clear()
 		end
-		
-		global.db.set(100, 10, 0x000000, 0xaaaaaa, "▀")
-		global.db.set(100, 11, 0x000000, 0xaaaaaa, "▄")
-		global.db.set(100, 12, 0x000000, 0xaaaaaa, "█")
 		
 		--test.goTest3:detach()
 		--test.goTest3:setSpeed(10, 0)

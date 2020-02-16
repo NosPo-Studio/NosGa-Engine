@@ -21,7 +21,7 @@
 	WIP:
 ]]
 
-local OCGF = {version = "v1.1.2"} 
+local OCGF = {version = "v1.1.2d"} 
 OCGF.__index = OCGF
 
 --===== local vars =====--
@@ -634,11 +634,13 @@ function OCGF.BoxTrigger.update(this, collider, pingTrigger, pingGameObject, cal
 			table.insert(collisions, c)
 			table.insert(gameObjects, c.gameObject)
 			if pingTrigger then
-				c.listedFunction(--[[this.gameObject, false, this.gameObject.parent]]) --other trigger
+				--c.listedFunction(this.gameObject, false, this.gameObject.parent) --other trigger
+				c:listedFunction(this, false) --other trigger
 			end
 			if callOwnFunction then
 				--this.gameObject.log(this.listedFunction, this.callOwnFunction, this.isCollider, this.hass == "!!", "CALL")
-				this.listedFunction(--[[c.gameObject, true, this.gameObject.parent]]) --this trigger
+				--this.listedFunction(c.gameObject, true, this.gameObject.parent) --this trigger
+				this:listedFunction(c, true) --this trigger
 			end
 			if pingGameObject then
 				if this.isCollider then

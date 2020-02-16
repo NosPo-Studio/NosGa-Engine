@@ -42,14 +42,16 @@ function GameObjectsTemplate.new(args)
 			y = 0, 
 			texture = "pipipu",
 		},
-		
 		{"RigidBody", 
 			g = 0,
 			stiffness = 10,
 			speedRetain = 1,
 			stickiness = .5,
 		},
-		
+		{"BoxCollider",
+			sx = args.sizeX,
+			sy = args.sizeY,
+		},
 	}
 	
 	--===== default stuff =====--
@@ -66,6 +68,8 @@ function GameObjectsTemplate.new(args)
 	--this.anim2 = args.oclrl.Animation.new(args.oclrl, global.texture.player.right)
 	
 	--this.to1 = global.parent.Test.new(args.posX)
+	
+	this.particleContainer = args.particleContainer
 	
 	--===== custom functions =====--
 	--[[Same as the function equevalent in the stateTemplate

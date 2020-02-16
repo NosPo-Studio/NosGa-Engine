@@ -86,7 +86,7 @@ SOFTWARE.
 			
 	*left over from ocCraft but still relevant somehow.
 ]]
-local version = "v0.3"
+local version = "v0.3.1"
 
 --===== prog start =====--
 do

@@ -13,6 +13,7 @@ function ParticleTestContainer.new(args)
 	--args.particle = "TestParticle2"
 	args.type = 1
 	args.color = 0x666666
+	args.useCollision = true
 	
 	--===== default stuff =====--
 	local this = global.parent.ParticleContainer.new(args)
@@ -21,22 +22,26 @@ function ParticleTestContainer.new(args)
 	--===== init =====--
 	local pa = global.ut.parseArgs
 	
-	this.particle = "TestParticle2"
+	--this.particle = "TestParticle2"
+	--this.particle = "Smoke"
+	this.particle = "Blood"
 	
 	--===== global functions =====--
 	this.drag = function(this, s) 
 		if true then
 			local x, y = s[3], s[4]
 			--global.log(x, y)
-			this:addParticle(this.particle, x +100, y -3)
+			this:addParticle(this.particle, x +100, y -3, {dpc = this})
 		end
 	end
 	
 	--===== default functions =====--
 	this.start = function(this) --will called everytime a new object of the gameObject is created.
-		this:addParticle(this.particle, 120, 10, {test = true, speed = 3})
-		this:addParticle(this.particle, 110, 10, {test = true})
-		this:addParticle(this.particle, 130, 16, {test = true})
+		--this:addParticle(this.particle, 120, 1, {speed = 3, dpc = this})
+		--this:addParticle(this.particle, 120, 1, {speed = 3, dpc = this})
+		--this:addParticle(this.particle, 120, 1.5, {speed = 3, dpc = this})
+		--this:addParticle(this.particle, 120, 1.5, {test = true, speed = 3, dpc = this})
+		
 		
 		if false then
 			this:addParticle(this.particle, 1, 1)

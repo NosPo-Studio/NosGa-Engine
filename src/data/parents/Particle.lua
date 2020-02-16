@@ -35,6 +35,10 @@ function Particle.new(args)
 	--===== init =====--
 	this.name = args.name
 	this.color = pa(args.color, 0xFF69B4)
+	this.maxLifeTime = pa(args.pt, args.lifeTime, args.maxLifeTime, -1)
+	
+	this.container = args.container
+	this.lifeTime = pa(args.clt, args.currentLifeTime, 0)
 	
 	this.gameObject = global.ocgf.GameObject.new(global.ocgf, {
 		dc = global.conf.debug.drawCollider,
@@ -42,6 +46,7 @@ function Particle.new(args)
 		logFunc = global.log,
 		posX = pa(args.x, args.posX),
 		posY = pa(args.y, args.posY),
+		parent = this,
 	})
 	
 	--===== custom functions =====--
@@ -52,6 +57,13 @@ function Particle.new(args)
 	end
 	
 	this.pUpdate = function(this, dt, ra, particles, particleGameObjects) 
+		this.lifeTime = this.lifeTime +dt
+		if this.maxLifeTime ~= -1 and this.lifeTime > this.maxLifeTime then
+			this:destroy()
+		end
+		
+		--global.log(this.lifeTime)
+		
 		this.gameObject:updatePhx(particleGameObjects, dt)
 		this.gameObject:update(particleGameObjects)
 		
@@ -99,6 +111,10 @@ function Particle.new(args)
 	
 	this.pStop = function(this) 
 		global.run(this.stop, this)
+	end
+	
+	this.destroy = function(this)
+		this.container:remParticle(this)
 	end
 	
 	return this

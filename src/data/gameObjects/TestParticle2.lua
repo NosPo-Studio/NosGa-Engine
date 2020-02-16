@@ -12,6 +12,7 @@ function TestParticle.new(args)
 	args = args or {}
 	args.name = "TestParticle"
 	args.color = 0x999999
+	args.lifeTime = .5
 	
 	--===== default stuff =====--
 	local this = global.parent.Particle.new(args)
@@ -22,8 +23,11 @@ function TestParticle.new(args)
 	
 	this.test = args.test
 	
-	this.gameObject:addRigidBody({g = -10})
-	this.gameObject:addBoxCollider({sx = 1, sy = .5})
+	if args.test then
+		this.gameObject:addRigidBody({g = -10})
+	end
+	this.gameObject:addBoxCollider({y = .5, sx = 1, sy = .5})
+	
 	
 	--this.name = pa(args.name, "TestParticle")
 	
@@ -40,7 +44,9 @@ function TestParticle.new(args)
 	end
 	
 	this.update = function(this, dt, ra) --will called on every game tick.
-		if true then
+		
+		
+		if false then
 			local speed = 10
 			local x = 0
 			if math.random() > .5 then

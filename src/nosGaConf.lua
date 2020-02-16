@@ -54,7 +54,7 @@ local nosGaConf = {
 			re = true, 
 			uh = false,
 			eh = false,
-			GameObject = false,
+			GameObject = true,
 			RenderArea = false,
 			
 			--=== data groups ===--

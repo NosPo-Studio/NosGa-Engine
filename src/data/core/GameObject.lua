@@ -72,6 +72,7 @@ function GameObject.new(args)
 		logFunc = global.log,
 		posX = pa(args.x, args.posX),
 		posY = pa(args.y, args.posY),
+		parent = this,
 	})
 	
 	for _, c in pairs(args.gameObject or {}) do
@@ -200,9 +201,9 @@ function GameObject.new(args)
 		this.gameObject:updatePhx(ocgfGameObjects, dt)
 		this.gameObject:update(ocgfGameObjects)
 		if this.ngeAttributes.isParent then
-			global.run(this.pUpdate, this, dt, ra)
+			global.run(this.pUpdate, this, dt, ra, gameObjects, ocgfGameObjects)
 		else
-			global.run(this.update, this, dt, ra)
+			global.run(this.update, this, dt, ra, gameObjects, ocgfGameObjects)
 		end
 		
 		local x, y = this:getPos()
