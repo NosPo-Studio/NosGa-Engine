@@ -2,33 +2,33 @@
 [INFO]  [test]: Start init. 
 [INFO]  [DL]: Loading data groups: gameObjects, parents, animations, textures. 
 [INFO]  [DL]: Loading data group: textures. 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/pipipu.pic: table: 0x7f02d015ce70 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0x7f02d02b6590 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0x7f02d829e4f0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 0x7f02e013b230 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0x7f02e022b4a0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/test.pic: table: 0x7f02dc1707d0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0x7f02dc187960 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/exampleTexture.lua: function: 0x7f02d00cad20 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/pipipu.pic: table: 0x7f02dc114860 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0x7f02dc0e0a60 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0x7f02e00ed940 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 0x7f02d02a0a50 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0x7f02d0094ab0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/test.pic: table: 0x7f02d832ffa0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0x7f02d8313790 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/exampleTexture.lua: function: 0x7f02dc26b7b0 
 [INFO]  [DL]: Loading data group: animations. 
-[INFO]  [DLF]: Loading file: texturePacks/default/animations/test/: table: 0x7f02d8120240 
+[INFO]  [DLF]: Loading file: texturePacks/default/animations/test/: table: 0x7f02e014a6a0 
 [INFO]  [DL]: Loading data group: parents. 
-[INFO]  [DLF]: Loading file: data/parents/Particle.lua: function: 0x7f02d80f3ab0 
-[INFO]  [DLF]: Loading file: data/parents/ParticleContainer.lua: function: 0x7f02e0238030 
+[INFO]  [DLF]: Loading file: data/parents/Particle.lua: function: 0x7f02e0052c20 
+[INFO]  [DLF]: Loading file: data/parents/ParticleContainer.lua: function: 0x7f02d0394240 
 [INFO]  [DL]: Loading data group: gameObjects. 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test2.lua: function: 0x7f02d0148b30 
-[INFO]  [DLF]: Loading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f02d828d950 
-[INFO]  [DLF]: Loading file: data/gameObjects/DefaultParticleContainer.lua: function: 0x7f02e012ba60 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test4.lua: function: 0x7f02dc185ba0 
-[INFO]  [DLF]: Loading file: data/gameObjects/Smoke.lua: function: 0x7f02dc184d20 
-[INFO]  [DLF]: Loading file: data/gameObjects/MovingTestGO.lua: function: 0x7f02d0030e20 
-[INFO]  [DLF]: Loading file: data/gameObjects/Blood.lua: function: 0x7f02d811fac0 
-[INFO]  [DLF]: Loading file: data/gameObjects/TestParticle2.lua: function: 0x7f02d80d9de0 
-[INFO]  [DLF]: Loading file: data/gameObjects/TestParticle.lua: function: 0x7f02e0215be0 
-[INFO]  [DLF]: Loading file: data/gameObjects/StaticTestGO.lua: function: 0x7f02dc1a0f30 
-[INFO]  [DLF]: Loading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f02d02a5d00 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test3.lua: function: 0x7f02d8255250 
-[INFO]  [DLF]: Loading file: data/gameObjects/RPT.lua: function: 0x7f02d8274a10 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test.lua: function: 0x7f02d814c0d0 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test2.lua: function: 0x7f02dc119760 
+[INFO]  [DLF]: Loading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f02e0040e30 
+[INFO]  [DLF]: Loading file: data/gameObjects/TestParticle2.lua: function: 0x7f02d039d6b0 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test4.lua: function: 0x7f02d81f96d0 
+[INFO]  [DLF]: Loading file: data/gameObjects/Smoke.lua: function: 0x7f02d8209e50 
+[INFO]  [DLF]: Loading file: data/gameObjects/MovingTestGO.lua: function: 0x7f02dc071f40 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test3.lua: function: 0x7f02dc1ad460 
+[INFO]  [DLF]: Loading file: data/gameObjects/Blood.lua: function: 0x7f02e017b460 
+[INFO]  [DLF]: Loading file: data/gameObjects/TestParticle.lua: function: 0x7f02d00c66a0 
+[INFO]  [DLF]: Loading file: data/gameObjects/StaticTestGO.lua: function: 0x7f02d812e9d0 
+[INFO]  [DLF]: Loading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f02d811ff60 
+[INFO]  [DLF]: Loading file: data/gameObjects/DefaultParticleContainer.lua: function: 0x7f02dc1d8b30 
+[INFO]  [DLF]: Loading file: data/gameObjects/RPT.lua: function: 0x7f02e013b740 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test.lua: function: 0x7f02e0171c60 
 [INFO]  [test]: init done. 
 [DEBUG]  [EH]: Program stopped by user. 

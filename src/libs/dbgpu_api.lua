@@ -25,7 +25,7 @@
     along with dbgpu_api.  If not, see <https://www.gnu.org/licenses/>.	
 ]]
 
-local version = "v0.1.1d"
+local version = "v0.1.2"
 
 local args = ...
 local path = args.path or ""
@@ -103,7 +103,7 @@ function dbgpu.copy(x, y, sx, sy, tx, ty)
 	buffer.paste(tx +x, ty +y, data, rawData)
 	
 	if dbgpu.rawCopy then		
-		--gpu.copy(x, y, sx, sy, tx, ty)
+		gpu.copy(x, y, sx, sy, tx, ty)
 	end	
 	draw()
 end
