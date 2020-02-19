@@ -34,7 +34,7 @@ local args = {...}
 local image = args[1]
 
 local bit32 = require("bit32")
-require("libs/thirdParty/advancedLua")
+require("libs/thirdParty/AdvancedLua")
 local unicode = require("unicode")
 local fs = require("filesystem")
 local color = require("libs/thirdParty/color")
