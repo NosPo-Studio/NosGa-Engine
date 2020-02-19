@@ -152,10 +152,12 @@ local function moveFrame(renderArea)
 			cmi.clear[1],
 			cmi.clear[2],
 		}), nil, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1})
+		
 	end
 end
 
 local function moveArea(renderArea)
+	--global.log("move")
 	for i, ci in pairs(renderArea.copyInstructions) do
 		if ci == nil or #ci <= 0 then
 			global.warn("[RE]: CopyInstruction is empty: frame: " .. tostring(global.currentFrame) .. ".")
@@ -170,8 +172,6 @@ local function moveArea(renderArea)
 		fromY = fromY - math.min(ci[6], 0)		
 		toX = toX - math.max(ci[5] +1, 1)
 		toY = toY - math.max(ci[6] +1, 1)
-		
-		--print(x1, y1, x2, y2, "|", fromX, fromY, toX, toY)
 		
 		if #renderArea.cameraMoveInstructions.copy > 0 then
 			x1, y1, x2, y2 = x1 + renderArea.cameraMoveInstructions.copy[5], y1 + renderArea.cameraMoveInstructions.copy[6], x2 + renderArea.cameraMoveInstructions.copy[5], y2 + renderArea.cameraMoveInstructions.copy[6]
@@ -188,6 +188,8 @@ local function moveArea(renderArea)
 		asy = y2 - y1 +1
 		
 		global.gpu.copy(ax, ay, asx, asy, ci[5], ci[6])
+		
+		--global.log("t")
 	end
 end
 

@@ -174,8 +174,6 @@ if toLoad.textures then
 	loadFiles(global.texture, "textures", nil, "texturePacks/" .. global.conf.texturePack .. "/textures")
 end
 if toLoad.animations then
-	
-	
 	loadFiles(global.animation, "animations", nil, "texturePacks/" .. global.conf.texturePack .. "/animations", false, false, global.ocal.load)
 end
 if toLoad.parents then
@@ -183,6 +181,9 @@ if toLoad.parents then
 end
 if toLoad.gameObjects then
 	loadFiles(global.gameObject, "gameObjects")
+end
+if toLoad.structuredGameObjects then
+	loadFiles(global.gameObject, "structuredGameObjects", nil, nil, nil, true)
 end
 
 

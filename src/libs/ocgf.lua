@@ -21,7 +21,7 @@
 	WIP:
 ]]
 
-local OCGF = {version = "v1.1.2"} 
+local OCGF = {version = "v1.1.3d"} 
 OCGF.__index = OCGF
 
 --===== local vars =====--
@@ -180,6 +180,12 @@ function OCGF.GameObject.setSpeed(this, x, y)
 	for _, rb in ipairs(this.rigidBodys) do
 		rb.speedX = x
 		rb.speedY = y
+	end
+end
+
+function OCGF.GameObject.getSpeed(this)
+	for _, rb in ipairs(this.rigidBodys) do
+		return rb.speedX, rb.speedY
 	end
 end
 
@@ -538,7 +544,9 @@ function OCGF.RigidBody.new(gameObject, args)
 end
 
 --function OCGF.RigidBody.update(this, gameObjects, pingTrigger, pingGameObject, callOwnFunction, slp) --ToDo: add realistic physics.
+
 function OCGF.RigidBody.update(this, gameObjects, dt, slp) --ToDo: add realistic physics.
+	
 	local g = this.gravitationFactor
 	if this.gameObject.attachedTo ~= nil then
 		g = g * (1 - this.stickiness)
@@ -576,8 +584,6 @@ function OCGF.RigidBody.update(this, gameObjects, dt, slp) --ToDo: add realistic
 			calculateCollision(this, c, collision)
 		end
 	end
-	
-	return collisions
 end
 
 function OCGF.RigidBody.detach(this)
@@ -634,11 +640,13 @@ function OCGF.BoxTrigger.update(this, collider, pingTrigger, pingGameObject, cal
 			table.insert(collisions, c)
 			table.insert(gameObjects, c.gameObject)
 			if pingTrigger then
-				c.listedFunction(--[[this.gameObject, false, this.gameObject.parent]]) --other trigger
+				--c.listedFunction(this.gameObject, false, this.gameObject.parent) --other trigger
+				c:listedFunction(this, false) --other trigger
 			end
 			if callOwnFunction then
 				--this.gameObject.log(this.listedFunction, this.callOwnFunction, this.isCollider, this.hass == "!!", "CALL")
-				this.listedFunction(--[[c.gameObject, true, this.gameObject.parent]]) --this trigger
+				--this.listedFunction(c.gameObject, true, this.gameObject.parent) --this trigger
+				this:listedFunction(c, true) --this trigger
 			end
 			if pingGameObject then
 				if this.isCollider then

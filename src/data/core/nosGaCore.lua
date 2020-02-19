@@ -95,8 +95,6 @@ local function draw()
 	
 	global.ocui:draw()
 	
-	global.drawDebug()
-	
 	if global.conf.showConsole then
 		global.tbConsole:draw()
 	end

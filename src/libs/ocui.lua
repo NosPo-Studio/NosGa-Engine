@@ -15,7 +15,7 @@
     along with this library.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-local OCUI = {version = "v1.4.8d"}
+local OCUI = {version = "v1.5d"}
 OCUI.__index = OCUI
 
 --[[ToDo:
@@ -114,6 +114,97 @@ function OCUI.ignoreAutoManage(object)
 	end
 end
 
+--===== Bar =====--
+OCUI.Bar = {widgetType = "Bar"}
+OCUI.Bar.__index = OCUI.Bar
+
+function OCUI.Bar.new(ocui, args)
+	local this = setmetatable({}, OCUI.Bar)
+	
+	args = args or {}
+	
+	this.posX = args.posX or args.x
+	this.posY = args.posY or args.y
+	this.sizeX = args.sizeX or args.sx
+	this.sizeY = args.sizeY or args.sy
+	this.status = math.min(args.status or 0, 1) --0 == empty, 1 == full.
+	this.cfg_activeForegroundColor = args.activeForegroundColor or 0xaaaaaa
+	this.cfg_activeBackgroundColor = args.activeBackgroundColor or 0x777777
+	this.cfg_inactiveForegroundColor = args.inactiveForegroundColor or 0x888888
+	this.cfg_inactiveBackgroundColor = args.inactiveBackgroundColor or 0x333333
+	this.cfg_vertical = args.vertical or false
+	this.cfg_foregroundChar = args.foregroundChar or " "
+	this.cfg_backgroundChar = args.backgroundChar or " "
+	this.clickable = args.clickable == true or args.clickable == nil
+	
+	this.ocui = ocui
+	
+	if this.clickable then
+		this.button = ocui.Button.new(ocui, this.posX, this.posY, this.sizeX, this.sizeY, {
+			managed = {update = false, draw = false},
+			listedFunction = function(_, x, y)
+				if this.cfg_vertical then
+					this.status = math.min((y +1 - this.posY) / this.sizeY, 1)
+				else
+					this.status = math.min((x +1 - this.posX) / this.sizeX, 1)
+				end
+			end,
+		})
+	end
+	
+	if this.sizeX == nil or this.sizeY == nil then
+		return false, "No sizeX or sizeY given"
+	end
+	if this.posX == nil or this.posY == nil then
+		return false, "No posX or posY given"
+	end
+	
+	if args.managed ~= nil then
+		args.managed.update = false
+	end
+	ocui.listAutoManage(this, args.managed or {})
+	
+	return this
+end
+
+function OCUI.Bar.update(this, x, y)
+	if this.clickable then
+		this.button:update(x, y)
+	end
+end
+
+function OCUI.Bar.draw(this)
+	local gpu = this.ocui.oclrl.gpu
+	
+	gpu.setForeground(this.cfg_inactiveForegroundColor)
+	gpu.setBackground(this.cfg_inactiveBackgroundColor)
+	
+	gpu.fill(this.posX, this.posY, this.sizeX, this.sizeY, this.cfg_backgroundChar)
+	
+	gpu.setForeground(this.cfg_activeForegroundColor)
+	gpu.setBackground(this.cfg_activeBackgroundColor)
+	if this.cfg_vertical then
+		gpu.fill(this.posX, this.posY, this.sizeX, math.floor(this.sizeY * this.status +.5), this.cfg_foregroundChar)
+	else
+		gpu.fill(this.posX, this.posY, math.floor(this.sizeX * this.status +.5), this.sizeY, this.cfg_foregroundChar)
+	end
+end
+
+function OCUI.Bar.setStatus(this, status)
+	this.status = math.min(status, 1)
+end
+
+function OCUI.Bar.getStatus(this)
+	return this.status
+end
+
+function OCUI.Bar.move(this, x, y)
+	this.posX, this.posY = x, y
+end
+
+function OCUI.Bar.stop(this)	
+	this.ocui.ignoreAutoManage(this)
+end
 
 --===== TextBox =====--
 OCUI.TextBox = {widgetType = "TextBox"}
@@ -890,7 +981,7 @@ function OCUI.Button.update(this, x, y)
 				this.status = true
 			end
 		end
-		local success, errorMsg = xpcall(this.listedFunction, debug.traceback, this)
+		local success, errorMsg = xpcall(this.listedFunction, debug.traceback, this, x, y)
 		if success == false then
 			this.ocui.onError(this, errorMsg)
 		end

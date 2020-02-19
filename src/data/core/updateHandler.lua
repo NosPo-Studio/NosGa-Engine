@@ -59,7 +59,8 @@ local function calculateFrame(renderArea)
 			
 			if renderArea.layerBlacklist[l] ~= true and 
 				isInsideArea(renderArea, go, global.conf.narrowUpdateExpansion) and 
-				renderArea.toUpdate[go] == nil 
+				renderArea.toUpdate[go] == nil or
+				go.ngeAttributes.updateAlways
 			then 
 				renderArea.toUpdate[go] = true
 			end
@@ -77,6 +78,8 @@ local function updateFrame(renderArea, dt)
 	end
 	
 	for go, c in pairs(toUpdate) do
+		--global.log("t", go, c)
+		
 		if type(go) == "number" then
 			go = c
 		end
