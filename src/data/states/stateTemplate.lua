@@ -78,7 +78,7 @@ function stateTemplate.init()
 	}) 
 	
 	--Adding the GameObjectTemplate to the RenderArea a second time but with other arguments.
-	stateTemplate.gameObjectTemplate1 = stateTemplate.raMainWindow:addGO("GameObjectTemplate", {
+	stateTemplate.gameObjectTemplate2 = stateTemplate.raMainWindow:addGO("GameObjectTemplate", {
 		name = "got2", 
 		x = 20, 
 		y = 3,
