@@ -2,7 +2,7 @@
 
 local nosGaConf = {
 	defaultState = "stateTemplate",
-	
+	defaultState = "game",
 	targetFramerate = 20, --default is "20". set to "-1" for unlimited framerate (can cause in graphical issures).
 	maxTickTime = .5, --if a tick need more as the maxTickTime the engine will handle the ticke like it had needs exacly the maxTickTime.
 	fpsCheckInterval = 10, --defines what amout of frames the engine use to calculate the avg. fps.
@@ -50,7 +50,7 @@ local nosGaConf = {
 			conf = true, --should be always true.
 			
 			--=== core ===--
-			re = true, 
+			re = false,  
 			uh = false,
 			eh = false,
 			GameObject = false,
@@ -62,8 +62,9 @@ local nosGaConf = {
 			states = false,
 			textures = false,
 			animations = false,
-			parents = true,
-			gameObjects = true,
+			parents = false,
+			gameObjects = false,
+			structuredGameObjects = false,
 			
 			mods = false, --just reloads the activated data groups of the mods (if only onReload.blocks = true he only also reloads the blocks from mods). should be always true.
 		},
