@@ -174,56 +174,59 @@ function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, struct
 	for file in global.fs.list(path) do
 		local p, name, ending = global.ut.seperatePath(file)
 		
-		if string.sub(file, #file) == "/" and subDirs then
-			if structured then
-				if target[string.sub(p, 0, #p -1)] == nil or target[string.sub(p, 0, #p -1)].structured == true or overwrite and not structured then
-					target[string.sub(p, 0, #p -1)] = {structured = true}
-					global.loadData(target[string.sub(p, 0, #p -1)], dir .. "/" .. p, func, logFuncs, overwrite, subDirs, structured)
+		
+		if name ~= "gitignore" and name ~= "gitkeep" then
+			if string.sub(file, #file) == "/" and subDirs then
+				if structured then
+					if target[string.sub(p, 0, #p -1)] == nil or target[string.sub(p, 0, #p -1)].structured == true or overwrite and not structured then
+						target[string.sub(p, 0, #p -1)] = {structured = true}
+						global.loadData(target[string.sub(p, 0, #p -1)], dir .. "/" .. p, func, logFuncs, overwrite, subDirs, structured)
+					else
+						global.error("[DLF]: Target already existing!: " .. p .. " :" .. tostring(target))
+					end
 				else
-					global.error("[DLF]: Target already existing!: " .. p .. " :" .. tostring(target))
+					global.loadData(target, dir .. "/" .. p, func, logFuncs, overwrite, subDirs, structured)
 				end
-			else
-				global.loadData(target, dir .. "/" .. p, func, logFuncs, overwrite, subDirs, structured)
-			end
-		elseif target[name] == nil or overwrite then
-			local debugString = ""
-			if target[name] == nil then
-				debugString = "[DLF]: Loading file: " .. dir .. "/" .. file .. ": "
-			else
-				debugString = "[DLF]: Reloading file: " .. dir .. "/" .. file .. ": "
-			end
-			
-			local suc, err 
-			if loadFunc ~= nil then
-				suc, err = loadFunc(path .. file)
-			elseif ending == ".pic" then
-				suc, err = global.image.load(path .. file)
-				if suc ~= false then
-					suc.format = "pic"
-				end
-			else
-				suc, err = loadfile(path .. file)
-			end
-			
-			if global.isDev then
-				if suc == nil then
-					warn("[DLF] Failed to load file: " .. dir .. "/" .. file .. ": " .. tostring(err))
+			elseif target[name] == nil or overwrite then
+				local debugString = ""
+				if target[name] == nil then
+					debugString = "[DLF]: Loading file: " .. dir .. "/" .. file .. ": "
 				else
-					print(debugString .. tostring(suc))
+					debugString = "[DLF]: Reloading file: " .. dir .. "/" .. file .. ": "
 				end
+				
+				local suc, err 
+				if loadFunc ~= nil then
+					suc, err = loadFunc(path .. file)
+				elseif ending == ".pic" then
+					suc, err = global.image.load(path .. file)
+					if suc ~= false then
+						suc.format = "pic"
+					end
+				else
+					suc, err = loadfile(path .. file)
+				end
+				
+				if global.isDev then
+					if suc == nil then
+						warn("[DLF] Failed to load file: " .. dir .. "/" .. file .. ": " .. tostring(err))
+					else
+						print(debugString .. tostring(suc))
+					end
+				end
+				
+				if type(suc) == "function" then
+					target[name or string.sub(p, 0, #p -1)] = suc(global)
+				elseif type(suc) == "table" then
+					target[name or string.sub(p, 0, #p -1)] = suc
+				end
+				
+				if func ~= nil then
+					func(name, id)
+				end
+				
+				id = id +1
 			end
-			
-			if type(suc) == "function" then
-				target[name or string.sub(p, 0, #p -1)] = suc(global)
-			elseif type(suc) == "table" then
-				target[name or string.sub(p, 0, #p -1)] = suc
-			end
-			
-			if func ~= nil then
-				func(name, id)
-			end
-			
-			id = id +1
 		end
 	end
 	return id

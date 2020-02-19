@@ -136,4 +136,3 @@ end
 
 --Returing the state data.
 return stateTemplate 
-

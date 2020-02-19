@@ -2,14 +2,14 @@
 
 local nosGaConf = {
 	defaultState = "stateTemplate",
-	defaultState = "game",
+	
 	targetFramerate = 20, --default is "20". set to "-1" for unlimited framerate (can cause in graphical issures).
 	maxTickTime = .5, --if a tick need more as the maxTickTime the engine will handle the ticke like it had needs exacly the maxTickTime.
 	fpsCheckInterval = 10, --defines what amout of frames the engine use to calculate the avg. fps.
 	
 	showConsole = true, --can be changes ingame by pressing f1 by default.
 	showDebug = true, --can be changes ingame by pressing f3 by default.
-	consoleSizeY = 40, --the height of the console.
+	consoleSizeY = 20, --the height of the console.
 	directConsoleDraw = false, --instant drawing console outputs instead of waiting til new frame (has only an affect if doubleBuffering used) (only if isDev).
 	
 	preferModTextures = true, --if true mods can overwrite texturePack textures.
@@ -50,7 +50,7 @@ local nosGaConf = {
 			conf = true, --should be always true.
 			
 			--=== core ===--
-			re = false,  
+			re = false, 
 			uh = false,
 			eh = false,
 			GameObject = false,
