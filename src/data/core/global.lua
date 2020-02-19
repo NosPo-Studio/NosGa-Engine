@@ -118,7 +118,7 @@ end
 function global.fatal(...)
 	global.print("[FATAL] ", ...)
 	global.isRunning = false
-	global.orgPrint(debug.traceback())
+	global.orgPrint(..., debug.traceback())
 end
 
 function global.debug(...)

@@ -75,25 +75,7 @@ function GameObjectsTemplate.new(args)
 	this.gameObject.rigidBodys[1].test = "t"
 	
 	--===== custom functions =====--
-	--[[Same as the function equevalent in the stateTemplate
-		but called with the additionally conditions as "this.update()".
-	]]
-	this.key_down = function(this, signal) 
-		
-	end
 	
-	this.ctrl_right_key_pressed = function(this, signal, sname) 
-		this:addForce(100, 0, args.maxSpeed) 
-	end
-	this.ctrl_left_key_pressed = function(this, signal, sname) 
-		this:addForce(-100, 0, args.maxSpeed) 
-	end
-	this.ctrl_up_key_pressed = function(this, signal, sname) 
-		this:addForce(0, -100, args.maxSpeed) 
-	end
-	this.ctrl_down_key_pressed = function(this, signal, sname) 
-		this:addForce(0, 100, args.maxSpeed) 
-	end
 	
 	--===== default functions =====--
 	--Called when this GameObject is added to a RenderArea.

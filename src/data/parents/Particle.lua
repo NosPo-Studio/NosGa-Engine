@@ -57,6 +57,8 @@ function Particle.new(args)
 	end
 	
 	this.pUpdate = function(this, dt, ra, particles, particleGameObjects) 
+		
+		
 		this.lifeTime = this.lifeTime +dt
 		if this.maxLifeTime ~= -1 and this.lifeTime > this.maxLifeTime then
 			this:destroy()
@@ -76,6 +78,7 @@ function Particle.new(args)
 	end
 	
 	this.pDraw = function(this, renderArea, offsetX, offsetY, type) 
+		
 		if global.conf.useDoubleBuffering then
 			local x1, y1, x2, y2 = renderArea:getRealFOV()
 			

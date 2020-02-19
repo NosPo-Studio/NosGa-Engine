@@ -1,34 +1,163 @@
-[INFO]  [GE]: Change state to: "test". 
-[INFO]  [test]: Start init. 
-[INFO]  [DL]: Loading data groups: gameObjects, parents, animations, textures. 
+[INFO]  [GE]: Change state to: "game". 
+[INFO]  [game]: Start init. 
+[INFO]  [DL]: Loading data groups: animations, gameObjects, parents, textures. 
 [INFO]  [DL]: Loading data group: textures. 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/pipipu.pic: table: 0x7f02dc114860 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0x7f02dc0e0a60 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0x7f02e00ed940 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 0x7f02d02a0a50 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0x7f02d0094ab0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/test.pic: table: 0x7f02d832ffa0 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0x7f02d8313790 
-[INFO]  [DLF]: Loading file: texturePacks/default/textures/exampleTexture.lua: function: 0x7f02dc26b7b0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/background2.lua: function: 0x7f02d0169b00 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/stone.lua: function: 0x7f02d8085070 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/grass.lua: function: 0x7f02d80f4bf0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/exampleTexture.lua: function: 0x7f02e0130e60 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/player.lua: function: 0x7f02e0133d60 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0x7f02dc007e20 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/test.pic: table: 0x7f02d0074e80 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/pipipu.pic: table: 0x7f02d02ba9c0 
 [INFO]  [DL]: Loading data group: animations. 
-[INFO]  [DLF]: Loading file: texturePacks/default/animations/test/: table: 0x7f02e014a6a0 
+[INFO]  [DLF]: Loading file: texturePacks/default/animations/test/: table: 0x7f02d8081930 
 [INFO]  [DL]: Loading data group: parents. 
-[INFO]  [DLF]: Loading file: data/parents/Particle.lua: function: 0x7f02e0052c20 
-[INFO]  [DLF]: Loading file: data/parents/ParticleContainer.lua: function: 0x7f02d0394240 
+[INFO]  [DLF]: Loading file: data/parents/Particle.lua: function: 0x7f02d806b1e0 
+[INFO]  [DLF]: Loading file: data/parents/ParticleContainer.lua: function: 0x7f02e054f4e0 
 [INFO]  [DL]: Loading data group: gameObjects. 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test2.lua: function: 0x7f02dc119760 
-[INFO]  [DLF]: Loading file: data/gameObjects/GameObjectTemplate.lua: function: 0x7f02e0040e30 
-[INFO]  [DLF]: Loading file: data/gameObjects/TestParticle2.lua: function: 0x7f02d039d6b0 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test4.lua: function: 0x7f02d81f96d0 
-[INFO]  [DLF]: Loading file: data/gameObjects/Smoke.lua: function: 0x7f02d8209e50 
-[INFO]  [DLF]: Loading file: data/gameObjects/MovingTestGO.lua: function: 0x7f02dc071f40 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test3.lua: function: 0x7f02dc1ad460 
-[INFO]  [DLF]: Loading file: data/gameObjects/Blood.lua: function: 0x7f02e017b460 
-[INFO]  [DLF]: Loading file: data/gameObjects/TestParticle.lua: function: 0x7f02d00c66a0 
-[INFO]  [DLF]: Loading file: data/gameObjects/StaticTestGO.lua: function: 0x7f02d812e9d0 
-[INFO]  [DLF]: Loading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f02d811ff60 
-[INFO]  [DLF]: Loading file: data/gameObjects/DefaultParticleContainer.lua: function: 0x7f02dc1d8b30 
-[INFO]  [DLF]: Loading file: data/gameObjects/RPT.lua: function: 0x7f02e013b740 
-[INFO]  [DLF]: Loading file: data/gameObjects/Test.lua: function: 0x7f02e0171c60 
-[INFO]  [test]: init done. 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test3.lua: function: 0x7f02d00506f0 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test2.lua: function: 0x7f02d81ab180 
+[INFO]  [DLF]: Loading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f02e012d890 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test.lua: function: 0x7f02dc0133d0 
+[INFO]  [DLF]: Loading file: data/gameObjects/DefaultParticleContainer.lua: function: 0x7f02dc010350 
+[INFO]  [DLF]: Loading file: data/gameObjects/Player.lua: function: 0x7f02d026a670 
+[INFO]  [DLF]: Loading file: data/gameObjects/Smoke.lua: function: 0x7f02d8175aa0 
+[INFO]  [DLF]: Loading file: data/gameObjects/Exhaust.lua: function: 0x7f02e0030810 
+[INFO]  [DLF]: Loading file: data/gameObjects/Test4.lua: function: 0x7f02dcb59960 
+[INFO]  [DLF]: Loading file: data/gameObjects/Blood.lua: function: 0x7f02dc191010 
+[INFO]  [game]: init done. 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: reload, re, conf. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f02d8295be0 
+[INFO]  [game]: Start init. 
+[INFO]  [DL]: Loading data groups: animations, gameObjects, parents, textures. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [game]: init done. 
+[WARN]  Tick take too long: F: 422, T: 0.85 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: reload, re, conf. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f02dc190bb0 
+[INFO]  [game]: Start init. 
+[INFO]  [DL]: Loading data groups: animations, gameObjects, parents, textures. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [game]: init done. 
+[WARN]  Tick take too long: F: 1759, T: 0.8 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: global, structuredGlobal, states, eh, uh, mods, parents, textures, re, gameObjects, RenderArea, structuredGameObjects, animations, conf, GameObject, reload. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f02dc294670 
+[INFO]  [DL]: Reloading file: data/core/updateHandler.lua: function: 0x7f02e02529c0 
+[INFO]  [DL]: Reloading file: data/core/eventHandler.lua: function: 0x7f02d80f4ef0 
+[INFO]  [DL]: Reloading file: data/core/RenderArea.lua: function: 0x7f02e0253650 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f02d029a420 
+[INFO]  [DL]: Loading data group: global. 
+[INFO]  [DLF]: Loading file: data/global/globalDebuggingFunctions.lua: function: 0x7f02dc0cbfb0 
+[INFO]  [DLF]: Reloading file: data/global/addTest.lua: function: 0x7f02e0255030 
+[INFO]  [DLF]: Reloading file: data/global/empty.lua: function: 0x7f02e0205670 
+[INFO]  [DLF]: Reloading file: data/global/addRA.lua: function: 0x7f02d0070320 
+[INFO]  [DLF]: Reloading file: data/global/getState.lua: function: 0x7f02d8175d70 
+[INFO]  [DLF]: Reloading file: data/global/drawDebug.lua: function: 0x7f02d80f4510 
+[INFO]  [DLF]: Reloading file: data/global/clear.lua: function: 0x7f02dc02c0a0 
+[INFO]  [DLF]: Reloading file: data/global/changeState.lua: function: 0x7f02e0134100 
+[INFO]  [DL]: Reloading data group: structuredGlobal. 
+[INFO]  [DL]: Reloading data group: states. 
+[INFO]  [DLF]: Loading file: data/states/game.lua: function: 0x7f02dc072e20 
+[INFO]  [DLF]: Reloading file: data/states/test.lua: function: 0x7f02e01ff740 
+[INFO]  [DL]: Reloading data group: textures. 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/background2.lua: function: 0x7f02d00520e0 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/stone.lua: function: 0x7f02d8141560 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/grass.lua: function: 0x7f02d8148860 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/exampleTexture.lua: function: 0x7f02dc234890 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/player.lua: function: 0x7f02dc1b35f0 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/benchmarkTexture.lua: function: 0x7f02e02566e0 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/test.pic: table: 0x7f02e021e180 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/pipipu.pic: table: 0x7f02d0170de0 
+[INFO]  [DL]: Reloading data group: animations. 
+[INFO]  [DLF]: Loading file: texturePacks/default/animations/test/: table: 0x7f02d82230c0 
+[INFO]  [DL]: Reloading data group: parents. 
+[INFO]  [DLF]: Reloading file: data/parents/Particle.lua: function: 0x7f02dc2308b0 
+[INFO]  [DLF]: Reloading file: data/parents/ParticleContainer.lua: function: 0x7f02d02af7a0 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test3.lua: function: 0x7f02d8223b80 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test2.lua: function: 0x7f02dc232520 
+[INFO]  [DLF]: Reloading file: data/gameObjects/ParticleTestContainer.lua: function: 0x7f02e014b780 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test.lua: function: 0x7f02d029d4f0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/DefaultParticleContainer.lua: function: 0x7f02d8175940 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Player.lua: function: 0x7f02dc0be0d0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Smoke.lua: function: 0x7f02dc0b4210 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Exhaust.lua: function: 0x7f02e0219250 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Test4.lua: function: 0x7f02d02bf720 
+[INFO]  [DLF]: Reloading file: data/gameObjects/Blood.lua: function: 0x7f02d8147150 
+[INFO]  [DL]: Loading data group: structuredGameObjects. 
+[INFO]  [DLF]: Loading file: data/structuredGameObjects/Test17.lua: function: 0x7f02e0223a50 
+[INFO]  [DLF]: Loading file: data/structuredGameObjects/test//Test.lua: function: 0x7f02d026bad0 
+[INFO]  [game]: Start init. 
+[INFO]  [DL]: Loading data groups: animations, gameObjects, parents, textures. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [game]: init done. 
+[WARN]  Tick take too long: F: 1799, T: 3.4 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: reload, re, conf. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f02e003e9f0 
+[INFO]  [game]: Start init. 
+[INFO]  [DL]: Loading data groups: animations, gameObjects, parents, textures. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [game]: init done. 
+[WARN]  Tick take too long: F: 2067, T: 0.84999999999999 
+[INFO]  --===== EINGABE =====-- 
+[INFO]  --===== EINGABE =====-- 
+[INFO]  --===== EINGABE =====-- 
+[INFO]  --===== EINGABE =====-- 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: reload, re, conf. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f02dc21a4f0 
+[INFO]  [game]: Start init. 
+[INFO]  [DL]: Loading data groups: animations, gameObjects, parents, textures. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [game]: init done. 
+[WARN]  Tick take too long: F: 2689, T: 0.94999999999999 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: reload, re, conf. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f02e0134dc0 
+[INFO]  [game]: Start init. 
+[INFO]  [DL]: Loading data groups: animations, gameObjects, parents, textures. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [game]: init done. 
+[WARN]  Tick take too long: F: 4847, T: 0.80000000000001 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: reload, re, conf. 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f02dc290e40 
+[INFO]  [game]: Start init. 
+[INFO]  [DL]: Loading data groups: animations, gameObjects, parents, textures. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [game]: init done. 
+[WARN]  Tick take too long: F: 5318, T: 0.89999999999998 
 [DEBUG]  [EH]: Program stopped by user. 

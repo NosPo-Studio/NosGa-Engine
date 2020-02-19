@@ -15,7 +15,7 @@
     along with this library.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-local OCUI = {version = "v1.5"}
+local OCUI = {version = "v1.5d"}
 OCUI.__index = OCUI
 
 --[[ToDo:
@@ -127,7 +127,7 @@ function OCUI.Bar.new(ocui, args)
 	this.posY = args.posY or args.y
 	this.sizeX = args.sizeX or args.sx
 	this.sizeY = args.sizeY or args.sy
-	this.status = math.min(args.status, 1) or 0 --0 == empty, 1 == full.
+	this.status = math.min(args.status or 0, 1) --0 == empty, 1 == full.
 	this.cfg_activeForegroundColor = args.activeForegroundColor or 0xaaaaaa
 	this.cfg_activeBackgroundColor = args.activeBackgroundColor or 0x777777
 	this.cfg_inactiveForegroundColor = args.inactiveForegroundColor or 0x888888

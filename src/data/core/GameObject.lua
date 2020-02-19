@@ -49,6 +49,7 @@ function GameObject.new(args)
 		name = pa(args.name, ""),
 		drawSize = pa(args.ds, args.drawSize, global.conf.debug.drawGameObjectBorders),
 		isParent = args.isParent,
+		updateAlways = pa(args.updateAlways, false),
 		
 		--=== Auto generated ===--
 		id, 
@@ -103,7 +104,8 @@ function GameObject.new(args)
 	end
 	
 	if args.noSizeArea ~= true and this.ngeAttributes.sizeX > 0 and this.ngeAttributes.sizeY > 0 then
-		table.insert(this.ngeAttributes.clearAreas, {posX = 0, posY = 0, sizeX = this.ngeAttributes.sizeX, sizeY = this.ngeAttributes.sizeY})
+		addAreaEntry(this.ngeAttributes.clearAreas, {posX = 0, posY = 0, sizeX = this.ngeAttributes.sizeX, sizeY = this.ngeAttributes.sizeY})
+		addAreaEntry(this.ngeAttributes.copyAreas, {posX = 0, posY = 0, sizeX = this.ngeAttributes.sizeX, sizeY = this.ngeAttributes.sizeY})
 	end
 	
 	--===== default functions =====--
@@ -141,6 +143,9 @@ function GameObject.new(args)
 	end
 	this.getPos = function(this)
 		return math.floor(this.gameObject.posX +.5), math.floor(this.gameObject.posY +.5)
+	end
+	this.getSpeed = function(this)
+		return this.gameObject:getSpeed()
 	end
 	this.getScreenPos = function(this)--ToDo: untested.
 		return this:getRA():getGOPos(this)
@@ -208,6 +213,7 @@ function GameObject.new(args)
 		
 		local x, y = this:getPos()
 		local lx, ly = this:getLastPos()
+		
 		if x ~= lx or y ~= ly or this.ngeAttributes.usesAnimation == true then
 			this.ngeAttributes.hasMoved = true
 			if global.conf.forceSmartMove or global.conf.useSmartMove and global.conf.useDoubleBuffering then

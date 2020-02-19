@@ -2,16 +2,16 @@
 
 local nosGaConf = {
 	--defaultState = "stateTemplate",
-	defaultState = "test",
+	defaultState = "game",
 	
-	targetFramerate = 20, --default is "20". set to "-1" for unlimited framerate (can cause in graphical issures).
+	targetFramerate = -1, --default is "20". set to "-1" for unlimited framerate (can cause in graphical issures).
 	maxTickTime = .5, --if a tick need more as the maxTickTime the engine will handle the ticke like it had needs exacly the maxTickTime.
 	fpsCheckInterval = 10, --defines what amout of frames the engine use to calculate the avg. fps.
 	
 	showConsole = true, --can be changes ingame by pressing f1 by default.
 	showDebug = true, --can be changes ingame by pressing f3 by default.
 	consoleSizeY = 40, --the height of the console.
-	directConsoleDraw = false, --instant drawing console outputs instead of waiting til new frame (has only an affect if doubleBuffering used) (only if isDev).
+	directConsoleDraw = true, --instant drawing console outputs instead of waiting til new frame (has only an affect if doubleBuffering used) (only if isDev).
 	
 	preferModTextures = true, --if true mods can overwrite texturePack textures.
 	
@@ -25,7 +25,7 @@ local nosGaConf = {
 	
 	forceSmartMove = false, --forces the SmartMove in linear render mode (for render engine debugging purpose).
 	
-	narrowUpdateExpansion = false, --[[ Defines the distance a gameObject can be away from any renderArea but will still updated.
+	narrowUpdateExpansion = {0, 0, 0, 0}, --[[ Defines the distance a gameObject can be away from any renderArea but will still updated.
 		If it is set to false any gameObject will be updated independent from its position.
 		Can be changed in source for any renderArea independently.
 		
@@ -54,7 +54,7 @@ local nosGaConf = {
 			re = true, 
 			uh = false,
 			eh = false,
-			GameObject = true,
+			GameObject = false,
 			RenderArea = false,
 			
 			--=== data groups ===--
@@ -63,8 +63,9 @@ local nosGaConf = {
 			states = false,
 			textures = false,
 			animations = false,
-			parents = true,
-			gameObjects = true,
+			parents = false,
+			gameObjects = false,
+			structuredGameObjects = false,
 			
 			mods = false, --just reloads the activated data groups of the mods (if only onReload.blocks = true he only also reloads the blocks from mods). should be always true.
 		},

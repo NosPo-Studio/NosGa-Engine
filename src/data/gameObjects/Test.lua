@@ -15,7 +15,7 @@ function TestGO.new(args)
 	args.components = {
 		--{"Sprite", texture = global.texture.player.right},
 		--{"Sprite", texture = global.texture.grass},
-		{"CopyArea", x = 0, y = 0, sx = args.sizeX, sy = args.sizeY},
+		--{"CopyArea", x = 0, y = 0, sx = args.sizeX, sy = args.sizeY},
 	}
 	
 	--===== default stuff =====--

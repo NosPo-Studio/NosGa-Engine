@@ -10,7 +10,7 @@
 MIT License
 
 DoubleBuffering Copyright (c) 2018 Igor Timofeev
-DoubleBuffering (raw copy feature) Copyright (c) 2019 NosPo Studio
+DoubleBuffering (NosGa Engines version) Copyright (c) 2019-2020 NosPo Studio
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,6 +30,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
+local version = "v0.2d" --NosPo changes version.
 
 local component = require("component")
 local unicode = require("unicode")
@@ -52,6 +53,10 @@ local unicodeLen, unicodeSub = unicode.len, unicode.sub
 
 local function getIndex(x, y)
 	return bufferWidth * (y - 1) + x
+end
+
+local function getCoordinates(index)
+	return index % bufferWidth, math.floor(index / bufferWidth) +1
 end
 
 local function getCurrentFrameTables()
@@ -203,10 +208,10 @@ local function clear(color, transparency)
 	drawRectangle(1, 1, bufferWidth, bufferHeight, color or 0x0, 0x000000, " ", transparency)
 end
 
-local function copy(x, y, width, height, raw)
+local function copy(x, y, width, height, current)
 	local copyArray, index = { width, height }
 	local rawCopyArray = { width, height }
-
+	
 	for j = y, y + height - 1 do
 		for i = x, x + width - 1 do
 			if i >= 1 and j >= 1 and i <= bufferWidth and j <= bufferHeight then
@@ -214,7 +219,7 @@ local function copy(x, y, width, height, raw)
 				tableInsert(copyArray, newFrameBackgrounds[index])
 				tableInsert(copyArray, newFrameForegrounds[index])
 				tableInsert(copyArray, newFrameSymbols[index])
-				if raw then
+				if current then
 					tableInsert(rawCopyArray, currentFrameBackgrounds[index])
 					tableInsert(rawCopyArray, currentFrameForegrounds[index])
 					tableInsert(rawCopyArray, currentFrameSymbols[index])
@@ -223,7 +228,7 @@ local function copy(x, y, width, height, raw)
 				tableInsert(copyArray, 0x0)
 				tableInsert(copyArray, 0x0)
 				tableInsert(copyArray, " ")
-				if raw then
+				if current then
 					tableInsert(rawCopyArray, 0x0)
 					tableInsert(rawCopyArray, 0x0)
 					tableInsert(rawCopyArray, " ")
@@ -231,14 +236,14 @@ local function copy(x, y, width, height, raw)
 			end
 		end
 	end
-
+	
 	return copyArray, rawCopyArray
 end
 
-local function paste(startX, startY, picture, rawPicture)
+local function paste(startX, startY, picture, currentPicture)
 	local imageWidth = picture[1]
 	local bufferIndex, pictureIndex, bufferIndexStepOnReachOfImageWidth = bufferWidth * (startY - 1) + startX, 3, bufferWidth - imageWidth
-
+	
 	for y = startY, startY + picture[2] - 1 do
 		if y >= drawLimitY1 and y <= drawLimitY2 then
 			for x = startX, startX + imageWidth - 1 do
@@ -246,10 +251,10 @@ local function paste(startX, startY, picture, rawPicture)
 					newFrameBackgrounds[bufferIndex] = picture[pictureIndex]
 					newFrameForegrounds[bufferIndex] = picture[pictureIndex + 1]
 					newFrameSymbols[bufferIndex] = picture[pictureIndex + 2]
-					if rawPicture ~= nil then
-						currentFrameBackgrounds[bufferIndex] = rawPicture[pictureIndex]
-						currentFrameForegrounds[bufferIndex] = rawPicture[pictureIndex + 1]
-						currentFrameSymbols[bufferIndex] = rawPicture[pictureIndex + 2]
+					if currentPicture ~= nil then
+						currentFrameBackgrounds[bufferIndex] = currentPicture[pictureIndex]
+						currentFrameForegrounds[bufferIndex] = currentPicture[pictureIndex + 1]
+						currentFrameSymbols[bufferIndex] = currentPicture[pictureIndex + 2]
 					end
 				end
 
@@ -263,7 +268,7 @@ local function paste(startX, startY, picture, rawPicture)
 	end
 end
 
-local function rawCopy(x, y, width, height)
+local function copyCurrent(x, y, width, height)
 	local copyArray, index = { width, height }
 
 	for j = y, y + height - 1 do
@@ -284,7 +289,7 @@ local function rawCopy(x, y, width, height)
 	return copyArray
 end
 
-local function rawPaste(startX, startY, picture)
+local function pasteCurrent(startX, startY, picture)
 	local imageWidth = picture[1]
 	local bufferIndex, pictureIndex, bufferIndexStepOnReachOfImageWidth = bufferWidth * (startY - 1) + startX, 3, bufferWidth - imageWidth
 
@@ -304,6 +309,49 @@ local function rawPaste(startX, startY, picture)
 		else
 			bufferIndex, pictureIndex = bufferIndex + bufferWidth, pictureIndex + imageWidth * 3
 		end
+	end
+end
+
+local function directCopy(x, y, width, height, tx, ty, current)
+	local index
+	
+	local imageWidth = width
+	local bufferIndex, pictureIndex, bufferIndexStepOnReachOfImageWidth = bufferWidth * (ty - 1) + tx, 3, bufferWidth - imageWidth
+	
+	for j = y, y + height - 1 do
+		for i = x, x + width - 1 do
+			local newX, newY = getCoordinates(bufferIndex)
+			if i >= 1 and j >= 1 and i <= bufferWidth and j <= bufferHeight then
+				index = bufferWidth * (j - 1) + i
+				
+				if newY >= drawLimitY1 and newY <= drawLimitY2 and newX >= drawLimitX1 and newX <= drawLimitX2 then
+					newFrameBackgrounds[bufferIndex] = newFrameBackgrounds[index]
+					newFrameForegrounds[bufferIndex] = newFrameForegrounds[index]
+					newFrameSymbols[bufferIndex] = newFrameSymbols[index]
+					
+					if current then
+						currentFrameBackgrounds[bufferIndex] = newFrameBackgrounds[index]
+						currentFrameForegrounds[bufferIndex] = newFrameForegrounds[index]
+						currentFrameSymbols[bufferIndex] = newFrameSymbols[index]
+					end
+				end
+				
+			else
+				if newY >= drawLimitY1 and newY <= drawLimitY2 and newX >= drawLimitX1 and newX <= drawLimitX2 then
+					newFrameBackgrounds[newIndex] = 0x0
+					newFrameForegrounds[newIndex] = 0x0
+					newFrameSymbols[newIndex] = " "
+					
+					if current then
+						currentFrameBackgrounds[bufferIndex] = 0x0
+						currentFrameForegrounds[bufferIndex] = 0x0
+						currentFrameSymbols[bufferIndex] = " "
+					end
+				end
+			end
+			bufferIndex, pictureIndex = bufferIndex + 1, pictureIndex + 3
+		end
+		bufferIndex = bufferIndex + bufferIndexStepOnReachOfImageWidth
 	end
 end
 
@@ -678,8 +726,9 @@ return {
 	clear = clear,
 	copy = copy,
 	paste = paste,
-	rawCopy = rawCopy,
-	rawPaste = rawPaste,
+	directCopy = directCopy,
+	copyCurrent = copyCurrent,
+	pasteCurrent = pasteCurrent,
 	rasterizeLine = rasterizeLine,
 	rasterizeEllipse = rasterizeEllipse,
 	semiPixelRawSet = semiPixelRawSet,

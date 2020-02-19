@@ -56,6 +56,8 @@ function ParticleContainer.init(this)
 end
 
 function ParticleContainer.new(args) 
+	local pa = global.ut.parseArgs
+	
 	args = args or {} 
 	args.isParent = true
 	args.useAnimation = true
@@ -72,7 +74,6 @@ function ParticleContainer.new(args)
 	this = setmetatable(this, ParticleContainer) 
 	
 	--===== init =====--
-	local pa = global.ut.parseArgs
 	
 	this.name = args.name
 	this.type = args.type
@@ -87,8 +88,7 @@ function ParticleContainer.new(args)
 	this.moveToX, this.moveToY, this.newSizeX, this.newSizeY = 0, 0, this.ngeAttributes.sizeX, this.ngeAttributes.sizeY
 	this.hasMoved = false
 	this.lastMaxX = -2^32
-	this.lastMaxY = -2^32
-	
+	this.lastMaxY = -2^32	
 	
 	--===== custom functions =====--
 	this.addParticle = function(this, particle, x, y, args)
@@ -133,21 +133,17 @@ function ParticleContainer.new(args)
 		local particleCount = 0
 		local isVisible = false
 		
-		--still causing render issures cause un-regular cleaning.
-		
-		--move(this, this.moveToX, this.moveToY, this.newSizeX, this.newSizeY)
-	
-		for p, c in pairs(this.particles) do
-			table.insert(particleGameObjects, p.gameObject)
-		end
-		
-		if this.useCollision and ocgfGameObjects ~= nil then
-			for i, go in pairs(ocgfGameObjects) do
-				table.insert(particleGameObjects, go)
+		if this.useCollision then
+			for p, c in pairs(this.particles) do
+				table.insert(particleGameObjects, p.gameObject)
+			end
+			
+			if ocgfGameObjects ~= nil then
+				for i, go in pairs(ocgfGameObjects) do
+					table.insert(particleGameObjects, go)
+				end
 			end
 		end
-		
-		global.run(this.update, this, dt, ra, this.particles, particleGameObjects)
 		
 		for p, c in pairs(this.particles) do
 			local x, y = p:pUpdate(dt, ra, this.particles, particleGameObjects)
@@ -200,7 +196,7 @@ function ParticleContainer.new(args)
 			move(this, this.moveToX, this.moveToY, this.newSizeX, this.newSizeY)
 		end
 		
-		
+		global.run(this.update, this, dt, ra, this.particles, particleGameObjects)
 		
 		this.ngeAttributes.clearedAlready = true
 		--move(this, this.moveToX, this.moveToY, this.newSizeX, this.newSizeY)
@@ -221,6 +217,8 @@ function ParticleContainer.new(args)
 		for p, c in pairs(this.particles) do
 			p:pDraw(renderArea, offsetX, offsetY, this.type)
 		end
+		
+		this.isUpdated = false
 	end
 	
 	this.pSUpdate = function(this, dt, ra)
