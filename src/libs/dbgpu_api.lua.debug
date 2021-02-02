@@ -178,63 +178,24 @@ function dbgpu.drawChanges(f)
 end
 
 function dbgpu.drawImage(x, y, image)
+	cprint("Draw Image")
 	buffer.drawImage(x, y, image)
 end
 
-function dbgpu.getActiveBuffer()
-	return currentVBuffer
-end
-function dbgpu.setActiveBuffer(id, force)
-	if id == currentVBuffer or force then
-		return false, "Buffer is set already"
-	else
-		local suc = gpu.setActiveBuffer(id)
-		
-		if suc ~= nil then
-			
-			setBuffer(id)
-			
-			do
-				local b = buffer.getNewFrameTables()
-				local b2 = cpuBuffers[id].new[1]
-				
-				--print(b, b2, b == b2)
-			end
-			
-			--print("T", id)
-			--print(cpuBuffers[0], cpuBuffers[1])
-			--print(#cpuBuffers[0].new[1], #cpuBuffers[1].new[1], cpuBuffers[id].new[4], cpuBuffers[id].new[5])
-		end
-		return id
-	end
-end
+dbgpu.getActiveBuffer = gpu.getActiveBuffer
+dbgpu.setActiveBuffer = gpu.setActiveBuffer
+dbgpu.allocateBuffer = gpu.allocateBuffer
+dbgpu.freeBuffer = gpu.freeBuffer
+dbgpu.bitblt = gpu.bitblt
+dbgpu.freeAllBuffers = gpu.freeAllBuffers
+
 --debug/dbgpuVBufferTest.lua > logs/test.log
-function dbgpu.allocateBuffer(w, h)
-	local id = gpu.allocateBuffer(w, h)
-	if type(id) == "number" then
-		flushBuffer(id, w, h)
-	end
-	return id
-end
-function dbgpu.freeBuffer(id)
-	cpuBuffers[id] = nil
-	return gpu.freeBuffer(id)
-end
-function dbgpu.bitblt(...)
-	return gpu.bitblt(...)
-end
-function dbgpu.freeAllBuffers()
-	currentVBuffer = 0
-	return gpu.freeAllBuffers()
-end
 
 --===== init =====--
 local resX, resY = gpu.getResolution()
 flushBuffer(0, resX, resY)
 setBuffer(0)
 
---dbgpu = setmetatable(dbgpu, {__index = gpu})
---maxResolution
---maxResolution
+gpu.drawChanges = function() end
 
 return dbgpu

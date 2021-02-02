@@ -17,249 +17,162 @@
     along with the NosGa Engine.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
---WorldRenderEngine
 local global = ...
 local re = {
-	rendered = {},
+	toRender = {}
 }
 
 --===== local vars =====--
-local fromX, toX, fromY, toY = 0, 0, 0, 0 --regenerated every update.
 
 --===== local functions =====--
 local function print(...)
 	if global.conf.debug.reDebug then
-		global.debug(...)
+		global.debug.log(...)
 	end
 end
 
-local function isInsideArea(ra, go, cmi)
-	local x, y = go:getPos()
-	local sx, sy = go.ngeAttributes.sizeX, go.ngeAttributes.sizeY
-	local fromX, toX, fromY, toY = ra:getFOV()
-	local expansion = {0, 0, 0, 0}
+local function bufferTexture(t, resetBuffer)
+	local texture = t
+	local textureBufferID
+	local currentBufferID = global.gpu.getActiveBuffer()
+	resetBuffer = global.ut.parseArgs(resetBuffer, true)
 	
-	if cmi.raw.x > 0 then
-		expansion[1] = expansion[1] + 0
-		expansion[2] = expansion[2] + cmi.raw.x
-	elseif cmi.raw.x < 0 then
-		expansion[1] = expansion[1] + cmi.raw.x
-		expansion[2] = expansion[2] + 0
-	end
-	if cmi.raw.y > 0 then
-		expansion[3] = expansion[3] + 0
-		expansion[4] = expansion[4] + cmi.raw.y
-	elseif cmi.raw.y < 0 then
-		expansion[3] = expansion[3] + cmi.raw.y
-		expansion[4] = expansion[4] + 0
+	if type(t) == "string" then
+		texture = global.texture[t]
 	end
 	
-	if x +sx > fromX and x < toX and y +sy > fromY and y < toY then
-		go.ngeAttributes.isVisibleIn[ra] = true
-		return 1
-	elseif x +sx > fromX +expansion[1] and x < toX +expansion[2] and y +sy > fromY +expansion[3] and y < toY +expansion[4] then
-		go.ngeAttributes.isVisibleIn[ra] = true
-		return 2
+	if texture.id ~= nil then
+		print("[RE]: [BT]: Texture: " .. tostring(t) .. " is buffered already.")
+		return false, "Texture is buffered already"
 	end
 	
-	go.ngeAttributes.isVisibleIn[ra] = nil
-	return 0
-end
-
-local function isInQueue(ra, go, l)
-	return ra.toRender[l][go] ~= nil
-end
-
-local function checkOverlapping(renderArea, gameObject, layer)
-	layer = layer or 0
+	if texture.format == "pic" then
+		--[[
+		textureBufferID = global.gpu.allocateBuffer(texture.resX, texture.resY)
+		
+		global.gpu.setActiveBuffer(textureBufferID)
+		global.db.drawImage(1, 1, texture)
+		global.db.drawChanges()
+		]]
+		
+		local cfb, cff, cfs, bw, bh = global.db.getCurrentFrameTables()
+		local nfb, nff, nfs = global.db.getNewFrameTables()
+		textureBufferID = global.gpu.allocateBuffer(texture.resX, texture.resY)
+		
+		global.gpu.setActiveBuffer(textureBufferID)
+		global.db.flush(texture.resX, texture.resY)
+		global.db.drawImage(1, 1, texture)
+		global.db.drawChanges()
+		
+		global.db.flush(bw, bh)
+		global.db.setCurrentFrameTables(cfb, cff, cfs, bw, bh)
+		global.db.setNewFrameTables(nfb, nff, nfs, bw, bh)
+		
+	elseif texture.format == "OCGLT" then
+		local oclrlInternGPU = global.oclrl.gpu
+		textureBufferID = global.gpu.allocateBuffer(texture.resX, texture.resY)
+		
+		global.gpu.setActiveBuffer(textureBufferID)
+		global.oclrl.gpu = global.realGPU
+		
+		global.oclrl:draw(1, 1, texture)
+		
+		global.oclrl.gpu = oclrlInternGPU
+	else
+		global.warn("[RE]: [BT]: Invalid format, texture: " .. tostring(t) .. ": " .. tostring(texture.format))
+		return false, "Ivalid format", texture.format
+	end
 	
-	for i, go in pairs(renderArea.gameObjects) do
-		local l = go.ngeAttributes.layer
-		
-		for i, oca in pairs(gameObject.ngeAttributes.clearAreas) do
-			for i, ca in pairs(go.ngeAttributes.clearAreas) do
-				local x, y = gameObject:getPos()
-				local x2, y2 = go:getPos()
-				local sx, sy = oca.sizeX, oca.sizeY
-				local sx2, sy2 = ca.sizeX, ca.sizeY
-				local lastPosX, lastPosY = gameObject:getLastPos()
-				local lastPosX2, lastPosY2 = go:getLastPos()
-				
-				x, y = x + oca.posX, y + oca.posY
-				x2, y2 = x2 + ca.posX, y2 + ca.posY
-				lastPosX, lastPosY = lastPosX + oca.posX, lastPosY + oca.posY
-				lastPosX2, lastPosY2 = lastPosX2 + ca.posX, lastPosY2 + ca.posY
-				
-				
-				
-				if --[[l >= layer and]] not isInQueue(renderArea, go, l) and renderArea.layerBlacklist[l] ~= true and isInsideArea(renderArea, go, renderArea.cameraMoveInstructions) == 1 then
-					if gameObject ~= go and 
-						x + sx > x2 and
-						x < x2 + sx2 and
-						y + sy > y2 and
-						y < y2 + sy2
-					or gameObject ~= go and 
-						lastPosX + sx > lastPosX2 and
-						lastPosX < lastPosX2 + sx2 and
-						lastPosY + sy > lastPosY2 and
-						lastPosY < lastPosY2 + sy2 
-					then
-						renderArea.gameObjectAttributes[go.ngeAttributes.id].mustBeRendered = true
-						renderArea.gameObjectAttributes[go.ngeAttributes.id].causedByOverlap = true
-						renderArea.toRender[l][go] = renderArea
-						checkOverlapping(renderArea, go, l)
-						
-						print("[RE]: Found overlap with: " .. gameObject.ngeAttributes.name .. ": N:" .. go.ngeAttributes.name .. ", L:" .. tostring(l) .. ", X:" .. tostring(x) .. ", Y:" .. tostring(y) .. ", ID:"..  tostring(go.ngeAttributes.id) .. ", F:" .. tostring(global.currentFrame) .. ".")
-					end
-				end
-			end
-		end
-	end
-end
-
-local function calculateFrame(renderArea, area)
-	for i, go in pairs(renderArea.gameObjects) do
-		local l = go.ngeAttributes.layer
-		
-		if not isInQueue(renderArea, go, l) and renderArea.layerBlacklist[l] ~= true and isInsideArea(renderArea, go, renderArea.cameraMoveInstructions) ~= 0 then
-			if renderArea.gameObjectAttributes[go.ngeAttributes.id].lastCalculatedFrame < global.currentFrame -1 then
-				renderArea.gameObjectAttributes[go.ngeAttributes.id].mustBeRendered = true
-			end
-			
-			if go.ngeAttributes.hasMoved then
-				checkOverlapping(renderArea, go)
-				renderArea.toRender[l][go] = renderArea
-			elseif renderArea.gameObjectAttributes[go.ngeAttributes.id].mustBeRendered then
-				renderArea.gameObjectAttributes[go.ngeAttributes.id].mustBeRendered = false
-				checkOverlapping(renderArea, go, l)
-				renderArea.toRender[l][go] = renderArea
-			end
-		elseif renderArea.gameObjectAttributes[go.ngeAttributes.id].wasVisible then
-			renderArea.toClear[l][go] = renderArea
-			renderArea.gameObjectAttributes[go.ngeAttributes.id].wasVisible = nil
-		end
-		renderArea.gameObjectAttributes[go.ngeAttributes.id].lastCalculatedFrame = global.currentFrame
-	end
-end
-
-local function moveFrame(renderArea)
-	if #renderArea.cameraMoveInstructions.copy > 0 then
-		local cmi = renderArea.cameraMoveInstructions
-		global.gpu.copy(cmi.copy[1], cmi.copy[2], cmi.copy[3], cmi.copy[4], cmi.copy[5], cmi.copy[6])
-		
-		global.oclrl:draw(0, 0, global.oclrl.generateTexture({
-			{"b", global.backgroundColor},
-			cmi.clear[1],
-			cmi.clear[2],
-		}), nil, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1})
-		
-	end
-end
-
-local function moveArea(renderArea)
-	--global.log("move")
-	for i, ci in pairs(renderArea.copyInstructions) do
-		if ci == nil or #ci <= 0 then
-			global.warn("[RE]: CopyInstruction is empty: frame: " .. tostring(global.currentFrame) .. ".")
-			return false
-		end
-		
-		local fromX, toX, fromY, toY = renderArea:getRealFOV()
-		local x1, y1, x2, y2 = ci[1], ci[2], ci[1] + ci[3] -1, ci[2] + ci[4] -1
-		local ax, ay, asx, asy, atx, aty
-		
-		fromX = fromX - math.min(ci[5], 0)
-		fromY = fromY - math.min(ci[6], 0)		
-		toX = toX - math.max(ci[5] +1, 1)
-		toY = toY - math.max(ci[6] +1, 1)
-		
-		if #renderArea.cameraMoveInstructions.copy > 0 then
-			x1, y1, x2, y2 = x1 + renderArea.cameraMoveInstructions.copy[5], y1 + renderArea.cameraMoveInstructions.copy[6], x2 + renderArea.cameraMoveInstructions.copy[5], y2 + renderArea.cameraMoveInstructions.copy[6]
-		end
-		
-		x1 = math.max(x1, fromX)
-		y1 = math.max(y1, fromY)
-		x2 = math.min(x2, toX)
-		y2 = math.min(y2, toY)
-		
-		ax = x1
-		ay = y1
-		asx = x2 - x1 +1
-		asy = y2 - y1 +1
-		
-		global.gpu.copy(ax, ay, asx, asy, ci[5], ci[6])
-		
-		--global.log("t")
-	end
-end
-
-local function clearFrame(renderArea, toClear)
-	local clearList = global.ut.parseArgs(toClear, renderArea.toRender)
+	texture.bufferID = textureBufferID
 	
-	for i, l in pairs(clearList) do
-		for go in pairs(l) do
-			if go.ngeAttributes.hasMoved and go.ngeAttributes.clearedAlready ~= true then
-				print("[RE]: Clear: " .. tostring(go.ngeAttributes.name) .. ": (" .. tostring(go) .. "), RA: " .. renderArea.name .. ", frame: " .. tostring(global.currentFrame) .. ".")
-				go:ngeClear(renderArea)
-			end
-		end
-		if toClear ~= nil then
-			toClear[i] = {}
-		end
+	print("[RE]: [BT]: Texture: " .. tostring(t) .. " loaded into buffer: " .. tostring(textureBufferID))
+	
+	if resetBuffer then
+		global.gpu.setActiveBuffer(currentBufferID)
 	end
-end
-
-local function drawFrame(renderArea)
-	for i, l in pairs(renderArea.toRender) do
-		for go, area in pairs(l) do
-			print("[RE]: Draw: " .. tostring(go.ngeAttributes.name) .. ": (" .. tostring(go) .. "), RA: " .. renderArea.name .. ", frame: " .. tostring(global.currentFrame) .. ".")
-			go:ngeDraw(area)
-			re.rendered[go] = true
-			renderArea.gameObjectAttributes[go.ngeAttributes.id].causedByOverlap = false
-		end
-		renderArea.toRender[i] = {}
-	end
+	
+	return textureBufferID
 end
 
 --===== global functions =====--
 function re.init()
+	print("[RE]: [INIT]: bufferTexturesOnInit: " .. tostring(global.conf.bufferTexturesOnInit) .. ", useBufferWhitelist: " .. tostring(global.texturePack.useBufferWhitelist))
 	
+	if global.conf.useDoubleBuffering and false then
+		global.gpu.freeAllBuffers()
+		
+		global.gpu = loadfile("libs/dbgpu_api.lua")({path = "libs/thirdParty", directDraw = false, forceDraw = false, rawCopy = true, actualRawCopy = true, global = global})
+		--[[
+		global.gpu = global.realGPU
+		global.gpu.drawChanges = function() end
+		]]
+		--global.oclrl.gpu = global.gpu
+		global.oclrl.gpu = global.realGPU
+		
+		
+	end
+	
+	global.gpu.freeAllBuffers()
+	
+	--global.db = nil
+	--global.db = dofile("libs/thirdParty/DoubleBuffering.lua")
+	
+	--print(xpcall(global.db.setCurrentFrameTables, debug.traceback, {}, {}, {}))
+	
+	--debug.traceback()
+	
+	
+	if global.conf.bufferTexturesOnInit then
+		print("[RE]: [INIT]: Buffer textures")
+		
+		if global.texturePack.useBufferWhitelist then
+		
+		else
+			for i, c in pairs(global.texture) do
+				if global.texturePack.bufferBlacklist[i] == nil then
+					bufferTexture(i)
+				end	
+			end
+		end
+	end
+	--gpu.bitblt(0, 1, 1, nil, nil, 6)
+	--os.sleep(1)
+	
+	--global.oclrl = nil
 end
 
 function re.draw()
-	for i, ra in pairs(global.renderAreas) do
-		if ra.visible then
-			moveFrame(ra)
-			moveArea(ra)
-			clearFrame(ra, ra.toClear)
-			clearFrame(ra)
-			drawFrame(ra)
+	print("[RE]: New frame: " .. tostring(global.currentFrame))
+	
+	for ra, _ in pairs(global.renderAreas) do
+		if global.renderAreas[ra] then
+			ra:ngeCalculateNewRender()
+			ra:ngeClear()
 			ra:ngeDraw()
-			ra:resetCMI()
+			ra:ngeClearRenderQueue()
+			
+			--global.realGPU.fill(1, 1, 100, 100, " ")
 		end
 	end
-	for go in pairs(re.rendered) do
-		go:ngeSetLastPos()
+	
+	global.gpu.setActiveBuffer(global.screenBufferID)
+	
+	if global.conf.useDoubleBuffering then
+		--global.core.re.executeCopyOrders()
+		--global.gpu.drawChanges()
 	end
+	
+	re.toRender = {}
 end
 
-function re.newDraw(renderArea)
-	for i, go in pairs(global.gameObjects) do
-		renderArea.gameObjectAttributes[go.ngeAttributes.id].mustBeRendered = true
-	end
+function re.newDraw()
+	
 end
 
 function re.test()
-	for i, ra in pairs(global.renderAreas) do
-		print("TT")
-		calculateFrame(ra)
-		clearFrame()
-		drawFrame()
-	end
+	
 end
 
-re.calculateRenderArea = calculateFrame
-re.checkOverlapping = checkOverlapping	
 
 --===== init =====--
 

@@ -3,7 +3,7 @@ local global = ...
 return function()
 	global.gpu.setBackground(global.backgroundColor)
 	global.gpu.fill(1, 1, global.resX, global.resY, " ")
-	for i, ra in pairs(global.renderAreas) do
+	for ra in pairs(global.renderAreas) do
 		ra:rerenderAll()
 	end
 	global.core.re.newDraw()

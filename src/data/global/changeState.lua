@@ -9,12 +9,12 @@ return function(state)
 			global.run(global.state[global.currentState].stop)
 		end
 		
+		global.currentState = state
+		
 		if not global.state[state].isInitialized then
 			global.run(global.state[state].init)
 			global.state[state].isInitialized = true
 		end
 		global.run(global.state[state].start)
-		
-		global.currentState = state
 	end
 end
