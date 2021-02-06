@@ -20,14 +20,14 @@ local nosGaConf = {
 		In the most cases using it causes in a big graphic performance boost but on cost of the memory usage.
 		More informations on github.
 	]]
+	useSmartMove = true,
 	useSmartCameraMove = true, --recommended in any render mode.
-	bufferTexturesOnInit = true, --If true the engine buffers all textures on init.
-	useGlobalBackBuffer = false,
-	
-	useLegacyRenderEngine = true,
-	useSmartMove = true, --only relevant if useLegacyRenderEngine is true.
 	
 	forceSmartMove = false, --forces the SmartMove in linear render mode (for render engine debugging purpose).
+	
+	useExperimentalRenderEngine = false, --a new render engine using the VRAM. not working properly yet.
+	bufferTexturesOnInit = true, --If true the engine buffers all textures on init.
+	useGlobalBackBuffer = false,
 	
 	narrowUpdateExpansion = false, --[[ Defines the distance a gameObject can be away from any renderArea but will still updated.
 		If it is set to false any gameObject will be updated independent from its position.
@@ -40,7 +40,7 @@ local nosGaConf = {
 		isDev = true, --activates debug outputs (strongly recommended if you want to mod the game in any way or something goes wrong and you need a detailed log).
 		
 		dlDebug = true, --print dataLoading debug (only if isDev).
-		reDebug = false, --print renderEngine debug (only if isDev).
+		reDebug = true, --print renderEngine debug (only if isDev).
 		raDebug = false, --print renderArea debug (only if isDev).
 		uhDebug = false, --print updateHandler debug (only if isDev).
 		goDebug = false, --print gameObject management debug (only if isDev).
@@ -84,7 +84,9 @@ local nosGaConf = {
 			reloadState = 63, --reloadrs the current state and all data groups defined in the config. default: 63 (f5)
 			rerenderScreen = 64, --rerenders the screen (removes graphic errors). default: 64 (f6)
 		},
-	}
+	},
 }
+
+nosGaConf.useLegacyRenderEngine = not nosGaConf.useExperimentalRenderEngine --tmp --`useExperimentalRenderEngine` will be replaced by `useLegacyRenderEngine` once the new render engine is official supported.
 
 return nosGaConf
