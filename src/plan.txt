@@ -1,0 +1,50 @@
+EventHandelr:
+	Add: prcise mode (sub puixel touch) support.
+
+Performance:
+	Objects on the street can only collide with the player.
+	
+	GameObjects:
+		Collision white list.
+
+Car:
+	Ice Truck
+	Scale: 35x16 px, height.
+	5 damage steps.
+	
+Street:
+	City street.
+	Land street.
+	Street edge marks lighting up to symolyze line switch.
+	
+fuelContainer:
+	Childs.
+	Human: less fuel than childs.
+	Seniors: (maybe: reward if not killed.)
+	
+Barriers:
+	Concrete wall with spikes.
+	Trach can.
+	Meteor: (massvie damage).
+	
+Backgrounds:
+	Houses (8).
+	Shops (3).
+	Stip club: (Random names and guests).
+	Office building (3).
+	Bus stop.
+	
+	Farm.
+	Silo.
+	Trees (3).
+	Pinerees (3).
+	
+Upgrades:
+	Speed.
+	Life.
+	Armor.
+	Tank.
+	Damage.
+	Traction.
+	FuelConsuption.
+	

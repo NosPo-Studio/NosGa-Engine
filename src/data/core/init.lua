@@ -43,9 +43,11 @@ end
 --===== global vars =====--
 --global.tl = require("libs/tl") --debug/testing
 global.fs = require("filesystem")
+global.filesystem = global.fs
 global.shell = require("shell")
 global.event = require("event")
 global.term = require("term")
+global.unicode = require("unicode")
 global.ut = require("libs/UT")
 global.ocl = require("libs/ocl")
 global.computer = require("computer")
@@ -58,13 +60,16 @@ global.image = require("libs/thirdParty/image")
 
 print("useDoubleBuffering: " .. tostring(global.conf.useDoubleBuffering))
 if global.conf.useDoubleBuffering then
-	global.gpu = loadfile("libs/dbgpu_api.lua")({path = "libs/thirdParty", directDraw = false, forceDraw = false, rawCopy = true})
-	
-	global.db = require("libs/thirdParty/DoubleBuffering")
+	if global.conf.useLegacyRenderEngine then
+		global.gpu = loadfile("libs/dbgpu_api.lua")({path = "libs/thirdParty", directDraw = false, forceDraw = false, rawCopy = true, actualRawCopy = false})
+	else
+		global.gpu = loadfile("libs/dbgpu_api.lua")({path = "libs/thirdParty", directDraw = false, forceDraw = false, rawCopy = true, actualRawCopy = true, global = global})
+	end
 else
 	global.gpu = global.component.gpu
 end
-global.oclrl = require("libs/oclrl").initiate(global.gpu)
+global.db = require("libs/thirdParty/DoubleBuffering")
+global.oclrl = require("libs/oclrl").initiate(global.gpu, {checkColor = true})
 global.ocal = require("libs/ocal").initiate({oclrl = global.oclrl, db = global.db, libs = "libs/thirdParty"})
 --global.oclrl = require("oclrl").initiate(global.gpu)
 global.ocui = require("libs/ocui").initiate(global.oclrl)
@@ -74,17 +79,33 @@ local func, err = loadfile("data/core/updateHandler.lua")
 print("[INIT]: Loading GE: " .. tostring(func) .. " " .. tostring(err))
 global.core.updateHandler = func(global)
 
-local func, err = loadfile("data/core/re.lua")
-print("[INIT]: Loading RE: " .. tostring(func) .. " " .. tostring(err))
-global.core.re = func(global)
-
-
-local func, err = loadfile("data/core/RenderArea.lua")
-print("[INIT]: Loading RenderArea: " .. tostring(func) .. " " .. tostring(err))
-global.core.RenderArea = func(global)
-local func, err = loadfile("data/core/GameObject.lua")
-print("[INIT]: Loading GameObject: " .. tostring(func) .. " " .. tostring(err))
-global.core.GameObject = func(global)
+if global.conf.useLegacyRenderEngine then
+	local func, err = loadfile("data/core/re_legacy.lua")
+	print("[INIT]: Loading legacy RE: " .. tostring(func) .. " " .. tostring(err))
+	global.core.re = func(global)
+else
+	local func, err = loadfile("data/core/re.lua")
+	print("[INIT]: Loading RE: " .. tostring(func) .. " " .. tostring(err))
+	global.core.re = func(global)
+end
+if global.conf.useLegacyRenderEngine then
+	local func, err = loadfile("data/core/RenderArea_legacy.lua")
+	print("[INIT]: Loading legacy RenderArea: " .. tostring(func) .. " " .. tostring(err))
+	global.core.RenderArea = func(global)
+else
+	local func, err = loadfile("data/core/RenderArea.lua")
+	print("[INIT]: Loading RenderArea: " .. tostring(func) .. " " .. tostring(err))
+	global.core.RenderArea = func(global)
+end
+if global.conf.useLegacyRenderEngine then
+	local func, err = loadfile("data/core/GameObject_legacy.lua")
+	print("[INIT]: Loading legacy GameObject: " .. tostring(func) .. " " .. tostring(err))
+	global.core.GameObject = func(global)
+else
+	local func, err = loadfile("data/core/GameObject.lua")
+	print("[INIT]: Loading GameObject: " .. tostring(func) .. " " .. tostring(err))
+	global.core.GameObject = func(global)
+end
 local func, err = loadfile("data/core/eventHandler.lua")
 print("[INIT]: Loading eventHandler: " .. tostring(func) .. " " .. tostring(err))
 global.core.eventHandler = func(global)
@@ -101,7 +122,7 @@ func(global)
 do --load global data.
 	print("[INIT]: Loading global.")
 	local path = "/data/global"
-	global.loadData(global, path, nil, {log = print, warn = print})
+	global.loadData(global, path, nil, {log = print, warn = print, error = print})
 end
 
 if global.isDev then
@@ -114,6 +135,7 @@ global.load({
 		states = true,
 		GameObject = true,
 		RenderArea = true,
+		Sprite = true,
 		eh = true,
 		structuredGlobal = true,
 	},

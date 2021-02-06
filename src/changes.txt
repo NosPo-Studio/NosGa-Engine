@@ -1,0 +1,2 @@
+Added: GameObject:getLayer().
+Added: sprite.noClear, if set to true the sprite will not get cleared by the enigen.

@@ -71,14 +71,17 @@ local function update()
 	
 	--===== frame calculation =====--
 	if global.state[global.currentState].update ~= nil then	--manual check to avoid log spamming on missing update func.
-		run(global.state[global.currentState].update)
+		run(global.state[global.currentState].update, global.dt)
 	end
 	global.core.updateHandler.update()
 	
-	for i, ra in pairs(global.renderAreas) do
-		global.core.re.calculateRenderArea(ra)
-		ra:ngeCalculateNewRender()
+	if global.conf.useLegacyRenderEngine then
+		for ra in pairs(global.renderAreas) do
+			global.core.re.calculateRenderArea(ra)
+			ra:ngeCalculateNewRender()
+		end
 	end
+	
 end
 
 local function draw()
@@ -95,11 +98,15 @@ local function draw()
 	
 	global.ocui:draw()
 	
+	global.debug.renderDebugInformations()
 	if global.conf.showConsole then
-		global.tbConsole:draw()
+		global.mConsole:draw()
 	end
 	
 	if global.conf.useDoubleBuffering then
+		if global.conf.useLegacyRenderEngine then
+			global.core.re.executeCopyOrders()
+		end
 		global.gpu.drawChanges()
 	end
 end
@@ -156,8 +163,8 @@ while global.isRunning do
 		end
 	end
 	
-	global.currentFrame = global.currentFrame +1
 	global.core.eventHandler.update()
+	global.currentFrame = global.currentFrame +1
 end
 
 progamEnd()

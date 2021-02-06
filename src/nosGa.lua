@@ -76,6 +76,9 @@ SOFTWARE.
 			Graphic isures on RenderArea leaving GameObjects.
 	
 	ToDo:	
+		GameObject:
+			Add automatic "global.extentFunction" functuinality to parents (pUpdate...).
+		
 		oclrl:
 			Add calculateSize(texture) function.
 		
@@ -86,7 +89,7 @@ SOFTWARE.
 			
 	*left over from ocCraft but still relevant somehow.
 ]]
-local version = "v0.3.3"
+local version = "v0.3.3d"
 
 --===== prog start =====--
 do

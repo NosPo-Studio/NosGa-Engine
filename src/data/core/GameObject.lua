@@ -34,13 +34,17 @@ local function addAreaEntry(a, e)
 	toInsert.posY = pa(e.y, e.posY, 0)
 	toInsert.sizeX = pa(e.sx, e.sizeX, 0)
 	toInsert.sizeY = pa(e.sy, e.sizeY, 0)
-	toInsert.solid = pa(e.solid, false)
+	toInsert.transparent = pa(e.transparent, false)
 	table.insert(a, toInsert)
 end
 
 function GameObject.new(args)
 	args = args or {}
 	local this = setmetatable({}, GameObject)
+	
+	local noSizeArea = pa(args.noSizeArea, false)
+	local noAutoSize = pa(args.noAutoSize, false)
+	local noAutoClearAreas = pa(args.noAutoClearAreas, true)
 	
 	this.ngeAttributes = {
 		sizeX = pa(args.sx, args.sizeX, 0),
@@ -50,9 +54,12 @@ function GameObject.new(args)
 		drawSize = pa(args.ds, args.drawSize, global.conf.debug.drawGameObjectBorders),
 		isParent = args.isParent,
 		updateAlways = pa(args.updateAlways, false),
+		useIWL = pa(args.useIWL, false),
+		interactionWhiteList = pa(args.iw, args.iwl, args.interactionWhiteList, {}),
 		
 		--=== Auto generated ===--
 		id, 
+		sprites = {},
 		lastFramePosX = 0,
 		lastFramePosY = 0,
 		responsibleRenderAreas = {},
@@ -60,9 +67,8 @@ function GameObject.new(args)
 		isVisibleIn = {},
 		lastCalculatedFrame = 0,
 		clearAreas = {},
-		copyAreas = {},
-		usesAnimation = pa(args.useAnimation),
-		clearedAlready,
+		usesAnimation = pa(args.ua, args.usesAnimation, args.useAnimation),
+		alive = true,
 	}
 	
 	args.gameObject = global.ut.parseArgs(args.components, args.gameObject) --ToDo: Completly remove args.gameObject from the code.
@@ -84,9 +90,7 @@ function GameObject.new(args)
 		elseif c[1] == "RigidBody" then
 			this.gameObject:addRigidBody(c)
 		elseif c[1] == "Sprite" then
-			if type(c.texture) == "string" then
-				c.texture = global.texture[c.texture]
-			end
+			local sprite, texture, posX, posY = global.core.Sprite.new(c)
 			
 			if c.texture.format == "OCGLA" or c.texture.format == "pan" then
 				this.ngeAttributes.usesAnimation = true
@@ -94,47 +98,52 @@ function GameObject.new(args)
 				
 			end
 			
-			this.gameObject:addSprite(c)
-		elseif c[1] == "CopyArea" or c[1] == "ClearArea" then
-			addAreaEntry(this.ngeAttributes.clearAreas, c)
-			if global.conf.forceSmartMove or global.conf.useSmartMove and global.conf.useDoubleBuffering then
-				addAreaEntry(this.ngeAttributes.copyAreas, c)
+			if not noAutoSize then
+				this.sizeX = math.max(this.ngeAttributes.sizeX, posX + texture.resX)
+				this.sizeY = math.max(this.ngeAttributes.sizeY, posY + texture.resY)
 			end
+			
+			this.ngeAttributes.sprites[sprite] = true
+			--this.gameObject:addSprite(c)
+		elseif c[1] == "CopyArea" or c[1] == "ClearArea" then --CopyArea still there for legacy reasons.
+			addAreaEntry(this.ngeAttributes.clearAreas, c)
 		end
 	end
 	
-	if args.noSizeArea ~= true and this.ngeAttributes.sizeX > 0 and this.ngeAttributes.sizeY > 0 then
-		addAreaEntry(this.ngeAttributes.clearAreas, {posX = 0, posY = 0, sizeX = this.ngeAttributes.sizeX, sizeY = this.ngeAttributes.sizeY})
-		addAreaEntry(this.ngeAttributes.copyAreas, {posX = 0, posY = 0, sizeX = this.ngeAttributes.sizeX, sizeY = this.ngeAttributes.sizeY})
+	if not noSizeArea and this.ngeAttributes.sizeX > 0 and this.ngeAttributes.sizeY > 0 then
+		addAreaEntry(this.ngeAttributes.clearAreas, {posX = 0, posY = 0, sizeX = this.ngeAttributes.sizeX, sizeY = this.ngeAttributes.sizeY, transparent = args.transparent})
 	end
+	
+	
 	
 	--===== default functions =====--
 	this.move = function(this, x, y)
 		--x = math.floor(x)
 		--y = math.floor(y)
 		this.gameObject:move(x, -y)
-		--this.ngeAttributes.hasMoved = true
+		this.ngeAttributes.hasMoved = true
 	end
 	this.moveTo = function(this, x, y)
 		--x = math.floor(x)
 		--y = math.floor(y)
 		this.gameObject:moveTo(x, y)
-		--this.ngeAttributes.hasMoved = true
+		this.ngeAttributes.hasMoved = true
 	end
 	this.addForce = function(this, x, y, maxSpeed)
 		this.gameObject:addForce(x, y, maxSpeed)
 	end
-	this.addSpeed = function(this, x, y, maxSpeed) --ToDo / WIP: untested. Outsource to ocgf.
+	this.addSpeed = function(this, x, y, maxSpeed) --ToDo / WIP: buggy. Outsource to ocgf.
 		local x2, y2 = this:getSpeed()
+		maxSpeed = maxSpeed or math.huge
 		if x > 0 then
-			x = math.max(x + x2, maxSpeed)
+			x = math.min(x + x2, maxSpeed)
 		else
-			x = math.min(x + x2, -maxSpeed)
+			x = math.max(x + x2, -maxSpeed)
 		end
 		if y > 0 then
-			y = math.max(y + y2, maxSpeed)
+			y = math.min(y + y2, maxSpeed)
 		else
-			y = math.min(y + y2, -maxSpeed)
+			y = math.max(y + y2, -maxSpeed)
 		end
 		this.gameObject:setSpeed(x, -y)
 	end
@@ -171,11 +180,12 @@ function GameObject.new(args)
 	this.getName = function(this)
 		return this.ngeAttributes.name
 	end
-	this.getOffset = function(this, ra)
-		return math.floor(ra.posX + ra.cameraPosX +.5), math.floor(ra.posY + ra.cameraPosY +.5)
+	this.getOffset = function(this, ra) --legacy support.
+		return ra:getOffset()
 	end
 	this.destroy = function(this)
 		for ra in pairs(this.ngeAttributes.responsibleRenderAreas) do
+			this.ngeAttributes.alive = false
 			ra:remGO(this)
 			return
 		end
@@ -185,6 +195,42 @@ function GameObject.new(args)
 	end
 	this.detach = function(this)
 		this.gameObject:detach()
+	end
+	this.rerender = function(this)
+		for ra in pairs(this.ngeAttributes.responsibleRenderAreas) do
+			if ra.gameObjectAttributes[this] ~= nil then
+				ra.gameObjectAttributes[this].mustBeRendered = true
+				this.ngeAttributes.isRerendered = true
+			end
+		end
+		
+		this.ngeAttributes.hasMoved = true
+		
+		this:ngeAddToRenderQueue()
+	end
+	this.addIWL = function(this, go)
+		this.ngeAttributes.interactionWhiteList[go] = true
+	end
+	this.remIWL = function(this, go)
+		this.ngeAttributes.interactionWhiteList[go] = nil
+	end
+	this.activateIWL = function(this, IWL)
+		this.ngeAttributes.useIWL = true
+		this:setIWL(IWL)
+	end
+	this.setIWL = function(this, IWL)
+		if IWL ~= nil then
+			this.ngeAttributes.interactionWhiteList = IWL
+		end
+	end
+	this.getIWL = function(this)
+		return this.ngeAttributes.interactionWhiteList
+	end
+	this.deactivateIWL = function(this)
+		this.ngeAttributes.useIWL = false
+	end
+	this.getLayer = function(this)
+		return this.ngeAttributes.layer
 	end
 	
 	--===== engine functions =====--
@@ -197,33 +243,32 @@ function GameObject.new(args)
 	end
 	this.ngeUpdate = function(this, gameObjects, dt, ra) --parent func
 		local ocgfGameObjects = {}
-		for i, go in pairs(gameObjects) do
+		local posX, posY = this:getPos()
+		local lastPosX, lastPosY = this:getLastPos()
+		
+		if this.ngeAttributes.useIWL then
+			gameObjects = this.ngeAttributes.interactionWhiteList
+		end
+		
+		for go in pairs(gameObjects) do
 			table.insert(ocgfGameObjects, go.gameObject)
 		end
 		
-		this.ngeAttributes.clearedAlready = nil
 		
 		this.gameObject:updatePhx(ocgfGameObjects, dt)
 		this.gameObject:update(ocgfGameObjects)
+		
 		if this.ngeAttributes.isParent then
 			global.run(this.pUpdate, this, dt, ra, gameObjects, ocgfGameObjects)
 		else
 			global.run(this.update, this, dt, ra, gameObjects, ocgfGameObjects)
 		end
 		
-		local x, y = this:getPos()
-		local lx, ly = this:getLastPos()
 		
-		if x ~= lx or y ~= ly or this.ngeAttributes.usesAnimation == true then
+		
+		if posX ~= lastPosX or posY ~= lastPosY then
+			this:ngeAddToRenderQueue()
 			this.ngeAttributes.hasMoved = true
-			if global.conf.forceSmartMove or global.conf.useSmartMove and global.conf.useDoubleBuffering then
-				for ra in pairs(this.ngeAttributes.responsibleRenderAreas) do
-					local offsetX, offsetY = this:getOffset(ra)
-					for i, ca in pairs(this.ngeAttributes.copyAreas) do
-						table.insert(ra.copyInstructions, {ca.posX +lx +offsetX, ca.posY +ly +offsetY, ca.sizeX, ca.sizeY, -(lx - x), -(ly - y)})
-					end
-				end
-			end
 		end
 		
 		this.ngeAttributes.isUpdated = true
@@ -235,74 +280,64 @@ function GameObject.new(args)
 			global.run(this.activate, this)
 		end
 	end
-	this.ngeDraw = function(this, renderArea) --parent func
-		local realArea = renderArea.realArea or renderArea
-		local offsetX, offsetY = this:getOffset(realArea)
-		
-		for _, s in pairs(this.gameObject:getSprites()) do
-			s.background = global.backgroundColor
-		end
-		
-		if renderArea.realArea ~= nil and this.ngeAttributes.hasMoved ~= true then
-			for i, ra in pairs(renderArea) do
-				if i ~= "realArea" then
-					this.gameObject:draw(offsetX, offsetY, {ra.posX, ra.posX + ra.sizeX -1, ra.posY, ra.posY + ra.sizeY -1}, global.dt, global.backgroundColor)
-				end
-			end
-		elseif renderArea.realArea == nil then
-			this.gameObject:draw(offsetX, offsetY, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1}, global.dt, global.backgroundColor)
-		else
-			this.gameObject:draw(offsetX, offsetY, {realArea.posX, realArea.posX + realArea.sizeX -1, realArea.posY, realArea.posY + realArea.sizeY -1}, global.dt, global.backgroundColor)
-		end
-		
-		if this.ngeAttributes.isParent then
-			global.run(this.pDraw, this, realArea, renderArea)
-		else
-			global.run(this.draw, this, realArea, renderArea)
-		end
-		
-		realArea.gameObjectAttributes[this.ngeAttributes.id].mustBeRendered = false
-		realArea.gameObjectAttributes[this.ngeAttributes.id].wasVisible = true
-		
-		if this.ngeAttributes.drawSize then
-			local posX, posY = this:getPos()
-			global.oclrl:draw(posX + offsetX, posY + offsetY, global.oclrl.generateTexture({
-				{"b", 0xFF69B4},
-				{0, 0, this.ngeAttributes.sizeX, 1, " "},
-				{0, this.ngeAttributes.sizeY -1, this.ngeAttributes.sizeX, 1, " "},
-				{0, 0, 1, this.ngeAttributes.sizeY, " "},
-				{this.ngeAttributes.sizeX -1, 0, 1, this.ngeAttributes.sizeY, " "},
-			}), true, {realArea:getRealFOV()})
-		end
-	end
-	this.ngeClear = function(this, renderArea) --parent func
-		local offsetX, offsetY = renderArea.posX + renderArea.cameraPosX, renderArea.posY + renderArea.cameraPosY
-		local lastPosX, lastPosY = this:getLastPos()
+	
+	this.ngeIsInsideRenderArea = function(this, area, screenPos) --ToDo: fix.
 		local posX, posY = this:getPos()
+		local sizeX, sizeY = this:getSize()
 		
-		if this.ngeAttributes.isParent then
-			global.run(this.pClear, this, renderArea)
-		else
-			global.run(this.clear, this, renderArea)
+		
+		--[[
+		global.log(posX, posY)
+		
+		global.log(global.ut.tostring(area))
+		global.log(posX , sizeX , area.posX , posX , area.posX , area.sizeX ,
+			posY , sizeY , area.posY , posY , area.posY , area.sizeY)
+			
+		global.log(posX + sizeX > area.posX , posX < area.posX + area.sizeX ,
+			posY + sizeY > area.posY , posY < area.posY + area.sizeY)
+		]]
+		if  
+			posX + sizeX > area.posX and posX < area.posX + area.sizeX and
+			posY + sizeY > area.posY and posY < area.posY + area.sizeY
+		then
+			return true
 		end
 		
-		global.gpu.setBackground(global.backgroundColor)
+		return false
+	end
+	
+	
+	
+	this.ngeClear = function(this, areas, offsetX, offsetY) --parent func
+		local posX, posY = this:getLastPos()
 		
-		for i, ca in pairs(this.ngeAttributes.clearAreas) do
-			global.oclrl:draw(0, 0, global.oclrl.generateTexture(lastPosX + offsetX + ca.posX, lastPosY + offsetY + ca.posY, ca.sizeX, ca.sizeY, " "), nil, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1})
-		end
-		for i, ca in pairs(this.ngeAttributes.copyAreas) do
-			if ca.solid ~= true then
-				global.oclrl:draw(0, 0, global.oclrl.generateTexture(posX + offsetX + ca.posX, posY + offsetY + ca.posY, ca.sizeX, ca.sizeY, " "), nil, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1})
+		for _, area in pairs(areas) do
+			area = {area.posX, area.posX + area.sizeX -1, area.posY, area.posY + area.sizeY -1}
+			
+			for _, ca in pairs(this.ngeAttributes.clearAreas) do
+				global.oclrl:draw(posX + ca.posX - offsetX, posY + ca.posY - offsetY, global.oclrl.generateTexture(0, 0, ca.sizeX, ca.sizeY, " "), nil, area)
 			end
 		end
 	end
+	this.ngeDraw = function(this, renderArea, areas, offsetX, offsetY) --parent func
+		local posX, posY = this:getPos()
+		for _, area in pairs(areas) do
+			for s in pairs(this.ngeAttributes.sprites) do
+				s:draw(renderArea, area, posX - offsetX, posY - offsetY)
+			end
+		end
+	end
+	
+	
+	
 	this.ngeSUpdate = function(this, gameObjects, dt, ra) --parent func
 		if this.ngeAttributes.isParent then
 			global.run(this.pSUpdate, this, dt, ra)
 		else
 			global.run(this.sUpdate, this, dt, ra)
 		end
+		this.ngeAttributes.isRerendered = false
+		this:ngeSetLastPos()
 	end
 	this.ngeSetLastPos = function(this)
 		this.ngeAttributes.lastFramePosX = math.floor(this.gameObject.posX +.5)
@@ -332,6 +367,9 @@ function GameObject.new(args)
 		else
 			global.run(this.despawn, this)
 		end
+	end
+	this.ngeAddToRenderQueue = function(this)
+		global.core.re.toRender[this] = true
 	end
 	
 	return this
