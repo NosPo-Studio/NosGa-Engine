@@ -28,9 +28,7 @@ local dts = {}
 
 --===== Functions =====--
 
-local function print(...)
-	global.log(...)
-end
+_G.print = global.print
 
 local function run(func, ...)
 	if func ~= nil then
@@ -66,19 +64,20 @@ local function update()
 	end
 	frameCount = frameCount +1
 	global.fps = 1 / (frameTimes / #dts)
-	
-	
-	
+
 	--===== frame calculation =====--
 	if global.state[global.currentState].update ~= nil then	--manual check to avoid log spamming on missing update func.
-		run(global.state[global.currentState].update)
+		run(global.state[global.currentState].update, global.dt)
 	end
 	global.core.updateHandler.update()
 	
-	for i, ra in pairs(global.renderAreas) do
-		global.core.re.calculateRenderArea(ra)
-		ra:ngeCalculateNewRender()
+	if not global.conf.useExperimentalRenderEngine then
+		for ra in pairs(global.renderAreas) do
+			global.core.re.calculateRenderArea(ra)
+			ra:ngeCalculateNewRender()
+		end
 	end
+	
 end
 
 local function draw()
@@ -95,11 +94,15 @@ local function draw()
 	
 	global.ocui:draw()
 	
+	global.debug.renderDebugInformations()
 	if global.conf.showConsole then
-		global.tbConsole:draw()
+		global.mConsole:draw()
 	end
 	
 	if global.conf.useDoubleBuffering then
+		if not global.conf.useExperimentalRenderEngine then
+			global.core.re.executeCopyOrders()
+		end
 		global.gpu.drawChanges()
 	end
 end
@@ -156,13 +159,14 @@ while global.isRunning do
 		end
 	end
 	
-	global.currentFrame = global.currentFrame +1
 	global.core.eventHandler.update()
+	global.currentFrame = global.currentFrame +1
 end
 
 progamEnd()
 global.gpu.setForeground(0xffffff)
 global.gpu.setBackground(0x000000)
 global.gpu.setResolution(std_previousScreenResolution[1], std_previousScreenResolution[2])
+_G.print = orgPrint
 
 return std_success, "failed"

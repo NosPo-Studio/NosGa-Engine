@@ -1,5 +1,5 @@
 --[[
-    UT Copyright (C) 2019 MisterNoNameLP.
+    UT Copyright (C) 2019-2020 MisterNoNameLP.
 	
     This library is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,9 +18,9 @@
 --[[UsefullThings libary
 	
 ]]
-local UT = {version = "v0.6.1"}
+local UT = {version = "v0.7.2"}
 
-function UT.parseArgs(...) --returns the first non nil value.
+function UT.parseArgs(...) --returns the first non nil parameter.
 	for _, a in pairs({...}) do
 		if a ~= nil then
 			return a
@@ -84,6 +84,74 @@ function UT.fillString(s, amout, c) --fills a string (s) up with a (amout) of ch
 		s2 = s2 .. c
 	end
 	return s2
+end
+
+--[[Converts a table or an other variable type to a readable stirng.
+	This is a modified "Universal tostring" routine from "lua-users.org".
+	Original source code: <http://lua-users.org/wiki/TableSerialization>
+]]
+function UT.tostring(var, lineBreak, indent, done, internalRun) 
+	if internalRun == false or internalRun == nil then
+		if type(var) == "table" then
+			UT.tostring(var, lineBreak, indent, done, true)
+		else
+			return tostring(var)
+		end
+	end
+	
+	done = done or {}
+	indent = indent or 2
+	local lbString
+	if lineBreak or lineBreak == nil then
+		lbString = "\n"
+		lineBreak = true
+	else
+		lbString = " "
+	end
+	if type(var) == "table" then
+		local sb = {}
+		if not internalRun then
+			table.insert(sb, "{" .. lbString)
+		end
+		for key, value in pairs (var) do
+			if lineBreak then
+				table.insert(sb, string.rep (" ", indent)) -- indent it
+			end
+			if type (value) == "table" and not done [value] then
+				done [value] = true
+				if lineBreak then
+					table.insert(sb, "[" .. key .. "] = {" .. lbString);
+				else
+					table.insert(sb, "[" .. key .. "] = {");
+				end
+				table.insert(sb, UT.tostring(value, lineBreak, indent + 2, done, true))
+				if lineBreak then
+					table.insert(sb, string.rep (" ", indent)) -- indent it
+					table.insert(sb, "}," .. lbString);
+				else
+					table.insert(sb, "},");
+				end
+			elseif "number" == type(key) then
+				table.insert(sb, string.format("[%s] = ", tostring(key)))
+				table.insert(sb, string.format("\"%s\"," .. lbString, tostring(value)))
+			else
+				if sb[#sb] == "}," then
+					table.insert(sb, " ")
+				end
+				table.insert(sb, string.format("%s = \"%s\"," .. lbString, "[" .. tostring (key) .. "]", tostring(value)))
+			end
+		end
+		if not internalRun then
+			if sb[#sb] == "}," then
+				table.insert(sb, " }")
+			else
+				table.insert(sb, "}")
+			end
+		end
+		return table.concat(sb)
+	else
+		return var .. lbString
+	end
 end
 
 return UT

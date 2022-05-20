@@ -30,7 +30,7 @@ local uh = {
 --===== local functions =====--
 local function print(...)
 	if global.conf.debug.geDebug then
-		global.debug(...)
+		global.debug.log(...)
 	end
 end
 
@@ -54,7 +54,7 @@ local function calculateFrame(renderArea)
 		renderArea.updateAnything = false
 		local fromX, toX, fromY, toY = renderArea:getFOV()
 		
-		for i, go in pairs(renderArea.gameObjects) do
+		for go in pairs(renderArea.gameObjects) do
 			local l = go.ngeAttributes.layer
 			
 			if renderArea.layerBlacklist[l] ~= true and 
@@ -107,7 +107,7 @@ end
 function uh.update(dt)
 	dt = dt or global.dt
 	
-	for i, ra in pairs(global.renderAreas) do
+	for ra in pairs(global.renderAreas) do
 		if not ra.silent then
 			calculateFrame(ra)
 			updateFrame(ra, dt)

@@ -50,6 +50,9 @@ function GameObject.new(args)
 		drawSize = pa(args.ds, args.drawSize, global.conf.debug.drawGameObjectBorders),
 		isParent = args.isParent,
 		updateAlways = pa(args.updateAlways, false),
+
+		updateInternalGameObject = pa(args.internalGameObject, args.updateInternalGameObject, not args.deco --[[is true if deco is nil]]),
+		updatePhysics = pa(args.physics, args.updatePhysics, not args.deco --[[is true if deco is nil]]),
 		
 		--=== Auto generated ===--
 		id, 
@@ -61,8 +64,9 @@ function GameObject.new(args)
 		lastCalculatedFrame = 0,
 		clearAreas = {},
 		copyAreas = {},
-		usesAnimation = pa(args.useAnimation),
+		usesAnimation = pa(args.ua, args.animation, args.usesAnimation, args.useAnimation),
 		clearedAlready,
+		alive = true,
 	}
 	
 	args.gameObject = global.ut.parseArgs(args.components, args.gameObject) --ToDo: Completly remove args.gameObject from the code.
@@ -124,17 +128,18 @@ function GameObject.new(args)
 	this.addForce = function(this, x, y, maxSpeed)
 		this.gameObject:addForce(x, y, maxSpeed)
 	end
-	this.addSpeed = function(this, x, y, maxSpeed) --ToDo / WIP: untested. Outsource to ocgf.
+	this.addSpeed = function(this, x, y, maxSpeed) --ToDo / WIP: buggy. Outsource to ocgf.
 		local x2, y2 = this:getSpeed()
+		maxSpeed = maxSpeed or math.huge
 		if x > 0 then
-			x = math.max(x + x2, maxSpeed)
+			x = math.min(x + x2, maxSpeed)
 		else
-			x = math.min(x + x2, -maxSpeed)
+			x = math.max(x + x2, -maxSpeed)
 		end
 		if y > 0 then
-			y = math.max(y + y2, maxSpeed)
+			y = math.min(y + y2, maxSpeed)
 		else
-			y = math.min(y + y2, -maxSpeed)
+			y = math.max(y + y2, -maxSpeed)
 		end
 		this.gameObject:setSpeed(x, -y)
 	end
@@ -176,6 +181,7 @@ function GameObject.new(args)
 	end
 	this.destroy = function(this)
 		for ra in pairs(this.ngeAttributes.responsibleRenderAreas) do
+			this.ngeAttributes.alive = false
 			ra:remGO(this)
 			return
 		end
@@ -185,6 +191,15 @@ function GameObject.new(args)
 	end
 	this.detach = function(this)
 		this.gameObject:detach()
+	end
+	this.rerender = function(this)
+		for ra in pairs(this.ngeAttributes.responsibleRenderAreas) do
+			if ra.gameObjectAttributes[this] ~= nil then
+				ra.gameObjectAttributes[this].mustBeRendered = true
+			end
+		end
+		
+		this.ngeAttributes.hasMoved = true
 	end
 	
 	--===== engine functions =====--
@@ -197,14 +212,23 @@ function GameObject.new(args)
 	end
 	this.ngeUpdate = function(this, gameObjects, dt, ra) --parent func
 		local ocgfGameObjects = {}
-		for i, go in pairs(gameObjects) do
-			table.insert(ocgfGameObjects, go.gameObject)
+		for go in pairs(gameObjects) do
+			table.insert(ocgfGameObjects, go.gameObject) --PI
+		end
+		
+		if this.test then
+			--global.log(#ocgfGameObjects)
 		end
 		
 		this.ngeAttributes.clearedAlready = nil
-		
-		this.gameObject:updatePhx(ocgfGameObjects, dt)
-		this.gameObject:update(ocgfGameObjects)
+
+		if this.ngeAttributes.updatePhysics then
+			this.gameObject:updatePhx(ocgfGameObjects, dt)
+		end
+		if this.ngeAttributes.updateInternalGameObject then
+			this.gameObject:update(ocgfGameObjects)
+		end
+
 		if this.ngeAttributes.isParent then
 			global.run(this.pUpdate, this, dt, ra, gameObjects, ocgfGameObjects)
 		else
@@ -242,30 +266,61 @@ function GameObject.new(args)
 		for _, s in pairs(this.gameObject:getSprites()) do
 			s.background = global.backgroundColor
 		end
-		
-		if renderArea.realArea ~= nil and this.ngeAttributes.hasMoved ~= true then
+
+
+		if 
+			#realArea.gameObjectAttributes[this].overlappingAreas == 0 and realArea.gameObjectAttributes[this].mustBeRendered or 
+			not realArea.gameObjectAttributes[this].hasBeenRenderedOnce or
+			this.ngeAttributes.hasMoved
+		then
+			realArea.gameObjectAttributes[this].overlappingAreas = {{0, math.huge, 0, math.huge}}
+		end
+
+
+		if renderArea.realArea ~= nil and this.ngeAttributes.hasMoved ~= true then --draw areas needed cause camera movement.
+			print("RM1")
 			for i, ra in pairs(renderArea) do
 				if i ~= "realArea" then
 					this.gameObject:draw(offsetX, offsetY, {ra.posX, ra.posX + ra.sizeX -1, ra.posY, ra.posY + ra.sizeY -1}, global.dt, global.backgroundColor)
 				end
 			end
-		elseif renderArea.realArea == nil then
-			this.gameObject:draw(offsetX, offsetY, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1}, global.dt, global.backgroundColor)
-		else
-			this.gameObject:draw(offsetX, offsetY, {realArea.posX, realArea.posX + realArea.sizeX -1, realArea.posY, realArea.posY + realArea.sizeY -1}, global.dt, global.backgroundColor)
 		end
+
+		for _, overlappingArea in pairs(realArea.gameObjectAttributes[this].overlappingAreas) do
+			
+			--print(this:getName(), this.ngeAttributes.hasMoved)
+			do
+				--print("RM2")
+				local x, _, y, _ = realArea:getRealFOV()
+				local cmir = realArea.cameraMoveInstructions.raw
+
+				this.gameObject:draw(offsetX, offsetY, {
+					math.max(realArea.posX, overlappingArea[1] + x), 
+					math.min(realArea.posX + realArea.sizeX -1, overlappingArea[2] + x), 
+					math.max(realArea.posY, overlappingArea[3] + y), 
+					math.min(realArea.posY + realArea.sizeY -1, overlappingArea[4] + y)}, 
+				global.dt, global.backgroundColor)
+			end
+		end
+
+		realArea.gameObjectAttributes[this].overlappingAreas = {}
+
 		
 		if this.ngeAttributes.isParent then
-			global.run(this.pDraw, this, realArea, renderArea)
+			global.run(this.pDraw, this, realArea, offsetX, offsetY)
 		else
-			global.run(this.draw, this, realArea, renderArea)
+			global.run(this.draw, this, realArea, offsetX, offsetY)
 		end
 		
-		realArea.gameObjectAttributes[this.ngeAttributes.id].mustBeRendered = false
-		realArea.gameObjectAttributes[this.ngeAttributes.id].wasVisible = true
+		if realArea.gameObjectAttributes[this] == nil then --WIP: ToDo: Deeper problem?
+			realArea.gameObjectAttributes[this] = {}
+		end
+		realArea.gameObjectAttributes[this].mustBeRendered = false
+		realArea.gameObjectAttributes[this].wasVisible = true
 		
 		if this.ngeAttributes.drawSize then
 			local posX, posY = this:getPos()
+			
 			global.oclrl:draw(posX + offsetX, posY + offsetY, global.oclrl.generateTexture({
 				{"b", 0xFF69B4},
 				{0, 0, this.ngeAttributes.sizeX, 1, " "},
@@ -274,6 +329,7 @@ function GameObject.new(args)
 				{this.ngeAttributes.sizeX -1, 0, 1, this.ngeAttributes.sizeY, " "},
 			}), true, {realArea:getRealFOV()})
 		end
+		realArea.gameObjectAttributes[this].hasBeenRenderedOnce = true
 	end
 	this.ngeClear = function(this, renderArea) --parent func
 		local offsetX, offsetY = renderArea.posX + renderArea.cameraPosX, renderArea.posY + renderArea.cameraPosY

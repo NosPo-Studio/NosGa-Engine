@@ -1,0 +1,1638 @@
+[INFO]  [garage]: Start init. 
+[INFO]  [DL]: Loading data groups: gameObjects, textures. 
+[INFO]  [DL]: Loading data group: textures. 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/human.pic: table: 0x7f29ec2aa600 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/reTest.lua: function: 0x7f29ec4ea880 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/street1.pic: table: 0x7f29f029e610 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/reTestBig.lua: function: 0x7f29f03e3bb0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/ttest.pic: table: 0x7f29b20694d0 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/debug_corrupted.lua: function: 0x7f29e004d470 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/ttest2.pic: table: 0x7f29ec092530 
+[INFO]  [DLF]: Loading file: texturePacks/default/textures/debug_blacklist.lua: function: 0x7f29ec2adb10 
+[INFO]  [DL]: Loading data group: gameObjects. 
+[INFO]  [DLF]: Loading file: data/gameObjects/reTest//TestParent2.lua: function: 0x7f29e889e870 
+[INFO]  [DLF]: Loading file: data/gameObjects/reTest//ReTestHuman.lua: function: 0x7f29e80e0590 
+[INFO]  [DLF]: Loading file: data/gameObjects/reTest//ReTest2.lua: function: 0x7f29ec06de30 
+[INFO]  [DLF]: Loading file: data/gameObjects/reTest//ReTest3.lua: function: 0x7f29ec789120 
+[INFO]  [DLF]: Loading file: data/gameObjects/reTest//ReTest.lua: function: 0x7f29ec122ba0 
+[INFO]  [DLF]: Loading file: data/gameObjects/reTest//ReTestStreet.lua: function: 0x7f29ec60e9f0 
+[INFO]  [DLF]: Loading file: data/gameObjects/reTest//TestParent.lua: function: 0x7f29e8502310 
+[INFO]  [DLF]: Loading file: data/gameObjects/reTest//TestParent3.lua: function: 0x7f29e8047110 
+[INFO]  [DLF]: Loading file: data/gameObjects/reTest//ReTest4.lua: function: 0x7f29f0161c90 
+[INFO]  [garage]: init done. 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Loading data group: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: animations, textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Loading data group: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[INFO]  [credits]: Start init. 
+[INFO]  [DL]: Loading data groups: gameObjects, textures. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [credits]: init done. 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[INFO]  [game]: Start init. 
+[INFO]  [game]: init done. 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[INFO]  [mainMenu]: Start init. 
+[INFO]  [DL]: Loading data groups: textures. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [mainMenu]: init done. 
+[DEBUG]  [RE]: [INIT]: bufferTexturesOnInit: true, useBufferWhitelist: false 
+[DEBUG]  [RE]: [INIT]: Buffer textures 
+[DEBUG]  [RE]: [BT]: Texture: ttest2 loaded into buffer: 1.0 
+[WARN]  [RE]: [BT]: Invalid format, texture: debug_corrupted: nil 
+[DEBUG]  [RE]: [BT]: Texture: reTest loaded into buffer: 2.0 
+[DEBUG]  [RE]: [BT]: Texture: street1 loaded into buffer: 3.0 
+[DEBUG]  [RE]: [BT]: Texture: ttest loaded into buffer: 4.0 
+[DEBUG]  [RE]: [BT]: Texture: reTestBig loaded into buffer: 5.0 
+[INFO]  [GE]: Change state to: "reTest". 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTest4" (#1). 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTestStreet" (#1). 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 0 
+[DEBUG]  [RA]: RA1: Clear: Street1: table: 0x7f29e83e56a0, frame: 0. 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e83da280, frame: 0. 
+[DEBUG]  [RA]: RA1: Draw: Street1: table: 0x7f29e83e56a0, frame: 0. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e83da280, frame: 0. 
+[DEBUG]  [RA]: RA2: Clear: Street1: table: 0x7f29e83e56a0, frame: 0. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e83da280, frame: 0. 
+[DEBUG]  [RA]: RA2: Draw: Street1: table: 0x7f29e83e56a0, frame: 0. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e83da280, frame: 0. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 1 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e83da280, frame: 1. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e83da280, frame: 1. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e83da280, frame: 1. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e83da280, frame: 1. 
+[WARN]  Tick take too long: F: 1, T: 1.15 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 2 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e83da280, frame: 2. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e83da280, frame: 2. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e83da280, frame: 2. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e83da280, frame: 2. 
+[WARN]  Tick take too long: F: 2, T: 0.55 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 3 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e83da280, frame: 3. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e83da280, frame: 3. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e83da280, frame: 3. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e83da280, frame: 3. 
+[WARN]  Tick take too long: F: 3, T: 0.75 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 4 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e83da280, frame: 4. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e83da280, frame: 4. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e83da280, frame: 4. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e83da280, frame: 4. 
+[WARN]  Tick take too long: F: 4, T: 25.6 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 5 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e83da280, frame: 5. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e83da280, frame: 5. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e83da280, frame: 5. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e83da280, frame: 5. 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: re, gameObjects, reload, mods, textures, global, dbgpu, uh, structuredGameObjects, conf, Sprite, animations, GameObject, states, RenderArea, eh, structuredGlobal, parents. 
+[INFO]  [DL]: Reloading file: data/core/updateHandler.lua: function: 0x7f29e04a81c0 
+[INFO]  [DL]: Reloading file: data/core/eventHandler.lua: function: 0x7f29f037f5f0 
+[INFO]  [DL]: Reloading file: libs/dbgpu_api.lua: function: 0x7f29e08752e0 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f29ec4ecb70 
+[DEBUG]  [RE]: [INIT]: bufferTexturesOnInit: true, useBufferWhitelist: false 
+[DEBUG]  [RE]: [INIT]: Buffer textures 
+[DEBUG]  [RE]: [BT]: Texture: ttest2 loaded into buffer: 1.0 
+[WARN]  [RE]: [BT]: Invalid format, texture: debug_corrupted: nil 
+[DEBUG]  [RE]: [BT]: Texture: reTest loaded into buffer: 2.0 
+[DEBUG]  [RE]: [BT]: Texture: street1 loaded into buffer: 3.0 
+[DEBUG]  [RE]: [BT]: Texture: ttest loaded into buffer: 4.0 
+[DEBUG]  [RE]: [BT]: Texture: reTestBig loaded into buffer: 5.0 
+[INFO]  [DL]: Reloading file: data/core/RenderArea.lua: function: 0x7f29e80289b0 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f29e08798c0 
+[INFO]  [DL]: Reloading file: data/core/Sprite.lua: function: 0x7f29e014c920 
+[INFO]  [DL]: Loading data group: global. 
+[INFO]  [DLF]: Reloading file: data/global/makeImageTransparent.lua: function: 0x7f29ec2ae0b0 
+[INFO]  [DLF]: Reloading file: data/global/dumpTable.lua: function: 0x7f29ec78c7a0 
+[INFO]  [DLF]: Reloading file: data/global/changeState.lua: function: 0x7f29e84440c0 
+[INFO]  [DLF]: Reloading file: data/global/addTest.lua: function: 0x7f29e8011da0 
+[INFO]  [DLF]: Reloading file: data/global/getButtonTexture.lua: function: 0x7f29ec5272c0 
+[INFO]  [DLF]: Reloading file: data/global/getState.lua: function: 0x7f29ec06e340 
+[INFO]  [DLF]: Reloading file: data/global/empty.lua: function: 0x7f29f05da4b0 
+[INFO]  [DLF]: Reloading file: data/global/tString.lua: function: 0x7f29f01cd230 
+[INFO]  [DLF]: Reloading file: data/global/worldHandler.lua: function: 0x7f29ec78cf70 
+[INFO]  [DLF]: Reloading file: data/global/drawDebug.lua: function: 0x7f29ec096d70 
+[INFO]  [DLF]: Reloading file: data/global/setActiveBuffer.lua: function: 0x7f29ec0d9620 
+[INFO]  [DLF]: Reloading file: data/global/saveGame.lua: function: 0x7f29ec103b10 
+[INFO]  [DLF]: Reloading file: data/global/stats.lua: function: 0x7f29e00be4e0 
+[INFO]  [DLF]: Reloading file: data/global/expandFunction.lua: function: 0x7f29e02e89a0 
+[INFO]  [DLF]: Reloading file: data/global/loadGame.lua: function: 0x7f29e817d110 
+[INFO]  [DLF]: Reloading file: data/global/clear.lua: function: 0x7f29e85381e0 
+[INFO]  [DLF]: Reloading file: data/global/remRA.lua: function: 0x7f29e889ece0 
+[INFO]  [DLF]: Reloading file: data/global/addRA.lua: function: 0x7f29e85f5ba0 
+[INFO]  [DLF]: Loading file: data/global/globalDebuggingFunctions.lua: function: 0x7f29f015ac40 
+[INFO]  [DL]: Reloading data group: structuredGlobal. 
+[INFO]  [DLF]: Loading file: data/structuredGlobal/biome//test.lua: function: 0x7f29e8049ef0 
+[INFO]  [DLF]: Loading file: data/structuredGlobal/sfx//explosion.lua: function: 0x7f29ec420650 
+[INFO]  [DL]: Reloading data group: states. 
+[INFO]  [DLF]: Reloading file: data/states/garage.lua: function: 0x7f29e85e9450 
+[INFO]  [garage]: Start init. 
+[INFO]  [DL]: Loading data groups: gameObjects, textures. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [garage]: init done. 
+[INFO]  [DLF]: Reloading file: data/states/reTest_old.lua: function: 0x7f29f013bbf0 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[INFO]  [DLF]: Reloading file: data/states/test.lua: function: 0x7f29ec07b0d0 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: animations, textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: animations. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[INFO]  [DLF]: Reloading file: data/states/credits.lua: function: 0x7f29ec89f0f0 
+[INFO]  [credits]: Start init. 
+[INFO]  [DL]: Loading data groups: gameObjects, textures. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [credits]: init done. 
+[INFO]  [DLF]: Loading file: data/states/reTest.lua: function: 0x7f29f0548e60 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[INFO]  [DLF]: Reloading file: data/states/game.lua: function: 0x7f29e0050980 
+[INFO]  [game]: Start init. 
+[INFO]  [game]: init done. 
+[INFO]  [DLF]: Reloading file: data/states/rePerformanceTest.lua: function: 0x7f29f00ceb50 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[INFO]  [DLF]: Reloading file: data/states/rePerformanceTest2.lua: function: 0x7f29e086d540 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[INFO]  [DLF]: Reloading file: data/states/mainMenu.lua: function: 0x7f29e0a306d0 
+[INFO]  [mainMenu]: Start init. 
+[INFO]  [DL]: Loading data groups: textures. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [mainMenu]: init done. 
+[INFO]  [DL]: Reloading data group: textures. 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/human.pic: table: 0x7f29e8011e70 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/reTest.lua: function: 0x7f29e865b950 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/street1.pic: table: 0x7f29ec122060 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/reTestBig.lua: function: 0x7f29ec8539c0 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/ttest.pic: table: 0x7f29ec43d150 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/debug_corrupted.lua: function: 0x7f29ec0dd850 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/ttest2.pic: table: 0x7f29ec3f2ab0 
+[INFO]  [DLF]: Reloading file: texturePacks/default/textures/debug_blacklist.lua: function: 0x7f29ec460170 
+[INFO]  [DL]: Reloading data group: animations. 
+[INFO]  [DL]: Reloading data group: parents. 
+[INFO]  [DL]: Reloading data group: gameObjects. 
+[INFO]  [DLF]: Reloading file: data/gameObjects/reTest//TestParent2.lua: function: 0x7f29e882db20 
+[INFO]  [DLF]: Reloading file: data/gameObjects/reTest//ReTestHuman.lua: function: 0x7f29e886b110 
+[INFO]  [DLF]: Reloading file: data/gameObjects/reTest//ReTest2.lua: function: 0x7f29e04a5e50 
+[INFO]  [DLF]: Reloading file: data/gameObjects/reTest//ReTest3.lua: function: 0x7f29e014c810 
+[INFO]  [DLF]: Reloading file: data/gameObjects/reTest//ReTest.lua: function: 0x7f29e0592af0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/reTest//ReTestStreet.lua: function: 0x7f29e0a25c80 
+[INFO]  [DLF]: Reloading file: data/gameObjects/reTest//TestParent.lua: function: 0x7f29e84441f0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/reTest//TestParent3.lua: function: 0x7f29e85e83c0 
+[INFO]  [DLF]: Reloading file: data/gameObjects/reTest//ReTest4.lua: function: 0x7f29e02b5a20 
+[INFO]  [DL]: Loading data group: structuredGameObjects. 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTest4" (#1). 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTestStreet" (#1). 
+[WARN]  Tick take too long: F: 5, T: 5.0 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 6 
+[DEBUG]  [RA]: RA1: Clear: Street1: table: 0x7f29ec894000, frame: 6. 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 6. 
+[DEBUG]  [RA]: RA1: Draw: Street1: table: 0x7f29ec894000, frame: 6. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 6. 
+[DEBUG]  [RA]: RA2: Clear: Street1: table: 0x7f29ec894000, frame: 6. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 6. 
+[DEBUG]  [RA]: RA2: Draw: Street1: table: 0x7f29ec894000, frame: 6. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 6. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 7 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 7. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 7. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 7. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 7. 
+[WARN]  Tick take too long: F: 7, T: 1.65 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 8 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 8. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 8. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 8. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 8. 
+[WARN]  Tick take too long: F: 8, T: 7.1 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 9 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 9. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 9. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 9. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 9. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 10 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 10. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 10. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 10. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 10. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 11 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 11. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 11. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 11. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 11. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 12 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 12. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 12. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 12. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 12. 
+[WARN]  Tick take too long: F: 12, T: 0.85 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 13 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 13. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 13. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 13. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 13. 
+[WARN]  Tick take too long: F: 13, T: 0.9 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 14 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 14. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 14. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 14. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 14. 
+[WARN]  Tick take too long: F: 14, T: 0.7 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 15 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 15. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 15. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 15. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 15. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 16 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 16. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 16. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 16. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 16. 
+[WARN]  Tick take too long: F: 16, T: 0.65 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 17 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 17. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 17. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 17. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 17. 
+[WARN]  Tick take too long: F: 17, T: 1.05 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 18 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 18. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 18. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 18. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 18. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 19 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 19. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 19. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 19. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 19. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 20 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 20. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 20. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 20. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 20. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 21 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 21. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 21. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 21. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 21. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 22 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 22. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 22. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 22. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 22. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 23 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 23. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 23. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 23. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 23. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 24 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 24. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 24. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 24. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 24. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 25 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 25. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 25. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 25. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 25. 
+[WARN]  Tick take too long: F: 25, T: 0.55 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 26 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 26. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 26. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 26. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 26. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 27 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 27. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 27. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 27. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 27. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 28 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 28. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 28. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 28. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 28. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 29 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 29. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 29. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 29. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 29. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 30 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 30. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 30. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 30. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 30. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 31 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 31. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 31. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 31. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 31. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 32 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 32. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 32. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 32. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 32. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 33 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 33. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 33. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 33. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 33. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 34 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 34. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 34. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 34. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 34. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 35 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 35. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 35. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 35. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 35. 
+[WARN]  Tick take too long: F: 35, T: 3.7 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 36 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 36. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 36. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 36. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 36. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 37 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 37. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 37. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 37. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 37. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 38 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 38. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 38. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 38. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 38. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 39 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 39. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 39. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 39. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 39. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 40 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 40. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 40. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 40. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 40. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 41 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 41. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 41. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 41. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 41. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 42 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 42. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 42. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 42. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 42. 
+[WARN]  Tick take too long: F: 42, T: 0.8 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 43 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 43. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 43. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 43. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 43. 
+[WARN]  Tick take too long: F: 43, T: 0.55000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 44 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 44. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 44. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 44. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 44. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 45 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 45. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 45. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 45. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 45. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 46 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 46. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 46. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 46. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 46. 
+[WARN]  Tick take too long: F: 46, T: 0.8 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 47 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 47. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 47. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 47. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 47. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 48 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 48. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 48. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 48. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 48. 
+[WARN]  Tick take too long: F: 48, T: 7.05 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 49 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec403060, frame: 49. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec403060, frame: 49. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec403060, frame: 49. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec403060, frame: 49. 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: re, RenderArea, reload, dbgpu, conf, Sprite, GameObject. 
+[INFO]  [DL]: Reloading file: libs/dbgpu_api.lua: function: 0x7f29e02db430 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f29e02cfbf0 
+[DEBUG]  [RE]: [INIT]: bufferTexturesOnInit: true, useBufferWhitelist: false 
+[DEBUG]  [RE]: [INIT]: Buffer textures 
+[DEBUG]  [RE]: [BT]: Texture: ttest2 loaded into buffer: 1.0 
+[WARN]  [RE]: [BT]: Invalid format, texture: debug_corrupted: nil 
+[DEBUG]  [RE]: [BT]: Texture: reTest loaded into buffer: 2.0 
+[DEBUG]  [RE]: [BT]: Texture: street1 loaded into buffer: 3.0 
+[DEBUG]  [RE]: [BT]: Texture: ttest loaded into buffer: 4.0 
+[DEBUG]  [RE]: [BT]: Texture: reTestBig loaded into buffer: 5.0 
+[INFO]  [DL]: Reloading file: data/core/RenderArea.lua: function: 0x7f29ec04b140 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f29f00d5870 
+[INFO]  [DL]: Reloading file: data/core/Sprite.lua: function: 0x7f29e85ea1b0 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTest4" (#1). 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTestStreet" (#1). 
+[WARN]  Tick take too long: F: 49, T: 1.65 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 50 
+[DEBUG]  [RA]: RA1: Clear: Street1: table: 0x7f29ec41b5e0, frame: 50. 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 50. 
+[DEBUG]  [RA]: RA1: Draw: Street1: table: 0x7f29ec41b5e0, frame: 50. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 50. 
+[DEBUG]  [RA]: RA2: Clear: Street1: table: 0x7f29ec41b5e0, frame: 50. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 50. 
+[DEBUG]  [RA]: RA2: Draw: Street1: table: 0x7f29ec41b5e0, frame: 50. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 50. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 51 
+[WARN]  Tick take too long: F: 51, T: 0.95 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 52 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 52. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 52. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 52. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 52. 
+[WARN]  Tick take too long: F: 52, T: 0.65000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 53 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 53. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 53. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 53. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 53. 
+[WARN]  Tick take too long: F: 53, T: 6.9 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 54 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 54. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 54. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 54. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 54. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 55 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 55. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 55. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 55. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 55. 
+[WARN]  Tick take too long: F: 55, T: 0.7 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 56 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 56. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 56. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 56. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 56. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 57 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 57. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 57. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 57. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 57. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 58 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 58. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 58. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 58. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 58. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 59 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 59. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 59. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 59. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 59. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 60 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 60. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 60. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 60. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 60. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 61 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 61. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 61. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 61. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 61. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 62 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 62. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 62. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 62. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 62. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 63 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 63. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 63. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 63. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 63. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 64 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 64. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 64. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 64. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 64. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 65 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 65. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 65. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 65. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 65. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 66 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 67 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 68 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 69 
+[WARN]  Tick take too long: F: 69, T: 35.25 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 70 
+[WARN]  Tick take too long: F: 70, T: 0.8 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 71 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 71. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 71. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 71. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 71. 
+[WARN]  Tick take too long: F: 71, T: 0.55000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 72 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 72. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 72. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 72. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 72. 
+[WARN]  Tick take too long: F: 72, T: 1.1 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 73 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 73. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 73. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 73. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 73. 
+[WARN]  Tick take too long: F: 73, T: 0.69999999999999 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 74 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 74. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 74. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 74. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 74. 
+[WARN]  Tick take too long: F: 74, T: 1.7 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 75 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 75. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 75. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 75. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 75. 
+[WARN]  Tick take too long: F: 75, T: 1.2 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 76 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 76. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 76. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 76. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 76. 
+[WARN]  Tick take too long: F: 76, T: 2.15 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 77 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 77. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 77. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 77. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 77. 
+[WARN]  Tick take too long: F: 77, T: 0.75 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 78 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 78. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 78. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 78. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 78. 
+[WARN]  Tick take too long: F: 78, T: 0.65000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 79 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 79. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 79. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 79. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 79. 
+[WARN]  Tick take too long: F: 79, T: 0.54999999999998 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 80 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 81 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 82 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 83 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 84 
+[WARN]  Tick take too long: F: 84, T: 0.64999999999998 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 85 
+[WARN]  Tick take too long: F: 85, T: 0.80000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 86 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 86. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 86. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 86. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 86. 
+[WARN]  Tick take too long: F: 86, T: 0.90000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 87 
+[WARN]  Tick take too long: F: 87, T: 21.15 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 88 
+[WARN]  Tick take too long: F: 88, T: 1.2 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 89 
+[WARN]  Tick take too long: F: 89, T: 0.59999999999999 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 90 
+[WARN]  Tick take too long: F: 90, T: 0.55000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 91 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 92 
+[WARN]  Tick take too long: F: 92, T: 0.90000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 93 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 93. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 93. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 93. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 93. 
+[WARN]  Tick take too long: F: 93, T: 0.79999999999998 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 94 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 94. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 94. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 94. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 94. 
+[WARN]  Tick take too long: F: 94, T: 1.8 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 95 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 95. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 95. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 95. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 95. 
+[WARN]  Tick take too long: F: 95, T: 0.79999999999998 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 96 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 96. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 96. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 96. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 96. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 97 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 97. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 97. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 97. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 97. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 98 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 98. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 98. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 98. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 98. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 99 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 99. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 99. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 99. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 99. 
+[WARN]  Tick take too long: F: 99, T: 1.95 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 100 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 100. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 100. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 100. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 100. 
+[WARN]  Tick take too long: F: 100, T: 0.80000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 101 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 101. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 101. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 101. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 101. 
+[WARN]  Tick take too long: F: 101, T: 0.54999999999998 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 102 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 102. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 102. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 102. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 102. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 103 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 103. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 103. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 103. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 103. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 104 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 104. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 104. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 104. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 104. 
+[WARN]  Tick take too long: F: 104, T: 3.05 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 105 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 105. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 105. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 105. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 105. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 106 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 106. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 106. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 106. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 106. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 107 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec0938d0, frame: 107. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec0938d0, frame: 107. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec0938d0, frame: 107. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec0938d0, frame: 107. 
+[WARN]  Tick take too long: F: 107, T: 29.25 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 108 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: re, RenderArea, reload, dbgpu, conf, Sprite, GameObject. 
+[INFO]  [DL]: Reloading file: libs/dbgpu_api.lua: function: 0x7f29e83f1220 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f29e867b360 
+[DEBUG]  [RE]: [INIT]: bufferTexturesOnInit: true, useBufferWhitelist: false 
+[DEBUG]  [RE]: [INIT]: Buffer textures 
+[DEBUG]  [RE]: [BT]: Texture: ttest2 loaded into buffer: 1.0 
+[WARN]  [RE]: [BT]: Invalid format, texture: debug_corrupted: nil 
+[DEBUG]  [RE]: [BT]: Texture: reTest loaded into buffer: 2.0 
+[DEBUG]  [RE]: [BT]: Texture: street1 loaded into buffer: 3.0 
+[DEBUG]  [RE]: [BT]: Texture: ttest loaded into buffer: 4.0 
+[DEBUG]  [RE]: [BT]: Texture: reTestBig loaded into buffer: 5.0 
+[INFO]  [DL]: Reloading file: data/core/RenderArea.lua: function: 0x7f29e00ee970 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f29f00c3530 
+[INFO]  [DL]: Reloading file: data/core/Sprite.lua: function: 0x7f29e865ae90 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTest4" (#1). 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTestStreet" (#1). 
+[WARN]  Tick take too long: F: 108, T: 1.4 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 109 
+[DEBUG]  [RA]: RA1: Clear: Street1: table: 0x7f29e05292a0, frame: 109. 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 109. 
+[DEBUG]  [RA]: RA1: Draw: Street1: table: 0x7f29e05292a0, frame: 109. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 109. 
+[DEBUG]  [RA]: RA2: Clear: Street1: table: 0x7f29e05292a0, frame: 109. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 109. 
+[DEBUG]  [RA]: RA2: Draw: Street1: table: 0x7f29e05292a0, frame: 109. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 109. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 110 
+[WARN]  Tick take too long: F: 110, T: 0.65000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 111 
+[WARN]  Tick take too long: F: 111, T: 0.59999999999999 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 112 
+[WARN]  Tick take too long: F: 112, T: 0.55000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 113 
+[WARN]  Tick take too long: F: 113, T: 0.69999999999999 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 114 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 114. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 114. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 114. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 114. 
+[WARN]  Tick take too long: F: 114, T: 0.65000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 115 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 115. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 115. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 115. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 115. 
+[WARN]  Tick take too long: F: 115, T: 0.65000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 116 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 116. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 116. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 116. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 116. 
+[WARN]  Tick take too long: F: 116, T: 0.55000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 117 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 117. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 117. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 117. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 117. 
+[WARN]  Tick take too long: F: 117, T: 1.3 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 118 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 118. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 118. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 118. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 118. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 119 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 119. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 119. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 119. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 119. 
+[WARN]  Tick take too long: F: 119, T: 0.90000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 120 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 120. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 120. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 120. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 120. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 121 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 121. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 121. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 121. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 121. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 122 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 122. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 122. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 122. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 122. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 123 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 123. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 123. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 123. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 123. 
+[WARN]  Tick take too long: F: 123, T: 1.2 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 124 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 124. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 124. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 124. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 124. 
+[WARN]  Tick take too long: F: 124, T: 0.84999999999999 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 125 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 125. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 125. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 125. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 125. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 126 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 126. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 126. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 126. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 126. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 127 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 127. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 127. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 127. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 127. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 128 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 128. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 128. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 128. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 128. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 129 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 129. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 129. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 129. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 129. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 130 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 130. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 130. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 130. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 130. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 131 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 131. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 131. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 131. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 131. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 132 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 132. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 132. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 132. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 132. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 133 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 133. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 133. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 133. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 133. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 134 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 134. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 134. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 134. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 134. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 135 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 135. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 135. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 135. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 135. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 136 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 136. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 136. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 136. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 136. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 137 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 137. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 137. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 137. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 137. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 138 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 138. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 138. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 138. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 138. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 139 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 139. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 139. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 139. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 139. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 140 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29e08dadd0, frame: 140. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29e08dadd0, frame: 140. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29e08dadd0, frame: 140. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29e08dadd0, frame: 140. 
+[WARN]  Tick take too long: F: 140, T: 6.9 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 141 
+[WARN]  Tick take too long: F: 141, T: 0.69999999999999 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 142 
+[WARN]  Tick take too long: F: 142, T: 17.0 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 143 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: re, RenderArea, reload, dbgpu, conf, Sprite, GameObject. 
+[INFO]  [DL]: Reloading file: libs/dbgpu_api.lua: function: 0x7f29e8606080 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f29e8030d90 
+[DEBUG]  [RE]: [INIT]: bufferTexturesOnInit: true, useBufferWhitelist: false 
+[DEBUG]  [RE]: [INIT]: Buffer textures 
+[DEBUG]  [RE]: [BT]: Texture: ttest2 loaded into buffer: 1.0 
+[WARN]  [RE]: [BT]: Invalid format, texture: debug_corrupted: nil 
+[DEBUG]  [RE]: [BT]: Texture: reTest loaded into buffer: 2.0 
+[DEBUG]  [RE]: [BT]: Texture: street1 loaded into buffer: 3.0 
+[DEBUG]  [RE]: [BT]: Texture: ttest loaded into buffer: 4.0 
+[DEBUG]  [RE]: [BT]: Texture: reTestBig loaded into buffer: 5.0 
+[INFO]  [DL]: Reloading file: data/core/RenderArea.lua: function: 0x7f29e00d3820 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f29f00c1870 
+[INFO]  [DL]: Reloading file: data/core/Sprite.lua: function: 0x7f29e8872080 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTest4" (#1). 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTestStreet" (#1). 
+[WARN]  Tick take too long: F: 143, T: 1.5 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 144 
+[DEBUG]  [RA]: RA1: Clear: Street1: table: 0x7f29f05bbf50, frame: 144. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 144. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: Street1: table: 0x7f29f05bbf50, frame: 144. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 144. 
+[DEBUG]  [RA]: RA2: Clear: Street1: table: 0x7f29f05bbf50, frame: 144. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 144. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: Street1: table: 0x7f29f05bbf50, frame: 144. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 144. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 145 
+[WARN]  Tick take too long: F: 145, T: 1.15 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 146 
+[WARN]  Tick take too long: F: 146, T: 0.65000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 147 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 148 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 148. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 148. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 148. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 148. 
+[WARN]  Tick take too long: F: 148, T: 1.05 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 149 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 149. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 149. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 149. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 149. 
+[WARN]  Tick take too long: F: 149, T: 15.25 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 150 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 150. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 150. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 150. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 150. 
+[WARN]  Tick take too long: F: 150, T: 16.0 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 151 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 151. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 151. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 151. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 151. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 152 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 152. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 152. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 152. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 152. 
+[WARN]  Tick take too long: F: 152, T: 0.64999999999998 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 153 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 153. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 153. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 153. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 153. 
+[WARN]  Tick take too long: F: 153, T: 0.55000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 154 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 154. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 154. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 154. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 154. 
+[WARN]  Tick take too long: F: 154, T: 0.65000000000003 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 155 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 155. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 155. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 155. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 155. 
+[WARN]  Tick take too long: F: 155, T: 0.69999999999999 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 156 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 156. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 156. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 156. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 156. 
+[WARN]  Tick take too long: F: 156, T: 0.59999999999997 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 157 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 157. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 157. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 157. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 157. 
+[WARN]  Tick take too long: F: 157, T: 0.55000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 158 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 158. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 158. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 158. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 158. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 159 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 159. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 159. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 159. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 159. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 160 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 160. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 160. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 160. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 160. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 161 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 161. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 161. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 161. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 161. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 162 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 162. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 162. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 162. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 162. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 163 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 163. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 163. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 163. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 163. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 164 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 164. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 164. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 164. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 164. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 165 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 165. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 165. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 165. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 165. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 166 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 166. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 166. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 166. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 166. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 167 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 167. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 167. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 167. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 167. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 168 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 168. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 168. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 168. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 168. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 169 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 169. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 169. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f03aa9a0, frame: 169. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f03aa9a0, frame: 169. 
+[WARN]  Tick take too long: F: 169, T: 9.9 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 170 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: re, RenderArea, reload, dbgpu, conf, Sprite, GameObject. 
+[INFO]  [DL]: Reloading file: libs/dbgpu_api.lua: function: 0x7f29ec07abe0 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f29f01e9a40 
+[DEBUG]  [RE]: [INIT]: bufferTexturesOnInit: true, useBufferWhitelist: false 
+[DEBUG]  [RE]: [INIT]: Buffer textures 
+[DEBUG]  [RE]: [BT]: Texture: ttest2 loaded into buffer: 1.0 
+[WARN]  [RE]: [BT]: Invalid format, texture: debug_corrupted: nil 
+[DEBUG]  [RE]: [BT]: Texture: reTest loaded into buffer: 2.0 
+[DEBUG]  [RE]: [BT]: Texture: street1 loaded into buffer: 3.0 
+[DEBUG]  [RE]: [BT]: Texture: ttest loaded into buffer: 4.0 
+[DEBUG]  [RE]: [BT]: Texture: reTestBig loaded into buffer: 5.0 
+[INFO]  [DL]: Reloading file: data/core/RenderArea.lua: function: 0x7f29e004cd70 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f29f01e2b10 
+[INFO]  [DL]: Reloading file: data/core/Sprite.lua: function: 0x7f29f00085a0 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTest4" (#1). 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTestStreet" (#1). 
+[WARN]  Tick take too long: F: 170, T: 1.5 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 171 
+[DEBUG]  [RA]: RA1: Clear: Street1: table: 0x7f29f03766b0, frame: 171. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f00236d0, frame: 171. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: Street1: table: 0x7f29f03766b0, frame: 171. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f00236d0, frame: 171. 
+[DEBUG]  [RA]: RA2: Clear: Street1: table: 0x7f29f03766b0, frame: 171. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f00236d0, frame: 171. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: Street1: table: 0x7f29f03766b0, frame: 171. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f00236d0, frame: 171. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 172 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 173 
+[WARN]  Tick take too long: F: 173, T: 11.55 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 174 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: re, RenderArea, reload, dbgpu, conf, Sprite, GameObject. 
+[INFO]  [DL]: Reloading file: libs/dbgpu_api.lua: function: 0x7f29e00d63d0 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f29e0160e20 
+[DEBUG]  [RE]: [INIT]: bufferTexturesOnInit: true, useBufferWhitelist: false 
+[DEBUG]  [RE]: [INIT]: Buffer textures 
+[DEBUG]  [RE]: [BT]: Texture: ttest2 loaded into buffer: 1.0 
+[WARN]  [RE]: [BT]: Invalid format, texture: debug_corrupted: nil 
+[DEBUG]  [RE]: [BT]: Texture: reTest loaded into buffer: 2.0 
+[DEBUG]  [RE]: [BT]: Texture: street1 loaded into buffer: 3.0 
+[DEBUG]  [RE]: [BT]: Texture: ttest loaded into buffer: 4.0 
+[DEBUG]  [RE]: [BT]: Texture: reTestBig loaded into buffer: 5.0 
+[INFO]  [DL]: Reloading file: data/core/RenderArea.lua: function: 0x7f29ec5ea850 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f29e808e250 
+[INFO]  [DL]: Reloading file: data/core/Sprite.lua: function: 0x7f29e8639240 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTest4" (#1). 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTestStreet" (#1). 
+[WARN]  Tick take too long: F: 174, T: 1.5 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 175 
+[DEBUG]  [RA]: RA1: Clear: Street1: table: 0x7f29f03a3600, frame: 175. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f029a3d0, frame: 175. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: Street1: table: 0x7f29f03a3600, frame: 175. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f029a3d0, frame: 175. 
+[DEBUG]  [RA]: RA2: Clear: Street1: table: 0x7f29f03a3600, frame: 175. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f029a3d0, frame: 175. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: Street1: table: 0x7f29f03a3600, frame: 175. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f029a3d0, frame: 175. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 176 
+[WARN]  Tick take too long: F: 176, T: 0.60000000000002 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 177 
+[WARN]  Tick take too long: F: 177, T: 1.15 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 178 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f029a3d0, frame: 178. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f029a3d0, frame: 178. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f029a3d0, frame: 178. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f029a3d0, frame: 178. 
+[WARN]  Tick take too long: F: 178, T: 0.69999999999999 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 179 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f029a3d0, frame: 179. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f029a3d0, frame: 179. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f029a3d0, frame: 179. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f029a3d0, frame: 179. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 180 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f029a3d0, frame: 180. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f029a3d0, frame: 180. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f029a3d0, frame: 180. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f029a3d0, frame: 180. 
+[WARN]  Tick take too long: F: 180, T: 1.1 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 181 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f029a3d0, frame: 181. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f029a3d0, frame: 181. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f029a3d0, frame: 181. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f029a3d0, frame: 181. 
+[WARN]  Tick take too long: F: 181, T: 1.05 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 182 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f029a3d0, frame: 182. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f029a3d0, frame: 182. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f029a3d0, frame: 182. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f029a3d0, frame: 182. 
+[WARN]  Tick take too long: F: 182, T: 0.59999999999997 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 183 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f029a3d0, frame: 183. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f029a3d0, frame: 183. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f029a3d0, frame: 183. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f029a3d0, frame: 183. 
+[WARN]  Tick take too long: F: 183, T: 1.3 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 184 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f029a3d0, frame: 184. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f029a3d0, frame: 184. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f029a3d0, frame: 184. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f029a3d0, frame: 184. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 185 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f029a3d0, frame: 185. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f029a3d0, frame: 185. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f029a3d0, frame: 185. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f029a3d0, frame: 185. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 186 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f029a3d0, frame: 186. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f029a3d0, frame: 186. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f029a3d0, frame: 186. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f029a3d0, frame: 186. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 187 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f029a3d0, frame: 187. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f029a3d0, frame: 187. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f029a3d0, frame: 187. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f029a3d0, frame: 187. 
+[WARN]  Tick take too long: F: 187, T: 0.55000000000001 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 188 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29f029a3d0, frame: 188. 
+[INFO]  T 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29f029a3d0, frame: 188. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29f029a3d0, frame: 188. 
+[INFO]  T 
+[INFO]  T 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29f029a3d0, frame: 188. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 189 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 190 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 191 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 192 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 193 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 194 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 195 
+[WARN]  Tick take too long: F: 195, T: 38.05 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 196 
+[INFO]  --========== RELOAD STAGE ==========-- 
+[INFO]  [DL]: Loading data groups: conf. 
+[INFO]  [DL]: Loading data groups: re, RenderArea, reload, dbgpu, conf, Sprite, GameObject. 
+[INFO]  [DL]: Reloading file: libs/dbgpu_api.lua: function: 0x7f29e0146630 
+[INFO]  [DL]: Reloading file: data/core/re.lua: function: 0x7f29e0109a70 
+[DEBUG]  [RE]: [INIT]: bufferTexturesOnInit: true, useBufferWhitelist: false 
+[DEBUG]  [RE]: [INIT]: Buffer textures 
+[DEBUG]  [RE]: [BT]: Texture: ttest2 loaded into buffer: 1.0 
+[WARN]  [RE]: [BT]: Invalid format, texture: debug_corrupted: nil 
+[DEBUG]  [RE]: [BT]: Texture: reTest loaded into buffer: 2.0 
+[DEBUG]  [RE]: [BT]: Texture: street1 loaded into buffer: 3.0 
+[DEBUG]  [RE]: [BT]: Texture: ttest loaded into buffer: 4.0 
+[DEBUG]  [RE]: [BT]: Texture: reTestBig loaded into buffer: 5.0 
+[INFO]  [DL]: Reloading file: data/core/RenderArea.lua: function: 0x7f29ec08d7c0 
+[INFO]  [DL]: Reloading file: data/core/GameObject.lua: function: 0x7f29f0573170 
+[INFO]  [DL]: Reloading file: data/core/Sprite.lua: function: 0x7f29e08819d0 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: textures, gameObjects, parents. 
+[INFO]  [DL]: Data group already loaded: textures. 
+[INFO]  [DL]: Data group already loaded: parents. 
+[INFO]  [DL]: Data group already loaded: gameObjects. 
+[INFO]  [test]: init done. 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTest4" (#1). 
+[DEBUG]  [RA/RA1]: Adding gameObject: "ReTestStreet" (#1). 
+[WARN]  Tick take too long: F: 196, T: 1.6 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 197 
+[DEBUG]  [RA]: RA1: Clear: Street1: table: 0x7f29ec8943e0, frame: 197. 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec4f3f70, frame: 197. 
+[DEBUG]  [RA]: RA1: Draw: Street1: table: 0x7f29ec8943e0, frame: 197. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec4f3f70, frame: 197. 
+[DEBUG]  [RA]: RA2: Clear: Street1: table: 0x7f29ec8943e0, frame: 197. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec4f3f70, frame: 197. 
+[DEBUG]  [RA]: RA2: Draw: Street1: table: 0x7f29ec8943e0, frame: 197. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec4f3f70, frame: 197. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 198 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec4f3f70, frame: 198. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec4f3f70, frame: 198. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec4f3f70, frame: 198. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec4f3f70, frame: 198. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 199 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec4f3f70, frame: 199. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec4f3f70, frame: 199. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec4f3f70, frame: 199. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec4f3f70, frame: 199. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 200 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec4f3f70, frame: 200. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec4f3f70, frame: 200. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec4f3f70, frame: 200. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec4f3f70, frame: 200. 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 201 
+[DEBUG]  [RA]: RA1: Clear: BRET1: table: 0x7f29ec4f3f70, frame: 201. 
+[DEBUG]  [RA]: RA1: Draw: BRET1: table: 0x7f29ec4f3f70, frame: 201. 
+[DEBUG]  [RA]: RA2: Clear: BRET1: table: 0x7f29ec4f3f70, frame: 201. 
+[DEBUG]  [RA]: RA2: Draw: BRET1: table: 0x7f29ec4f3f70, frame: 201. 
+[WARN]  Tick take too long: F: 201, T: 3.4 
+[INFO]  ======================================================================================== 
+[DEBUG]  [RE]: New frame: 202 
+[DEBUG]  [EH]: Program stopped by user. 
+[WARN]  Tick take too long: F: 202, T: 1.55 

@@ -1,0 +1,328 @@
+--===== NosGa Engine (GPLv3) =====--
+The NosGa Engine is a engine fork of ocCtaft (v0.1.2) <https://github.com/MisterNoNameLP/ocCraft>
+which is licensed under the GPLv3.
+
+ocCtaft Copyright (c) 2019 MisterNoNameLP
+NosGa Engine Copyright (C) 2019-2020 NosPo Studio.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+--===== Third party (MIT) =====--
+The NosGa Engine is using third party libaries for some functionalities.
+More informations in the source files ("./libs/thirdParty/").
+
+DoubleBuffering Copyright (c) 2018 Igor Timofeev
+Image Copyright (c) 2018 Igor Timofeev
+OCIF Copyright (c) 2018 Igor Timofeev
+Color Copyright (c) 2018 
+AdvancedLua Copyright (c) 2018 Igor Timofeev
+DoubleBuffering (raw copy feature) Copyright (c) 2019 NosPo Studio
+
+OpenComputers (OpenOS LUA shell) Copyright (c) 2013-2015 Florian "Sangar" Nücke
+LUA shell (NosGa version) (c) 2019 NosPo Studio
+
+LIP (ini file parser) Copyright (c) 2012 Carreras Nicolas
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.	
+
+Starting NosGa Engine v0.3.2d
+Load global: 	function: 0x7fa9045e01c0	nil
+Initialize: 	function: 0x7fa9040d2e30	nil
+useDoubleBuffering: true
+[INIT]: Loading GE: function: 0x7fa9040a71a0 nil
+[INIT]: Loading RE: function: 0x7fa904289920 nil
+[INIT]: Loading RenderArea: function: 0x7fa9041d2fc0 nil
+[INIT]: Loading GameObject: function: 0x7fa90419b030 nil
+[INIT]: Loading eventHandler: function: 0x7fa9046db520 nil
+[INIT]: Loading luaConsole: function: 0x7fa9002290b0 nil
+[INIT]: Loading global.
+[DLF]: Loading file: /data/global/remRA.lua: function: 0x7fa904793ee0
+[DLF]: Loading file: /data/global/expandFunction.lua: function: 0x7fa90423f3f0
+[DLF]: Loading file: /data/global/addTest.lua: function: 0x7fa9042a6f00
+[DLF]: Loading file: /data/global/clear.lua: function: 0x7fa904369c20
+[DLF]: Loading file: /data/global/getButtonTexture.lua: function: 0x7fa90018a240
+[DLF]: Loading file: /data/global/loadGame.lua: function: 0x7fa9000c1e60
+[DLF]: Loading file: /data/global/saveGame.lua: function: 0x1e348c0
+[DLF]: Loading file: /data/global/changeState.lua: function: 0x1fd09d0
+[DLF]: Loading file: /data/global/getState.lua: function: 0x7fa9042093d0
+[DLF]: Loading file: /data/global/worldHandler.lua: function: 0x7fa9040510f0
+[DLF]: Loading file: /data/global/drawDebug.lua: function: 0x7fa900167070
+[DLF]: Loading file: /data/global/stats.lua: function: 0x7fa90001e2f0
+[DLF]: Loading file: /data/global/empty.lua: function: 0x7fa9042c6120
+[DLF]: Loading file: /data/global/addRA.lua: function: 0x7fa90408b620
+[DLF]: Loading file: /data/global/globalDebuggingFunctions.lua: function: 0x7fa904130090
+[DLF]: Loading file: /data/global/dumpTable.lua: function: 0x7fa904368f80
+[DLF]: Loading file: /data/global/makeImageTransparent.lua: function: 0x223ecd0
+[INIT]: Check dataLoading: function: 0x7fa9000bf5a0 nil
+[DL]: Loading data groups: conf, structuredGlobal, eh, states, RenderArea, GameObject.
+[DL]: Reloading file: data/core/eventHandler.lua: function: 0x7fa9000d7270
+[DL]: Reloading file: data/core/RenderArea.lua: function: 0x7fa9042a5210
+[DL]: Reloading file: data/core/GameObject.lua: function: 0x7fa904031510
+[DL]: Loading data group: structuredGlobal.
+biome
+[DLF]: Loading file: data/structuredGlobal/biome//test.lua: function: 0x7fa9043890c0
+debug
+sfx
+[DLF]: Loading file: data/structuredGlobal/sfx//explosion.lua: function: 0x7fa9040b4610
+[DL]: Loading data group: states.
+[DLF]: Loading file: data/states/reTest.lua: function: 0x1f0b880
+[DLF]: Loading file: data/states/mainMenu.lua: function: 0x7fa90012bdb0
+[DLF]: Loading file: data/states/game.lua: function: 0x7fa90406b960
+[DLF]: Loading file: data/states/credits.lua: function: 0x7fa90400bf80
+[DLF]: Loading file: data/states/test.lua: function: 0x7fa904218f10
+[DLF]: Loading file: data/states/garage.lua: function: 0x7fa900405be0
+[Global]: Adding renderArea: nil"RA1".
+[INIT]: Done.
+true
+Init done, starting program: 	function: 0x7fa9046c7f20	nil
+--===== NosGa Engine (GPLv3) =====--
+The NosGa Engine is a engine fork of ocCtaft (v0.1.2) <https://github.com/MisterNoNameLP/ocCraft>
+which is licensed under the GPLv3.
+
+ocCtaft Copyright (c) 2019 MisterNoNameLP
+NosGa Engine Copyright (C) 2019-2020 NosPo Studio.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+--===== Third party (MIT) =====--
+The NosGa Engine is using third party libaries for some functionalities.
+More informations in the source files ("./libs/thirdParty/").
+
+DoubleBuffering Copyright (c) 2018 Igor Timofeev
+Image Copyright (c) 2018 Igor Timofeev
+OCIF Copyright (c) 2018 Igor Timofeev
+Color Copyright (c) 2018 
+AdvancedLua Copyright (c) 2018 Igor Timofeev
+DoubleBuffering (raw copy feature) Copyright (c) 2019 NosPo Studio
+
+OpenComputers (OpenOS LUA shell) Copyright (c) 2013-2015 Florian "Sangar" Nücke
+LUA shell (NosGa version) (c) 2019 NosPo Studio
+
+LIP (ini file parser) Copyright (c) 2012 Carreras Nicolas
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.	
+
+Starting NosGa Engine v0.3.2d
+Load global: 	function: 0x2b13f60	nil
+Initialize: 	function: 0x7fd0a40d2c70	nil
+useDoubleBuffering: true
+[INIT]: Loading GE: function: 0x2a1c2f0 nil
+[INIT]: Loading RE: function: 0x7fd0ac159de0 nil
+[INIT]: Loading RenderArea: function: 0x7fd0a403f820 nil
+[INIT]: Loading GameObject: function: 0x2887ae0 nil
+[INIT]: Loading eventHandler: function: 0x2426d10 nil
+[INIT]: Loading luaConsole: function: 0x7fd0ac8b6180 nil
+[INIT]: Loading global.
+[DLF]: Loading file: /data/global/expandFunction.lua: function: 0x7fd0ac15b820
+[DLF]: Loading file: /data/global/globalDebuggingFunctions.lua: function: 0x7fd0ac5bd2b0
+[DLF]: Loading file: /data/global/drawDebug.lua: function: 0x7fd0a43f9610
+[DLF]: Loading file: /data/global/worldHandler.lua: function: 0x7fd0a43fe2d0
+[DLF]: Loading file: /data/global/getButtonTexture.lua: function: 0x2a8bf30
+[DLF]: Loading file: /data/global/dumpTable.lua: function: 0x2b35540
+[DLF]: Loading file: /data/global/setActiveBuffer.lua: function: 0x7fd0ac5b9660
+[DLF]: Loading file: /data/global/getState.lua: function: 0x7fd0ac13d2d0
+[DLF]: Loading file: /data/global/loadGame.lua: function: 0x7fd0a82b6b80
+[DLF]: Loading file: /data/global/tString.lua: function: 0x7fd0a85d3920
+[DLF]: Loading file: /data/global/clear.lua: function: 0x7fd0a8232ce0
+[DLF]: Loading file: /data/global/saveGame.lua: function: 0x7fd0a8049a40
+[DLF]: Loading file: /data/global/stats.lua: function: 0x2b66210
+[DLF]: Loading file: /data/global/remRA.lua: function: 0x24af710
+[DLF]: Loading file: /data/global/addTest.lua: function: 0x7fd0ac221f90
+[DLF]: Loading file: /data/global/makeImageTransparent.lua: function: 0x7fd0ac004ee0
+[DLF]: Loading file: /data/global/addRA.lua: function: 0x7fd0a8a383c0
+[DLF]: Loading file: /data/global/changeState.lua: function: 0x7fd0a86a0c50
+[DLF]: Loading file: /data/global/empty.lua: function: 0x26c3530
+[INIT]: Check dataLoading: function: 0x7fd0a8a32990 nil
+[DL]: Loading data groups: GameObject, eh, RenderArea, conf, states, structuredGlobal, Sprite.
+[DL]: Reloading file: data/core/eventHandler.lua: function: 0x7fd0a803a620
+[DL]: Reloading file: data/core/RenderArea.lua: function: 0x7fd0a44a11e0
+[DL]: Reloading file: data/core/GameObject.lua: function: 0x7fd0ac89f260
+[DL]: Reloading file: data/core/Sprite.lua: function: 0x7fd0ac1e2de0
+[DL]: Loading data group: structuredGlobal.
+[DLF]: Loading file: data/structuredGlobal/biome//test.lua: function: 0x7fd0a42aaf20
+[DLF]: Loading file: data/structuredGlobal/sfx//explosion.lua: function: 0x7fd0a44b4c30
+[DL]: Loading data group: states.
+[DLF]: Loading file: data/states/garage.lua: function: 0x2640340
+[DLF]: Loading file: data/states/mainMenu.lua: function: 0x7fd0a82b9bf0
+[DLF]: Loading file: data/states/reTest.lua: function: 0x7fd0a85ef880
+[DLF]: Loading file: data/states/credits.lua: function: 0x24ab6c0
+[DLF]: Loading file: data/states/game.lua: function: 0x7fd0a86a1ad0
+[DLF]: Loading file: data/states/reTest_old.lua: function: 0x7fd0ac2230a0
+[DLF]: Loading file: data/states/test.lua: function: 0x7fd0a8a38080
+[Global]: Adding renderArea: nil"RA1".
+[INIT]: Done.
+true
+Init done, starting program: 	function: 0x7fd0a4742a40	nil
+[FATAL] in func: draw()
+/home/StreetShredder/src/data/core/RenderArea.lua:322: attempt to index a nil value (global 'renderArea')
+stack traceback:
+	machine:805: in metamethod '__index'
+	/home/StreetShredder/src/data/core/RenderArea.lua:322: in method 'ngeDraw'
+	/home/StreetShredder/src/data/core/re.lua:129: in field 'draw'
+	/home/StreetShredder/src/data/core/nosGaCore.lua:91: in function </home/StreetShredder/src/data/core/nosGaCore.lua:86>
+	[C]: in function 'xpcall'
+	machine:798: in global 'xpcall'
+	/home/StreetShredder/src/data/core/nosGaCore.lua:156: in local 'core'
+	/home/StreetShredder/src/nosGa.lua:122: in main chunk
+	(...tail calls...)
+	[C]: in function 'xpcall'
+	machine:798: in global 'xpcall'
+	/lib/process.lua:63: in function </lib/process.lua:59>	stack traceback:
+	/home/StreetShredder/src/data/core/nosGaCore.lua:158: in local 'core'
+	/home/StreetShredder/src/nosGa.lua:122: in main chunk
+	(...tail calls...)
+	[C]: in function 'xpcall'
+	machine:798: in global 'xpcall'
+	/lib/process.lua:63: in function </lib/process.lua:59>
+In func: draw()	stack traceback:
+	/home/StreetShredder/src/data/core/global.lua:125: in field 'fatal'
+	/home/StreetShredder/src/data/core/nosGaCore.lua:135: in local 'std_onError'
+	/home/StreetShredder/src/data/core/nosGaCore.lua:158: in local 'core'
+	/home/StreetShredder/src/nosGa.lua:122: in main chunk
+	(...tail calls...)
+	[C]: in function 'xpcall'
+	machine:798: in global 'xpcall'
+	/lib/process.lua:63: in function </lib/process.lua:59>
+/home/StreetShredder/src/data/core/RenderArea.lua:322: attempt to index a nil value (global 'renderArea')
+stack traceback:
+	machine:805: in metamethod '__index'
+	/home/StreetShredder/src/data/core/RenderArea.lua:322: in method 'ngeDraw'
+	/home/StreetShredder/src/data/core/re.lua:129: in field 'draw'
+	/home/StreetShredder/src/data/core/nosGaCore.lua:91: in function </home/StreetShredder/src/data/core/nosGaCore.lua:86>
+	[C]: in function 'xpcall'
+	machine:798: in global 'xpcall'
+	/home/StreetShredder/src/data/core/nosGaCore.lua:156: in local 'core'
+	/home/StreetShredder/src/nosGa.lua:122: in main chunk
+	(...tail calls...)
+	[C]: in function 'xpcall'
+	machine:798: in global 'xpcall'
+	/lib/process.lua:63: in function </lib/process.lua:59>	stack traceback:
+	/home/StreetShredder/src/data/core/global.lua:125: in field 'fatal'
+	/home/StreetShredder/src/data/core/nosGaCore.lua:136: in local 'std_onError'
+	/home/StreetShredder/src/data/core/nosGaCore.lua:158: in local 'core'
+	/home/StreetShredder/src/nosGa.lua:122: in main chunk
+	(...tail calls...)
+	[C]: in function 'xpcall'
+	machine:798: in global 'xpcall'
+	/lib/process.lua:63: in function </lib/process.lua:59>
+--===== NosGa Engine (GPLv3) =====--
+The NosGa Engine is a engine fork of ocCtaft (v0.1.2) <https://github.com/MisterNoNameLP/ocCraft>
+which is licensed under the GPLv3.
+
+ocCtaft Copyright (c) 2019 MisterNoNameLP
+NosGa Engine Copyright (C) 2019-2020 NosPo Studio.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+--===== Third party (MIT) =====--
+The NosGa Engine is using third party libaries for some functionalities.
+More informations in the source files ("./libs/thirdParty/").
+
+DoubleBuffering Copyright (c) 2018 Igor Timofeev
+Image Copyright (c) 2018 Igor Timofeev
+OCIF Copyright (c) 2018 Igor Timofeev
+Color Copyright (c) 2018 
+AdvancedLua Copyright (c) 2018 Igor Timofeev
+DoubleBuffering (raw copy feature) Copyright (c) 2019 NosPo Studio
+
+OpenComputers (OpenOS LUA shell) Copyright (c) 2013-2015 Florian "Sangar" Nücke
+LUA shell (NosGa version) (c) 2019 NosPo Studio
+
+LIP (ini file parser) Copyright (c) 2012 Carreras Nicolas
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.	
+
+Starting NosGa Engine v0.3.2d
+Load global: 	function: 0x2a1b0c0	nil
+Initialize: 	function: 0x7fd0a43572e0	nil
+useDoubleBuffering: true
+[INIT]: Loading GE: function: 0x2b13e70 nil
+[INIT]: Loading RE: function: 0x7fd0ac218c80 nil
+[INIT]: Loading RenderArea: nil /home/StreetShredder/src/data/core/RenderArea.lua:333: unexpected symbol near ')'

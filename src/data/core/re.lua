@@ -21,15 +21,18 @@
 local global = ...
 local re = {
 	rendered = {},
+	copyInstructions = {},
 }
 
 --===== local vars =====--
 local fromX, toX, fromY, toY = 0, 0, 0, 0 --regenerated every update.
 
+local overlapChecks = 0 --debug
+
 --===== local functions =====--
 local function print(...)
 	if global.conf.debug.reDebug then
-		global.debug(...)
+		global.debug.log(...)
 	end
 end
 
@@ -72,27 +75,34 @@ end
 
 local function checkOverlapping(renderArea, gameObject, layer)
 	layer = layer or 0
+
+
 	
-	for i, go in pairs(renderArea.gameObjects) do
+	for go in pairs(renderArea.gameObjects) do
 		local l = go.ngeAttributes.layer
 		
 		for i, oca in pairs(gameObject.ngeAttributes.clearAreas) do
 			for i, ca in pairs(go.ngeAttributes.clearAreas) do
-				local x, y = gameObject:getPos()
-				local x2, y2 = go:getPos()
-				local sx, sy = oca.sizeX, oca.sizeY
-				local sx2, sy2 = ca.sizeX, ca.sizeY
-				local lastPosX, lastPosY = gameObject:getLastPos()
-				local lastPosX2, lastPosY2 = go:getLastPos()
-				
-				x, y = x + oca.posX, y + oca.posY
-				x2, y2 = x2 + ca.posX, y2 + ca.posY
-				lastPosX, lastPosY = lastPosX + oca.posX, lastPosY + oca.posY
-				lastPosX2, lastPosY2 = lastPosX2 + ca.posX, lastPosY2 + ca.posY
-				
-				
+				overlapChecks = overlapChecks +1
+
+				if not global.conf.useSmartOverlap and isInQueue(renderArea, go, l) then
+					goto skip
+				end
 				
 				if --[[l >= layer and]] not isInQueue(renderArea, go, l) and renderArea.layerBlacklist[l] ~= true and isInsideArea(renderArea, go, renderArea.cameraMoveInstructions) == 1 then
+					local x, y = gameObject:getPos()
+					local x2, y2 = go:getPos()
+					local sx, sy = oca.sizeX, oca.sizeY
+					local sx2, sy2 = ca.sizeX, ca.sizeY
+					local lastPosX, lastPosY = gameObject:getLastPos()
+					local lastPosX2, lastPosY2 = go:getLastPos()
+
+					x, y = x + oca.posX, y + oca.posY
+					x2, y2 = x2 + ca.posX, y2 + ca.posY
+					lastPosX, lastPosY = lastPosX + oca.posX, lastPosY + oca.posY
+					lastPosX2, lastPosY2 = lastPosX2 + ca.posX, lastPosY2 + ca.posY
+
+				
 					if gameObject ~= go and 
 						x + sx > x2 and
 						x < x2 + sx2 and
@@ -104,41 +114,66 @@ local function checkOverlapping(renderArea, gameObject, layer)
 						lastPosY + sy > lastPosY2 and
 						lastPosY < lastPosY2 + sy2 
 					then
-						renderArea.gameObjectAttributes[go.ngeAttributes.id].mustBeRendered = true
-						renderArea.gameObjectAttributes[go.ngeAttributes.id].causedByOverlap = true
-						renderArea.toRender[l][go] = renderArea
-						checkOverlapping(renderArea, go, l)
-						
-						print("[RE]: Found overlap with: " .. gameObject.ngeAttributes.name .. ": N:" .. go.ngeAttributes.name .. ", L:" .. tostring(l) .. ", X:" .. tostring(x) .. ", Y:" .. tostring(y) .. ", ID:"..  tostring(go.ngeAttributes.id) .. ", F:" .. tostring(global.currentFrame) .. ".")
+						if renderArea.gameObjectAttributes[go] ~= nil then
+							renderArea.gameObjectAttributes[go].mustBeRendered = true
+							renderArea.gameObjectAttributes[go].causedByOverlap = true
+							renderArea.toRender[l][go] = renderArea
+
+							if global.conf.useSmartOverlap then
+								local sizeX, sizeY = gameObject:getSize()
+								local lastPosX, lastPosY = gameObject:getLastPos()
+								local posX, posY = gameObject:getPos()
+								local raPosX, _, raPosY = renderArea:getFOV()
+
+								table.insert(renderArea.gameObjectAttributes[go].overlappingAreas, {
+									lastPosX - raPosX,
+									lastPosX + sizeX - raPosX -1,
+									lastPosY - raPosY,
+									lastPosY + sizeY - raPosY -1,
+								})
+								table.insert(renderArea.gameObjectAttributes[go].overlappingAreas, {
+									posX - raPosX,
+									posX + sizeX - raPosX -1,
+									posY - raPosY,
+									posY + sizeY - raPosY -1,
+								})
+							else
+								checkOverlapping(renderArea, go, l)
+							end
+							
+							
+							print("[RE]: Found overlap with: " .. gameObject.ngeAttributes.name .. ": N:" .. go.ngeAttributes.name .. ", L:" .. tostring(l) .. ", X:" .. tostring(x) .. ", Y:" .. tostring(y) .. ", ID:"..  tostring(go) .. ", F:" .. tostring(global.currentFrame) .. ".")
+						end
 					end
 				end
+				::skip::
 			end
 		end
 	end
 end
 
 local function calculateFrame(renderArea, area)
-	for i, go in pairs(renderArea.gameObjects) do
+	for go in pairs(renderArea.gameObjects) do
 		local l = go.ngeAttributes.layer
 		
 		if not isInQueue(renderArea, go, l) and renderArea.layerBlacklist[l] ~= true and isInsideArea(renderArea, go, renderArea.cameraMoveInstructions) ~= 0 then
-			if renderArea.gameObjectAttributes[go.ngeAttributes.id].lastCalculatedFrame < global.currentFrame -1 then
-				renderArea.gameObjectAttributes[go.ngeAttributes.id].mustBeRendered = true
+			if renderArea.gameObjectAttributes[go].lastCalculatedFrame < global.currentFrame -1 then
+				renderArea.gameObjectAttributes[go].mustBeRendered = true
 			end
 			
 			if go.ngeAttributes.hasMoved then
 				checkOverlapping(renderArea, go)
 				renderArea.toRender[l][go] = renderArea
-			elseif renderArea.gameObjectAttributes[go.ngeAttributes.id].mustBeRendered then
-				renderArea.gameObjectAttributes[go.ngeAttributes.id].mustBeRendered = false
+			elseif renderArea.gameObjectAttributes[go].mustBeRendered then
+				renderArea.gameObjectAttributes[go].mustBeRendered = false
 				checkOverlapping(renderArea, go, l)
 				renderArea.toRender[l][go] = renderArea
 			end
-		elseif renderArea.gameObjectAttributes[go.ngeAttributes.id].wasVisible then
+		elseif renderArea.gameObjectAttributes[go].wasVisible then
 			renderArea.toClear[l][go] = renderArea
-			renderArea.gameObjectAttributes[go.ngeAttributes.id].wasVisible = nil
+			renderArea.gameObjectAttributes[go].wasVisible = nil
 		end
-		renderArea.gameObjectAttributes[go.ngeAttributes.id].lastCalculatedFrame = global.currentFrame
+		renderArea.gameObjectAttributes[go].lastCalculatedFrame = global.currentFrame
 	end
 end
 
@@ -146,6 +181,9 @@ local function moveFrame(renderArea)
 	if #renderArea.cameraMoveInstructions.copy > 0 then
 		local cmi = renderArea.cameraMoveInstructions
 		global.gpu.copy(cmi.copy[1], cmi.copy[2], cmi.copy[3], cmi.copy[4], cmi.copy[5], cmi.copy[6])
+		if global.conf.useDoubleBuffering then
+			table.insert(re.copyInstructions, {cmi.copy[1], cmi.copy[2], cmi.copy[3], cmi.copy[4], cmi.copy[5], cmi.copy[6]})
+		end
 		
 		global.oclrl:draw(0, 0, global.oclrl.generateTexture({
 			{"b", global.backgroundColor},
@@ -188,8 +226,9 @@ local function moveArea(renderArea)
 		asy = y2 - y1 +1
 		
 		global.gpu.copy(ax, ay, asx, asy, ci[5], ci[6])
-		
-		--global.log("t")
+		if global.conf.useDoubleBuffering then
+			table.insert(re.copyInstructions, {ax, ay, asx, asy, ci[5], ci[6]})
+		end
 	end
 end
 
@@ -215,7 +254,7 @@ local function drawFrame(renderArea)
 			print("[RE]: Draw: " .. tostring(go.ngeAttributes.name) .. ": (" .. tostring(go) .. "), RA: " .. renderArea.name .. ", frame: " .. tostring(global.currentFrame) .. ".")
 			go:ngeDraw(area)
 			re.rendered[go] = true
-			renderArea.gameObjectAttributes[go.ngeAttributes.id].causedByOverlap = false
+			renderArea.gameObjectAttributes[go].causedByOverlap = false
 		end
 		renderArea.toRender[i] = {}
 	end
@@ -227,7 +266,8 @@ function re.init()
 end
 
 function re.draw()
-	for i, ra in pairs(global.renderAreas) do
+	--print("[RE]: New frame: " .. tostring(global.currentFrame))
+	for ra in pairs(global.renderAreas) do
 		if ra.visible then
 			moveFrame(ra)
 			moveArea(ra)
@@ -241,22 +281,38 @@ function re.draw()
 	for go in pairs(re.rendered) do
 		go:ngeSetLastPos()
 	end
+
+	--global.log(overlapChecks)
+	overlapChecks = 0
+
+end
+
+function re.executeCopyOrders()
+	if global.conf.useDoubleBuffering then
+		for i, co in pairs(re.copyInstructions) do
+			global.realGPU.copy(co[1], co[2], co[3], co[4], co[5], co[6])
+		end
+		re.copyInstructions = {}
+	end
 end
 
 function re.newDraw(renderArea)
-	for i, go in pairs(global.gameObjects) do
-		renderArea.gameObjectAttributes[go.ngeAttributes.id].mustBeRendered = true
+	for go in pairs(global.gameObjects) do
+		renderArea.gameObjectAttributes[go].mustBeRendered = true
 	end
 end
 
 function re.test()
-	for i, ra in pairs(global.renderAreas) do
+	for ra in pairs(global.renderAreas) do
 		print("TT")
 		calculateFrame(ra)
 		clearFrame()
 		drawFrame()
 	end
 end
+
+re.calculateRenderArea = function() end
+re.checkOverlapping = function() end
 
 re.calculateRenderArea = calculateFrame
 re.checkOverlapping = checkOverlapping	

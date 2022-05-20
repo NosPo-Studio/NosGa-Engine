@@ -39,10 +39,15 @@ local global = {
 	
 	resX = 0,
 	resY = 0,
+	currentVBuffer,
+	screenBufferID = 0,
+	
+	debugDisplayPosY = 1,
 	
 	--=== content ===--
-	state = {},
-	texture = {},
+	state = {}, 
+	texture = {}, --textures.
+	texturePack = nil, --texture back informations.
 	animation = {},
 	parent = {
 		name = {}, 
@@ -63,6 +68,10 @@ local global = {
 	renderAreas = {},
 	alreadyLoaded = {},
 	loadedMods = {},
+	
+	--=== debug ===--
+	debug = {},
+	debugString = "",
 }
 
 --===== global functions =====--
@@ -88,15 +97,11 @@ function global.print(...)
 	global.tbConsole:add(s)
 	global.ocl.add(s)
 	
-	if global.conf.showConsole then
+	if global.conf.showConsole and global.conf.debug.isDev and global.conf.directConsoleDraw and global.conf.useDoubleBuffering then
+		global.ocui.oclrl.gpu = global.realGPU
 		global.tbConsole:draw()
-		
-		if global.conf.debug.isDev and global.conf.directConsoleDraw and global.conf.useDoubleBuffering then
-			global.ocui.oclrl.gpu = global.realGPU
-			global.tbConsole:draw()
-			global.ocui.oclrl.gpu = global.gpu
-		end
-	end
+		global.ocui.oclrl.gpu = global.gpu
+	end	
 end
 
 function cprint(...)
@@ -121,7 +126,7 @@ function global.fatal(...)
 	global.orgPrint(..., debug.traceback())
 end
 
-function global.debug(...)
+function global.debug.log(...)
 	if global.isDev then
 		global.print("[DEBUG] ", ...)
 	end
@@ -137,7 +142,22 @@ function global.slog(...)
 	global.print("[SINFO]: End.")
 end
 
-function global.setConsoleSize(size)
+function global.debug.renderDebugInformations()
+	if global.conf.showDebug then
+		global.gpu.setForeground(0xaaaaaa)
+		global.gpu.setBackground(0x333333)
+		global.gpu.set(1, global.debugDisplayPosY, "NosGa Engine: " .. global.version .. 
+			" | RAM: " .. tostring(math.floor(100 - (global.computer.freeMemory() / global.computer.totalMemory() * 100) +.5)) .. "%" ..
+			" | VRAM: " .. tostring(math.floor(100 - (global.realGPU.freeMemory() / global.realGPU.totalMemory() * 100) +.5)) .. "%" ..
+			" | FPS: " .. tostring(math.floor((global.fps) +.5) .. 
+			" | Frame: " .. tostring(global.currentFrame)
+		) .. global.debugString .. string.rep(" ", global.resX))
+		
+		global.debugString = ""
+	end
+end
+
+function global.setConsoleSize(size) --obsolete
 	size = size or global.conf.consoleSizeY
 	global.tbConsole.sizeX = global.resX
 	global.tbConsole.sizeY = global.resY - (global.resY - size)
@@ -169,11 +189,12 @@ function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, struct
 	logFuncs = logFuncs or {}
 	local print = logFuncs.log or global.log
 	local warn = logFuncs.warn or global.warn
+	local onError = logFuncs.error or global.error
+	
 	subDirs = global.ut.parseArgs(subDirs, true)
 	
 	for file in global.fs.list(path) do
 		local p, name, ending = global.ut.seperatePath(file)
-		
 		
 		if name ~= "gitignore" and name ~= "gitkeep" then
 			if string.sub(file, #file) == "/" and subDirs then
@@ -182,7 +203,7 @@ function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, struct
 						target[string.sub(p, 0, #p -1)] = {structured = true}
 						global.loadData(target[string.sub(p, 0, #p -1)], dir .. "/" .. p, func, logFuncs, overwrite, subDirs, structured)
 					else
-						global.error("[DLF]: Target already existing!: " .. p .. " :" .. tostring(target))
+						onError("[DLF]: Target already existing!: " .. p .. " :" .. tostring(target))
 					end
 				else
 					global.loadData(target, dir .. "/" .. p, func, logFuncs, overwrite, subDirs, structured)
@@ -202,6 +223,7 @@ function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, struct
 					suc, err = global.image.load(path .. file)
 					if suc ~= false then
 						suc.format = "pic"
+						suc.resX, suc.resY = suc[1], suc[2]
 					end
 				else
 					suc, err = loadfile(path .. file)
@@ -219,6 +241,11 @@ function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, struct
 					target[name or string.sub(p, 0, #p -1)] = suc(global)
 				elseif type(suc) == "table" then
 					target[name or string.sub(p, 0, #p -1)] = suc
+				end
+				
+				local obj = target[name or string.sub(p, 0, #p -1)]
+				if type(obj) == "table" then
+					global.run(obj.init, obj)
 				end
 				
 				if func ~= nil then

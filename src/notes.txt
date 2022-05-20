@@ -1,0 +1,23 @@
+new render engine:
+	only drawing textures if necessary.
+	copy overlapping textures only to the last pos using draw area to prevent chain overlap checking.
+	check overlapping only on movement or if transparent sprites have "mustBeRendered" set to true.
+	set "mustBeRendered" to true every time the texture has to be drawed by animation change or movement.
+		
+	camMoving:
+		still copy frame/buffer on cam move.
+		just add to toRender with necesarry area if only need to be drawed by cam movement.
+		ignore area if "mustBeRendered" is true.
+	
+	DB: 
+		drawing from DB backbuffer into the VRAM back buffer to realize transparent textures:
+			buffered textures has to be written into the DB front buffer on drawing.
+			
+		optional direct texture drawing to the VRAM back buffer to avoid using DB buffers at all:
+			(DB modification necessary.)
+		
+	multiple areas per gameobjet possible. for the case it overlaps with multiple other gameobjects.
+		maybe only usefull for non buffered textures?
+	
+	keep hasMoved/mustRendered mechanic:
+		only need to rerender sprites below if it hasMoved or is transparent.

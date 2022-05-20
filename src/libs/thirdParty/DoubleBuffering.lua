@@ -10,7 +10,7 @@
 MIT License
 
 DoubleBuffering Copyright (c) 2018 Igor Timofeev
-DoubleBuffering (NosGa Engines version) Copyright (c) 2019-2020 NosPo Studio
+DoubleBuffering (NosPo version) Copyright (c) 2019-2020 NosPo Studio
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
-local version = "v0.2d" --NosPo changes version.
+local version = "v0.7d" --NosPo version.
 
 local component = require("component")
 local unicode = require("unicode")
@@ -49,22 +49,38 @@ local tableInsert, tableConcat = table.insert, table.concat
 local colorBlend = color.blend
 local unicodeLen, unicodeSub = unicode.len, unicode.sub
 
+local drawAreas, nonDrawAreas = {}, {} --drawAreas == pixelWhiteList, nonDrawAreas == pixelBlackList
+local drawAreasAreWhitelist = true
+local drawAreaOffsetX, drawAreaOffsetY = 0, 0
+local bufferOnly = false
+
 --------------------------------------------------------------------------------
 
 local function getIndex(x, y)
 	return bufferWidth * (y - 1) + x
 end
-
 local function getCoordinates(index)
 	return index % bufferWidth, math.floor(index / bufferWidth) +1
 end
 
 local function getCurrentFrameTables()
-	return currentFrameBackgrounds, currentFrameForegrounds, currentFrameSymbols
+	return currentFrameBackgrounds, currentFrameForegrounds, currentFrameSymbols, bufferWidth, bufferHeight
+end
+local function getNewFrameTables()
+	return newFrameBackgrounds, newFrameForegrounds, newFrameSymbols, bufferWidth, bufferHeight
+end
+local function setCurrentFrameTables(b, f, s, w, h)
+	currentFrameBackgrounds, currentFrameForegrounds, currentFrameSymbols, bufferWidth, bufferHeight = b, f, s, w, h
+end
+local function setNewFrameTables(b, f, s, w, h)
+	newFrameBackgrounds, newFrameForegrounds, newFrameSymbols, bufferWidth, bufferHeight = b, f, s, w, h
 end
 
-local function getNewFrameTables()
-	return newFrameBackgrounds, newFrameForegrounds, newFrameSymbols
+local function setBufferOnly(b)
+	bufferOnly = b
+end
+local function getBufferOnly()
+	return bufferOnly
 end
 
 --------------------------------------------------------------------------------
@@ -79,6 +95,61 @@ end
 
 local function getDrawLimit()
 	return drawLimitX1, drawLimitY1, drawLimitX2, drawLimitY2
+end
+
+local function setDrawAreas(areas)
+	drawAreas = areas
+end
+local function resetDrawAreas()
+	drawAreas = {}
+end
+local function getDrawAreas()
+	return drawAreas
+end
+local function setNonDrawAreas(areas)
+	nonDrawAreas = areas
+end
+local function resetNonDrawAreas()
+	nonDrawAreas = {}
+end
+local function getNonDrawAreas()
+	return nonDrawAreas
+end
+
+local function setDrawAreaOffset(x, y)
+	drawAreaOffsetX = x or drawAreaOffsetX
+	drawAreaOffsetY = y or drawAreaOffsetY
+	
+end
+local function getDrawAreaOffset()
+	return drawAreaOffsetX, drawAreaOffsetY
+end
+local function resetDrawAreaOffset()
+	drawAreaOffsetX, drawAreaOffsetY = 0, 0
+end
+
+local function isDrawable(x, y)
+	local drawable = true
+	
+	if #drawAreas == 0 and #nonDrawAreas == 0 then
+		--return true
+	end
+	
+	for _, a in pairs(drawAreas) do	
+		if x >= a[1] + drawAreaOffsetX and x <= a[3] + drawAreaOffsetX and y >= a[2] + drawAreaOffsetY and y <= a[4] + drawAreaOffsetY then
+			drawable = true
+			break
+		end
+		drawable = false
+	end
+	for _, a in pairs(nonDrawAreas) do	
+		if x >= a[1] + drawAreaOffsetX and x <= a[3] + drawAreaOffsetX and y >= a[2] + drawAreaOffsetY and y <= a[4] + drawAreaOffsetY then
+			drawable = false
+			break
+		end
+	end
+	
+	return drawable
 end
 
 --------------------------------------------------------------------------------
@@ -157,6 +228,9 @@ end
 
 local function rawSet(index, background, foreground, symbol)
 	newFrameBackgrounds[index], newFrameForegrounds[index], newFrameSymbols[index] = background, foreground, symbol
+	if bufferOnly then
+		currentFrameBackgrounds[index], currentFrameForegrounds[index], currentFrameSymbols[index] = background, foreground, symbol
+	end
 end
 
 local function rawGet(index)
@@ -173,9 +247,12 @@ local function get(x, y)
 end
 
 local function set(x, y, background, foreground, symbol)
-	if x >= drawLimitX1 and y >= drawLimitY1 and x <= drawLimitX2 and y <= drawLimitY2 then
+	if x >= drawLimitX1 and y >= drawLimitY1 and x <= drawLimitX2 and y <= drawLimitY2 and isDrawable(x, y) then
 		local index = bufferWidth * (y - 1) + x
 		newFrameBackgrounds[index], newFrameForegrounds[index], newFrameSymbols[index] = background, foreground, symbol
+		if bufferOnly then
+			currentFrameBackgrounds[index], currentFrameForegrounds[index], currentFrameSymbols[index] = background, foreground, symbol
+		end
 	end
 end
 
@@ -184,13 +261,21 @@ local function drawRectangle(x, y, width, height, background, foreground, symbol
 	for j = y, y + height - 1 do
 		if j >= drawLimitY1 and j <= drawLimitY2 then
 			for i = x, x + width - 1 do
-				if i >= drawLimitX1 and i <= drawLimitX2 then
+				if i >= drawLimitX1 and i <= drawLimitX2 and isDrawable(i, j) then
 					if transparency then
 						newFrameBackgrounds[index], newFrameForegrounds[index] =
 							colorBlend(newFrameBackgrounds[index], background, transparency),
 							colorBlend(newFrameForegrounds[index], background, transparency)
+						if bufferOnly then
+							currentFrameBackgrounds[index], currentFrameForegrounds[index] =
+								colorBlend(currentFrameBackgrounds[index], background, transparency),
+								colorBlend(currentFrameForegrounds[index], background, transparency)
+						end
 					else
 						newFrameBackgrounds[index], newFrameForegrounds[index], newFrameSymbols[index] = background, foreground, symbol
+						if bufferOnly then
+							currentFrameBackgrounds[index], currentFrameForegrounds[index], currentFrameSymbols[index] = background, foreground, symbol
+						end
 					end
 				end
 
@@ -219,7 +304,7 @@ local function copy(x, y, width, height, current)
 				tableInsert(copyArray, newFrameBackgrounds[index])
 				tableInsert(copyArray, newFrameForegrounds[index])
 				tableInsert(copyArray, newFrameSymbols[index])
-				if current then
+				if current or bufferOnly then
 					tableInsert(rawCopyArray, currentFrameBackgrounds[index])
 					tableInsert(rawCopyArray, currentFrameForegrounds[index])
 					tableInsert(rawCopyArray, currentFrameSymbols[index])
@@ -228,7 +313,7 @@ local function copy(x, y, width, height, current)
 				tableInsert(copyArray, 0x0)
 				tableInsert(copyArray, 0x0)
 				tableInsert(copyArray, " ")
-				if current then
+				if current or bufferOnly then
 					tableInsert(rawCopyArray, 0x0)
 					tableInsert(rawCopyArray, 0x0)
 					tableInsert(rawCopyArray, " ")
@@ -247,7 +332,7 @@ local function paste(startX, startY, picture, currentPicture)
 	for y = startY, startY + picture[2] - 1 do
 		if y >= drawLimitY1 and y <= drawLimitY2 then
 			for x = startX, startX + imageWidth - 1 do
-				if x >= drawLimitX1 and x <= drawLimitX2 then
+				if x >= drawLimitX1 and x <= drawLimitX2 and isDrawable(x, y) then
 					newFrameBackgrounds[bufferIndex] = picture[pictureIndex]
 					newFrameForegrounds[bufferIndex] = picture[pictureIndex + 1]
 					newFrameSymbols[bufferIndex] = picture[pictureIndex + 2]
@@ -296,7 +381,7 @@ local function pasteCurrent(startX, startY, picture)
 	for y = startY, startY + picture[2] - 1 do
 		if y >= drawLimitY1 and y <= drawLimitY2 then
 			for x = startX, startX + imageWidth - 1 do
-				if x >= drawLimitX1 and x <= drawLimitX2 then
+				if x >= drawLimitX1 and x <= drawLimitX2 and isDrawable(x, y) then
 					currentFrameBackgrounds[bufferIndex] = picture[pictureIndex]
 					currentFrameForegrounds[bufferIndex] = picture[pictureIndex + 1]
 					currentFrameSymbols[bufferIndex] = picture[pictureIndex + 2]
@@ -312,11 +397,23 @@ local function pasteCurrent(startX, startY, picture)
 	end
 end
 
-local function directCopy(x, y, width, height, tx, ty, current)
+local function directCopy(x, y, width, height, tx, ty, current, actualBuffer)
 	local index
-	
 	local imageWidth = width
 	local bufferIndex, pictureIndex, bufferIndexStepOnReachOfImageWidth = bufferWidth * (ty - 1) + tx, 3, bufferWidth - imageWidth
+	
+	local newBackgrounds, newForegrounds, newSymbols, currentBackgrounds, currentForegrounds, currentSymbols
+	
+	if actualBuffer then
+		newBackgrounds, newForegrounds, newSymbols, currentBackgrounds, currentForegrounds, currentSymbols = newFrameBackgrounds, newFrameForegrounds, newFrameSymbols, currentFrameBackgrounds, currentFrameForegrounds, currentFrameSymbols
+	else
+		newBackgrounds, newForegrounds, newSymbols = {table.unpack(newFrameBackgrounds)}, {table.unpack(newFrameForegrounds)}, {table.unpack(newFrameSymbols)}
+	
+	
+		if current or bufferOnly then
+			currentBackgrounds, currentForegrounds, currentSymbols = {table.unpack(currentFrameBackgrounds)}, {table.unpack(currentFrameForegrounds)}, {table.unpack(currentFrameSymbols)}
+		end
+	end
 	
 	for j = y, y + height - 1 do
 		for i = x, x + width - 1 do
@@ -324,34 +421,46 @@ local function directCopy(x, y, width, height, tx, ty, current)
 			if i >= 1 and j >= 1 and i <= bufferWidth and j <= bufferHeight then
 				index = bufferWidth * (j - 1) + i
 				
-				if newY >= drawLimitY1 and newY <= drawLimitY2 and newX >= drawLimitX1 and newX <= drawLimitX2 then
-					newFrameBackgrounds[bufferIndex] = newFrameBackgrounds[index]
-					newFrameForegrounds[bufferIndex] = newFrameForegrounds[index]
-					newFrameSymbols[bufferIndex] = newFrameSymbols[index]
+				if newY >= drawLimitY1 and newY <= drawLimitY2 and newX >= drawLimitX1 and newX <= drawLimitX2 and isDrawable(ewX, newY) then
+					newBackgrounds[bufferIndex] = newFrameBackgrounds[index]
+					newForegrounds[bufferIndex] = newFrameForegrounds[index]
+					newSymbols[bufferIndex] = newFrameSymbols[index]
 					
-					if current then
-						currentFrameBackgrounds[bufferIndex] = newFrameBackgrounds[index]
-						currentFrameForegrounds[bufferIndex] = newFrameForegrounds[index]
-						currentFrameSymbols[bufferIndex] = newFrameSymbols[index]
+					if current or bufferOnly then
+						currentBackgrounds[bufferIndex] = currentFrameBackgrounds[index]
+						currentForegrounds[bufferIndex] = currentFrameForegrounds[index]
+						currentSymbols[bufferIndex] = currentFrameSymbols[index]
+						--[[
+						currentBackgrounds[bufferIndex] = newFrameBackgrounds[index]
+						currentForegrounds[bufferIndex] = newFrameForegrounds[index]
+						currentSymbols[bufferIndex] = newFrameSymbols[index]
+						]]
 					end
 				end
-				
 			else
-				if newY >= drawLimitY1 and newY <= drawLimitY2 and newX >= drawLimitX1 and newX <= drawLimitX2 then
-					newFrameBackgrounds[newIndex] = 0x0
-					newFrameForegrounds[newIndex] = 0x0
-					newFrameSymbols[newIndex] = " "
-					
-					if current then
-						currentFrameBackgrounds[bufferIndex] = 0x0
-						currentFrameForegrounds[bufferIndex] = 0x0
-						currentFrameSymbols[bufferIndex] = " "
+				if newY >= drawLimitY1 and newY <= drawLimitY2 and newX >= drawLimitX1 and newX <= drawLimitX2 and isDrawable(newX, newY) then
+					newBackgrounds[bufferIndex] = 0x0
+					newForegrounds[bufferIndex] = 0x0
+					newSymbols[bufferIndex] = " "
+					--[[
+					newBackgrounds[newIndex] = 0x0
+					newForegrounds[newIndex] = 0x0
+					newSymbols[newIndex] = " "
+					]]
+					if current or bufferOnly then
+						currentBackgrounds[bufferIndex] = 0x0
+						currentForegrounds[bufferIndex] = 0x0
+						currentSymbols[bufferIndex] = " "
 					end
 				end
 			end
 			bufferIndex, pictureIndex = bufferIndex + 1, pictureIndex + 3
 		end
 		bufferIndex = bufferIndex + bufferIndexStepOnReachOfImageWidth
+	end
+	newFrameBackgrounds, newFrameForegrounds, newFrameSymbols = newBackgrounds, newForegrounds, newSymbols
+	if current or bufferOnly then
+		currentFrameBackgrounds, currentFrameForegrounds, currentFrameSymbols = currentBackgrounds, currentForegrounds, currentSymbols
 	end
 end
 
@@ -437,14 +546,23 @@ local function drawText(x, y, textColor, data, transparency)
 		local charIndex, bufferIndex = 1, bufferWidth * (y - 1) + x
 		
 		for charIndex = 1, unicodeLen(data) do
-			if x >= drawLimitX1 and x <= drawLimitX2 then
+			if x >= drawLimitX1 and x <= drawLimitX2 and isDrawable(x, y) then
 				if transparency then
 					newFrameForegrounds[bufferIndex] = colorBlend(newFrameBackgrounds[bufferIndex], textColor, transparency)
+					if bufferOnly then
+						currentFrameForegrounds[bufferIndex] = colorBlend(currentFrameBackgrounds[bufferIndex], textColor, transparency)
+					end
 				else
 					newFrameForegrounds[bufferIndex] = textColor
+					if bufferOnly then
+						currentFrameForegrounds[bufferIndex] = textColor
+					end
 				end
 
 				newFrameSymbols[bufferIndex] = unicodeSub(data, charIndex, charIndex)
+				if bufferOnly then
+					currentFrameSymbols[bufferIndex] = unicodeSub(data, charIndex, charIndex)
+				end
 			end
 
 			x, bufferIndex = x + 1, bufferIndex + 1
@@ -452,29 +570,47 @@ local function drawText(x, y, textColor, data, transparency)
 	end
 end
 
-local function drawImage(startX, startY, picture, blendForeground, area)
+local function drawImage(startX, startY, picture, blendForeground)
 	local bufferIndex, pictureIndex, imageWidth, backgrounds, foregrounds, alphas, symbols = bufferWidth * (startY - 1) + startX, 1, picture[1], picture[3], picture[4], picture[5], picture[6]
 	local bufferIndexStepOnReachOfImageWidth = bufferWidth - imageWidth
 
 	for y = startY, startY + picture[2] - 1 do
 		if y >= drawLimitY1 and y <= drawLimitY2 then
 			for x = startX, startX + imageWidth - 1 do
-				if x >= drawLimitX1 and x <= drawLimitX2 then
+				if x >= drawLimitX1 and x <= drawLimitX2 and isDrawable(x, y) then
 					if alphas[pictureIndex] == 0 then
 						newFrameBackgrounds[bufferIndex], newFrameForegrounds[bufferIndex] = backgrounds[pictureIndex], foregrounds[pictureIndex]
+						if bufferOnly then
+							currentFrameBackgrounds[bufferIndex], currentFrameForegrounds[bufferIndex] = backgrounds[pictureIndex], foregrounds[pictureIndex]
+						end
 					elseif alphas[pictureIndex] > 0 and alphas[pictureIndex] < 1 then
 						newFrameBackgrounds[bufferIndex] = colorBlend(newFrameBackgrounds[bufferIndex], backgrounds[pictureIndex], alphas[pictureIndex])
+						if bufferOnly then
+							currentFrameBackgrounds[bufferIndex] = colorBlend(currentFrameBackgrounds[bufferIndex], backgrounds[pictureIndex], alphas[pictureIndex])
+						end
 						
 						if blendForeground then
 							newFrameForegrounds[bufferIndex] = colorBlend(newFrameForegrounds[bufferIndex], foregrounds[pictureIndex], alphas[pictureIndex])
+							if bufferOnly then
+								currentFrameForegrounds[bufferIndex] = colorBlend(currentFrameForegrounds[bufferIndex], foregrounds[pictureIndex], alphas[pictureIndex])
+							end
 						else
 							newFrameForegrounds[bufferIndex] = foregrounds[pictureIndex]
+							if bufferOnly then
+								currentFrameForegrounds[bufferIndex] = foregrounds[pictureIndex]
+							end
 						end
 					elseif alphas[pictureIndex] == 1 and symbols[pictureIndex] ~= " " then
 						newFrameForegrounds[bufferIndex] = foregrounds[pictureIndex]
+						if bufferOnly then
+							currentFrameForegrounds[bufferIndex] = foregrounds[pictureIndex]
+						end
 					end
 
 					newFrameSymbols[bufferIndex] = symbols[pictureIndex]
+					if bufferOnly then
+						currentFrameSymbols[bufferIndex] = symbols[pictureIndex]
+					end
 				end
 
 				bufferIndex, pictureIndex = bufferIndex + 1, pictureIndex + 1
@@ -501,44 +637,54 @@ end
 
 --------------------------------------------------------------------------------
 
-local function semiPixelRawSet(index, color, yPercentTwoEqualsZero)
+local function semiPixelRawSet(index, color, yPercentTwoEqualsZero, internalRun) --ToDo
 	local upperPixel, lowerPixel, bothPixel = "▀", "▄", " "
-	local background, foreground, symbol = newFrameBackgrounds[index], newFrameForegrounds[index], newFrameSymbols[index]
+	local backgroundBuffer, foregroundBuffer, symbolBuffer = newFrameBackgrounds, newFrameForegrounds, newFrameSymbols
+	
+	if internalRun then
+		backgroundBuffer, foregroundBuffer, symbolBuffer = currentFrameBackgrounds, currentFrameForegrounds, currentFrameSymbols
+	end
+	
+	local background, foreground, symbol = backgroundBuffer[index], foregroundBuffer[index], symbolBuffer[index]
 
 	if yPercentTwoEqualsZero then
 		if symbol == upperPixel then
 			if color == foreground then
-				newFrameBackgrounds[index], newFrameForegrounds[index], newFrameSymbols[index] = color, foreground, bothPixel
+				backgroundBuffer[index], foregroundBuffer[index], symbolBuffer[index] = color, foreground, bothPixel
 			else
-				newFrameBackgrounds[index], newFrameForegrounds[index], newFrameSymbols[index] = color, foreground, symbol
+				backgroundBuffer[index], foregroundBuffer[index], symbolBuffer[index] = color, foreground, symbol
 			end
 		elseif symbol == bothPixel then
 			if color ~= background then
-				newFrameBackgrounds[index], newFrameForegrounds[index], newFrameSymbols[index] = background, color, lowerPixel
+				backgroundBuffer[index], foregroundBuffer[index], symbolBuffer[index] = background, color, lowerPixel
 			end
 		else
-			newFrameBackgrounds[index], newFrameForegrounds[index], newFrameSymbols[index] = background, color, lowerPixel
+			backgroundBuffer[index], foregroundBuffer[index], symbolBuffer[index] = background, color, lowerPixel
 		end
 	else
 		if symbol == lowerPixel then
 			if color == foreground then
-				newFrameBackgrounds[index], newFrameForegrounds[index], newFrameSymbols[index] = color, foreground, bothPixel
+				backgroundBuffer[index], foregroundBuffer[index], symbolBuffer[index] = color, foreground, bothPixel
 			else
-				newFrameBackgrounds[index], newFrameForegrounds[index], newFrameSymbols[index] = color, foreground, symbol
+				backgroundBuffer[index], foregroundBuffer[index], symbolBuffer[index] = color, foreground, symbol
 			end
 		elseif symbol == bothPixel then
 			if color ~= background then
-				newFrameBackgrounds[index], newFrameForegrounds[index], newFrameSymbols[index] = background, color, upperPixel
+				backgroundBuffer[index], foregroundBuffer[index], symbolBuffer[index] = background, color, upperPixel
 			end
 		else
-			newFrameBackgrounds[index], newFrameForegrounds[index], newFrameSymbols[index] = background, color, upperPixel
+			backgroundBuffer[index], foregroundBuffer[index], symbolBuffer[index] = background, color, upperPixel
 		end
+	end
+	
+	if bufferOnly and not internalRun then
+		semiPixelRawSet(index, color, yPercentTwoEqualsZero, true)
 	end
 end
 
 local function semiPixelSet(x, y, color)
 	local yFixed = mathCeil(y / 2)
-	if x >= drawLimitX1 and yFixed >= drawLimitY1 and x <= drawLimitX2 and yFixed <= drawLimitY2 then
+	if x >= drawLimitX1 and yFixed >= drawLimitY1 and x <= drawLimitX2 and yFixed <= drawLimitY2 and isDrawable(x, yFixed) then
 		semiPixelRawSet(bufferWidth * (yFixed - 1) + x, color, y % 2 == 0)
 	end
 end
@@ -612,7 +758,7 @@ end
 
 --------------------------------------------------------------------------------
 
-local function drawChanges(force)	
+local function drawChanges(force)
 	local index, indexStepOnEveryLine, changes = bufferWidth * (drawLimitY1 - 1) + drawLimitX1, (bufferWidth - drawLimitX2 + drawLimitX1 - 1), {}
 	local x, equalChars, equalCharsIndex, charX, charIndex, currentForeground
 	local currentFrameBackground, currentFrameForeground, currentFrameSymbol, changesCurrentFrameBackground, changesCurrentFrameBackgroundCurrentFrameForeground
@@ -718,6 +864,10 @@ return {
 	getHeight = getHeight,
 	getCurrentFrameTables = getCurrentFrameTables,
 	getNewFrameTables = getNewFrameTables,
+	setCurrentFrameTables = setCurrentFrameTables,
+	setNewFrameTables = setNewFrameTables,
+	setBufferOnly = setBufferOnly,
+	getBufferOnly = getBufferOnly,
 
 	rawSet = rawSet,
 	rawGet = rawGet,
@@ -746,4 +896,15 @@ return {
 	drawSemiPixelLine = drawSemiPixelLine,
 	drawSemiPixelEllipse = drawSemiPixelEllipse,
 	drawSemiPixelCurve = drawSemiPixelCurve,
+	
+	setDrawAreas = setDrawAreas,
+	resetDrawAreas = resetDrawAreas,
+	getDrawAreas = getDrawAreas,
+	setNonDrawAreas = setNonDrawAreas,
+	resetNonDrawAreas = resetNonDrawAreas,
+	getNonDrawAreas = getNonDrawAreas,
+	
+	setDrawAreaOffset = setDrawAreaOffset,
+	getDrawAreaOffset = getDrawAreaOffset,
+	resetDrawAreaOffset = resetDrawAreaOffset,
 }

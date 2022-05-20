@@ -34,19 +34,16 @@ function GameObjectsTemplate.new(args)
 	--Take given GameObject args if present and prevents it from being nil if not.
 	args = args or {} 
 	
-	args.sizeX = 6
-	args.sizeY = 3
+	args.sizeX = 20
+	args.sizeY = 27
 	args.components = { --Define the GameObjects components.
 		{"Sprite", 
 			x = 0, 
 			y = 0, 
-			texture = "exampleTexture",
-		},
-		{"RigidBody", 
-			g = 0,
-			stiffness = 1,
+			texture = "street1",
 		},
 	}
+	args.deco = true
 	
 	--===== default stuff =====--
 	--Inheritance from the GameObject main class.
@@ -63,10 +60,10 @@ function GameObjectsTemplate.new(args)
 		x = 0,
 		y = 0,
 		sx = 6, 
-		sy = 3,
+		sy = 6,
 		
 		lf = function(collider, go, selfCall)
-			global.log(global.currentFrame, this:getName())
+			--global.log(global.currentFrame, this:getName())
 		end
 	})
 	
@@ -83,7 +80,7 @@ function GameObjectsTemplate.new(args)
 	]]
 	this.ctrl_right_key_pressed = function(this, signal, sname) 
 		--Addign force to move the object.
-		this:addForce(5, 0, args.maxSpeed) 
+		--this:addForce(5, 0, args.maxSpeed) 
 	end
 	
 	--[[Same as the function ctrl_... fucntion in the stateTemplate
@@ -91,7 +88,7 @@ function GameObjectsTemplate.new(args)
 	]]
 	this.ctrl_left_key_pressed = function(this, signal, sname) 
 		--Addign negative force to move the object.
-		this:addForce(-5, 0, args.maxSpeed) 
+		--this:addForce(-5, 0, args.maxSpeed) 
 	end
 	
 	--===== default functions =====--

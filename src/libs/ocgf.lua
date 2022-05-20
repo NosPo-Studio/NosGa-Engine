@@ -215,22 +215,30 @@ end
 
 function OCGF.GameObject.addSprite(this, args)
 	args.x, args.y = posEqualizer(args, this.posX, this.posY)
-	table.insert(this.sprites, OCGF.Sprite.new(this, args))
+	local obj = OCGF.Sprite.new(this, args)
+	table.insert(this.sprites, obj)
+	return obj
 end
 
 function OCGF.GameObject.addBoxCollider(this, args)
 	args.x, args.y = posEqualizer(args, this.posX, this.posY)
 	args.isCollider = true
-	table.insert(this.boxCollider, OCGF.BoxTrigger.new(this, args))
+	local obj = OCGF.BoxTrigger.new(this, args)
+	table.insert(this.boxCollider, obj)
+	return obj
 end
 
 function OCGF.GameObject.addBoxTrigger(this, args)
 	args.x, args.y = posEqualizer(args, this.posX, this.posY)
-	table.insert(this.boxTrigger, OCGF.BoxTrigger.new(this, args))
+	local obj = OCGF.BoxTrigger.new(this, args)
+	table.insert(this.boxTrigger, obj)
+	return obj
 end
 
 function OCGF.GameObject.addRigidBody(this, args)
-	table.insert(this.rigidBodys, OCGF.RigidBody.new(this, args))
+	local obj = OCGF.RigidBody.new(this, args)
+	table.insert(this.rigidBodys, obj)
+	return obj
 end
 
 function OCGF.GameObject.onCollision(this, gameObject, selfCall)
@@ -456,10 +464,9 @@ function OCGF.Sprite.draw(this, dt, background, offsetX, offsetY, area)
 		this.animation.background = background
 		this.animation:draw(this.posX + offsetX, this.posY + offsetY, dt, nil, background, area)
 	elseif this.useDB then
-		
 		this.gameObject.ocgf.db.setDrawLimit(area[1], area[3], area[2], area[4])
 		
-		this.gameObject.ocgf.db.drawImage(math.floor(this.posX + offsetX +.5), math.floor(this.posY + offsetY +.5), this.texture, nil, area)
+		this.gameObject.ocgf.db.drawImage(math.floor(this.posX + offsetX +.5), math.floor(this.posY + offsetY +.5), this.texture)
 		
 		this.gameObject.ocgf.db.resetDrawLimit()
 	else
@@ -534,8 +541,9 @@ function OCGF.RigidBody.new(gameObject, args)
 	this.hardness = ut.parseArgs(args.hardness, 1)
 	this.gravitationFactor = ut.parseArgs(args.g, args.gravitation, args.gravitationFactor, 1)
 	this.stiffness = ut.parseArgs(args.stiffness, 0) -- 1 == 1 speed loss per update, -1 == unmovable.
-	this.speedRetain = ut.parseArgs(args.speedRetain, 1) -- 0 == 100% speed loss per update, .1 == 90% speed loss pr update, 1 == 0% speed loss per update.
+	this.speedTakeover = ut.parseArgs(args.speedTakeover, 1) -- 0 == 100% speed loss per update, .1 == 90% speed loss pr update, 1 == 0% speed loss per update.
 	this.stickiness = ut.parseArgs(args.stickiness, 1) --1 == enouth to stick stiff, 0 == no stickiness.
+	this.speedLoss = ut.parseArgs(args.sl, args.speedLoss, 0) --Slightly dependent from the FPS so only recomended to use on graphical effects.
 	
 	this.speedX = 0
 	this.speedY = 0
@@ -546,7 +554,6 @@ end
 --function OCGF.RigidBody.update(this, gameObjects, pingTrigger, pingGameObject, callOwnFunction, slp) --ToDo: add realistic physics.
 
 function OCGF.RigidBody.update(this, gameObjects, dt, slp) --ToDo: add realistic physics.
-	
 	local g = this.gravitationFactor
 	if this.gameObject.attachedTo ~= nil then
 		g = g * (1 - this.stickiness)
@@ -555,13 +562,16 @@ function OCGF.RigidBody.update(this, gameObjects, dt, slp) --ToDo: add realistic
 	this.speedY = this.speedY + (g * dt)
 	this.speedY = calculateStiffness(this.speedY, this.stiffness * dt)
 	
+	this.speedX = calculateStiffness(this.speedX, math.abs(this.speedX * this.speedLoss * dt))
+	this.speedY = calculateStiffness(this.speedY, math.abs(this.speedY * this.speedLoss * dt))
+	
 	if this.gameObject.attachedTo ~= nil then
 		local x, y = this.gameObject.attachedTo:getPos()
 		local lx, ly = this.gameObject.attachedTo:getLastPos()
 		
 		this.gameObject:move(
-			calculateStiffness((x - lx), this.stiffness * (1 - this.stickiness) * dt) * this.speedRetain,
-			calculateStiffness((y - ly), this.stiffness * (1 - this.stickiness) * dt) * this.speedRetain
+			calculateStiffness((x - lx), this.stiffness * (1 - this.stickiness) * dt) * this.speedTakeover,
+			calculateStiffness((y - ly), this.stiffness * (1 - this.stickiness) * dt) * this.speedTakeover
 		)
 	end
 	
@@ -612,6 +622,7 @@ function OCGF.BoxTrigger.new(gameObject, args)
 	this.callOwnFunction = ut.parseArgs(args.callFunction, args.callOwnFunction, true)
 	this.callOwnGameObject = ut.parseArgs(args.callOwn, true)
 	this.isCollider = ut.parseArgs(args.isCollider, false)
+	this.floatCalculation = ut.parseArgs(args.fc, args.floatCalculation, false)
 	
 	this.lastPosX = this.posX
 	this.lastPosY = this.posY
@@ -623,7 +634,6 @@ function OCGF.BoxTrigger.update(this, collider, pingTrigger, pingGameObject, cal
 	
 	--this.gameObject.log(this.listedFunction, this.callOwnFunction, this.isCollider, this.hass == "!!")
 	
-	
 	pingTrigger = ut.parseArgs(pingTrigger, this.pingTrigger)
 	pingGameObject = ut.parseArgs(pingGameObject, this.pingGameObject)
 	callOwnFunction = ut.parseArgs(callOwnFunction, this.callOwnFunction)
@@ -633,9 +643,16 @@ function OCGF.BoxTrigger.update(this, collider, pingTrigger, pingGameObject, cal
 	local gameObjects = {}
 	
 	for i, c in ipairs(collider) do
+		local x, y, x2, y2 = this.posX, this.posY, c.posX, c.posY
+		
+		if not this.floatCalculation then
+			local f = math.floor
+			x, y, x2, y2 = f(x +.5), f(y +.5), f(x2 +.5), f(y2 +.5)
+		end
+		
 		if c ~= this and 
-			this.posX + this.sizeX > c.posX and this.posX < c.posX + c.sizeX and
-			this.posY + this.sizeY > c.posY and this.posY < c.posY + c.sizeY
+			x + this.sizeX > x2 and x < x2 + c.sizeX and
+			y + this.sizeY > y2 and y < y2 + c.sizeY
 		then
 			table.insert(collisions, c)
 			table.insert(gameObjects, c.gameObject)

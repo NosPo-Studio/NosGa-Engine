@@ -68,10 +68,12 @@ local function loadFiles(target, name, func, directPath, subDirs, structured, lo
 		elseif reload then
 			print("[DL]: Reloading data group: " .. name .. ".")
 		end
-		global.loadData(target, path, func, {log = print, warn = global.warn}, reload, subDirs, structured, loadFunc)
+		global.loadData(target, path, func, {log = print, warn = global.warn, error = print}, reload, subDirs, structured, loadFunc)
 		global.alreadyLoaded[path] = true
+		return true
 	else
 		print("[DL]: Data group already loaded: " .. name .. ".")
+		return false
 	end
 end
 
@@ -140,10 +142,6 @@ if toLoad.conf then
 	end
 end
 
-if toLoad.re then
-	global.core.re = reloadFile(global.core.re, "data/core/re.lua", global)
-end
-
 if toLoad.uh then
 	global.core.updateHandler = reloadFile(global.core.updateHandler, "data/core/updateHandler.lua", global)
 end
@@ -153,11 +151,38 @@ if toLoad.eh then
 	global.core.eventHandler = reloadFile(global.core.eventHandler, "data/core/eventHandler.lua", global)
 end
 
+if toLoad.dbgpu and global.conf.useDoubleBuffering then 
+	if global.conf.useExperimentalRenderEngine then
+		global.gpu = reloadFile(global.gpu, "libs/dbgpu_api.lua", {path = "libs/thirdParty", directDraw = false, forceDraw = false, rawCopy = true, actualRawCopy = true, global = global})
+	else
+		global.gpu = reloadFile(global.gpu, "libs/dbgpu_api.lua", {path = "libs/thirdParty", directDraw = false, forceDraw = false, rawCopy = true, actualRawCopy = false})
+	end
+	global.oclrl.gpu = global.gpu
+end
+if toLoad.re then
+	if global.conf.useExperimentalRenderEngine then
+		global.core.re = reloadFile(global.core.re, "data/core/re_experimental.lua", global)
+		global.run(global.core.re.init)
+	else
+		global.core.re = reloadFile(global.core.re, "data/core/re.lua", global)
+	end
+end
 if toLoad.RenderArea then
-	global.core.RenderArea = reloadFile(global.core.RenderArea, "data/core/RenderArea.lua", global)
+	if global.conf.useExperimentalRenderEngine then
+		global.core.RenderArea = reloadFile(global.core.RenderArea, "data/core/RenderArea_experimental.lua", global)
+	else
+		global.core.RenderArea = reloadFile(global.core.RenderArea, "data/core/RenderArea.lua", global)
+	end
 end
 if toLoad.GameObject then
-	global.core.GameObject = reloadFile(global.core.GameObject, "data/core/GameObject.lua", global)
+	if global.conf.useExperimentalRenderEngine then
+		global.core.GameObject = reloadFile(global.core.GameObject, "data/core/GameObject_experimental.lua", global)
+	else
+		global.core.GameObject = reloadFile(global.core.GameObject, "data/core/GameObject.lua", global)
+	end
+end
+if toLoad.Sprite then
+	global.core.Sprite = reloadFile(global.core.Sprite, "data/core/Sprite.lua", global)
 end
 
 --===== asset loading =====--
@@ -172,6 +197,9 @@ if toLoad.states then
 end
 if toLoad.textures then
 	loadFiles(global.texture, "textures", nil, "texturePacks/" .. global.conf.texturePack .. "/textures")
+	if global.texturePack == nil or toLoad.reload then
+		global.texturePack = dofile("texturePacks/" .. global.conf.texturePack .. "/info.lua")
+	end
 end
 if toLoad.animations then
 	loadFiles(global.animation, "animations", nil, "texturePacks/" .. global.conf.texturePack .. "/animations", false, false, global.ocal.load)
@@ -180,7 +208,9 @@ if toLoad.parents then
 	loadFiles(global.parent, "parents")
 end
 if toLoad.gameObjects then
-	loadFiles(global.gameObject, "gameObjects")
+	if loadFiles(global.gameObject, "gameObjects") then
+		
+	end
 end
 if toLoad.structuredGameObjects then
 	loadFiles(global.gameObject, "structuredGameObjects", nil, nil, nil, true)

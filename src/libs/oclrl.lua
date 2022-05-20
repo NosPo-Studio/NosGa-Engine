@@ -101,17 +101,7 @@ function oclrl.draw(this, posX, posY, texture, checkColor, area, clear)
 	
 	local posX, posY = math.floor(posX +.5), math.floor(posY +.5)
 	
-	--cprint(texture.test)
 	
-	--[[
-	if texture.test then
-		cprint(posX, "|", posY, "|", fromX, "|", toX, "|", fromY, "|", toY)
-		
-		posX = math.floor(posX +.5)
-		
-		cprint(posX, "|", posY, "|", fromX, "|", toX, "|", fromY, "|", toY, "TTT")
-	end
-	]]
 	
 	for c, v in ipairs(texture.drawCalls or texture) do 
 		if #v == 1 or type(v[3]) == "table" then --link

@@ -160,7 +160,9 @@ function ocal.Animation.draw(this, posX, posY, dt, clear, background, area)
 		this.ocal.db.drawImage(math.floor(posX +.5), math.floor(posY +.5), this.animation.frames[math.floor(this.currentFrame)])
 		this.ocal.db.resetDrawLimit()
 	else
-		this.ocal.oclrl:draw(math.floor(posX +.5), math.floor(posY +.5), this.animation.frames[math.floor(this.currentFrame)], nil, area)
+		if this.animation.frames[math.floor(this.currentFrame)] ~= nil then
+			this.ocal.oclrl:draw(math.floor(posX +.5), math.floor(posY +.5), this.animation.frames[math.floor(this.currentFrame)], nil, area)
+		end
 	end
 	
 	if ut.parseArgs(dt, this.dt) == false then

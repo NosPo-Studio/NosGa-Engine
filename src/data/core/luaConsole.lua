@@ -22,10 +22,10 @@ local global = ...
 local luaShell = loadfile("libs/thirdParty/luaShell.lua")(global)
 local lastAutoCompBase = ""
 
-global.tbConsole = global.ocui.TextBox.new(global.ocui, {x=1, y=0, sx=0, sy=0, lineBreak = true, foregroundColor=0xcccccc, backgroundColor=0x333333, managed = {draw = false}})
-global.setConsoleSize()
+global.tbConsole = global.ocui.TextBox.new(global.ocui, {x=1, y=0, sx=global.resX, sy=global.resY - (global.resY - global.conf.consoleSizeY), lineBreak = true, foregroundColor=0xcccccc, backgroundColor=0x333333, managed = {draw = false}})
+--global.setConsoleSize()
 
-global.tiConsole = global.ocui.TextInput.new(global.ocui, 6, global.resY, global.resX -5, {
+global.tiConsole = global.ocui.TextInput.new(global.ocui, {x = 6, y = global.resY, s = global.resX -5, 
 	colors = {
 		0xcccccc,
 		0x333333,
@@ -54,8 +54,16 @@ global.tiConsole = global.ocui.TextInput.new(global.ocui, 6, global.resY, global
 	end,
 })
 
-global.bConsolePlaceholder = global.ocui.Button.new(global.ocui, 1, global.resY, 0, 0, {texture0 = global.oclrl.generateTexture({
+global.bConsolePlaceholder = global.ocui.Button.new(global.ocui, {x = 1, y = global.resY, sx = 0, sy = 0, texture0 = global.oclrl.generateTexture({
 	{"b", 0x333333},
 	{"f", 0xcccccc},
 	{0, 0, "lua> "},
 })})
+
+global.mConsole = global.ocui.Menu.new(global.ocui, {x = 0, y = 0, managed = {update = false, draw = false}, c = {
+	{global.tbConsole, 1, global.resY - global.conf.consoleSizeY}, 
+	{global.tiConsole, 6, global.resY}, 
+	{global.bConsolePlaceholder, 1,  global.resY},
+}})
+
+

@@ -15,7 +15,7 @@
     along with this library.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-local OCUI = {version = "v1.5d"}
+local OCUI = {version = "v1.6"} --! not compatible to <= v1.5 !--
 OCUI.__index = OCUI
 
 --[[ToDo:
@@ -23,6 +23,8 @@ OCUI.__index = OCUI
 	rework the initialisation routines (better args etc.).
 	add dynamic ui generation (no texture).
 ]]--
+
+local UT = require("libs/UT")
 
 function OCUI.initiate(oclrl, onError)
 	local this = setmetatable({}, OCUI)
@@ -213,8 +215,6 @@ OCUI.TextBox.__index = OCUI.TextBox
 function OCUI.TextBox.new(ocui, args)
 	local this = setmetatable({}, OCUI.TextBox)
 	
-	this.ut = require("libs/UT")
-	
 	args = args or {}
 	
 	this.posX = args.posX or args.x
@@ -267,7 +267,7 @@ function OCUI.TextBox.getContent(this, text, length, lineBreak)
 				s = string.sub(s, 0, length)
 			end
 			
-			content[index] = this.ut.fillString(s, length - #s, " ")
+			content[index] = UT.fillString(s, length - #s, " ")
 			index = index +1
 		end
 	end
@@ -333,14 +333,13 @@ end
 OCUI.Menu = {widgetType = "menu"}
 OCUI.Menu.__index = OCUI.Menu
 
-function OCUI.Menu.new(ocui, posX, posY, content, args)--posX == [int], posY == [int], content == [numTable], {backgroundTexture == [OCGLTexture], managed == [{update == [bool], draw == [bool], stop == [bool]}]}
+function OCUI.Menu.new(ocui, args)--posX == [int], posY == [int], content == [numTable], {backgroundTexture == [OCGLTexture], managed == [{update == [bool], draw == [bool], stop == [bool]}]}
 	local this = setmetatable({}, OCUI.Menu)
 	this.thread = require("thread")
 	this.event = require("event")
-	this.ut = require("libs/UT")
 	this.ocui = ocui
-	this.posX = posX
-	this.posY = posY	
+	this.posX = UT.parseArgs(args.x, args.posX)
+	this.posY = UT.parseArgs(args.y, args.posY)
 	this.content = {}
 	this.backgroundTexture = args.backgroundTexture
 	this.status = true
@@ -351,7 +350,7 @@ function OCUI.Menu.new(ocui, posX, posY, content, args)--posX == [int], posY == 
 	
 	this.cfg_inputMap = {next = {15}}
 	
-	this:add(content)
+	this:add(UT.parseArgs(args.c, args.content))
 	ocui.listAutoManage(this, args.managed or {})
 	
 	return this
@@ -372,7 +371,7 @@ end
 function OCUI.Menu.inputManager(this)
 	while this.status and this.markingList[this.markedPos].status do
 		local _, _, key, code = this.event.pull("key_down")
-		if this.ut.inputCheck(this.cfg_inputMap.next, code) then
+		if UT.inputCheck(this.cfg_inputMap.next, code) then
 			this:next()
 		end
 	end
@@ -383,7 +382,7 @@ function OCUI.Menu.add(this, content)
 		v[1]:stop()
 		v[1]:move(this.posX +v[2], this.posY +v[3])
 		
-		if this.ut.inputCheck({"textInput", "list"}, v[1].widgetType) then --WIP
+		if UT.inputCheck({"textInput", "list"}, v[1].widgetType) then --WIP
 			table.insert(this.markingList, v[1])
 			local mp = #this.markingList
 			local oldFunction = v[1].update
@@ -461,19 +460,18 @@ end
 OCUI.List = {widgetType = "list"}
 OCUI.List.__index = OCUI.List
 
-function OCUI.List.new(ocui, posX, posY, sizeX, sizeY, content, args) --posX == [int], posY == [int], sizeX == [int], sizeY == [int], content == [numTable], {colors == [numTable], listedFunction == [function()], config == [table], managed == [{update == [bool], draw == [bool], stop == [bool]}]}
+function OCUI.List.new(ocui, args) --posX == [int], posY == [int], sizeX == [int], sizeY == [int], content == [numTable], {colors == [numTable], listedFunction == [function()], config == [table], managed == [{update == [bool], draw == [bool], stop == [bool]}]}
 
 	local this = setmetatable({}, OCUI.List)
 	this.computer = require("computer")
 	this.event = require("event")
 	this.thread = require("thread") 
-	this.ut = require("libs/UT")
 	this.listedFunction = args.listedFunction or function() end
 	this.ocui = ocui
-	this.posX = posX
-	this.posY = posY
-	this.sizeX = sizeX
-	this.sizeY = sizeY
+	this.posX = UT.parseArgs(args.x, args.posX)
+	this.posY = UT.parseArgs(args.y, args.posY)
+	this.sizeX = UT.parseArgs(args.sx, args.sizeX)
+	this.sizeY = UT.parseArgs(args.sy, args.sizeY)
 	
 	args.colors = args.colors or {}
 	this.cfg_normalForegroundColor = args.colors[1] or 0xaaaaaa
@@ -491,12 +489,12 @@ function OCUI.List.new(ocui, posX, posY, sizeX, sizeY, content, args) --posX == 
 	this.markedPosition = 1
 	this.pClickPos = 1
 	this.pClickTime = 0
-	this.content = content or {}
+	this.content = UT.parseArgs(args.content, {})
 	this.internOCUI = ocui.initiate(ocui.oclrl, this.ocui.onError)
 	this.buttons = {}
 	this.inputThread = this.thread.create(function() end)
 	this.backgroundTexture = ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, this.sizeX, this.sizeY, " "})
-	this.listButton = this.ocui.Button.new(this.internOCUI, posX, posY, sizeX, sizeY, {listedFunction = function() 
+	this.listButton = this.ocui.Button.new(this.internOCUI, this.posX, this.posY, this.sizeX, this.sizeY, {listedFunction = function() 
 		this.status = true 
 		this.tmpStatus = true 
 		if this.inputThread:status() ~= "running" then
@@ -517,17 +515,17 @@ function OCUI.List.new(ocui, posX, posY, sizeX, sizeY, content, args) --posX == 
 		
 		local function ScrollContent()
 			for c, v in ipairs(this.buttons) do
-				v.texture0 = ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, this.ut.fillString(content[this.scrollPos +c], sizeX - #content[this.scrollPos +c], " ")})
-				v.texture1 = ocui.oclrl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, this.ut.fillString(content[this.scrollPos +c], sizeX - #content[this.scrollPos +c], " ")})
+				v.texture0 = ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, UT.fillString(this.content[this.scrollPos +c], this.sizeX - #this.content[this.scrollPos +c], " ")})
+				v.texture1 = ocui.oclrl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, UT.fillString(this.content[this.scrollPos +c], this.sizeX - #this.content[this.scrollPos +c], " ")})
 			end
 		end
-		this.upButton = this.internOCUI.Button.new(this.internOCUI, posX, posY, sizeX, 1, {texture0 = this.ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, "^"}), texture1 = this.ocui.oclrl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, this.ut.fillString("^", this.sizeX -1, " ")}), listedFunction = function(_)
+		this.upButton = this.internOCUI.Button.new(this.internOCUI, this.posX, this.posY, this.sizeX, 1, {texture0 = this.ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, "^"}), texture1 = this.ocui.oclrl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, UT.fillString("^", this.sizeX -1, " ")}), listedFunction = function(_)
 			if this.scrollPos > 0 then
 				this.scrollPos = this.scrollPos -1
 				ScrollContent()
 			end
 		end})
-		this.downButton = this.internOCUI.Button.new(this.internOCUI, posX, posY +sizeY -1, sizeX, 1, {texture0 = this.ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, "v"}), texture1 = this.ocui.oclrl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, this.ut.fillString("v", this.sizeX -1, " ")}), listedFunction = function(_)
+		this.downButton = this.internOCUI.Button.new(this.internOCUI, this.posX, this.posY +this.sizeY -1, this.sizeX, 1, {texture0 = this.ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, "v"}), texture1 = this.ocui.oclrl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, UT.fillString("v", this.sizeX -1, " ")}), listedFunction = function(_)
 			if this.scrollPos < this.sizeY -2 then
 				this.scrollPos = this.scrollPos +1
 				ScrollContent()
@@ -538,7 +536,7 @@ function OCUI.List.new(ocui, posX, posY, sizeX, sizeY, content, args) --posX == 
 	end
 	
 	for c = 1, this.buttonCount, 1 do
-		this.buttons[c] = this.internOCUI.Button.new(this.internOCUI, posX, posY +c -1 +buttonStartPos, sizeX, 1, {texture0 = this.ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, this.ut.fillString(content[c], sizeX - #content[c], " ")}), texture1 = this.ocui.oclrl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, this.ut.fillString(content[c], sizeX - #content[c], " ")}), listedFunction = function(_) 
+		this.buttons[c] = this.internOCUI.Button.new(this.internOCUI, this.posX, this.posY +c -1 +buttonStartPos, this.sizeX, 1, {texture0 = this.ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, UT.fillString(this.content[c], this.sizeX - #this.content[c], " ")}), texture1 = this.ocui.oclrl.generateTexture({this.cfg_clickedForegroundColor, this.cfg_clickedBackgroundColor, UT.fillString(this.content[c], this.sizeX - #this.content[c], " ")}), listedFunction = function(_) 
 			if this.computer.uptime() - this.pClickTime < this.cfg_doubleClickTime and this.pClickPos == c or this.cfg_doubleClickTime == -1 then
 				this:buttonPress(c, true)
 			else
@@ -581,28 +579,28 @@ function OCUI.List.inputManager(this)
 	while this.cfg_doubleClickTime ~= -1 and this.status do
 		local eventType, _, key, code, direction = this.event.pull()
 		if eventType == "key_down" then
-			if this.ut.inputCheck(m.enter, code) then
+			if UT.inputCheck(m.enter, code) then
 				this.pClickTime = this.computer.uptime()
 				this.buttons[this.markedPosition]:listedFunction()
-			elseif this.ut.inputCheck(m.pos1, code) then
+			elseif UT.inputCheck(m.pos1, code) then
 				if this.scrollPos ~= nil then
 					this.scrollPos = 1
 					this.upButton:listedFunction()
 				end
 				this.buttons[1]:listedFunction()
-			elseif this.ut.inputCheck(m.endKey, code) then
+			elseif UT.inputCheck(m.endKey, code) then
 				if this.scrollPos ~= nil then
 					this.scrollPos = #this.content - this.buttonCount -1
 					this.downButton:listedFunction()
 				end
 				this.buttons[this.buttonCount]:listedFunction()
-			elseif this.ut.inputCheck(m.up, code) then
+			elseif UT.inputCheck(m.up, code) then
 				if this.markedPosition > 1 then
 					this.buttons[this.markedPosition -1]:listedFunction()
 				elseif this.scrollPos ~= nil then
 					this.upButton:listedFunction()
 				end
-			elseif this.ut.inputCheck(m.down, code) then
+			elseif UT.inputCheck(m.down, code) then
 				if this.markedPosition < this.buttonCount then
 					this.buttons[this.markedPosition +1]:listedFunction()
 				elseif this.scrollPos ~= nil then
@@ -674,18 +672,16 @@ end
 OCUI.TextInput = {widgetType = "textInput"}
 OCUI.TextInput.__index = OCUI.TextInput
 
-function OCUI.TextInput.new(ocui, posX, posY, size, args) --posX == [int], posY == [int], size == [int], args == {colors == [numTable], listedFunction == [function()], managed == [{update == [bool], draw == [bool], stop == [bool]}]}
+function OCUI.TextInput.new(ocui, args) --posX == [int], posY == [int], size == [int], args == {colors == [numTable], listedFunction == [function()], managed == [{update == [bool], draw == [bool], stop == [bool]}]}
 
 	local this = setmetatable({}, OCUI.TextInput)
 	this.computer = require("computer")
 	this.event = require("event")
 	this.thread = require("thread") 
-	package.loaded.UT = nil
-	this.ut = require("libs/UT")
 	this.ocui = ocui
-	this.posX = posX
-	this.posY = posY
-	this.size = size
+	this.posX = UT.parseArgs(args.x, args.posX)
+	this.posY = UT.parseArgs(args.y, args.posY)
+	this.size = UT.parseArgs(args.s, args.size)
 	this.listedFunction = args.listedFunction or function() end
 	this.autoCompFunction = args.autoCompFunction or function() end
 	
@@ -734,7 +730,7 @@ function OCUI.TextInput.deactivate(this)
 end
 
 function OCUI.TextInput.inputManager(this)
-	local inputCheck = this.ut.inputCheck
+	local inputCheck = UT.inputCheck
 	local function MoveCursor(c)
 		if 0 +c > 0 then
 			if this.cursorPosition +c > this.size and #this.text -this.stringPosition >= this.size then
@@ -792,9 +788,9 @@ function OCUI.TextInput.inputManager(this)
 				MoveCursor(#this.text)
 			elseif inputCheck(m.back, code) then
 				if #this.text > 0 and this.cursorPosition > 1 then
-					local ct = this.ut.getChars(this.text)
+					local ct = UT.getChars(this.text)
 					table.remove(ct, this.cursorPosition + this.stringPosition -1)
-					this.text = this.ut.makeString(ct)
+					this.text = UT.makeString(ct)
 					if #this.text >= this.size -1 then
 						this.stringPosition = this.stringPosition -1
 					else
@@ -804,9 +800,9 @@ function OCUI.TextInput.inputManager(this)
 				end
 			elseif inputCheck(m.del, code) then
 				if #this.text - (this.cursorPosition + this.stringPosition) >= 0 then
-					local ct = this.ut.getChars(this.text)
+					local ct = UT.getChars(this.text)
 					table.remove(ct, this.cursorPosition + this.stringPosition)
-					this.text = this.ut.makeString(ct)
+					this.text = UT.makeString(ct)
 					this.autoCompBase = this.text
 				end
 			elseif inputCheck(m.up, code) then
@@ -860,9 +856,9 @@ function OCUI.TextInput.inputManager(this)
 				MoveCursor(#this.text)
 			elseif key ~= 0 and inputCheck(m.forbidden, code) == false and #m.allowed == 0 or inputCheck(m.allowed, code) then
 				--this.text = this.text .. string.char(key)
-				local ct = this.ut.getChars(this.text)
+				local ct = UT.getChars(this.text)
 				table.insert(ct, this.cursorPosition +this.stringPosition, string.char(key))
-				this.text = this.ut.makeString(ct)
+				this.text = UT.makeString(ct)
 				this.cursorPTime = this.computer.uptime()
 				MoveCursor(1)
 				this.autoCompBase = this.text
@@ -898,7 +894,7 @@ function OCUI.TextInput.draw(this)
 	end
 	local text = this.text
 	if this.cfg_hiddenText then
-		text = this.ut.fillString("", #this.text, "*")
+		text = UT.fillString("", #this.text, "*")
 	end
 	
 	for c = #this.text, this.size -1, 1 do
@@ -944,21 +940,22 @@ end
 OCUI.Button = {widgetType = "button"}
 OCUI.Button.__index = OCUI.Button
 
-function OCUI.Button.new(ocui, posX, posY, sizeX, sizeY, args) --posX == [int], posY == [int], sizeX == [int], sizeY == [int], args == {listedFunction == [function()], managed == [{update == [bool], draw == [bool]}]}
+function OCUI.Button.new(ocui, args) --posX == [int], posY == [int], sizeX == [int], sizeY == [int], args == {listedFunction == [function()], managed == [{update == [bool], draw == [bool]}]}
 
 	local this = setmetatable({}, OCUI.Button)
 	this.computer = require("computer")
 	this.ocui = ocui
-	this.posX = posX
-	this.posY = posY
-	this.sizeX = sizeX
-	this.sizeY = sizeY
-	this.listedFunction = args.listedFunction or function() end
+	this.posX = UT.parseArgs(args.x, args.posX)
+	this.posY = UT.parseArgs(args.y, args.posY)
+	this.sizeX = UT.parseArgs(args.sx, args.sizeX)
+	this.sizeY = UT.parseArgs(args.sy, args.sizeY)
+	this.listedFunction = UT.parseArgs(args.lf, args.listedFunction, function() end)
 	
-	this.texture0 = args.texture0 or ocui.oclrl.generateTexture({})
-	this.texture1 = args.texture1 or ocui.oclrl.generateTexture({})
+	args.textures = args.textures or {}
+	this.texture0 = UT.parseArgs(args.texture0, args.textures[1], ocui.oclrl.generateTexture({}))
+	this.texture1 = UT.parseArgs(args.texture1, args.textures[2], ocui.oclrl.generateTexture({}))
 	
-	this.cfg_clickTime = .3 --Time the button have to be the clicked texture. If this -1 the button is a switch.
+	this.cfg_clickTime = UT.parseArgs(args.ct, args.clickTime, .3) --Time the button have to be the clicked texture. If this -1 the button is a switch.
 	this.clickTime = 0 --Time the button was clicked.
 	this.status = false
 	

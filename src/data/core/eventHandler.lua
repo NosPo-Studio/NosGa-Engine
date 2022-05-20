@@ -27,7 +27,7 @@ local specialPressedKeys = {}
 --===== local functions =====--
 local function print(...)
 	if global.conf.debug.ehDebug then
-		global.debug(...)
+		global.debug.log(...)
 	end
 end
 
@@ -68,7 +68,9 @@ end
 local function exportSignal(s, sname)
 	sname = sname or s[1]
 	
-	global.run(global.state[global.currentState][sname], s)
+	if global.state[global.currentState] ~= nil then
+		global.run(global.state[global.currentState][sname], s)
+	end
 	global.core.updateHandler.insertSignal(s, sname)
 	
 	exportCtrlSignal(s, sname)
@@ -76,11 +78,14 @@ end
 
 local function parseSignal(signal)
 	if #signal == 0 then return false end
-	
 	if global.tiConsole.status == true then
 		if signal[1] == "key_down" or signal[1] == "key_up" then
 			return true
 		end
+	end
+	
+	if global.conf.showConsole and signal[1] == "touch" then
+		global.mConsole:update(signal[3], signal[4])
 	end
 	
 	global.run(global.core.eventHandler[signal[1]], signal)
@@ -231,5 +236,7 @@ function eh.stop()
 	pressedKeys = {}
 	specialPressedKeys = {}
 end
+
+eh.parseSignal = parseSignal
 
 return eh
