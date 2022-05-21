@@ -24,15 +24,7 @@ local test = {
 	camSpeed = 1,
 	pause = false,
 	
-	--debug
-	stats = global.stats,
-	cameraOffsetX = 0,
-	cameraOffsetY = 0,
-	ui = {},
-	ocui = {},
-	maxDistance = 0,
-	lines = 3,
-	streetWidth = 5,
+	testStep = 0,
 }
 
 --===== local vars =====--
@@ -58,6 +50,12 @@ function test.init()
 			animations = true,
 		},
 	})
+
+	for i, c in pairs(global.texture) do
+		if c.format == "pic" then
+			global.makeImageTransparent(c, 0x00ffff)
+		end
+	end
 	
 	print("[test]: init done.")
 end
@@ -86,14 +84,14 @@ function test.start()
 	
 	--test.goTest = test.raMain:addGO("Test", {x = 0, y = 0})
 	--test.goTest2 = test.raMain:addGO("test", {x = 10, y = 5})
-	test.goTest3 = test.raMain:addGO("test", {x = 15, y = 10, layer = 2, name = "t1"})
+	test.goMoving = test.raMain:addGO("test", {x = 5, y = 3, layer = 2, name = "barrier"})
 	
 	test.goTest4 = test.raMain:addGO("test2", {x = 15, y = 12, layer = 3, name = "t2"})
 	test.goTest5 = test.raMain:addGO("test2", {x = 15, y = 16, layer = 5, name = "t3"})
 	
 	test.goStreet = test.raMain:addGO("street", {x = 2, y = 2, layer = 1, name = "s1"})
 
-	test.raMain:moveCamera(15, 3)
+	test.raMain:moveCamera(-10, 0)
 
 
 	
@@ -160,9 +158,31 @@ function test.ctrl_bothRight_key_pressed()
 	test.raMain:moveCamera(1, 0)
 end
 
-function test.ctrl_test(s, sname)
-	
+function test.ctrl_add_key_down()
+	if test.goAdded == nil then
+		test.goAdded = test.raMain:addGO("test2", {x = 3, y = 3, l = 5, name = "Added"})
+	end
 end
+function test.ctrl_rem_key_down()
+	test.goAdded:destroy()
+	test.goAdded = nil
+end
+
+function test.ctrl_test1_key_down()
+	if test.testStep == 0 then
+		test.goMoving:move(1, 0)
+		if test.goAdded == nil then
+			test.goAdded = test.raMain:addGO("test2", {x = 3, y = 3, l = 5, name = "Added"})
+		end
+		test.testStep = 1
+	elseif test.testStep == 1 then
+		test.goMoving:move(-1, 0)
+		test.goAdded:destroy()
+		test.goAdded = nil
+		test.testStep = 0
+	end
+end
+
 function test.ctrl_test_key_down(s, sname)
 	
 end

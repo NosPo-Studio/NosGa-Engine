@@ -35,10 +35,10 @@ NosGa proides a very simple physic engine with BoxColliders and RigidBodys but t
 ### Trigger:
 With the NosGa you easly can attach triggers to your GameObjects ccalling a specific function if it is in contact with other triggers and/or colliders (dependent on the settings).
 
-# Planed
 ### Particle system
-A particle system providing physicallic calculated particles.
+NosGa provides a particle system goving you the possibility to create effects life fire or smoke.
 
+# Planed
 ### UI system
 An easy to use UI system to create buttons etc..
 
@@ -46,7 +46,7 @@ An easy to use UI system to create buttons etc..
 A more extensive and realistic physic engine.
 
 # Personal dev note.
-This is a one man project __right now__. I am still learning programming and this is the biggest and most complex project I have worked on yet.
+This is a one man project right now. I am still learning programming and this is one of the biggest and most complex project I have worked on yet.
 So there is definitely optimization potential of all kind in some parts of the source code.
 If someone has suggestions/tipps how I could make things better I am always open for that as well as for own work on the engine.
 So if somone wants to contribute something to the engine I probably will merge it to the master branch if wanted.
@@ -57,7 +57,7 @@ The NosGa Engine is a engine fork of ocCtaft (v0.1.2) <<https://github.com/Miste
 which is licensed under the GPLv3.
 
 ocCtaft Copyright (c) 2019 MisterNoNameLP  
-NosGa Engine Copyright (C) 2019-2020 NosPo Studio.
+NosGa Engine Copyright (C) 2019-2022 NosPo Studio.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

@@ -89,7 +89,7 @@ local function checkOverlapping(renderArea, gameObject, layer)
 					goto skip
 				end
 				
-				if --[[l >= layer and]] not isInQueue(renderArea, go, l) and renderArea.layerBlacklist[l] ~= true and isInsideArea(renderArea, go, renderArea.cameraMoveInstructions) == 1 then
+				if --[[l >= layer and]] renderArea.layerBlacklist[l] ~= true and isInsideArea(renderArea, go, renderArea.cameraMoveInstructions) == 1 then
 					local x, y = gameObject:getPos()
 					local x2, y2 = go:getPos()
 					local sx, sy = oca.sizeX, oca.sizeY
@@ -123,24 +123,22 @@ local function checkOverlapping(renderArea, gameObject, layer)
 								local sizeX, sizeY = gameObject:getSize()
 								local lastPosX, lastPosY = gameObject:getLastPos()
 								local posX, posY = gameObject:getPos()
-								local raPosX, _, raPosY = renderArea:getFOV()
-
+								
 								table.insert(renderArea.gameObjectAttributes[go].overlappingAreas, {
-									lastPosX - raPosX,
-									lastPosX + sizeX - raPosX -1,
-									lastPosY - raPosY,
-									lastPosY + sizeY - raPosY -1,
+									lastPosX,
+									lastPosX + sizeX -1,
+									lastPosY,
+									lastPosY + sizeY -1,
 								})
 								table.insert(renderArea.gameObjectAttributes[go].overlappingAreas, {
-									posX - raPosX,
-									posX + sizeX - raPosX -1,
-									posY - raPosY,
-									posY + sizeY - raPosY -1,
+									posX,
+									posX + sizeX -1,
+									posY,
+									posY + sizeY -1,
 								})
 							else
 								checkOverlapping(renderArea, go, l)
 							end
-							
 							
 							print("[RE]: Found overlap with: " .. gameObject.ngeAttributes.name .. ": N:" .. go.ngeAttributes.name .. ", L:" .. tostring(l) .. ", X:" .. tostring(x) .. ", Y:" .. tostring(y) .. ", ID:"..  tostring(go) .. ", F:" .. tostring(global.currentFrame) .. ".")
 						end
@@ -155,7 +153,8 @@ end
 local function calculateFrame(renderArea, area)
 	for go in pairs(renderArea.gameObjects) do
 		local l = go.ngeAttributes.layer
-		
+
+
 		if not isInQueue(renderArea, go, l) and renderArea.layerBlacklist[l] ~= true and isInsideArea(renderArea, go, renderArea.cameraMoveInstructions) ~= 0 then
 			if renderArea.gameObjectAttributes[go].lastCalculatedFrame < global.currentFrame -1 then
 				renderArea.gameObjectAttributes[go].mustBeRendered = true
@@ -169,6 +168,8 @@ local function calculateFrame(renderArea, area)
 				checkOverlapping(renderArea, go, l)
 				renderArea.toRender[l][go] = renderArea
 			end
+		elseif go.ngeAttributes.hasMoved and renderArea.gameObjectAttributes[go].causedByOverlap and renderArea.layerBlacklist[l] ~= true and isInsideArea(renderArea, go, renderArea.cameraMoveInstructions) ~= 0 then
+			checkOverlapping(renderArea, go)
 		elseif renderArea.gameObjectAttributes[go].wasVisible then
 			renderArea.toClear[l][go] = renderArea
 			renderArea.gameObjectAttributes[go].wasVisible = nil

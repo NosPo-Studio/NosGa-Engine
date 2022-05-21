@@ -1,8 +1,8 @@
 --Setting in here can be overwritten by the conf.lua settings.
 
 local nosGaConf = {
-	--defaultState = "test",
-	defaultState = "rePerformanceTest",
+	defaultState = "test",
+	--defaultState = "rePerformanceTest",
 	
 	targetFramerate = -1, --default is "20". set to "-1" for unlimited framerate (can cause in graphical issures).
 	maxTickTime = .5, --if a tick need more as the maxTickTime the engine will handle the ticke like it had needs exacly the maxTickTime.
@@ -46,7 +46,7 @@ local nosGaConf = {
 		isDev = true, --activates debug outputs (strongly recommended if you want to mod the game in any way or something goes wrong and you need a detailed log).
 		
 		dlDebug = true, --print dataLoading debug (only if isDev).
-		reDebug = false, --print renderEngine debug (only if isDev).
+		reDebug = true, --print renderEngine debug (only if isDev).
 		raDebug = false, --print renderArea debug (only if isDev).
 		uhDebug = false, --print updateHandler debug (only if isDev).
 		goDebug = false, --print gameObject management debug (only if isDev).

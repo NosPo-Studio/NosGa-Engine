@@ -33,14 +33,15 @@ function GameObjectsTemplate.new(args)
 	--===== gameObject definition =====--
 	--Take given GameObject args if present and prevents it from being nil if not.
 	args = args or {} 
-	
-	args.sizeX = 6
-	args.sizeY = 3
+
+	args.sizeX = 11
+	args.sizeY = 5
 	args.components = { --Define the GameObjects components.
 		{"Sprite", 
 			x = 0, 
 			y = 0, 
-			texture = "exampleTexture",
+			--texture = "exampleTexture",
+			texture = "barrier1",
 		},
 		{"RigidBody", 
 			g = 0,
@@ -106,6 +107,16 @@ function GameObjectsTemplate.new(args)
 		--Addign negative force to move the object.
 		--this:addForce(-5, 0, args.maxSpeed) 
 		this:move(-1, 0)
+	end
+	this.ctrl_up_key_pressed = function(this, signal, sname) 
+		--Addign force to move the object.
+		--this:addForce(5, 0, args.maxSpeed) 
+		this:move(0, 1)
+	end
+	this.ctrl_down_key_pressed = function(this, signal, sname) 
+		--Addign negative force to move the object.
+		--this:addForce(-5, 0, args.maxSpeed) 
+		this:move(0, -1)
 	end
 	
 	--===== default functions =====--

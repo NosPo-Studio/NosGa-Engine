@@ -267,18 +267,17 @@ function GameObject.new(args)
 			s.background = global.backgroundColor
 		end
 
+		--print(this:getName(), this.ngeAttributes.hasMoved)
 
 		if 
 			#realArea.gameObjectAttributes[this].overlappingAreas == 0 and realArea.gameObjectAttributes[this].mustBeRendered or 
 			not realArea.gameObjectAttributes[this].hasBeenRenderedOnce or
 			this.ngeAttributes.hasMoved
 		then
-			realArea.gameObjectAttributes[this].overlappingAreas = {{0, math.huge, 0, math.huge}}
+			realArea.gameObjectAttributes[this].overlappingAreas = {{-math.huge, math.huge, -math.huge, math.huge}}
 		end
 
-
 		if renderArea.realArea ~= nil and this.ngeAttributes.hasMoved ~= true then --draw areas needed cause camera movement.
-			print("RM1")
 			for i, ra in pairs(renderArea) do
 				if i ~= "realArea" then
 					this.gameObject:draw(offsetX, offsetY, {ra.posX, ra.posX + ra.sizeX -1, ra.posY, ra.posY + ra.sizeY -1}, global.dt, global.backgroundColor)
@@ -287,18 +286,15 @@ function GameObject.new(args)
 		end
 
 		for _, overlappingArea in pairs(realArea.gameObjectAttributes[this].overlappingAreas) do
-			
-			--print(this:getName(), this.ngeAttributes.hasMoved)
 			do
-				--print("RM2")
-				local x, _, y, _ = realArea:getRealFOV()
-				local cmir = realArea.cameraMoveInstructions.raw
+				local rx, _, ry, _ = realArea:getRealFOV()
+				local x, _, y, _ = realArea:getFOV()
 
 				this.gameObject:draw(offsetX, offsetY, {
-					math.max(realArea.posX, overlappingArea[1] + x), 
-					math.min(realArea.posX + realArea.sizeX -1, overlappingArea[2] + x), 
-					math.max(realArea.posY, overlappingArea[3] + y), 
-					math.min(realArea.posY + realArea.sizeY -1, overlappingArea[4] + y)}, 
+					math.max(realArea.posX, overlappingArea[1] + rx - x), 
+					math.min(realArea.posX + realArea.sizeX -1, overlappingArea[2] + rx - x), 
+					math.max(realArea.posY, overlappingArea[3] + ry - y), 
+					math.min(realArea.posY + realArea.sizeY -1, overlappingArea[4] + ry - y)}, 
 				global.dt, global.backgroundColor)
 			end
 		end

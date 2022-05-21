@@ -90,7 +90,8 @@ function test.start()
 	
 	--test.goTest5 = test.raMain:addGO("test2", {x = 15, y = 16, layer = 5, name = "t3"})
 	
-	test.goTest5 = test.raMain:addGO("testAnimation", {x = 15, y = 16, layer = 5, name = "anim"})
+	test.goTest5 = test.raMain:addGO("testAnimation", {x = 15, y = 20, layer = 5, name = "anim"})
+	test.goTest6 = test.raMain:addGO("testAnimation", {x = 15, y = 1, layer = 5, name = "anim"})
 	
 	--test.goStreet = test.raMain:addGO("street", {x = 3, y = 2, layer = 1, name = "s1"})
 
@@ -104,7 +105,7 @@ function test.start()
 
 	for x = 0, 8, 1 do
 		for y = 0, 5, 1 do
-			test.goTest5 = test.raMain:addGO("test2", {x = 8 * x, y = 8 * y, layer = 5, name = "t3"})
+			test.goTest5 = test.raMain:addGO("test2", {x = 8 * x, y = 8 * y, layer = 4, name = "t3"})
 		end
 	end
 	
