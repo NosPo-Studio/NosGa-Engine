@@ -36,7 +36,7 @@ NosGa proides a very simple physic engine with BoxColliders and RigidBodys but t
 With the NosGa you easly can attach triggers to your GameObjects ccalling a specific function if it is in contact with other triggers and/or colliders (dependent on the settings).
 
 ### Particle system
-NosGa provides a particle system goving you the possibility to create effects life fire or smoke.
+NosGa provides a particle system giving you the possibility to create special effects like fire or smoke.
 
 # Planed
 ### UI system

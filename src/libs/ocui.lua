@@ -15,7 +15,7 @@
     along with this library.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-local OCUI = {version = "v1.6"} --! not compatible to <= v1.5 !--
+local OCUI = {version = "v1.6.1"} --! not compatible to <= v1.5 !--
 OCUI.__index = OCUI
 
 --[[ToDo:
@@ -25,6 +25,7 @@ OCUI.__index = OCUI
 ]]--
 
 local UT = require("libs/UT")
+local xpcall = xpcall
 
 function OCUI.initiate(oclrl, onError)
 	local this = setmetatable({}, OCUI)

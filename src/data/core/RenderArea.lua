@@ -65,6 +65,8 @@ function RenderArea.new(args)
 	--this.cameraMoveInstructions = {copy = {}, clear = {}, raw = {x = 0, y = 0}}
 	this.cameraMoveInstructions = {copy = {}, clear = {}, raw = {x = 0, y = 0}}
 	this.copyInstructions = {}
+
+	this.sizeArray = {this.posX, this.posX + this.sizeX -1, this.posY, this.posY + this.sizeY -1}
 	
 	this.childs = {}
 	

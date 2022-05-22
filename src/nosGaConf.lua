@@ -2,11 +2,11 @@
 
 local nosGaConf = {
 	defaultState = "test",
-	--defaultState = "rePerformanceTest",
+	defaultState = "rePerformanceTest",
 	
 	targetFramerate = -1, --default is "20". set to "-1" for unlimited framerate (can cause in graphical issures).
-	maxTickTime = .5, --if a tick need more as the maxTickTime the engine will handle the ticke like it had needs exacly the maxTickTime.
-	fpsCheckInterval = 20, --defines what amout of frames the engine use to calculate the avg. fps.
+	maxTickTime = .5, --if a tick need more as the maxTickTime the engine will handle the tick like it had need exacly the maxTickTime.
+	fpsCheckInterval = 30, --defines what amout of frames the engine use to calculate the avg. fps.
 	
 	showConsole = true, --can be changes ingame by pressing f1 by default.
 	showDebug = true, --can be changes ingame by pressing f3 by default.
@@ -16,11 +16,11 @@ local nosGaConf = {
 	preferModTextures = true, --if true mods can overwrite texturePack textures.
 	
 	renderLayerAmount = 10,
-	useDoubleBuffering = true, --[[ Probalby removed in RE_v1
-		Use the third party doubleBuffering method by IgorTimofeev.
+	useDoubleBuffering = true, --[[ Use the third party doubleBuffering method by IgorTimofeev.
 		In the most cases using it causes in a big graphic performance boost but on cost of the memory usage.
 		More informations on github.
 	]]
+
 	useSmartMove = true,
 	useSmartCameraMove = true, --recommended in any render mode.
 	useSmartOverlap = true, --[[at overlapping it only renders pixels that are overlapping. 
@@ -41,12 +41,14 @@ local nosGaConf = {
 		
 		{left, right, top, bottom}
 	]]
+
+	calcSUpdate = false, --defines if the sUpdate functionality is enabbled or not. causes performance hit.
 		
 	debug = { --these options are for developers.
 		isDev = true, --activates debug outputs (strongly recommended if you want to mod the game in any way or something goes wrong and you need a detailed log).
 		
 		dlDebug = true, --print dataLoading debug (only if isDev).
-		reDebug = true, --print renderEngine debug (only if isDev).
+		reDebug = false, --print renderEngine debug (only if isDev).
 		raDebug = false, --print renderArea debug (only if isDev).
 		uhDebug = false, --print updateHandler debug (only if isDev).
 		goDebug = false, --print gameObject management debug (only if isDev).
@@ -64,7 +66,7 @@ local nosGaConf = {
 			--=== core ===--
 			dbgpu = false,
 			re = true, 
-			uh = false,
+			uh = true,
 			eh = false,
 			GameObject = true,
 			RenderArea = true,
@@ -92,7 +94,5 @@ local nosGaConf = {
 		},
 	},
 }
-
---nosGaConf.useLegacyRenderEngine = not nosGaConf.useExperimentalRenderEngine --tmp --`useExperimentalRenderEngine` will be replaced by `useLegacyRenderEngine` once the new render engine is officialy supported.
 
 return nosGaConf

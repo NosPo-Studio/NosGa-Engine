@@ -33,23 +33,26 @@ function GameObjectsTemplate.new(args)
 	--===== gameObject definition =====--
 	--Take given GameObject args if present and prevents it from being nil if not.
 	args = args or {} 
-
-	args.sizeX = 11
-	args.sizeY = 5
+	
+	args.sizeX = 6
+	args.sizeY = 6
 	args.components = { --Define the GameObjects components.
 		{"Sprite", 
 			x = 0, 
 			y = 0, 
-			--texture = "exampleTexture",
-			texture = "barrier1",
+			texture = "exampleTexture",
 		},
-		{"RigidBody", 
-			g = 0,
-			stiffness = 10,
+		{"Sprite", 
+			x = 0, 
+			y = 3, 
+			texture = "exampleTexture",
 		},
 	}
-	args.solid = false
 	--args.deco = true
+	args.internalGameObject = false
+	args.physics = false
+	args.solid = false
+	args.animation = true
 	
 	--===== default stuff =====--
 	--Inheritance from the GameObject main class.
@@ -66,7 +69,7 @@ function GameObjectsTemplate.new(args)
 		x = 0,
 		y = 0,
 		sx = 6, 
-		sy = 3,
+		sy = 6,
 		
 		lf = function(collider, go, selfCall)
 			--global.log(global.currentFrame, this:getName())
@@ -87,7 +90,6 @@ function GameObjectsTemplate.new(args)
 	this.ctrl_right_key_pressed = function(this, signal, sname) 
 		--Addign force to move the object.
 		--this:addForce(5, 0, args.maxSpeed) 
-		this:move(1, 0)
 	end
 	
 	--[[Same as the function ctrl_... fucntion in the stateTemplate
@@ -96,28 +98,6 @@ function GameObjectsTemplate.new(args)
 	this.ctrl_left_key_pressed = function(this, signal, sname) 
 		--Addign negative force to move the object.
 		--this:addForce(-5, 0, args.maxSpeed) 
-		this:move(-1, 0)
-	end
-
-	this.ctrl_bothRight_key_pressed = function(this, signal, sname) 
-		--Addign force to move the object.
-		--this:addForce(5, 0, args.maxSpeed) 
-		this:move(1, 0)
-	end
-	this.ctrl_bothLeft_key_pressed = function(this, signal, sname) 
-		--Addign negative force to move the object.
-		--this:addForce(-5, 0, args.maxSpeed) 
-		this:move(-1, 0)
-	end
-	this.ctrl_up_key_pressed = function(this, signal, sname) 
-		--Addign force to move the object.
-		--this:addForce(5, 0, args.maxSpeed) 
-		this:move(0, 1)
-	end
-	this.ctrl_down_key_pressed = function(this, signal, sname) 
-		--Addign negative force to move the object.
-		--this:addForce(-5, 0, args.maxSpeed) 
-		this:move(0, -1)
 	end
 	
 	--===== default functions =====--

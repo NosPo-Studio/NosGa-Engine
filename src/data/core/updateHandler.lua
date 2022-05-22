@@ -23,9 +23,13 @@ local uh = {
 	isUpdated = {},
 	signalQueue = {},
 	sUpdateQueue = {},
+	ocgfUpdateQueue = {},
 }
 
 --===== local vars =====--
+local narrowUpdateExpansion = global.conf.narrowUpdateExpansion
+local tableInsert = table.insert
+local calcSUpdate = global.conf.calcSUpdate
 
 --===== local functions =====--
 local function print(...)
@@ -50,15 +54,14 @@ end
 local function calculateFrame(renderArea)
 	local expansion = renderArea.narrowUpdateExpansion
 	
-	if global.conf.narrowUpdateExpansion ~= false then
+	if narrowUpdateExpansion ~= false then
 		renderArea.updateAnything = false
-		local fromX, toX, fromY, toY = renderArea:getFOV()
-		
+
 		for go in pairs(renderArea.gameObjects) do
 			local l = go.ngeAttributes.layer
 			
 			if renderArea.layerBlacklist[l] ~= true and 
-				isInsideArea(renderArea, go, global.conf.narrowUpdateExpansion) and 
+				isInsideArea(renderArea, go, narrowUpdateExpansion) and 
 				renderArea.toUpdate[go] == nil or
 				go.ngeAttributes.updateAlways
 			then 
@@ -72,27 +75,36 @@ end
 
 local function updateFrame(renderArea, dt)
 	local toUpdate = renderArea.toUpdate
-	
+	local isUpdated = uh.isUpdated
+	local ocgfUpdateQueue = uh.ocgfUpdateQueue
+	local newOcgfUpdateQueue = {}
+
 	if renderArea.updateAnything then
-		toUpdate = renderArea.gameObjects
+		toUpdate = {}
+		for go in pairs(renderArea.gameObjects) do
+			if not go.ngeAttributes.ignoreOCGFGameObject then
+				toUpdate[go] = true
+			end
+		end
 	end
 	
 	for go, c in pairs(toUpdate) do
-		--global.log("t", go, c)
-		
 		if type(go) == "number" then
 			go = c
+			global.fatal("Update handler has unexpectet toUpdate table.") --currently not relevant.
 		end
-		if not uh.isUpdated[go] then
+
+		if not isUpdated[go] then
 			for i, s in pairs(uh.signalQueue) do
-				--print(s[1], go[s[1]], global.currentFrame)
-				
 				global.run(go[s.name], go, s.signal, s.name)
 			end
 			
-			go:ngeUpdate(renderArea.gameObjects, dt, renderArea)
-			table.insert(uh.sUpdateQueue, {go = go, ra = renderArea})
-			uh.isUpdated[go] = true
+			go:ngeUpdate(ocgfUpdateQueue, dt, renderArea)
+			if calcSUpdate then
+				tableInsert(uh.sUpdateQueue, {go, renderArea})
+			end
+			isUpdated[go] = true
+			--toUpdate[go] = nil
 		end
 	end
 	
@@ -122,7 +134,7 @@ function uh.sUpdate(dt)
 	dt = dt or global.dt
 	
 	for i, suq in pairs(uh.sUpdateQueue) do
-		suq.go:ngeSUpdate(suq.ra.gameObjects, dt, suq.ra)
+		suq[1]:ngeSUpdate(suq[2].gameObjects, dt, suq[2])
 	end
 	uh.sUpdateQueue = {}
 end
@@ -144,7 +156,7 @@ function uh.insertSignal(s, signalName)
 	end
 	]]
 	--print(signalName)
-	table.insert(uh.signalQueue, {name = signalName, signal = s})
+	tableInsert(uh.signalQueue, {name = signalName, signal = s})
 	
 	--global.log(global.currentFrame, signalName)
 	--global.slog(uh.signalQueue)
@@ -152,5 +164,8 @@ function uh.insertSignal(s, signalName)
 end
 
 --===== init =====--
+if not calcSUpdate then
+	uh.sUpdate = function() end
+end
 
 return uh

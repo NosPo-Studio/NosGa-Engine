@@ -20,6 +20,8 @@
 local args = {...}
 local conf = args[1]
 
+local xpcall = xpcall
+
 --===== global vars =====--
 local global = {
 	--=== vars ===--
@@ -166,8 +168,13 @@ end
 
 function global.run(func, ...)
 	if func ~= nil then
-		local v = {xpcall(func, debug.traceback, ...)}
-		if v[1] == false then
+		local suc
+		if conf.debug.isDev then
+			suc = xpcall(func, debug.traceback, ...)
+		else
+			suc = pcall(func, ...)
+		end
+		if suc == false then
 			global.error("[GE]: Failerd to run " .. tostring(func) .. "\n", v[2], debug.traceback())
 		end
 		

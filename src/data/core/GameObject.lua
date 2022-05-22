@@ -51,8 +51,10 @@ function GameObject.new(args)
 		isParent = args.isParent,
 		updateAlways = pa(args.updateAlways, false),
 
-		updateInternalGameObject = pa(args.internalGameObject, args.updateInternalGameObject, not args.deco --[[is true if deco is nil]]),
-		updatePhysics = pa(args.physics, args.updatePhysics, not args.deco --[[is true if deco is nil]]),
+		updateOCGFGameObject = pa(args.internalGameObject, args.updateInternalGameObject, not args.deco --[[is true if deco is nil]]), --if set to true this gameobject will not calulate own physics.
+		updatePhysics = pa(args.physics, args.updatePhysics, not args.deco --[[is true if deco is nil]]), --if set to true this gameobject will not the own internal gameobject. thi smean sthat triggers an co will not work.
+
+		ignoreOCGFGameObject = pa(args.ignoreGameObject, args.deco, false), --if set to true other objects will not interact with this. so triggers and vco will not get trigered.
 		
 		--=== Auto generated ===--
 		id, 
@@ -212,24 +214,38 @@ function GameObject.new(args)
 	end
 	this.ngeUpdate = function(this, gameObjects, dt, ra) --parent func
 		local ocgfGameObjects = {}
-		for go in pairs(gameObjects) do
-			table.insert(ocgfGameObjects, go.gameObject) --PI
+		local insert = table.insert
+		local ngeAttributes = this.ngeAttributes
+
+		
+		if ngeAttributes.updateOCGFGameObject or ngeAttributes.updatePhysics then
+			print(this:getName())
+			for go in pairs(gameObjects) do
+				insert(ocgfGameObjects, go.gameObject) --PI
+				--ocgfGameObjects = table.unpack(go.gameObject)
+			end
 		end
+		
+		
+
+		--do return end --REMOVE
+
+		--do return end --debug
 		
 		if this.test then
 			--global.log(#ocgfGameObjects)
 		end
 		
-		this.ngeAttributes.clearedAlready = nil
+		ngeAttributes.clearedAlready = nil
 
-		if this.ngeAttributes.updatePhysics then
-			this.gameObject:updatePhx(ocgfGameObjects, dt)
+		if ngeAttributes.updatePhysics then
+			this.gameObject:updatePhx(gameObjects, dt)
 		end
-		if this.ngeAttributes.updateInternalGameObject then
-			this.gameObject:update(ocgfGameObjects)
+		if ngeAttributes.updateOCGFGameObject then
+			this.gameObject:update(gameObjects)
 		end
-
-		if this.ngeAttributes.isParent then
+		
+		if ngeAttributes.isParent then
 			global.run(this.pUpdate, this, dt, ra, gameObjects, ocgfGameObjects)
 		else
 			global.run(this.update, this, dt, ra, gameObjects, ocgfGameObjects)
@@ -238,19 +254,19 @@ function GameObject.new(args)
 		local x, y = this:getPos()
 		local lx, ly = this:getLastPos()
 		
-		if x ~= lx or y ~= ly or this.ngeAttributes.usesAnimation == true then
-			this.ngeAttributes.hasMoved = true
+		if x ~= lx or y ~= ly or ngeAttributes.usesAnimation == true then
+			ngeAttributes.hasMoved = true
 			if global.conf.forceSmartMove or global.conf.useSmartMove and global.conf.useDoubleBuffering then
-				for ra in pairs(this.ngeAttributes.responsibleRenderAreas) do
+				for ra in pairs(ngeAttributes.responsibleRenderAreas) do
 					local offsetX, offsetY = this:getOffset(ra)
-					for i, ca in pairs(this.ngeAttributes.copyAreas) do
+					for i, ca in pairs(ngeAttributes.copyAreas) do
 						table.insert(ra.copyInstructions, {ca.posX +lx +offsetX, ca.posY +ly +offsetY, ca.sizeX, ca.sizeY, -(lx - x), -(ly - y)})
 					end
 				end
 			end
 		end
 		
-		this.ngeAttributes.isUpdated = true
+		ngeAttributes.isUpdated = true
 	end
 	this.ngeActivate = function(this) --parent func
 		if this.ngeAttributes.isParent then
@@ -341,11 +357,11 @@ function GameObject.new(args)
 		global.gpu.setBackground(global.backgroundColor)
 		
 		for i, ca in pairs(this.ngeAttributes.clearAreas) do
-			global.oclrl:draw(0, 0, global.oclrl.generateTexture(lastPosX + offsetX + ca.posX, lastPosY + offsetY + ca.posY, ca.sizeX, ca.sizeY, " "), nil, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1})
+			global.oclrl:draw(0, 0, global.oclrl.generateTexture(lastPosX + offsetX + ca.posX, lastPosY + offsetY + ca.posY, ca.sizeX, ca.sizeY, " "), nil, renderArea.sizeArray)
 		end
 		for i, ca in pairs(this.ngeAttributes.copyAreas) do
 			if ca.solid ~= true then
-				global.oclrl:draw(0, 0, global.oclrl.generateTexture(posX + offsetX + ca.posX, posY + offsetY + ca.posY, ca.sizeX, ca.sizeY, " "), nil, {renderArea.posX, renderArea.posX + renderArea.sizeX -1, renderArea.posY, renderArea.posY + renderArea.sizeY -1})
+				global.oclrl:draw(0, 0, global.oclrl.generateTexture(posX + offsetX + ca.posX, posY + offsetY + ca.posY, ca.sizeX, ca.sizeY, " "), nil, renderArea.sizeArray)
 			end
 		end
 	end

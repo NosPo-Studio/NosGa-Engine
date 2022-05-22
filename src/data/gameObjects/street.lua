@@ -43,7 +43,7 @@ function GameObjectsTemplate.new(args)
 			texture = "street1",
 		},
 	}
-	args.deco = true
+	--args.deco = true
 	
 	--===== default stuff =====--
 	--Inheritance from the GameObject main class.

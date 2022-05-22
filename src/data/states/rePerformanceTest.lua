@@ -23,6 +23,10 @@ local global = ...
 local test = {
 	camSpeed = 1,
 	pause = false,
+
+	testObjecs = {},
+	testAnimations = {},
+	objectBundlesAdded = 0,
 	
 	--debug
 	stats = global.stats,
@@ -86,27 +90,47 @@ function test.start()
 	
 	--test.goTest = test.raMain:addGO("Test", {x = 0, y = 0})
 	--test.goTest2 = test.raMain:addGO("test", {x = 10, y = 5})
-	test.goTest3 = test.raMain:addGO("test", {x = 15, y = 10, layer = 2, name = "t1"})
+	
+	test.goTest3 = test.raMain:addGO("test", {x = 15, y = 10, layer = 2, name = "barrier"})
 	
 	--test.goTest5 = test.raMain:addGO("test2", {x = 15, y = 16, layer = 5, name = "t3"})
 	
-	test.goTest5 = test.raMain:addGO("testAnimation", {x = 15, y = 20, layer = 5, name = "anim"})
-	test.goTest6 = test.raMain:addGO("testAnimation", {x = 15, y = 1, layer = 5, name = "anim"})
+	--test.goTest5 = test.raMain:addGO("testAnimation", {x = 15, y = 20, layer = 5, name = "anim"})
+	--test.goTest6 = test.raMain:addGO("testAnimation", {x = 15, y = 1, layer = 5, name = "anim"})
 	
 	--test.goStreet = test.raMain:addGO("street", {x = 3, y = 2, layer = 1, name = "s1"})
 
 	
 	for c = 0, 3, 1 do
-		test.goStreet = test.raMain:addGO("street", {x = c * 18, y = 2, layer = 1, name = "s1"})
+		--test.goStreet = test.raMain:addGO("street", {x = c * 18, y = 2, layer = 1, name = "s1"})
 	end
 	for c = 0, 3, 1 do
-		test.goStreet = test.raMain:addGO("street", {x = c * 18, y = 26, layer = 1, name = "s1"})
+		--test.goStreet = test.raMain:addGO("street", {x = c * 18, y = 26, layer = 1, name = "s1"})
 	end
 
-	for x = 0, 8, 1 do
-		for y = 0, 5, 1 do
-			test.goTest5 = test.raMain:addGO("test2", {x = 8 * x, y = 8 * y, layer = 4, name = "t3"})
+	for x = 0, 6, 1 do
+		for y = 0, 6, 1 do
+			--test.goTest5 = test.raMain:addGO("test2", {x = 8 * x, y = 8 * y, layer = 4, name = "t3"})
 		end
+	end
+
+	for x = 0, 4, 1 do
+		for y = 0, 1, 1 do
+			--test.goTest5 = test.raMain:addGO("test", {x = 8 * x, y = 8 * y + 20, layer = 4, name = "t3"})
+		end
+	end
+
+	for c = 0, 30 do
+		--test.testAnimations[c] = test.raMain:addGO("fakeAnimation", {x = 16, y = 30, layer = 5, name = "fake anim"})
+	end
+
+	if test.objectBundlesAdded < 1 then
+		for c = 0, 200, 1 do
+			test.testObjecs[c] = test.raMain:addGO("test2", {x = 15, y = 16, layer = 5, name = "testObject_" .. tostring(#test.testObjecs)})
+		end
+		test.objectBundlesAdded = test.objectBundlesAdded +1
+		global.log("Added object bundle")
+		global.log("Added objects: " , #test.testObjecs)
 	end
 	
 
@@ -135,6 +159,8 @@ end
 
 function test.update()	
 	--print("=====New frame=====")
+
+
 	while test.pause do
 		os.sleep(.1)
 		if global.keyboard.isKeyDown("z") or global.keyboard.isKeyDown(60) or global.keyboard.isKeyDown(63) or global.keyboard.isControlDown() then
@@ -183,6 +209,49 @@ function test.ctrl_right_key_pressed()
 	print("###########################")
 	--test.raMain:moveCamera(1, 0)
 end
+
+function test.ctrl_camLeft_key_pressed()
+	print("###########################")
+	test.raMain:moveCamera(-1, 0)
+end
+function test.ctrl_camRight_key_pressed()
+	print("###########################")
+	test.raMain:moveCamera(1, 0)
+end
+function test.ctrl_bothLeft_key_pressed()
+	print("###########################")
+	test.raMain:moveCamera(-1, 0)
+end
+function test.ctrl_bothRight_key_pressed()
+	print("###########################")
+	test.raMain:moveCamera(1, 0)
+end
+
+function test.ctrl_add_key_down()
+	if test.goAdded == nil then
+		test.goAdded = test.raMain:addGO("test2", {x = 3, y = 3, l = 5, name = "Added"})
+	end
+end
+function test.ctrl_rem_key_down()
+	test.goAdded:destroy()
+	test.goAdded = nil
+end
+
+function test.ctrl_test1_key_down()
+	if test.testStep == 0 then
+		test.goMoving:move(1, 0)
+		if test.goAdded == nil then
+			test.goAdded = test.raMain:addGO("test2", {x = 3, y = 3, l = 5, name = "Added"})
+		end
+		test.testStep = 1
+	elseif test.testStep == 1 then
+		test.goMoving:move(-1, 0)
+		test.goAdded:destroy()
+		test.goAdded = nil
+		test.testStep = 0
+	end
+end
+
 
 function test.ctrl_clearScreen_key_pressed()
 	global.log("Clear screen")

@@ -21,12 +21,23 @@
 	WIP:
 ]]
 
-local OCGF = {version = "v1.1.3d"} 
+local OCGF = {version = "v1.1.4d"} 
 OCGF.__index = OCGF
 
 --===== local vars =====--
 local ut = require("libs/UT")
 local serialization = require("serialization")
+
+--===== local aliaces =====--
+local tableInsert = table.insert
+local mathMin = math.min
+local mathMax = math.max
+local mathFloor = math.floor
+local mathAbs = math.abs
+local pairs = pairs
+local ipairs = ipairs
+local tostring = tostring
+local tonumber = tonumber
 
 --===== Functions =====--
 local function posSizeCheck(this)
@@ -47,9 +58,9 @@ end
 
 local function calculateStiffness(speed, stiffness)
 	if speed > 0 then
-		return math.max(speed - stiffness, 0)
+		return mathMax(speed - stiffness, 0)
 	else
-		return math.min(speed + stiffness, 0)
+		return mathMin(speed + stiffness, 0)
 	end
 end
 
@@ -72,22 +83,22 @@ local function calculateCollision(this, oc, c) --ownCollider, (other) collider
 	sides[nearest] = true
 	
 	if sides[1] then
-		this.speedX = math.max(0, this.speedX)
+		this.speedX = mathMax(0, this.speedX)
 		this.gameObject:move(disMap[nearest], 0, false)
 	elseif sides[2] then
-		this.speedX = math.min(0, this.speedX)
+		this.speedX = mathMin(0, this.speedX)
 		this.gameObject:move(-disMap[nearest], 0, false)
 	elseif sides[3] then
-		this.speedY = math.max(0, this.speedY)
+		this.speedY = mathMax(0, this.speedY)
 		this.gameObject:move(0, disMap[nearest], false)
 	elseif sides[4] then
-		this.speedY = math.min(0, this.speedY)
+		this.speedY = mathMin(0, this.speedY)
 		this.gameObject:move(0, -disMap[nearest], false)
 	end
 	
 	return sides
 	
-	--print(serialization.serialize({math.floor(disMap[1]), math.floor(disMap[2]), math.floor(disMap[3]), math.floor(disMap[4])}))
+	--print(serialization.serialize({mathFloor(disMap[1]), mathFloor(disMap[2]), mathFloor(disMap[3]), mathFloor(disMap[4])}))
 	--print(serialization.serialize(sides))
 end
 
@@ -216,7 +227,7 @@ end
 function OCGF.GameObject.addSprite(this, args)
 	args.x, args.y = posEqualizer(args, this.posX, this.posY)
 	local obj = OCGF.Sprite.new(this, args)
-	table.insert(this.sprites, obj)
+	tableInsert(this.sprites, obj)
 	return obj
 end
 
@@ -224,20 +235,20 @@ function OCGF.GameObject.addBoxCollider(this, args)
 	args.x, args.y = posEqualizer(args, this.posX, this.posY)
 	args.isCollider = true
 	local obj = OCGF.BoxTrigger.new(this, args)
-	table.insert(this.boxCollider, obj)
+	tableInsert(this.boxCollider, obj)
 	return obj
 end
 
 function OCGF.GameObject.addBoxTrigger(this, args)
 	args.x, args.y = posEqualizer(args, this.posX, this.posY)
 	local obj = OCGF.BoxTrigger.new(this, args)
-	table.insert(this.boxTrigger, obj)
+	tableInsert(this.boxTrigger, obj)
 	return obj
 end
 
 function OCGF.GameObject.addRigidBody(this, args)
 	local obj = OCGF.RigidBody.new(this, args)
-	table.insert(this.rigidBodys, obj)
+	tableInsert(this.rigidBodys, obj)
 	return obj
 end
 
@@ -260,7 +271,7 @@ end
 function OCGF.GameObject.getSprites(this)
 	local sprites = {}
 	for _, s in ipairs(this.sprites) do
-		table.insert(sprites, s)
+		tableInsert(sprites, s)
 	end
 	return sprites
 end
@@ -268,7 +279,7 @@ end
 function OCGF.GameObject.getTrigger(this)
 	local trigger = {}
 	for _, bt in ipairs(this.boxTrigger) do
-		table.insert(trigger, bt:getTrigger()[1])
+		tableInsert(trigger, bt:getTrigger()[1])
 	end
 	return trigger
 end
@@ -276,7 +287,7 @@ end
 function OCGF.GameObject.getCollider(this)
 	local trigger = {}
 	for _, bc in ipairs(this.boxCollider) do
-		table.insert(trigger, bc:getTrigger()[1])
+		tableInsert(trigger, bc:getTrigger()[1])
 	end
 	return trigger
 end
@@ -284,7 +295,7 @@ end
 function OCGF.GameObject.getRigidBodys(this)
 	local rbs = {}
 	for _, s in ipairs(this.rigidBodys) do
-		table.insert(rbs, s)
+		tableInsert(rbs, s)
 	end
 	return rbs
 end
@@ -465,8 +476,8 @@ function OCGF.Sprite.draw(this, dt, background, offsetX, offsetY, area)
 		this.animation:draw(this.posX + offsetX, this.posY + offsetY, dt, nil, background, area)
 	elseif this.useDB then
 		this.gameObject.ocgf.db.setDrawLimit(area[1], area[3], area[2], area[4])
-		
-		this.gameObject.ocgf.db.drawImage(math.floor(this.posX + offsetX +.5), math.floor(this.posY + offsetY +.5), this.texture)
+
+		this.gameObject.ocgf.db.drawImage(mathFloor(this.posX + offsetX +.5), mathFloor(this.posY + offsetY +.5), this.texture)
 		
 		this.gameObject.ocgf.db.resetDrawLimit()
 	else
@@ -562,8 +573,8 @@ function OCGF.RigidBody.update(this, gameObjects, dt, slp) --ToDo: add realistic
 	this.speedY = this.speedY + (g * dt)
 	this.speedY = calculateStiffness(this.speedY, this.stiffness * dt)
 	
-	this.speedX = calculateStiffness(this.speedX, math.abs(this.speedX * this.speedLoss * dt))
-	this.speedY = calculateStiffness(this.speedY, math.abs(this.speedY * this.speedLoss * dt))
+	this.speedX = calculateStiffness(this.speedX, mathAbs(this.speedX * this.speedLoss * dt))
+	this.speedY = calculateStiffness(this.speedY, mathAbs(this.speedY * this.speedLoss * dt))
 	
 	if this.gameObject.attachedTo ~= nil then
 		local x, y = this.gameObject.attachedTo:getPos()
@@ -585,7 +596,7 @@ function OCGF.RigidBody.update(this, gameObjects, dt, slp) --ToDo: add realistic
 	local collider = {}
 	for _, go in ipairs(gameObjects) do
 		for _, c in ipairs(go:getCollider()) do
-			table.insert(collider, c)
+			tableInsert(collider, c)
 		end
 	end
 	
@@ -646,7 +657,7 @@ function OCGF.BoxTrigger.update(this, collider, pingTrigger, pingGameObject, cal
 		local x, y, x2, y2 = this.posX, this.posY, c.posX, c.posY
 		
 		if not this.floatCalculation then
-			local f = math.floor
+			local f = mathFloor
 			x, y, x2, y2 = f(x +.5), f(y +.5), f(x2 +.5), f(y2 +.5)
 		end
 		
@@ -654,8 +665,8 @@ function OCGF.BoxTrigger.update(this, collider, pingTrigger, pingGameObject, cal
 			x + this.sizeX > x2 and x < x2 + c.sizeX and
 			y + this.sizeY > y2 and y < y2 + c.sizeY
 		then
-			table.insert(collisions, c)
-			table.insert(gameObjects, c.gameObject)
+			tableInsert(collisions, c)
+			tableInsert(gameObjects, c.gameObject)
 			if pingTrigger then
 				--c.listedFunction(this.gameObject, false, this.gameObject.parent) --other trigger
 				c:listedFunction(this, false) --other trigger

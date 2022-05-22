@@ -48,7 +48,9 @@ function GameObjectsTemplate.new(args)
 			texture = "exampleTexture",
 		},
 	}
-	args.deco = true
+	--args.deco = true
+	args.internalGameObject = false
+	args.physics = false
 	args.solid = false
 	
 	--===== default stuff =====--
