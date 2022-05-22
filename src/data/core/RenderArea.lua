@@ -172,13 +172,13 @@ function RenderArea.new(args)
 	end
 	this.moveCamera = function(this, x, y)
 		local cmir = this.cameraMoveInstructions.raw
-		this.cameraMoveInstructions.raw.x = cmir.x +x
-		this.cameraMoveInstructions.raw.y = cmir.y -y
+		cmir.x = cmir.x +x
+		cmir.y = cmir.y -y
 	end
 	this.moveCameraTo = function(this, x, y)
 		local cmir = this.cameraMoveInstructions.raw
-		this.cameraMoveInstructions.raw.x = this.cameraPosX +x
-		this.cameraMoveInstructions.raw.y = this.cameraPosY -y
+		cmir.x = this.cameraPosX +x
+		cmir.y = this.cameraPosY -y
 	end
 	
 	this.rerenderAll = function(this)

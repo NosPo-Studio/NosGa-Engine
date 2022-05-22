@@ -32,6 +32,7 @@ local overlapChecks = 0 --debug
 local tableInsert = table.insert
 local conf = global.conf
 local printDebug = conf.debug.reDebug
+local mathMin, mathMax = math.min, math.max
 
 --===== local functions =====--
 local function print(...)
@@ -219,19 +220,19 @@ local function moveArea(renderArea)
 		local x1, y1, x2, y2 = ci[1], ci[2], ci[1] + ci[3] -1, ci[2] + ci[4] -1
 		local ax, ay, asx, asy, atx, aty
 		
-		fromX = fromX - math.min(ci[5], 0)
-		fromY = fromY - math.min(ci[6], 0)		
-		toX = toX - math.max(ci[5] +1, 1)
-		toY = toY - math.max(ci[6] +1, 1)
+		fromX = fromX - mathMin(ci[5], 0)
+		fromY = fromY - mathMin(ci[6], 0)		
+		toX = toX - mathMax(ci[5] +1, 1)
+		toY = toY - mathMax(ci[6] +1, 1)
 		
 		if #renderArea.cameraMoveInstructions.copy > 0 then
 			x1, y1, x2, y2 = x1 + renderArea.cameraMoveInstructions.copy[5], y1 + renderArea.cameraMoveInstructions.copy[6], x2 + renderArea.cameraMoveInstructions.copy[5], y2 + renderArea.cameraMoveInstructions.copy[6]
 		end
 		
-		x1 = math.max(x1, fromX)
-		y1 = math.max(y1, fromY)
-		x2 = math.min(x2, toX)
-		y2 = math.min(y2, toY)
+		x1 = mathMax(x1, fromX)
+		y1 = mathMax(y1, fromY)
+		x2 = mathMin(x2, toX)
+		y2 = mathMin(y2, toY)
 		
 		ax = x1
 		ay = y1

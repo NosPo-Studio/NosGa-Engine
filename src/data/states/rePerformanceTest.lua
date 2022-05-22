@@ -28,6 +28,8 @@ local test = {
 	physicObjects = {},
 	testAnimations = {},
 	objectBundlesAdded = 0,
+
+	renderAreas = {},
 	
 	--debug
 	stats = global.stats,
@@ -79,6 +81,7 @@ function test.start()
 	--===== debug =====--
 	--Creating 2 RenderAreas (windows) showing the same scene.
 	
+	--[[
 	test.raMain = global.addRA({
 		posX = 5, 
 		posY = 3, 
@@ -87,12 +90,24 @@ function test.start()
 		name = "TRA1", 
 		drawBorders = true,
 	})
+	]]
 	--test.ra2 = global.addRA({posX = 59, posY = 3, sizeX = 55, sizeY = 20, name = "TRA2", drawBorders = true, parent = test.raMain})
+
+	test.raMain = global.addRA({
+		posX = 5, 
+		posY = 3, 
+		sizeX = 80, 
+		sizeY = 50, 
+		name = "TRA1", 
+		drawBorders = true,
+	})
+
+
 	
 	--test.goTest = test.raMain:addGO("Test", {x = 0, y = 0})
 	--test.goTest2 = test.raMain:addGO("test", {x = 10, y = 5})
 	
-	for c = 1, 2 do
+	for c = 1, 1 do
 		test.goTest3 = test.raMain:addGO("test", {x = 15, y = 10, layer = 2, name = "barrier"})
 	end
 	
@@ -123,7 +138,7 @@ function test.start()
 		test.testObjecs[c] = test.raMain:addGO("test2", {x = 15, y = 16, layer = 5, name = "testObject_" .. tostring(c)})
 	end
 
-	for c = 0, 2, 1 do
+	for c = 0, 1, 1 do
 		test.physicObject = test.raMain:addGO("physicObject", {x = 8 * c + 1, y = 30, layer = 5, name = "phys"})
 		test.ground = test.raMain:addGO("test2", {x = 8 * c + 1, y = 38, layer = 5, name = "ground"})
 	end

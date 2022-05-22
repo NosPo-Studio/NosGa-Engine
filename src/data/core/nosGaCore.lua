@@ -67,7 +67,7 @@ local function update()
 	frameCount = frameCount +1
 	global.fps = 1 / (frameTimes / #dts)
 
-	global.core.re.draw()
+	--global.core.re.draw() --needed here?
 
 	--===== frame calculation =====--
 	if global.state[global.currentState].update ~= nil then	--manual check to avoid log spamming on missing update func.
@@ -88,6 +88,8 @@ local function draw()
 	if global.state[global.currentState].draw ~= nil then	--manual check to avoid log spamming on missing draw func.
 		run(global.state[global.currentState].draw)
 	end
+
+	global.core.re.draw()
 	
 	if global.state[global.currentState].sUpdate ~= nil then	--manual check to avoid log spamming on missing update func.
 		run(global.state[global.currentState].sUpdate)

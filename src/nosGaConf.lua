@@ -5,7 +5,7 @@ local nosGaConf = {
 	defaultState = "rePerformanceTest",
 	
 	targetFramerate = -1, --default is "20". set to "-1" for unlimited framerate (can cause in graphical issures).
-	maxTickTime = 5, --if a tick need more as the maxTickTime the engine will handle the tick like it had need exacly the maxTickTime.
+	maxTickTime = 1, --if a tick need more as the maxTickTime the engine will handle the tick like it had need exacly the maxTickTime.
 	fpsCheckInterval = 30, --defines what amout of frames the engine use to calculate the avg. fps.
 	
 	showConsole = true, --can be changes ingame by pressing f1 by default.
@@ -35,7 +35,8 @@ local nosGaConf = {
 	bufferTexturesOnInit = true, --If true the engine buffers all textures on init.
 	useGlobalBackBuffer = false,
 	
-	narrowUpdateExpansion = false, --[[ Defines the distance a gameObject can be away from any renderArea but will still updated.
+	narrowUpdateExpansion = {0, 0, 0, 0}, 
+	--[[ Defines the distance a gameObject can be away from any renderArea but will still updated.
 		If it is set to false any gameObject will be updated independent from its position.
 		Can be changed in source for any renderArea independently.
 		

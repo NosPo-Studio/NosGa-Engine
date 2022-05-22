@@ -51,8 +51,8 @@ function GameObject.new(args)
 		isParent = args.isParent,
 		updateAlways = pa(args.updateAlways, false),
 
-		updateOCGFGameObject = pa(args.internalGameObject, args.updateInternalGameObject, not args.deco --[[is true if deco is nil]]), --if set to true this gameobject will not calulate own physics.
-		updatePhysics = pa(args.physics, args.updatePhysics, not args.deco --[[is true if deco is nil]]), --if set to true this gameobject will not the own internal gameobject. thi smean sthat triggers an co will not work.
+		updateOCGFGameObject = pa(args.calcInternalGameObject, args.internalGameObject, args.updateInternalGameObject, not args.deco --[[is true if deco is nil]]), --if set to true this gameobject will not calulate own physics.
+		updatePhysics = pa(args.calcPhysics, args.physics, args.updatePhysics, not args.deco --[[is true if deco is nil]]), --if set to true this gameobject will not the own internal gameobject. thi smean sthat triggers an co will not work.
 
 		ignoreOCGFGameObject = pa(args.ignoreGameObject, args.deco, false), --if set to true other objects will not interact with this. so triggers and vco will not get trigered.
 		

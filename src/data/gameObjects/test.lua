@@ -147,7 +147,7 @@ function GameObjectsTemplate.new(args)
 	
 	--Called when this GameObject is removed from a RenderArea.
 	this.stop = function(this) 
-		
+		print("STOP")
 	end
 	
 	return this
