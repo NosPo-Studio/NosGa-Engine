@@ -24,6 +24,7 @@ local uh = {
 	signalQueue = {},
 	sUpdateQueue = {},
 	ocgfUpdateQueue = {},
+	newOcgfUpdateQueue = {},
 }
 
 --===== local vars =====--
@@ -56,16 +57,17 @@ local function calculateFrame(renderArea)
 	
 	if narrowUpdateExpansion ~= false then
 		renderArea.updateAnything = false
+		local raToUpdate = renderArea.toUpdate
 
 		for go in pairs(renderArea.gameObjects) do
 			local l = go.ngeAttributes.layer
 			
 			if renderArea.layerBlacklist[l] ~= true and 
 				isInsideArea(renderArea, go, narrowUpdateExpansion) and 
-				renderArea.toUpdate[go] == nil or
+				raToUpdate[go] == nil or
 				go.ngeAttributes.updateAlways
 			then 
-				renderArea.toUpdate[go] = true
+				raToUpdate[go] = true
 			end
 		end
 	else
@@ -73,41 +75,50 @@ local function calculateFrame(renderArea)
 	end
 end
 
-local function updateFrame(renderArea, dt)
-	local toUpdate = renderArea.toUpdate
+local function updateGameObjec(renderArea, go, ocgfUpdateQueue, dt)
 	local isUpdated = uh.isUpdated
+
+	if type(go) == "number" then
+		go = c
+		global.fatal("Update handler has unexpectet toUpdate table.") --currently not relevant.
+	end
+
+	if not isUpdated[go] then
+		for i, s in pairs(uh.signalQueue) do
+			global.run(go[s.name], go, s.signal, s.name)
+		end
+		
+		go:ngeUpdate(ocgfUpdateQueue, dt, renderArea)
+		if calcSUpdate then
+			tableInsert(uh.sUpdateQueue, {go, renderArea})
+		end
+		isUpdated[go] = true
+
+		return go.gameObject
+	end
+end
+
+local function updateFrame(renderArea, dt)
 	local ocgfUpdateQueue = uh.ocgfUpdateQueue
-	local newOcgfUpdateQueue = {}
+	local newOcgfUpdateQueue = uh.newOcgfUpdateQueue
+	local ocgfGameObject = nil
 
 	if renderArea.updateAnything then
-		toUpdate = {}
 		for go in pairs(renderArea.gameObjects) do
+			ocgfGameObject = updateGameObjec(renderArea, go, ocgfUpdateQueue, dt)
 			if not go.ngeAttributes.ignoreOCGFGameObject then
-				toUpdate[go] = true
+				tableInsert(newOcgfUpdateQueue, ocgfGameObject)
+			end
+		end
+	else
+		for go, c in pairs(renderArea.toUpdate) do
+			ocgfGameObject = updateGameObjec(renderArea, go, ocgfUpdateQueue, dt)
+			if not go.ngeAttributes.ignoreOCGFGameObject then
+				tableInsert(newOcgfUpdateQueue, ocgfGameObject)
 			end
 		end
 	end
-	
-	for go, c in pairs(toUpdate) do
-		if type(go) == "number" then
-			go = c
-			global.fatal("Update handler has unexpectet toUpdate table.") --currently not relevant.
-		end
 
-		if not isUpdated[go] then
-			for i, s in pairs(uh.signalQueue) do
-				global.run(go[s.name], go, s.signal, s.name)
-			end
-			
-			go:ngeUpdate(ocgfUpdateQueue, dt, renderArea)
-			if calcSUpdate then
-				tableInsert(uh.sUpdateQueue, {go, renderArea})
-			end
-			isUpdated[go] = true
-			--toUpdate[go] = nil
-		end
-	end
-	
 	renderArea.toUpdate = {}
 end
 
@@ -128,6 +139,8 @@ function uh.update(dt)
 	
 	uh.isUpdated = {}
 	uh.signalQueue = {}
+	uh.ocgfUpdateQueue = uh.newOcgfUpdateQueue
+	uh.newOcgfUpdateQueue = {}
 end
 
 function uh.sUpdate(dt)

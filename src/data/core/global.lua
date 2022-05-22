@@ -168,17 +168,15 @@ end
 
 function global.run(func, ...)
 	if func ~= nil then
-		local suc
+		local suc, err
 		if conf.debug.isDev then
-			suc = xpcall(func, debug.traceback, ...)
+			suc, err = xpcall(func, debug.traceback, ...)
 		else
-			suc = pcall(func, ...)
+			suc, err = pcall(func, ...)
 		end
 		if suc == false then
-			global.error("[GE]: Failerd to run " .. tostring(func) .. "\n", v[2], debug.traceback())
+			global.error("[GE]: Failerd to run " .. tostring(func) .. "\n", err, debug.traceback())
 		end
-		
-		return v
 	end
 end
 
@@ -187,7 +185,7 @@ function global.load(args)
 	return loadfile("data/core/dataLoading.lua")(args)
 end
 
-function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, structured, loadFunc)
+function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, structured, loadFunc, initFile)
 	local id = 1
 	if target.info ~= nil and target.info.amout ~= nil then
 		id = target.info.amout +1
@@ -251,7 +249,7 @@ function global.loadData(target, dir, func, logFuncs, overwrite, subDirs, struct
 				end
 				
 				local obj = target[name or string.sub(p, 0, #p -1)]
-				if type(obj) == "table" then
+				if type(obj) == "table" and initFile == true then
 					global.run(obj.init, obj)
 				end
 				

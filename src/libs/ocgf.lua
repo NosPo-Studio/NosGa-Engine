@@ -309,16 +309,27 @@ function OCGF.GameObject.update(this, gameObjects) --gameObject can be collider 
 	
 	for i, c in ipairs(gameObjects) do
 		for i, bt in ipairs(this.boxTrigger) do
-			bt:update(c:getTrigger())
-			bt:update(c:getCollider())
+			if bt.checkTrigger then
+				bt:update(c:getTrigger())
+			end
+			if bt.checkCollider then
+				bt:update(c:getCollider())
+			end
 		end
 	end
 end
-
 function OCGF.GameObject.updatePhx(this, gameObjects, dt) --gameObject can be collider table
+	local colliderTable = {}
 	dt = dt or 1
+
+	for _, go in ipairs(gameObjects) do
+		for _, c in ipairs(go:getCollider()) do
+			tableInsert(colliderTable, c)
+		end
+	end
+
 	for _, rb in ipairs(this.rigidBodys) do
-		rb:update(gameObjects, dt)
+		rb:update(colliderTable, dt)
 	end
 end
 
@@ -564,7 +575,7 @@ end
 
 --function OCGF.RigidBody.update(this, gameObjects, pingTrigger, pingGameObject, callOwnFunction, slp) --ToDo: add realistic physics.
 
-function OCGF.RigidBody.update(this, gameObjects, dt, slp) --ToDo: add realistic physics.
+function OCGF.RigidBody.update(this, collider, dt, slp) --ToDo: add realistic physics.
 	local g = this.gravitationFactor
 	if this.gameObject.attachedTo ~= nil then
 		g = g * (1 - this.stickiness)
@@ -592,14 +603,7 @@ function OCGF.RigidBody.update(this, gameObjects, dt, slp) --ToDo: add realistic
 	end
 	
 	this.gameObject:move(speedX *dt, speedY *dt, slp)
-	
-	local collider = {}
-	for _, go in ipairs(gameObjects) do
-		for _, c in ipairs(go:getCollider()) do
-			tableInsert(collider, c)
-		end
-	end
-	
+
 	for _, c in ipairs(this.gameObject:getCollider()) do
 		for _, collision in ipairs(c:update(collider)) do
 			calculateCollision(this, c, collision)
@@ -634,6 +638,8 @@ function OCGF.BoxTrigger.new(gameObject, args)
 	this.callOwnGameObject = ut.parseArgs(args.callOwn, true)
 	this.isCollider = ut.parseArgs(args.isCollider, false)
 	this.floatCalculation = ut.parseArgs(args.fc, args.floatCalculation, false)
+	this.checkTrigger = ut.parseArgs(args.checkTrigger, true)
+	this.checkCollider = ut.parseArgs(args.checkCollider, true)
 	
 	this.lastPosX = this.posX
 	this.lastPosY = this.posY
@@ -652,6 +658,7 @@ function OCGF.BoxTrigger.update(this, collider, pingTrigger, pingGameObject, cal
 	
 	local collisions = {}
 	local gameObjects = {}
+	local sizeX, sizeY = this.sizeX, this.sizeY
 	
 	for i, c in ipairs(collider) do
 		local x, y, x2, y2 = this.posX, this.posY, c.posX, c.posY
@@ -662,8 +669,8 @@ function OCGF.BoxTrigger.update(this, collider, pingTrigger, pingGameObject, cal
 		end
 		
 		if c ~= this and 
-			x + this.sizeX > x2 and x < x2 + c.sizeX and
-			y + this.sizeY > y2 and y < y2 + c.sizeY
+			x + sizeX > x2 and x < x2 + c.sizeX and
+			y + sizeY > y2 and y < y2 + c.sizeY
 		then
 			tableInsert(collisions, c)
 			tableInsert(gameObjects, c.gameObject)

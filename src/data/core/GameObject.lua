@@ -212,25 +212,11 @@ function GameObject.new(args)
 			global.run(this.start, this)
 		end
 	end
-	this.ngeUpdate = function(this, gameObjects, dt, ra) --parent func
-		local ocgfGameObjects = {}
+	this.ngeUpdate = function(this, ocgfGameObjects, dt, ra) --parent func
 		local insert = table.insert
 		local ngeAttributes = this.ngeAttributes
 
 		
-		if ngeAttributes.updateOCGFGameObject or ngeAttributes.updatePhysics then
-			print(this:getName())
-			for go in pairs(gameObjects) do
-				insert(ocgfGameObjects, go.gameObject) --PI
-				--ocgfGameObjects = table.unpack(go.gameObject)
-			end
-		end
-		
-		
-
-		--do return end --REMOVE
-
-		--do return end --debug
 		
 		if this.test then
 			--global.log(#ocgfGameObjects)
@@ -239,16 +225,16 @@ function GameObject.new(args)
 		ngeAttributes.clearedAlready = nil
 
 		if ngeAttributes.updatePhysics then
-			this.gameObject:updatePhx(gameObjects, dt)
+			this.gameObject:updatePhx(ocgfGameObjects, dt)
 		end
 		if ngeAttributes.updateOCGFGameObject then
-			this.gameObject:update(gameObjects)
+			this.gameObject:update(ocgfGameObjects)
 		end
 		
 		if ngeAttributes.isParent then
-			global.run(this.pUpdate, this, dt, ra, gameObjects, ocgfGameObjects)
+			global.run(this.pUpdate, this, dt, ra, ocgfGameObjects, ocgfGameObjects)
 		else
-			global.run(this.update, this, dt, ra, gameObjects, ocgfGameObjects)
+			global.run(this.update, this, dt, ra, ocgfGameObjects, ocgfGameObjects)
 		end
 		
 		local x, y = this:getPos()
@@ -260,7 +246,7 @@ function GameObject.new(args)
 				for ra in pairs(ngeAttributes.responsibleRenderAreas) do
 					local offsetX, offsetY = this:getOffset(ra)
 					for i, ca in pairs(ngeAttributes.copyAreas) do
-						table.insert(ra.copyInstructions, {ca.posX +lx +offsetX, ca.posY +ly +offsetY, ca.sizeX, ca.sizeY, -(lx - x), -(ly - y)})
+						insert(ra.copyInstructions, {ca.posX +lx +offsetX, ca.posY +ly +offsetY, ca.sizeX, ca.sizeY, -(lx - x), -(ly - y)})
 					end
 				end
 			end

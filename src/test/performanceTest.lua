@@ -13,7 +13,7 @@ for c = 0, 1000000 do
     t.test[c] = 2
 end
 
-local function tf() return true end
+local function tf() return nil end
 
 startTime = computer.uptime()
 
@@ -26,10 +26,13 @@ for i, v in pairs(t.test) do
 end
 
 local xpcall = xpcall
-for c = 0, 1000 do
-    xpcall(tf(), traceback)
-    --pcall(tf)
-    --tf()
+local tableInsert = table.insert
+local var = true
+for c = 0, 1000000 do
+    --var = tf()
+    --if var then
+        tableInsert(test, tf())
+    --end
 end
 
 print(computer.uptime() - startTime)

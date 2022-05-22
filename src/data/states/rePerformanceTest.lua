@@ -25,6 +25,7 @@ local test = {
 	pause = false,
 
 	testObjecs = {},
+	physicObjects = {},
 	testAnimations = {},
 	objectBundlesAdded = 0,
 	
@@ -91,15 +92,9 @@ function test.start()
 	--test.goTest = test.raMain:addGO("Test", {x = 0, y = 0})
 	--test.goTest2 = test.raMain:addGO("test", {x = 10, y = 5})
 	
-	test.goTest3 = test.raMain:addGO("test", {x = 15, y = 10, layer = 2, name = "barrier"})
-	
-	--test.goTest5 = test.raMain:addGO("test2", {x = 15, y = 16, layer = 5, name = "t3"})
-	
-	--test.goTest5 = test.raMain:addGO("testAnimation", {x = 15, y = 20, layer = 5, name = "anim"})
-	--test.goTest6 = test.raMain:addGO("testAnimation", {x = 15, y = 1, layer = 5, name = "anim"})
-	
-	--test.goStreet = test.raMain:addGO("street", {x = 3, y = 2, layer = 1, name = "s1"})
-
+	for c = 1, 2 do
+		test.goTest3 = test.raMain:addGO("test", {x = 15, y = 10, layer = 2, name = "barrier"})
+	end
 	
 	for c = 0, 3, 1 do
 		--test.goStreet = test.raMain:addGO("street", {x = c * 18, y = 2, layer = 1, name = "s1"})
@@ -124,13 +119,13 @@ function test.start()
 		--test.testAnimations[c] = test.raMain:addGO("fakeAnimation", {x = 16, y = 30, layer = 5, name = "fake anim"})
 	end
 
-	if test.objectBundlesAdded < 1 then
-		for c = 0, 200, 1 do
-			test.testObjecs[c] = test.raMain:addGO("test2", {x = 15, y = 16, layer = 5, name = "testObject_" .. tostring(#test.testObjecs)})
-		end
-		test.objectBundlesAdded = test.objectBundlesAdded +1
-		global.log("Added object bundle")
-		global.log("Added objects: " , #test.testObjecs)
+	for c = 0, 100, 1 do
+		test.testObjecs[c] = test.raMain:addGO("test2", {x = 15, y = 16, layer = 5, name = "testObject_" .. tostring(c)})
+	end
+
+	for c = 0, 2, 1 do
+		test.physicObject = test.raMain:addGO("physicObject", {x = 8 * c + 1, y = 30, layer = 5, name = "phys"})
+		test.ground = test.raMain:addGO("test2", {x = 8 * c + 1, y = 38, layer = 5, name = "ground"})
 	end
 	
 

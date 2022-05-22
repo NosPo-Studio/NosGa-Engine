@@ -35,27 +35,28 @@ function GameObjectsTemplate.new(args)
 	args = args or {} 
 	
 	args.sizeX = 6
-	args.sizeY = 6
+	args.sizeY = 3
 	args.components = { --Define the GameObjects components.
 		{"Sprite", 
 			x = 0, 
 			y = 0, 
-			texture = "exampleTexture",
+			texture = "gravel",
 		},
-		{"Sprite", 
-			x = 0, 
-			y = 3, 
-			texture = "exampleTexture",
-		},
-		{"BoxCollider",
-			sx = args.sizeX,
-			sy = args.sizeY,
-		},
-
+        {"RigidBody", 
+            g = 3,
+            stiffness = 0,
+            mass = .1,
+        },
+        {"BoxCollider",
+            x = 0,
+            y = 0, 
+            sx = 6,
+            sy = 3,
+        }
 	}
 	--args.deco = true
-	args.internalGameObject = false
-	args.physics = false
+	args.internalGameObject = true
+	args.physics = true
 	args.solid = false
 	
 	--===== default stuff =====--
@@ -68,6 +69,20 @@ function GameObjectsTemplate.new(args)
 	this = setmetatable(this, GameObjectsTemplate) 
 	
 	--===== init =====--
+	--Manually add a trigger to use object intern variables in the listed function.
+	this.gameObject:addBoxTrigger({ 
+		x = 0,
+		y = 0,
+		sx = 6, 
+		sy = 3,
+
+        checkTrigger = false,
+        checkColloder = false,
+		
+		lf = function(collider, go, selfCall)
+			--global.log(global.currentFrame, this:getName())
+		end
+	})
 	
 	--===== custom functions =====--
 	--[[Same as the function equevalent in the stateTemplate
