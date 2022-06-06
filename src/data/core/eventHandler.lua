@@ -105,7 +105,11 @@ end
 function eh.update(sleepTime)	
 	local signal = {true}
 	
-	while parseSignal({global.computer.pullSignal(0)}) do end
+	if global.conf.queueSignals then
+		parseSignal({global.computer.pullSignal(0)})
+	else
+		while parseSignal({global.computer.pullSignal(0)}) do end
+	end
 	
 	local maxDT = 1 / global.conf.targetFramerate
 	

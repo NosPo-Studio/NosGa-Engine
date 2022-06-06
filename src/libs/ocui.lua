@@ -15,7 +15,7 @@
     along with this library.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-local OCUI = {version = "v1.6.2"} --! not compatible to <= v1.5 !--
+local OCUI = {version = "v2.0"}
 OCUI.__index = OCUI
 
 --[[ToDo:

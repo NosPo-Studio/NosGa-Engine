@@ -1,20 +1,29 @@
 --Setting in here can be overwritten by the conf.lua settings.
 
 local nosGaConf = {
+	--=== startup ===--
 	defaultState = "test",
 	defaultState = "rePerformanceTest",
-	
+	defaultState = "uiTest",
+
+	--=== general ===--
 	targetFramerate = -1, --default is "20". set to "-1" for unlimited framerate (can cause in graphical issures).
 	maxTickTime = 1, --if a tick need more as the maxTickTime the engine will handle the tick like it had need exacly the maxTickTime.
 	fpsCheckInterval = 30, --defines what amout of frames the engine use to calculate the avg. fps.
 	
-	showConsole = true, --can be changes ingame by pressing f1 by default.
-	showDebug = true, --can be changes ingame by pressing f3 by default.
-	consoleSizeY = 5, --the height of the console.
-	directConsoleDraw = false, --instant drawing console outputs instead of waiting til new frame (has only an affect if doubleBuffering used) (only if isDev).
+	queueSignals = false, --[[
+		if true the enigne only processes one incomming signal per frame. this can cause delayed sinal processing.
+		e.g. if you keep pressing a key for some time and then let it go, the release will get processed delayed.
+		also the press of new keys or incomming network messages etc. gets delayed.
+
+		if false the performance can go real bad at many incomming signals, like pressing a key for some time.
+		it is recommended to use the keyboard library instead of unqueued signals to process payer inputs.
+	]]
 	
 	preferModTextures = true, --if true mods can overwrite texturePack textures.
 	
+	
+	--=== render engine ===--
 	renderLayerAmount = 10,
 	useDoubleBuffering = true, --[[ Use the third party doubleBuffering method by IgorTimofeev.
 		In the most cases using it causes in a big graphic performance boost but on cost of the memory usage.
@@ -35,6 +44,8 @@ local nosGaConf = {
 	bufferTexturesOnInit = true, --If true the engine buffers all textures on init.
 	useGlobalBackBuffer = false,
 	
+
+	--=== game object behavor ===--
 	narrowUpdateExpansion = {0, 0, 0, 0}, 
 	--[[ Defines the distance a gameObject can be away from any renderArea but will still updated.
 		If it is set to false any gameObject will be updated independent from its position.
@@ -44,7 +55,14 @@ local nosGaConf = {
 	]]
 
 	calcSUpdate = false, --defines if the sUpdate functionality is enabbled or not. causes performance hit.
-		
+
+
+	--=== debug ===--	
+	showConsole = true, --can be changes ingame by pressing f1 by default.
+	showDebug = true, --can be changes ingame by pressing f3 by default.
+	consoleSizeY = 5, --the height of the console.
+	directConsoleDraw = false, --instant drawing console outputs instead of waiting til new frame (has only an affect if doubleBuffering used) (only if isDev).
+
 	debug = { --these options are for developers.
 		isDev = true, --activates debug outputs (strongly recommended if you want to mod the game in any way or something goes wrong and you need a detailed log).
 		
@@ -66,8 +84,8 @@ local nosGaConf = {
 			
 			--=== core ===--
 			dbgpu = false,
-			re = true, 
-			uh = true,
+			re = false, 
+			uh = false,
 			eh = false,
 			GameObject = true,
 			RenderArea = true,

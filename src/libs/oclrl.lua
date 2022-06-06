@@ -23,7 +23,7 @@
 		Animation clear not working.
 
 ]]
-local oclrl = {version = "v1.4.3d"} --! Not compatible to <= v1.4.3 !
+local oclrl = {version = "v2.0"}
 oclrl.__index = oclrl
 
 
