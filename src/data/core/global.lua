@@ -21,6 +21,17 @@ local args = {...}
 local conf = args[1]
 
 local xpcall = xpcall
+local freeMemory, totalMemory = require("computer").freeMemory, require("computer").totalMemory
+local gpuFreeMemory, gpuTotalMemory
+
+do 
+	local gpu = require("component").gpu
+	if gpu.freeMemory then
+		gpuFreeMemory, gpuTotalMemory = gpu.freeMemory, gpu.totalMemory
+	else
+		gpuFreeMemory, gpuTotalMemory = freeMemory, totalMemory
+	end
+end
 
 --===== global vars =====--
 local global = {
@@ -149,8 +160,8 @@ function global.debug.renderDebugInformations()
 		global.gpu.setForeground(0xaaaaaa)
 		global.gpu.setBackground(0x333333)
 		global.gpu.set(1, global.debugDisplayPosY, "NosGa Engine: " .. global.version .. 
-			" | RAM: " .. tostring(math.floor(100 - (global.computer.freeMemory() / global.computer.totalMemory() * 100) +.5)) .. "%" ..
-			" | VRAM: " .. tostring(math.floor(100 - (global.realGPU.freeMemory() / global.realGPU.totalMemory() * 100) +.5)) .. "%" ..
+			" | RAM: " .. tostring(math.floor(100 - (freeMemory() / totalMemory() * 100) +.5)) .. "%" ..
+			" | VRAM: " .. tostring(math.floor(100 - (gpuFreeMemory() / gpuTotalMemory() * 100) +.5)) .. "%" ..
 			" | FPS: " .. tostring(math.floor((global.fps) +.5) .. 
 			" | Frame: " .. tostring(global.currentFrame)
 		) .. global.debugString .. string.rep(" ", global.resX))

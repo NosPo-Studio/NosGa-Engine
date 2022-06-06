@@ -189,8 +189,8 @@ end
 if toLoad.global then
 	loadFiles(global, "global")
 end
-if toLoad.structuredGlobal then
-	loadFiles(global, "structuredGlobal", nil, nil, nil, true)
+if toLoad.structuredGlobal or toLoad.globalStructured then
+	loadFiles(global, "globalStructured", nil, nil, nil, true)
 end
 if toLoad.states then
 	loadFiles(global.state, "states", nil, nil, nil, nil, nil, false)
@@ -212,8 +212,8 @@ if toLoad.gameObjects then
 		
 	end
 end
-if toLoad.structuredGameObjects then
-	loadFiles(global.gameObject, "structuredGameObjects", nil, nil, nil, true)
+if toLoad.structuredGameObjects or toLoad.gameObjectsStructured then
+	loadFiles(global.gameObject, "gameObjectsStructured", nil, nil, nil, true)
 end
 
 

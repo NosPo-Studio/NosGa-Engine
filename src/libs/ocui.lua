@@ -15,7 +15,7 @@
     along with this library.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-local OCUI = {version = "v1.6.1"} --! not compatible to <= v1.5 !--
+local OCUI = {version = "v1.6.2"} --! not compatible to <= v1.5 !--
 OCUI.__index = OCUI
 
 --[[ToDo:
@@ -462,7 +462,6 @@ OCUI.List = {widgetType = "list"}
 OCUI.List.__index = OCUI.List
 
 function OCUI.List.new(ocui, args) --posX == [int], posY == [int], sizeX == [int], sizeY == [int], content == [numTable], {colors == [numTable], listedFunction == [function()], config == [table], managed == [{update == [bool], draw == [bool], stop == [bool]}]}
-
 	local this = setmetatable({}, OCUI.List)
 	this.computer = require("computer")
 	this.event = require("event")
@@ -495,13 +494,20 @@ function OCUI.List.new(ocui, args) --posX == [int], posY == [int], sizeX == [int
 	this.buttons = {}
 	this.inputThread = this.thread.create(function() end)
 	this.backgroundTexture = ocui.oclrl.generateTexture({this.cfg_normalForegroundColor, this.cfg_normalBackgroundColor, this.sizeX, this.sizeY, " "})
-	this.listButton = this.ocui.Button.new(this.internOCUI, this.posX, this.posY, this.sizeX, this.sizeY, {listedFunction = function() 
-		this.status = true 
-		this.tmpStatus = true 
-		if this.inputThread:status() ~= "running" then
-			this.inputThread = this.thread.create(this.inputManager, this)
-		end
-	end})
+	this.listButton = this.ocui.Button.new(this.internOCUI, 
+		{
+			posX = this.posX, 
+			posY = this.posY, 
+			sizeX = this.sizeX, 
+			sizeY = this.sizeY, 
+			listedFunction = function() 
+				this.status = true 
+				this.tmpStatus = true 
+				if this.inputThread:status() ~= "running" then
+					this.inputThread = this.thread.create(this.inputManager, this)
+				end
+			end
+		})
 	
 	--ButtonGenerating {
 	this.scrollPos = nil

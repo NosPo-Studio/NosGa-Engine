@@ -165,9 +165,9 @@ local function calculateFrame(renderArea, area)
 	for go in pairs(renderArea.gameObjects) do
 		local l = go.ngeAttributes.layer
 		local renderAreaGameObjectAttributes = renderArea.gameObjectAttributes[go]
+		insideArea = isInsideArea(renderArea, go, renderArea.cameraMoveInstructions)
 
-
-		if not isInQueue(renderArea, go, l) and renderArea.layerBlacklist[l] ~= true and isInsideArea(renderArea, go, renderArea.cameraMoveInstructions) ~= 0 then
+		if not isInQueue(renderArea, go, l) and renderArea.layerBlacklist[l] ~= true and insideArea ~= 0 then
 			if renderAreaGameObjectAttributes.lastCalculatedFrame < global.currentFrame -1 then
 				renderAreaGameObjectAttributes.mustBeRendered = true
 			end
@@ -180,7 +180,7 @@ local function calculateFrame(renderArea, area)
 				checkOverlapping(renderArea, go, l)
 				renderArea.toRender[l][go] = renderArea
 			end
-		elseif go.ngeAttributes.hasMoved and renderAreaGameObjectAttributes.causedByOverlap and renderArea.layerBlacklist[l] ~= true and isInsideArea(renderArea, go, renderArea.cameraMoveInstructions) ~= 0 then
+		elseif go.ngeAttributes.hasMoved and renderAreaGameObjectAttributes.causedByOverlap and renderArea.layerBlacklist[l] ~= true and insideArea ~= 0 then
 			checkOverlapping(renderArea, go)
 		elseif renderAreaGameObjectAttributes.wasVisible then
 			renderArea.toClear[l][go] = renderArea

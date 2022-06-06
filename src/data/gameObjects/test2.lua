@@ -53,7 +53,7 @@ function GameObjectsTemplate.new(args)
 		},
 
 	}
-	--args.deco = true
+	args.deco = false
 	args.internalGameObject = false
 	args.physics = false
 	args.solid = false

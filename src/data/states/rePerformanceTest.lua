@@ -112,10 +112,10 @@ function test.start()
 	end
 	
 	for c = 0, 3, 1 do
-		--test.goStreet = test.raMain:addGO("street", {x = c * 18, y = 2, layer = 1, name = "s1"})
+		test.goStreet = test.raMain:addGO("street", {x = c * 18, y = 2, layer = 1, name = "s1"})
 	end
 	for c = 0, 3, 1 do
-		--test.goStreet = test.raMain:addGO("street", {x = c * 18, y = 26, layer = 1, name = "s1"})
+		test.goStreet = test.raMain:addGO("street", {x = c * 18, y = 26, layer = 1, name = "s1"})
 	end
 
 	for x = 0, 6, 1 do
@@ -124,23 +124,23 @@ function test.start()
 		end
 	end
 
-	for x = 0, 4, 1 do
-		for y = 0, 1, 1 do
-			--test.goTest5 = test.raMain:addGO("test", {x = 8 * x, y = 8 * y + 20, layer = 4, name = "t3"})
+	for x = 0, 9, 1 do
+		for y = 0, 2, 1 do
+			test.goTest5 = test.raMain:addGO("test2", {x = 8 * x, y = 8 * y + 20, layer = 4, name = "t3"})
 		end
 	end
 
-	for c = 0, 30 do
-		--test.testAnimations[c] = test.raMain:addGO("fakeAnimation", {x = 16, y = 30, layer = 5, name = "fake anim"})
+	for c = 0, 3 do
+		test.testAnimations[c] = test.raMain:addGO("testAnimation", {x = 10 + c * 15, y = 10 + c, layer = 5, name = "fake anim"})
 	end
 
-	for c = 0, 100, 1 do
-		test.testObjecs[c] = test.raMain:addGO("test2", {x = 15, y = 16, layer = 5, name = "testObject_" .. tostring(c)})
+	for c = 0, 0, 1 do
+		--test.testObjecs[c] = test.raMain:addGO("test2", {x = 15, y = 30, layer = 5, name = "testObject_" .. tostring(c)})
 	end
 
-	for c = 0, 1, 1 do
-		test.physicObject = test.raMain:addGO("physicObject", {x = 8 * c + 1, y = 30, layer = 5, name = "phys"})
-		test.ground = test.raMain:addGO("test2", {x = 8 * c + 1, y = 38, layer = 5, name = "ground"})
+	for c = 0, 2, 1 do
+		test.physicObject = test.raMain:addGO("physicObject", {x = 8 * c + 1, y = 3, layer = 5, name = "phys"})
+		--test.ground = test.raMain:addGO("test2", {x = 8 * c + 1, y = 38, layer = 5, name = "ground"})
 	end
 	
 
@@ -181,17 +181,16 @@ function test.update()
 end
 
 function test.draw()
-	
+
 end
 
 function test.key_down(s)
 	if s[4] == 28 and global.isDev then
 		print("--===== EINGABE =====--")
 		
-		if false then
-			global.realGPU.setBackground(0x000000)
-			global.term.clear()
-		end
+		global.realGPU.setBackground(0x000000)
+		global.db.drawRectangle(0, 0, global.resX, global.resY, 0x0, 0x0, " ")
+		global.db.drawChanges(true)
 	end 
 end
 

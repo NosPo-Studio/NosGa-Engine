@@ -25,7 +25,7 @@
     along with dbgpu_api.  If not, see <https://www.gnu.org/licenses/>.	
 ]]
 
-local version = "v0.2d"
+local version = "v0.3.1"
 
 local args = ...
 local path = args.path or ""
@@ -39,8 +39,12 @@ local ut = require("libs/UT")
 local lastBackground = gpu.getBackground()
 local lastForeground = gpu.getForeground()
 
-local currentVBuffer = gpu.getActiveBuffer()
+local currentVBuffer = 0
 local cpuBuffers = {}
+
+if gpu.getActiveBuffer then
+	currentVBuffer = gpu.getActiveBuffer()
+end
 
 local function flushBuffer(id, w, h)
 	cpuBuffers[id] = {

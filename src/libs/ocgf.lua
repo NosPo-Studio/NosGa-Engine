@@ -21,7 +21,7 @@
 	WIP:
 ]]
 
-local OCGF = {version = "v1.1.4d"} 
+local OCGF = {version = "v1.3"} 
 OCGF.__index = OCGF
 
 --===== local vars =====--
@@ -561,7 +561,7 @@ function OCGF.RigidBody.new(gameObject, args)
 	this.calculateHalfPixel = ut.parseArgs(args.hp, args.halfPixel, args.calculateHalfPixel, true) -- if true then is speedY == speedY /2
 	this.mass = ut.parseArgs(args.mass, 0)
 	this.hardness = ut.parseArgs(args.hardness, 1)
-	this.gravitationFactor = ut.parseArgs(args.g, args.gravitation, args.gravitationFactor, 1)
+	this.gravitationFactor = ut.parseArgs(args.g, args.gravity, args.gravitation, args.gravitationFactor, 1)
 	this.stiffness = ut.parseArgs(args.stiffness, 0) -- 1 == 1 speed loss per update, -1 == unmovable.
 	this.speedTakeover = ut.parseArgs(args.speedTakeover, 1) -- 0 == 100% speed loss per update, .1 == 90% speed loss pr update, 1 == 0% speed loss per update.
 	this.stickiness = ut.parseArgs(args.stickiness, 1) --1 == enouth to stick stiff, 0 == no stickiness.

@@ -205,6 +205,7 @@ function eh.key_down(s)
 		global.run(global.state[global.currentState].start)
 		
 		global.clear()
+		global.lastUptime = global.computer.uptime()
 	end
 	if k == global.conf.debug.debugKeys.rerenderScreen then --f6
 		global.clear()

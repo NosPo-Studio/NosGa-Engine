@@ -41,7 +41,7 @@ end
 function GameObject.new(args)
 	args = args or {}
 	local this = setmetatable({}, GameObject)
-	
+
 	this.ngeAttributes = {
 		sizeX = pa(args.sx, args.sizeX, 0),
 		sizeY = pa(args.sy, args.sizeY, 0),
@@ -50,9 +50,10 @@ function GameObject.new(args)
 		drawSize = pa(args.ds, args.drawSize, global.conf.debug.drawGameObjectBorders),
 		isParent = args.isParent,
 		updateAlways = pa(args.updateAlways, false),
+		isLoaded = false,
 
-		updateOCGFGameObject = pa(args.calcInternalGameObject, args.internalGameObject, args.updateInternalGameObject, not args.deco --[[is true if deco is nil]]), --if set to true this gameobject will not calulate own physics.
-		updatePhysics = pa(args.calcPhysics, args.physics, args.updatePhysics, not args.deco --[[is true if deco is nil]]), --if set to true this gameobject will not the own internal gameobject. thi smean sthat triggers an co will not work.
+		updateOCGFGameObject = pa(args.calcInternalGameObject, args.internalGameObject, args.updateInternalGameObject, not args.deco --[[is true if deco is nil]], false), --if set to true this gameobject will not calulate own physics.
+		updatePhysics = pa(args.calcPhysics, args.physics, args.updatePhysics, not args.deco --[[is true if deco is nil]], false), --if set to true this gameobject will not the own internal gameobject. thi smean sthat triggers an co will not work.
 
 		ignoreOCGFGameObject = pa(args.ignoreGameObject, args.deco, false), --if set to true other objects will not interact with this. so triggers and vco will not get trigered.
 		
@@ -93,6 +94,8 @@ function GameObject.new(args)
 			if type(c.texture) == "string" then
 				c.texture = global.texture[c.texture]
 			end
+
+			assert(c.texture, "Cant add GameObject. No texture given.")
 			
 			if c.texture.format == "OCGLA" or c.texture.format == "pan" then
 				this.ngeAttributes.usesAnimation = true
@@ -215,8 +218,6 @@ function GameObject.new(args)
 	this.ngeUpdate = function(this, ocgfGameObjects, dt, ra) --parent func
 		local insert = table.insert
 		local ngeAttributes = this.ngeAttributes
-
-		
 		
 		if this.test then
 			--global.log(#ocgfGameObjects)
@@ -373,14 +374,16 @@ function GameObject.new(args)
 		end
 		this.gameObject:stop()
 	end
-	this.ngeSpawn = function(this) --parent func
+	this.ngeLoad = function(this, renderArea) --parent func
+		this.ngeAttributes.isLoaded = true
 		if this.ngeAttributes.isParent then
 			global.run(this.pSpawn, this)
 		else
 			global.run(this.spawn, this)
 		end
 	end
-	this.ngeDespawn = function(this) --parent func
+	this.ngeUnload = function(this, renderArea) --parent func		
+		this.ngeAttributes.isLoaded = false
 		if this.ngeAttributes.isParent then
 			global.run(this.pDespawn, this)
 		else

@@ -164,6 +164,11 @@ function RenderArea.new(args)
 			this.gameObjects[go] = nil
 		end
 	end
+	this.remAll = function(this)
+		for go in pairs(this.gameObjects) do
+			this:remGO(go)
+		end
+	end
 	this.move = function(this, x, y)
 		
 	end

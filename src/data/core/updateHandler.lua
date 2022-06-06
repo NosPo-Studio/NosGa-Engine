@@ -52,29 +52,6 @@ local function isInsideArea(ra, go, expansion)
 	return false
 end
 
-local function calculateFrame(renderArea)
-	local expansion = renderArea.narrowUpdateExpansion
-	
-	if narrowUpdateExpansion ~= false then
-		renderArea.updateAnything = false
-		local raToUpdate = renderArea.toUpdate
-
-		for go in pairs(renderArea.gameObjects) do
-			local l = go.ngeAttributes.layer
-			
-			if renderArea.layerBlacklist[l] ~= true and 
-				isInsideArea(renderArea, go, narrowUpdateExpansion) and 
-				raToUpdate[go] == nil or
-				go.ngeAttributes.updateAlways
-			then 
-				raToUpdate[go] = true
-			end
-		end
-	else
-		renderArea.updateAnything = true
-	end
-end
-
 local function updateGameObjec(renderArea, go, ocgfUpdateQueue, dt)
 	local isUpdated = uh.isUpdated
 
@@ -98,21 +75,45 @@ local function updateGameObjec(renderArea, go, ocgfUpdateQueue, dt)
 	end
 end
 
+local function checkLoadingStatus(go, updated)
+	--global.log(updated, go.ngeAttributes.isLoaded)
+	if not updated and go.ngeAttributes.isLoaded then
+		global.run(go.ngeUnload, go)
+	elseif updated and not go.ngeAttributes.isLoaded then
+		global.run(go.ngeLoad, go)
+	end
+end
+
 local function updateFrame(renderArea, dt)
 	local ocgfUpdateQueue = uh.ocgfUpdateQueue
 	local newOcgfUpdateQueue = uh.newOcgfUpdateQueue
 	local ocgfGameObject = nil
+	local expansion = renderArea.narrowUpdateExpansion
+	local isUpdated = uh.isUpdated
 
-	if renderArea.updateAnything then
+	if narrowUpdateExpansion ~= false and not renderArea.updateAnything then
 		for go in pairs(renderArea.gameObjects) do
-			ocgfGameObject = updateGameObjec(renderArea, go, ocgfUpdateQueue, dt)
-			if not go.ngeAttributes.ignoreOCGFGameObject then
-				tableInsert(newOcgfUpdateQueue, ocgfGameObject)
+			local l = go.ngeAttributes.layer
+			
+			if 
+				renderArea.layerBlacklist[l] ~= true and 
+				isInsideArea(renderArea, go, narrowUpdateExpansion) and 
+				isUpdated[go] ~= true or
+				go.ngeAttributes.updateAlways
+			then 
+				ocgfGameObject = updateGameObjec(renderArea, go, ocgfUpdateQueue, dt)
+				checkLoadingStatus(go, true)
+				if not go.ngeAttributes.ignoreOCGFGameObject then
+					tableInsert(newOcgfUpdateQueue, ocgfGameObject)
+				end
+			else
+				checkLoadingStatus(go, false)
 			end
 		end
 	else
-		for go, c in pairs(renderArea.toUpdate) do
+		for go in pairs(renderArea.gameObjects) do
 			ocgfGameObject = updateGameObjec(renderArea, go, ocgfUpdateQueue, dt)
+			checkLoadingStatus(go, true)
 			if not go.ngeAttributes.ignoreOCGFGameObject then
 				tableInsert(newOcgfUpdateQueue, ocgfGameObject)
 			end
@@ -132,7 +133,6 @@ function uh.update(dt)
 	
 	for ra in pairs(global.renderAreas) do
 		if not ra.silent then
-			calculateFrame(ra)
 			updateFrame(ra, dt)
 		end
 	end
