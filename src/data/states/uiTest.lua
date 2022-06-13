@@ -48,6 +48,7 @@ function test.init()
 			gameObjects = true,
 			textures = true,
 			animations = true,
+			gui = true,
 		},
 	})
 
@@ -66,14 +67,47 @@ function test.start()
 	test.raMain = global.addRA({
 		posX = 5, 
 		posY = 3, 
-		sizeX = 55, 
-		sizeY = 20, 
+		sizeX = 50, 
+		sizeY = 40, 
 		name = "TRA1", 
 		drawBorders = true,
 	})
 	--test.ra2 = global.addRA({posX = 59, posY = 3, sizeX = 55, sizeY = 20, name = "TRA2", drawBorders = true, parent = test.raMain})
 	
 	test.goMoving = test.raMain:addGO("test", {x = 5, y = 3, layer = 2, name = "barrier"})
+	test.goMoving2 = test.raMain:addGO("test", {x = 5, y = 25, layer = 2, name = "barrier"})
+
+	package.loaded["libs/thirdParty/GUI"] = nil
+	global.gui = require("libs/thirdParty/GUI")
+
+	print("INIT")
+
+	if true then
+		local GUI = global.gui
+		local app = GUI.application()
+		local container = app:addChild(GUI.container(6, 3, 50, 20))
+		local button1 = container:addChild(GUI.button(2, 1, 11, 3, 0x444444, 0x999999, 0x777777, 0xdddddd, "Button1"))
+		local button2 = container:addChild(GUI.button(2, 5, 11, 3, 0x444444, 0x999999, 0x777777, 0xdddddd, "Button2"))
+		local switch1 = container:addChild(GUI.switch(15, 2, 11, 0x444444, 0x999999, 0x777777))
+		local switch2 = container:addChild(GUI.switch(15, 6, 11, 0x444444, 0x999999, 0x777777))
+			
+			
+		button1.onTouch = function()
+			if not switch1.state then
+				GUI.alert("NEIN NEIN NEIN NEIN!!! DAS GEHT SO NICHT!! DER SChALTER IST AUS!!!!")
+			end
+		end
+		
+		button2.onTouch = function()
+			if not switch2.state then
+				GUI.alert("Nein.")
+			end
+		end
+		
+		
+		app:draw(true)
+		app:start()
+	end
 	
 	
 	--===== debug end =====--

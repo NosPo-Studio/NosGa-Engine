@@ -184,6 +184,9 @@ end
 if toLoad.Sprite then
 	global.core.Sprite = reloadFile(global.core.Sprite, "data/core/Sprite.lua", global)
 end
+if toLoad.uiHandler or toLoad.gui then
+	global.core.uiHandler = reloadFile(global.core.Sprite, "data/core/uiHandler.lua", global)
+end
 
 --===== asset loading =====--
 if toLoad.global then

@@ -48,7 +48,7 @@ function GameObjectsTemplate.new(args)
 			stiffness = 10,
 		},
 	}
-	args.solid = false
+	args.solid = true
 	--args.deco = true
 	
 	--===== default stuff =====--

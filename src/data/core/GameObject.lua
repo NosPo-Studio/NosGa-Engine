@@ -113,8 +113,8 @@ function GameObject.new(args)
 	end
 	
 	if args.noSizeArea ~= true and this.ngeAttributes.sizeX > 0 and this.ngeAttributes.sizeY > 0 then
-		addAreaEntry(this.ngeAttributes.clearAreas, {posX = 0, posY = 0, sizeX = this.ngeAttributes.sizeX, sizeY = this.ngeAttributes.sizeY})
-		addAreaEntry(this.ngeAttributes.copyAreas, {posX = 0, posY = 0, sizeX = this.ngeAttributes.sizeX, sizeY = this.ngeAttributes.sizeY})
+		addAreaEntry(this.ngeAttributes.clearAreas, {posX = 0, posY = 0, sizeX = this.ngeAttributes.sizeX, sizeY = this.ngeAttributes.sizeY, solid = args.solid})
+		addAreaEntry(this.ngeAttributes.copyAreas, {posX = 0, posY = 0, sizeX = this.ngeAttributes.sizeX, sizeY = this.ngeAttributes.sizeY, solid = args.solid})
 	end
 	
 	--===== default functions =====--

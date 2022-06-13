@@ -77,7 +77,11 @@ local function exportSignal(s, sname)
 end
 
 local function parseSignal(signal)
-	if #signal == 0 then return false end
+	if #signal == 0 then 
+		global.core.uiHandler.update({}) --needed for GUI to update.
+		return false 
+	end
+
 	if global.tiConsole.status == true then
 		if signal[1] == "key_down" or signal[1] == "key_up" then
 			return true
@@ -93,6 +97,8 @@ local function parseSignal(signal)
 	if signal[1] ~= "key_down" then
 		exportSignal(signal)
 	end
+
+	global.core.uiHandler.update(signal)
 	
 	return true
 end

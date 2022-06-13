@@ -276,6 +276,7 @@ local function drawFrame(renderArea)
 		end
 		renderArea.toRender[i] = {}
 	end
+	global.core.uiHandler.draw()
 end
 
 --===== global functions =====--

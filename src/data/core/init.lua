@@ -19,6 +19,7 @@
 
 local args = {...}
 local global = args[1]
+_G.ngeGlobal = global
 
 --===== dev =====--
 local orgRequire = require
@@ -56,7 +57,6 @@ global.serialization = require("serialization")
 global.component = require("component")
 global.realGPU = global.component.gpu
 global.LIP = require("libs/thirdParty/LIP")
-global.image = require("libs/thirdParty/image")
 
 print("useDoubleBuffering: " .. tostring(global.conf.useDoubleBuffering))
 if global.conf.useDoubleBuffering then
@@ -68,7 +68,15 @@ if global.conf.useDoubleBuffering then
 else
 	global.gpu = global.component.gpu
 end
-global.db = require("libs/thirdParty/DoubleBuffering")
+
+if global.conf.useDoubleBuffering then
+	global.image = require("libs/thirdParty/image")
+	global.db = require("libs/thirdParty/DoubleBuffering")
+
+	package.loaded["libs/thirdParty/GUI"] = nil
+	global.gui = require("libs/thirdParty/GUI")
+end
+
 global.oclrl = require("libs/oclrl").initiate(global.gpu, {checkColor = true})
 global.ocal = require("libs/ocal").initiate({oclrl = global.oclrl, db = global.db, libs = "libs/thirdParty"})
 --global.oclrl = require("oclrl").initiate(global.gpu)
@@ -138,6 +146,7 @@ global.load({
 		Sprite = true,
 		eh = true,
 		structuredGlobal = true,
+		uiHandler = true,
 	},
 	print = global.orgPrint,
 })

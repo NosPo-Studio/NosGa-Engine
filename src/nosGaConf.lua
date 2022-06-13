@@ -46,7 +46,7 @@ local nosGaConf = {
 	
 
 	--=== game object behavor ===--
-	narrowUpdateExpansion = {0, 0, 0, 0}, 
+	narrowUpdateExpansion = false, --{0, 0, 0, 0}, 
 	--[[ Defines the distance a gameObject can be away from any renderArea but will still updated.
 		If it is set to false any gameObject will be updated independent from its position.
 		Can be changed in source for any renderArea independently.
@@ -84,12 +84,13 @@ local nosGaConf = {
 			
 			--=== core ===--
 			dbgpu = false,
-			re = false, 
+			re = true, 
 			uh = false,
 			eh = false,
 			GameObject = true,
 			RenderArea = true,
 			Sprite = false,
+			uiHandler = false,
 			
 			--=== data groups ===--
 			global = false, --global dir.
