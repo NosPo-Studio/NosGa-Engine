@@ -39,7 +39,7 @@ With the NosGa you easly can attach triggers to your GameObjects ccalling a spec
 NosGa provides a particle system giving you the possibility to create special effects like fire or smoke.
 
 ### GUI
-NosGa is shipped with a ready to use implementation of the [GUI library](https://github.com/IgorTimofeev/GUI) by Igor Timofeev wich can be used as descibed in its [wiki](https://github.com/IgorTimofeev/GUI/tree/0fadb161469d404d477dd9babfdc9a5aa42ff203).
+NosGa is shipped with a ready to use implementation of the [GUI library](https://github.com/IgorTimofeev/GUI/tree/0fadb161469d404d477dd9babfdc9a5aa42ff203) by Igor Timofeev wich can be used as descibed in its [wiki](https://github.com/IgorTimofeev/GUI/tree/0fadb161469d404d477dd9babfdc9a5aa42ff203).
 
 # Planed
 ### Better physic engine
