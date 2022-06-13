@@ -12,7 +12,7 @@ More informations about the single features you can get in the wiki.
 NosGa provides a self managed multi window 2D render engine using the gpu.copy function to move the camera and sprites without rerendering the visible areas/sprites.
 Toghether with the slightly modified DoubleBuffering method (by IgorTimofeev) you get the best possible OC graphic performance with very less effort.
 		
-The render engine is basicly fully functional without DoubleBuffering too (for memory intensive applications) but with lot worse performance in the most cases of course.
+The render engine is basicly fully functional without DoubleBuffering too (for memory intensive applications) but with lot worse performance in the most cases as well as reduced features.
 	
 ### Asset loading:
 NosGa is loading assets like GameObjects, textures, mods etc. fully automatically at startup or just some asses groups at some point of your code.
@@ -38,10 +38,10 @@ With the NosGa you easly can attach triggers to your GameObjects ccalling a spec
 ### Particle system
 NosGa provides a particle system giving you the possibility to create special effects like fire or smoke.
 
-# Planed
-### UI system
-An easy to use UI system to create buttons etc..
+### GUI
+NosGa is shipped with a ready to use implementation of the [GUI library by Igor Timofeev](https://github.com/IgorTimofeev/GUI)  wich can be used as descibed in its [wiki](https://github.com/IgorTimofeev/GUI/tree/0fadb161469d404d477dd9babfdc9a5aa42ff203).
 
+# Planed
 ### Better physic engine
 A more extensive and realistic physic engine.
 
@@ -81,13 +81,15 @@ Image Copyright (c) 2018 Igor Timofeev
 OCIF Copyright (c) 2018 Igor Timofeev  
 Color Copyright (c) 2018   
 AdvancedLua Copyright (c) 2018 Igor Timofeev  
+GUI Copyright (c) 2018 Igor Timofeev  
 
 OpenComputers (OpenOS LUA shell) Copyright (c) 2013-2015 Florian "Sangar" Nücke  
 
 LIP (ini file parser) Copyright (c) 2012 Carreras Nicolas  
 
-DoubleBuffering (raw copy feature) Copyright (c) 2019 NosPo Studio  
+DoubleBuffering (NosGa version) Copyright (c) 2019 NosPo Studio  
 LUA shell (NosGa version) (c) 2019 NosPo Studio  
+GUI (NosGa version) Copyright (c) 2022 NosPo Studio  
 
 MIT License
 
