@@ -2,9 +2,7 @@
 
 local nosGaConf = {
 	--=== startup ===--
-	defaultState = "test",
-	defaultState = "rePerformanceTest",
-	defaultState = "uiTest",
+	defaultState = "example",
 
 	--=== general ===--
 	targetFramerate = -1, --default is "20". set to "-1" for unlimited framerate (can cause in graphical issures).

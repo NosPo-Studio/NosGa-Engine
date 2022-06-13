@@ -1,0 +1,10 @@
+[INFO]  [GE]: Change state to: "example". 
+[INFO]  [test]: Start init. 
+[INFO]  [DL]: Loading data groups: animations, textures, gameObjects, parents. 
+[INFO]  [DL]: Loading data group: textures. 
+[INFO]  [DL]: Loading data group: animations. 
+[INFO]  [DL]: Loading data group: parents. 
+[INFO]  [DLF]: Loading file: data/parents/nge//ParticleContainer.lua: function: 0x7fd95814eba0 
+[INFO]  [DLF]: Loading file: data/parents/nge//UiContainer.lua: function: 0x7fd958096140 
+[INFO]  [DL]: Loading data group: gameObjects. 
+[INFO]  [test]: init done. 

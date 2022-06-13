@@ -1,1 +1,0 @@
-{NoName=359,BestDriver=99999,WeakPlayer=1,EvenPlayer1=5,JustANormalDriver=333,SecondBestDriver=999,DRIVERRRRRRRR=0,DRIVER33=0,DRIVER1=0,EvenPlayer2=5,EvenPlayer3=5}

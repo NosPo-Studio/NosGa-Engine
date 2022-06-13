@@ -1,7 +1,7 @@
 --Setting in here are overwriting the nosGaConf settings.
 
 local conf = {
-	texturePack = "default",
+	texturePack = "example",
 	
 	particles = 0,
 	
