@@ -124,7 +124,8 @@ if toLoad.conf then
 		for i, c in pairs(toParse) do
 			for s in string.gmatch(tostring(c), "[^,]+") do
 				if convert then
-					addEntry(target, tonumber(string.byte(s)), i)
+					--addEntry(target, tonumber(string.byte(s)), i)
+					addEntry(target, require("keyboard").keys[s], i)
 				else
 					addEntry(target, tonumber(s), i)
 				end
@@ -133,7 +134,8 @@ if toLoad.conf then
 	end
 
 	parseControls(controlsINI.code, global.controls.c)
-	parseControls(controlsINI.string, global.controls.c, true)
+	--parseControls(controlsINI.string, global.controls.c, true)
+	parseControls(controlsINI.string, global.controls.k, true)
 	parseControls(controlsINI.key, global.controls.k)
 	parseControls(controlsINI.mouse, global.controls.m)
 	

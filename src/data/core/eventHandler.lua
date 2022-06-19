@@ -23,6 +23,7 @@ local eh = {}
 --===== local variables =====--
 local pressedKeys = {}
 local specialPressedKeys = {}
+local keyboard = require("keyboard")
 
 --===== local functions =====--
 local function print(...)
@@ -52,7 +53,7 @@ local function exportCtrlSignal(s, sname)
 		end
 	end
 	
-	if sname == "key_down" or sname == "key_pressed" or sname == "key_up" then
+	if sname == "key_down" or sname == "key_pressed" or sname == "key_up" or sname == "key_held" then
 		if global.controls.c[s[3]] then
 			callFunctions(global.controls.c[s[3]], sname)
 		elseif global.controls.k[s[4]] then
@@ -82,7 +83,7 @@ local function parseSignal(signal)
 		return false 
 	end
 
-	if global.tiConsole.status == true then
+	if global.tiConsole.status == true --[[or global.conf.fastKeyCheck]] then
 		if signal[1] == "key_down" or signal[1] == "key_up" then
 			return true
 		end
@@ -118,11 +119,11 @@ function eh.update(sleepTime)
 	end
 	
 	local maxDT = 1 / global.conf.targetFramerate
-	
-	global.dt = global.computer.uptime() - global.lastUptime
-	
-	if global.conf.targetFramerate ~= -1 and global.dt < maxDT then
-		parseSignal({global.event.pull((1 / global.conf.targetFramerate) - math.max(global.dt - (1 / global.conf.targetFramerate), 0))})
+	local dt = global.computer.uptime() - global.lastUptime
+
+	while global.conf.targetFramerate ~= -1 and dt < maxDT do
+		parseSignal({global.computer.pullSignal((1 / global.conf.targetFramerate) - math.max(global.dt - (1 / global.conf.targetFramerate), 0))})
+		dt = global.computer.uptime() - global.lastUptime
 	end
 	
 	global.dt = global.computer.uptime() - global.lastUptime
