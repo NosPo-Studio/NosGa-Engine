@@ -82,6 +82,7 @@ function GameObject.new(args)
 		posY = pa(args.y, args.posY),
 		parent = this,
 	})
+	this.internalGameObject = this.gameObject --just an more intuitive alias for the dev to work with. 
 	
 	for _, c in pairs(args.gameObject or {}) do
 		if c[1] == "BoxCollider" then
@@ -90,12 +91,16 @@ function GameObject.new(args)
 			this.gameObject:addBoxTrigger(c)
 		elseif c[1] == "RigidBody" then
 			this.gameObject:addRigidBody(c)
-		elseif c[1] == "Sprite" then
+		elseif c[1] == "Sprite" or c[1] == "Animation" then
 			if type(c.texture) == "string" then
-				c.texture = global.texture[c.texture]
+				if c[1] == "Sprite" then
+					c.texture = global.texture[c.texture]
+				elseif c[1] == "Animation" then
+					c.texture = global.animation[c.texture]
+				end
 			end
 
-			assert(c.texture, "Cant add GameObject. No texture given.")
+			assert(c.texture, "Cant add GameObject. No valid texture/animation given.")
 			
 			if c.texture.format == "OCGLA" or c.texture.format == "pan" then
 				this.ngeAttributes.usesAnimation = true
